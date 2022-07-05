@@ -5,12 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.fragment.findNavController
 import com.example.brauportv2.R
 import com.example.brauportv2.databinding.FragmentHomeBinding
+import com.example.brauportv2.databinding.FragmentStockBinding
 
-class HomeFragment : Fragment() {
-    private var _binding: FragmentHomeBinding? = null
+class StockFragment : Fragment() {
+
+    private var _binding: FragmentStockBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -18,11 +19,7 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
-        binding.homeStockButton.setOnClickListener {
-            val action = HomeFragmentDirections.actionHomeFragmentToStockFragment()
-            findNavController().navigate(action)
-        }
+        _binding = FragmentStockBinding.inflate(inflater, container, false)
         return binding.root
     }
 }

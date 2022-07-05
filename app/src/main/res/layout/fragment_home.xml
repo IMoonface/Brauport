@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
     tools:context=".MainActivity">
 
     <Button
@@ -13,12 +15,7 @@
         android:text="@string/home_recipe_button_text"
         android:textColor="@color/appBars_color"
         app:backgroundTint="@color/button_color"
-        app:cornerRadius="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.27" />
+        app:cornerRadius="20dp" />
 
     <Button
         android:id="@+id/home_stock_button"
@@ -28,10 +25,7 @@
         android:text="@string/home_stock_button_text"
         android:textColor="@color/appBars_color"
         app:backgroundTint="@color/button_color"
-        app:cornerRadius="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/home_recipe_button" />
+        app:cornerRadius="20dp" />
 
     <Button
         android:id="@+id/home_brew_button"
@@ -41,9 +35,5 @@
         android:text="@string/home_brew_button_text"
         android:textColor="@color/appBars_color"
         app:backgroundTint="@color/button_color"
-        app:cornerRadius="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/home_stock_button" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+        app:cornerRadius="20dp" />
+</LinearLayout>

@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.homeFragment
             )
         )
-
+        setSupportActionBar(binding.activityAppBar)
         setupActionBarWithNavController(navController, appBarConfiguration)
         binding.activityBottomNav.setupWithNavController(navController)
     }

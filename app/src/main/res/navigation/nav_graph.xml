@@ -1,11 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
     app:startDestination="@id/homeFragment">
 
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.example.brauportv2.ui.HomeFragment"
-        android:label="Brauport - Hauptmenü" />
+        android:label="Brauport - Hauptmenü" >
+        <action
+            android:id="@+id/action_homeFragment_to_stockFragment"
+            app:destination="@id/stockFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/stockFragment"
+        android:name="com.example.brauportv2.ui.StockFragment"
+        android:label="Brauport - Bestand"
+        tools:layout="@layout/fragment_stock" />
 </navigation>
