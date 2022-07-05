@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/home_recipe_button"
+        android:layout_width="220dp"
+        android:layout_height="60dp"
+        android:text="@string/home_recipe_button_text"
+        android:textColor="@color/appBars_color"
+        app:backgroundTint="@color/button_color"
+        app:cornerRadius="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.27" />
+
+    <Button
+        android:id="@+id/home_stock_button"
+        android:layout_width="220dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="50dp"
+        android:text="@string/home_stock_button_text"
+        android:textColor="@color/appBars_color"
+        app:backgroundTint="@color/button_color"
+        app:cornerRadius="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/home_recipe_button" />
+
+    <Button
+        android:id="@+id/home_brew_button"
+        android:layout_width="220dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="50dp"
+        android:text="@string/home_brew_button_text"
+        android:textColor="@color/appBars_color"
+        app:backgroundTint="@color/button_color"
+        app:cornerRadius="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/home_stock_button" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
