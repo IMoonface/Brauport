@@ -3,6 +3,7 @@ package com.example.brauportv2
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.NavController
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
@@ -21,12 +22,11 @@ class MainActivity : AppCompatActivity() {
 
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment)
                 as NavHostFragment
-
         navController = navHostFragment.navController
 
         val appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.homeFragment
+                R.id.home_fragment
             )
         )
         setSupportActionBar(binding.activityAppBar)

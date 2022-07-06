@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">BrauportV2</string>
-    <string name="home_recipe_button_text">Rezept</string>
-    <string name="home_stock_button_text">Bestand</string>
-    <string name="home_brew_button_text">Brauen</string>
+    <string name="main_recipe_button_text">Rezept</string>
+    <string name="main_stock_button_text">Bestand</string>
+    <string name="main_brew_button_text">Brauen</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="item_main_screen_text">Home</string>
     <string name="item_close_text">Beenden</string>

@@ -6,34 +6,35 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    tools:context=".MainActivity">
+    tools:context=".ui.HomeFragment">
 
     <Button
-        android:id="@+id/home_recipe_button"
+        android:id="@+id/main_recipe_button"
         android:layout_width="220dp"
         android:layout_height="60dp"
-        android:text="@string/home_recipe_button_text"
+        android:text="@string/main_recipe_button_text"
         android:textColor="@color/appBars_color"
         app:backgroundTint="@color/button_color"
         app:cornerRadius="20dp" />
 
     <Button
-        android:id="@+id/home_stock_button"
-        android:layout_width="220dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="50dp"
-        android:text="@string/home_stock_button_text"
-        android:textColor="@color/appBars_color"
-        app:backgroundTint="@color/button_color"
-        app:cornerRadius="20dp" />
-
-    <Button
-        android:id="@+id/home_brew_button"
+        android:id="@+id/main_stock_button"
         android:layout_width="220dp"
         android:layout_height="60dp"
         android:layout_marginTop="50dp"
-        android:text="@string/home_brew_button_text"
+        android:text="@string/main_stock_button_text"
         android:textColor="@color/appBars_color"
         app:backgroundTint="@color/button_color"
         app:cornerRadius="20dp" />
+
+    <Button
+        android:id="@+id/main_brew_button"
+        android:layout_width="220dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="50dp"
+        android:text="@string/main_brew_button_text"
+        android:textColor="@color/appBars_color"
+        app:backgroundTint="@color/button_color"
+        app:cornerRadius="20dp" />
+
 </LinearLayout>

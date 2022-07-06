@@ -9,6 +9,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.brauportv2.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
+
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
@@ -19,20 +20,25 @@ class HomeFragment : Fragment() {
         // Inflate the layout for this fragment
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
 
-        binding.homeRecipeButton.setOnClickListener {
+        binding.mainRecipeButton.setOnClickListener {
             val action = HomeFragmentDirections.actionHomeFragmentToRecipeFragment()
             findNavController().navigate(action)
         }
 
-        binding.homeStockButton.setOnClickListener {
+        binding.mainStockButton.setOnClickListener {
             val action = HomeFragmentDirections.actionHomeFragmentToStockFragment()
             findNavController().navigate(action)
         }
 
-        binding.homeBrewButton.setOnClickListener {
+        binding.mainBrewButton.setOnClickListener {
             val action = HomeFragmentDirections.actionHomeFragmentToBrewFragment()
             findNavController().navigate(action)
         }
         return binding.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

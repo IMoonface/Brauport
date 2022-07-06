@@ -6,8 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
-import com.example.brauportv2.R
-import com.example.brauportv2.databinding.FragmentHomeBinding
 import com.example.brauportv2.databinding.FragmentRecipeBinding
 
 class RecipeFragment : Fragment() {
@@ -31,5 +29,10 @@ class RecipeFragment : Fragment() {
     private fun onRecipeClick() {
         val action = RecipeFragmentDirections.actionRecipeFragmentToRecipeDetailsFragment()
         findNavController().navigate(action)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

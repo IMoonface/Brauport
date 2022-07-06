@@ -3,43 +3,44 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/home_fragment">
 
     <fragment
-        android:id="@+id/homeFragment"
+        android:id="@+id/home_fragment"
         android:name="com.example.brauportv2.ui.HomeFragment"
-        android:label="Brauport - Hauptmenü" >
+        android:label="Brauport - Hauptmenü"
+        tools:layout="@layout/fragment_home">
         <action
-            android:id="@+id/action_homeFragment_to_stockFragment"
-            app:destination="@id/stockFragment" />
+            android:id="@+id/action_homeFragment_to_recipe_fragment"
+            app:destination="@id/recipe_fragment" />
         <action
-            android:id="@+id/action_homeFragment_to_brewFragment"
-            app:destination="@id/brewFragment" />
+            android:id="@+id/action_homeFragment_to_stock_fragment"
+            app:destination="@id/stock_fragment" />
         <action
-            android:id="@+id/action_homeFragment_to_recipeFragment"
-            app:destination="@id/recipeFragment" />
+            android:id="@+id/action_homeFragment_to_brew_fragment"
+            app:destination="@id/brew_fragment" />
     </fragment>
     <fragment
-        android:id="@+id/stockFragment"
+        android:id="@+id/stock_fragment"
         android:name="com.example.brauportv2.ui.StockFragment"
         android:label="Brauport - Bestand"
         tools:layout="@layout/fragment_stock" />
     <fragment
-        android:id="@+id/brewFragment"
+        android:id="@+id/brew_fragment"
         android:name="com.example.brauportv2.ui.BrewFragment"
         android:label="Brauport - Brauen"
         tools:layout="@layout/fragment_brew" />
     <fragment
-        android:id="@+id/recipeFragment"
+        android:id="@+id/recipe_fragment"
         android:name="com.example.brauportv2.ui.RecipeFragment"
         android:label="Brauport - Rezept"
         tools:layout="@layout/fragment_recipe">
         <action
             android:id="@+id/action_recipeFragment_to_recipeDetailsFragment"
-            app:destination="@id/recipeDetailsFragment" />
+            app:destination="@id/recipe_details_fragment" />
     </fragment>
     <fragment
-        android:id="@+id/recipeDetailsFragment"
+        android:id="@+id/recipe_details_fragment"
         android:name="com.example.brauportv2.ui.details.RecipeDetailsFragment"
         android:label="Brauport - Rezeptdetails"
         tools:layout="@layout/fragment_recipe_details" />

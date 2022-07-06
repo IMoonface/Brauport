@@ -5,8 +5,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.brauportv2.R
-import com.example.brauportv2.databinding.FragmentHomeBinding
 import com.example.brauportv2.databinding.FragmentStockBinding
 
 class StockFragment : Fragment() {
@@ -22,5 +20,10 @@ class StockFragment : Fragment() {
         _binding = FragmentStockBinding.inflate(inflater, container, false)
 
         return binding.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
