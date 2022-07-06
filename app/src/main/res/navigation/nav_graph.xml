@@ -17,7 +17,7 @@
             app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_homeFragment_to_stock_fragment"
-            app:destination="@id/stock_fragment"
+            app:destination="@id/malts_stock_fragment"
             app:popUpTo="@+id/nav_graph"
             app:popUpToInclusive="true"/>
         <action
@@ -27,10 +27,10 @@
             app:popUpToInclusive="true"/>
     </fragment>
     <fragment
-        android:id="@+id/stock_fragment"
-        android:name="com.example.brauportv2.ui.StockFragment"
+        android:id="@+id/malts_stock_fragment"
+        android:name="com.example.brauportv2.ui.MaltStockFragment"
         android:label="Brauport - Bestand"
-        tools:layout="@layout/fragment_stock" />
+        tools:layout="@layout/fragment_malt_stock" />
     <fragment
         android:id="@+id/brew_fragment"
         android:name="com.example.brauportv2.ui.BrewFragment"

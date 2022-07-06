@@ -10,4 +10,6 @@
     <string name="cl_recipe_item_name">Test Rezept</string>
     <string name="brew_text">Brauen</string>
     <string name="stock_text">Bestand</string>
+    <string name="stock_add_item">Neu</string>
+    <string name="malt">Malz</string>
 </resources>

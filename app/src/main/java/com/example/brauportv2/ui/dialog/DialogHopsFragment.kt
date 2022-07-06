@@ -1,15 +1,15 @@
-package com.example.brauportv2.ui
+package com.example.brauportv2.ui.dialog
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.brauportv2.databinding.FragmentStockBinding
+import androidx.fragment.app.DialogFragment
+import com.example.brauportv2.databinding.FragmentDialogHopsBinding
 
-class StockFragment : Fragment() {
+class DialogHopsFragment : DialogFragment() {
 
-    private var _binding: FragmentStockBinding? = null
+    private var _binding: FragmentDialogHopsBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -17,7 +17,7 @@ class StockFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        _binding = FragmentStockBinding.inflate(inflater, container, false)
+        _binding = FragmentDialogHopsBinding.inflate(inflater, container, false)
 
         return binding.root
     }

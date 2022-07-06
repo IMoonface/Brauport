@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
-import com.example.brauportv2.R
 import com.example.brauportv2.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {

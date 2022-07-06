@@ -20,12 +20,12 @@ class RecipeFragment : Fragment() {
         // Inflate the layout for this fragment
         _binding = FragmentRecipeBinding.inflate(inflater, container, false)
         binding.recipeAddButton.setOnClickListener {
-            //TODO: Dialog öffnen
+            onRecipeClick()
         }
         return binding.root
     }
 
-    //TODO: Funktion an ListAdapter übergeben
+    //TODO: Item an Details übergeben
     private fun onRecipeClick() {
         val action = RecipeFragmentDirections.actionRecipeFragmentToRecipeDetailsFragment()
         findNavController().navigate(action)
