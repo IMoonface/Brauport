@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:background="@color/appBars_color"
         android:minHeight="?attr/actionBarSize"
-        app:titleTextColor="@color/button_color"
+        app:theme="@style/ToolbarTheme"
         app:titleCentered="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

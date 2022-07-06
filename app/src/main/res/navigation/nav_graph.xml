@@ -27,13 +27,13 @@
     <fragment
         android:id="@+id/brewFragment"
         android:name="com.example.brauportv2.ui.BrewFragment"
-        android:label="fragment_brew"
+        android:label="Brauport - Brauen"
         tools:layout="@layout/fragment_brew" />
     <fragment
         android:id="@+id/recipeFragment"
         android:name="com.example.brauportv2.ui.RecipeFragment"
-        android:label="fragment_recipe"
-        tools:layout="@layout/fragment_recipe" >
+        android:label="Brauport - Rezept"
+        tools:layout="@layout/fragment_recipe">
         <action
             android:id="@+id/action_recipeFragment_to_recipeDetailsFragment"
             app:destination="@id/recipeDetailsFragment" />
@@ -41,6 +41,6 @@
     <fragment
         android:id="@+id/recipeDetailsFragment"
         android:name="com.example.brauportv2.ui.details.RecipeDetailsFragment"
-        android:label="fragment_recipe_details"
+        android:label="Brauport - Rezeptdetails"
         tools:layout="@layout/fragment_recipe_details" />
 </navigation>
