@@ -3,12 +3,85 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.BrewFragment">
 
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="@string/brew_text" />
+        tools:ignore="UselessParent">
+
+        <Button
+            android:id="@+id/recipe_Start"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="20dp"
+            android:text="Start"
+            app:cornerRadius="20dp" />
+
+        <Button
+            android:id="@+id/recipe_Stop"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_below="@+id/recipe_Start"
+            android:layout_alignStart="@+id/recipe_Start"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginEnd="20dp"
+            android:text="Stop"
+            app:cornerRadius="20dp" />
+
+        <Button
+            android:id="@+id/button_recipe_finish"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginBottom="15dp"
+            android:text="Brauvorgang Beenden"
+            app:cornerRadius="20dp" />
+
+        <Spinner
+            android:id="@+id/recipe_spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:layout_toStartOf="@+id/recipe_Start"
+            android:background="@android:drawable/btn_dropdown"
+            android:entries="@array/spinnerContent"
+            android:spinnerMode="dropdown" />
+
+        <TextView
+            android:id="@+id/timer"
+            android:layout_width="140dp"
+            android:layout_height="30dp"
+            android:layout_below="@id/recipe_spinner"
+            android:layout_alignEnd="@id/recipe_spinner"
+            android:layout_marginBottom="20dp"
+            android:text="00:00"
+            android:textAlignment="textEnd"
+            android:textAllCaps="true"
+            android:textSize="25sp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView_recipe_walkthrough"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/button_recipe_finish"
+            android:layout_below="@id/recipe_Stop"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
+    </RelativeLayout>
 
 </FrameLayout>

@@ -6,11 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
+import com.example.brauportv2.R
+import com.example.brauportv2.databinding.FragmentHopStockBinding
 import com.example.brauportv2.databinding.FragmentMaltStockBinding
 
-class MaltStockFragment : Fragment() {
+class HopsStockFragment : Fragment() {
 
-    private var _binding: FragmentMaltStockBinding? = null
+    private var _binding: FragmentHopStockBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -18,9 +20,9 @@ class MaltStockFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        _binding = FragmentMaltStockBinding.inflate(inflater, container, false)
-        binding.maltNextButton.setOnClickListener {
-            val action = MaltStockFragmentDirections.actionMaltsStockFragmentToHopsStockFragment()
+        _binding = FragmentHopStockBinding.inflate(inflater, container, false)
+        binding.hopNextButton.setOnClickListener {
+            val action = HopsStockFragmentDirections.actionHopsStockFragmentToYeastStockFragment()
             findNavController().navigate(action)
         }
         return binding.root

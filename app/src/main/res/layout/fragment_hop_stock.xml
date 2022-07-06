@@ -16,17 +16,17 @@
         android:paddingRight="10dp">
 
         <TextView
-            android:id="@+id/malt_title"
+            android:id="@+id/hop_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             style="@style/Widget.MaterialComponents.Button"
             android:textColor="@color/appBars_color"
-            android:text="@string/malt"
+            android:text="@string/hop"
             android:textSize="20sp" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/malt_add_Button"
+            android:id="@+id/hop_add_Button"
             android:layout_width="wrap_content"
             android:layout_height="60dp"
             android:layout_marginStart="5dp"
@@ -40,8 +40,8 @@
             app:iconTint="@color/appBars_color" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/malt_recyclerView"
-            android:layout_below="@id/malt_title"
+            android:id="@+id/hop_recyclerView"
+            android:layout_below="@id/hop_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
@@ -49,7 +49,7 @@
     </RelativeLayout>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/malt_next_button"
+        android:id="@+id/hop_next_button"
         android:layout_width="35dp"
         android:layout_height="150dp"
         android:layout_gravity="center_vertical|end"

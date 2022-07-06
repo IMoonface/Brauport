@@ -12,4 +12,19 @@
     <string name="stock_text">Bestand</string>
     <string name="stock_add_item">Neu</string>
     <string name="malt">Malz</string>
+    <string name="yeast">Hefe</string>
+    <string name="hop">Hopfen</string>
+    <string name="dummy_text">Test</string>
+    <string name="malts">Malze</string>
+    <string name="rest">Rasten</string>
+    <string name="hops">Hopfengaben</string>
+    <string name="yeasts">Hefen</string>
+    <string name="molding">Guss</string>
+
+    <string-array name="spinnerContent">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
 </resources>

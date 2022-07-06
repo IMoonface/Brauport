@@ -25,7 +25,8 @@ class MainActivity : AppCompatActivity() {
 
         val appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.home_fragment, R.id.recipe_fragment, R.id.malts_stock_fragment, R.id.brew_fragment
+                R.id.home_fragment, R.id.recipe_fragment,
+                R.id.malt_stock_fragment, R.id.brew_fragment
             )
         )
         setSupportActionBar(binding.activityAppBar)
