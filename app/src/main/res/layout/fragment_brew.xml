@@ -3,12 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.StockFragment">
+    tools:context=".ui.BrewFragment">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:text="@string/stock_text" />
+        android:text="@string/brew_text" />
 
 </FrameLayout>

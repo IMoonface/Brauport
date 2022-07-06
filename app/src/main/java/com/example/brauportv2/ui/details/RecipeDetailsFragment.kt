@@ -1,4 +1,4 @@
-package com.example.brauportv2.ui
+package com.example.brauportv2.ui.details
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,12 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.brauportv2.R
-import com.example.brauportv2.databinding.FragmentHomeBinding
-import com.example.brauportv2.databinding.FragmentStockBinding
+import com.example.brauportv2.databinding.FragmentBrewBinding
+import com.example.brauportv2.databinding.FragmentRecipeDetailsBinding
 
-class StockFragment : Fragment() {
+class RecipeDetailsFragment : Fragment() {
 
-    private var _binding: FragmentStockBinding? = null
+    private var _binding: FragmentRecipeDetailsBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -19,7 +19,7 @@ class StockFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        _binding = FragmentStockBinding.inflate(inflater, container, false)
+        _binding = FragmentRecipeDetailsBinding.inflate(inflater, container, false)
 
         return binding.root
     }

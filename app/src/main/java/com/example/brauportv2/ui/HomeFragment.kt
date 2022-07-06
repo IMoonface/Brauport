@@ -19,8 +19,19 @@ class HomeFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
+
+        binding.homeRecipeButton.setOnClickListener {
+            val action = HomeFragmentDirections.actionHomeFragmentToRecipeFragment()
+            findNavController().navigate(action)
+        }
+
         binding.homeStockButton.setOnClickListener {
             val action = HomeFragmentDirections.actionHomeFragmentToStockFragment()
+            findNavController().navigate(action)
+        }
+
+        binding.homeBrewButton.setOnClickListener {
+            val action = HomeFragmentDirections.actionHomeFragmentToBrewFragment()
             findNavController().navigate(action)
         }
         return binding.root
