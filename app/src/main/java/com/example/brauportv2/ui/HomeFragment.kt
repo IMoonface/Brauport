@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
+import com.example.brauportv2.R
 import com.example.brauportv2.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
@@ -21,19 +22,17 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
 
         binding.mainRecipeButton.setOnClickListener {
-            val action = HomeFragmentDirections.actionHomeFragmentToRecipeFragment()
-            findNavController().navigate(action)
+            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToRecipeFragment())
         }
 
         binding.mainStockButton.setOnClickListener {
-            val action = HomeFragmentDirections.actionHomeFragmentToStockFragment()
-            findNavController().navigate(action)
+            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToStockFragment())
         }
 
         binding.mainBrewButton.setOnClickListener {
-            val action = HomeFragmentDirections.actionHomeFragmentToBrewFragment()
-            findNavController().navigate(action)
+            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToBrewFragment())
         }
+
         return binding.root
     }
 
