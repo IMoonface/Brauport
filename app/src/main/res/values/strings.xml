@@ -25,6 +25,7 @@
     <string name="confirm_text">Bestätigen</string>
     <string name="abort_text">Abbrechen</string>
     <string name="unit_of_measurement_grams">g</string>
+    <string name="deletebutton">DeleteButton</string>
 
     <string-array name="spinnerContent">
         <item>1</item>

@@ -11,18 +11,29 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.example.brauportv2.BaseApplication
 import com.example.brauportv2.R
 import com.example.brauportv2.adapter.StockAdapter
 import com.example.brauportv2.databinding.FragmentMaltStockBinding
+import com.example.brauportv2.mapper.toStockItem
 import com.example.brauportv2.model.StockItem
 import com.example.brauportv2.model.StockItemType
+import com.example.brauportv2.ui.viewmodel.StockViewModel
+import com.example.brauportv2.ui.viewmodel.StockViewModelFactory
+import kotlinx.coroutines.launch
 
 class MaltStockFragment : Fragment() {
 
     private var _binding: FragmentMaltStockBinding? = null
     private val binding get() = _binding!!
     private lateinit var adapter: StockAdapter
+
+    private val viewModel: StockViewModel by activityViewModels {
+        StockViewModelFactory((activity?.application as BaseApplication).database.stockDao())
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,6 +45,15 @@ class MaltStockFragment : Fragment() {
         adapter = StockAdapter(this::onItemClick)
         binding.maltRecyclerView.adapter = adapter
         binding.maltRecyclerView.hasFixedSize()
+
+        lifecycleScope.launch {
+            viewModel.allStockItems.collect { result ->
+                result.let {
+                        it -> adapter.submitList(it.map { it.toStockItem() })
+                }
+            }
+        }
+
         binding.maltNextButton.setOnClickListener {
             val action = MaltStockFragmentDirections
                 .actionMaltStockFragmentToHopStockFragment()
@@ -74,7 +94,9 @@ class MaltStockFragment : Fragment() {
 
                 if (update) updatedList.removeAt(position)
 
-                updatedList.add(StockItem(hashCode(), StockItemType.MALT, itemTitle, itemAmount))
+                val newItem = StockItem(hashCode(), StockItemType.MALT, itemTitle, itemAmount)
+                updatedList.add(newItem)
+                viewModel.addStock(newItem)
                 adapter.submitList(updatedList)
                 dialog.dismiss()
             }

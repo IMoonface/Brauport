@@ -26,8 +26,8 @@ class StockAdapter(
 
     override fun onBindViewHolder(holder: MaltViewHolder, position: Int) = with(holder.binding) {
         val item = getItem(position)
-        stockItemTitle.text = item.name
-        stockItemAmount.text = item.amount
+        stockItemTitle.text = item.stockName
+        stockItemAmount.text = item.stockAmount
 
         stockDeleteButton.setOnClickListener {
             val updatedList = currentList.toMutableList()
