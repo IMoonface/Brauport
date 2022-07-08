@@ -5,7 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.example.brauportv2.databinding.FragmentRecipeDetailsBinding
+import com.example.brauportv2.ui.HopStockFragmentDirections
+import com.example.brauportv2.ui.RecipeFragmentDirections
 
 class RecipeDetailsFragment : Fragment() {
 
@@ -18,7 +21,23 @@ class RecipeDetailsFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         _binding = FragmentRecipeDetailsBinding.inflate(inflater, container, false)
+        binding.recipeDetailsMalts.setOnClickListener {
+            val action = RecipeDetailsFragmentDirections
+                .actionRecipeDetailsFragmentToDialogMaltsFragment()
+            findNavController().navigate(action)
+        }
 
+        binding.recipeDetailsHops.setOnClickListener {
+            val action = RecipeDetailsFragmentDirections
+                .actionRecipeDetailsFragmentToDialogHopsFragment()
+            findNavController().navigate(action)
+        }
+
+        binding.recipeDetailsYeasts.setOnClickListener {
+            val action = RecipeDetailsFragmentDirections
+                .actionRecipeDetailsFragmentToDialogYeastsFragment()
+            findNavController().navigate(action)
+        }
         return binding.root
     }
 

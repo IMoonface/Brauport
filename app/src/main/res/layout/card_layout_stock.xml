@@ -6,30 +6,42 @@
     android:layout_margin="5dp"
     android:layout_gravity="center_horizontal"
     app:cardBackgroundColor="@color/card_color"
-    app:cardCornerRadius="12dp">
+    app:cardCornerRadius="20dp">
 
     <RelativeLayout
+        android:id="@+id/stock_layout"
         android:layout_width="250dp"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:padding="10dp">
 
         <TextView
             android:id="@+id/stock_item_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/Widget.MaterialComponents.Button"
+            android:layout_marginStart="5dp"
+            android:layout_marginBottom="5dp"
             android:text="@string/dummy_text"
             android:textColor="@color/appBars_color"
-            android:layout_centerHorizontal="true" />
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/stock_item_amount"
             android:layout_below="@id/stock_item_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/Widget.MaterialComponents.Button"
+            android:layout_marginStart="5dp"
             android:text="@string/dummy_text"
-            android:textColor="@color/appBars_color"
-            android:layout_centerHorizontal="true" />
+            android:textSize="20sp"
+            android:textColor="@color/appBars_color" />
+
+        <ImageButton
+            android:id="@+id/stock_delete_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_close"
+            android:backgroundTint="@color/card_color"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"/>
 
     </RelativeLayout>
 

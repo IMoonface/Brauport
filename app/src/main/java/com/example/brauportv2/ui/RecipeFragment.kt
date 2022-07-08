@@ -27,7 +27,8 @@ class RecipeFragment : Fragment() {
 
     //TODO: Item an Details übergeben
     private fun onRecipeClick() {
-        val action = RecipeFragmentDirections.actionRecipeFragmentToRecipeDetailsFragment()
+        val action = RecipeFragmentDirections
+            .actionRecipeFragmentToRecipeDetailsFragment()
         findNavController().navigate(action)
     }
 

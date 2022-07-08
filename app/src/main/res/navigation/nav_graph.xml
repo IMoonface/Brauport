@@ -32,7 +32,7 @@
         android:label="Brauport - Malzbestand"
         tools:layout="@layout/fragment_malt_stock">
         <action
-            android:id="@+id/action_malts_stock_fragment_to_hopsStockFragment"
+            android:id="@+id/action_malt_stock_fragment_to_hopStockFragment"
             app:destination="@id/hop_stock_fragment" />
     </fragment>
     <fragment
@@ -66,11 +66,11 @@
     </fragment>
     <fragment
         android:id="@+id/hop_stock_fragment"
-        android:name="com.example.brauportv2.ui.HopsStockFragment"
+        android:name="com.example.brauportv2.ui.HopStockFragment"
         android:label="Brauport - Hopfenbestand"
         tools:layout="@layout/fragment_hop_stock">
         <action
-            android:id="@+id/action_hopsStockFragment_to_yeastStockFragment"
+            android:id="@+id/action_hopStockFragment_to_yeastStockFragment"
             app:destination="@id/yeast_stock_fragment" />
     </fragment>
     <fragment
