@@ -20,6 +20,11 @@
     <string name="hops">Hopfengaben</string>
     <string name="yeasts">Hefen</string>
     <string name="molding">Guss</string>
+    <string name="enter_name_text">Namen eingeben</string>
+    <string name="enter_amount_text">Menge eingeben</string>
+    <string name="confirm_text">Bestätigen</string>
+    <string name="abort_text">Abbrechen</string>
+    <string name="unit_of_measurement_grams">g</string>
 
     <string-array name="spinnerContent">
         <item>1</item>
