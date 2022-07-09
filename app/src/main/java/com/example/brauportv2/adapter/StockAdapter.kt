@@ -9,7 +9,7 @@ import com.example.brauportv2.databinding.CardLayoutStockBinding
 import com.example.brauportv2.model.StockItem
 
 class StockAdapter(
-    private val onClick: () -> Unit,
+    private val onClick: (StockItem) -> Unit,
     private val onDelete: (StockItem) -> Unit
 ): ListAdapter<StockItem, StockAdapter.MaltViewHolder>(DiffCallback) {
 
@@ -35,7 +35,7 @@ class StockAdapter(
         }
 
         root.setOnClickListener {
-            onClick()
+            onClick(item)
         }
     }
 

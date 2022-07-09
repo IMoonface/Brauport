@@ -54,7 +54,7 @@ class YeastStockFragment : Fragment() {
         }
 
         binding.yeastAddButton.setOnClickListener {
-            openDialog(false)
+            openAddDialog()
         }
         return binding.root
     }
@@ -74,24 +74,20 @@ class YeastStockFragment : Fragment() {
         return dialog
     }
 
-    private fun openDialog(editModus: Boolean) {
+    private fun openAddDialog() {
         val viewDialog = View.inflate(context, R.layout.dialog_stock, null)
 
         val dialog = createDialog(context, viewDialog)
 
         viewDialog.findViewById<Button>(R.id.stock_add_button).setOnClickListener {
             val itemTitle = viewDialog.findViewById<EditText>(R.id.stock_item_name).text.toString()
-            val itemAmount = viewDialog.findViewById<EditText>(R.id.stock_item_amount).text.toString()
+            val itemAmount= viewDialog.findViewById<EditText>(R.id.stock_item_amount).text.toString()
 
             if (itemTitle == "" || itemAmount == "")
                 Toast.makeText(context, "Bitte Felder ausfüllen", Toast.LENGTH_SHORT).show()
             else {
                 val newItem = StockItem(hashCode(), StockItemType.YEAST, itemTitle, itemAmount)
-                Log.i("test", newItem.toString())
-                if (editModus)
-                    viewModel.updateStock(hashCode(), StockItemType.YEAST, itemTitle, itemAmount)
-                else
-                    viewModel.addStock(newItem)
+                viewModel.addStock(newItem)
                 dialog.dismiss()
             }
         }
@@ -101,8 +97,30 @@ class YeastStockFragment : Fragment() {
         }
     }
 
-    private fun onItemClick() {
-        openDialog(true)
+    private fun openUpdateDialog(stockItem: StockItem) {
+        val viewDialog = View.inflate(context, R.layout.dialog_stock, null)
+
+        val dialog = createDialog(context, viewDialog)
+
+        viewDialog.findViewById<Button>(R.id.stock_add_button).setOnClickListener {
+            val itemTitle = viewDialog.findViewById<EditText>(R.id.stock_item_name).text.toString()
+            val itemAmount= viewDialog.findViewById<EditText>(R.id.stock_item_amount).text.toString()
+
+            if (itemTitle == "" || itemAmount == "")
+                Toast.makeText(context, "Bitte Felder ausfüllen", Toast.LENGTH_SHORT).show()
+            else {
+                viewModel.updateStock(stockItem.id, stockItem.itemType, itemTitle, itemAmount)
+                dialog.dismiss()
+            }
+        }
+
+        viewDialog.findViewById<Button>(R.id.abort_dialog).setOnClickListener {
+            dialog.dismiss()
+        }
+    }
+
+    private fun onItemClick(stockItem: StockItem) {
+        openUpdateDialog(stockItem)
     }
 
     private fun onDeleteClick(stockItem: StockItem) {

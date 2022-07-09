@@ -60,7 +60,7 @@ class HopStockFragment : Fragment() {
             findNavController().navigate(action)
         }
         binding.hopAddButton.setOnClickListener {
-            openDialog(false)
+            openAddDialog()
         }
         return binding.root
     }
@@ -80,7 +80,7 @@ class HopStockFragment : Fragment() {
         return dialog
     }
 
-    private fun openDialog(editModus: Boolean) {
+    private fun openAddDialog() {
         val viewDialog = View.inflate(context, R.layout.dialog_stock, null)
 
         val dialog = createDialog(context, viewDialog)
@@ -92,12 +92,7 @@ class HopStockFragment : Fragment() {
             if (itemTitle == "" || itemAmount == "")
                 Toast.makeText(context, "Bitte Felder ausfüllen", Toast.LENGTH_SHORT).show()
             else {
-                val newItem = StockItem(hashCode(), StockItemType.HOP, itemTitle, itemAmount)
-                Log.i("test", newItem.toString())
-                if (editModus)
-                    viewModel.updateStock(hashCode(), StockItemType.HOP, itemTitle, itemAmount)
-                else
-                    viewModel.addStock(newItem)
+                viewModel.addStock(StockItem(hashCode(), StockItemType.HOP, itemTitle, itemAmount))
                 dialog.dismiss()
             }
         }
@@ -107,8 +102,30 @@ class HopStockFragment : Fragment() {
         }
     }
 
-    private fun onItemClick() {
-        openDialog(true)
+    private fun openUpdateDialog(stockItem: StockItem) {
+        val viewDialog = View.inflate(context, R.layout.dialog_stock, null)
+
+        val dialog = createDialog(context, viewDialog)
+
+        viewDialog.findViewById<Button>(R.id.stock_add_button).setOnClickListener {
+            val itemTitle = viewDialog.findViewById<EditText>(R.id.stock_item_name).text.toString()
+            val itemAmount= viewDialog.findViewById<EditText>(R.id.stock_item_amount).text.toString()
+
+            if (itemTitle == "" || itemAmount == "")
+                Toast.makeText(context, "Bitte Felder ausfüllen", Toast.LENGTH_SHORT).show()
+            else {
+                viewModel.updateStock(stockItem.id, stockItem.itemType, itemTitle, itemAmount)
+                dialog.dismiss()
+            }
+        }
+
+        viewDialog.findViewById<Button>(R.id.abort_dialog).setOnClickListener {
+            dialog.dismiss()
+        }
+    }
+
+    private fun onItemClick(stockItem: StockItem) {
+        openUpdateDialog(stockItem)
     }
 
     private fun onDeleteClick(stockItem: StockItem) {
