@@ -7,6 +7,7 @@ import com.example.brauportv2.data.StockDao
 import com.example.brauportv2.data.StockItemData
 import com.example.brauportv2.mapper.toStockItemData
 import com.example.brauportv2.model.StockItem
+import com.example.brauportv2.model.StockItemType
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
@@ -17,6 +18,23 @@ class StockViewModel(private val stockDao: StockDao) : ViewModel() {
     fun addStock(stockItem: StockItem) {
         viewModelScope.launch {
             stockDao.insert(stockItem.toStockItemData())
+        }
+    }
+
+    fun updateStock(
+        id: Int,
+        itemType: StockItemType,
+        stockName: String,
+        stockAmount: String
+    ) {
+        val stockItem = StockItem(
+            id = id,
+            itemType = itemType,
+            stockName = stockName,
+            stockAmount = stockAmount
+        )
+        viewModelScope.launch(Dispatchers.IO) {
+            stockDao.update(stockItem.toStockItemData())
         }
     }
 

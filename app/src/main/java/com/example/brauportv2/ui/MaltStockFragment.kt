@@ -4,6 +4,7 @@ import android.app.AlertDialog
 import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -42,15 +43,14 @@ class MaltStockFragment : Fragment() {
         // Inflate the layout for this fragment
         _binding = FragmentMaltStockBinding
             .inflate(inflater, container, false)
-        adapter = StockAdapter(this::onItemClick)
+        adapter = StockAdapter(this::onItemClick, this::onDeleteClick)
         binding.maltRecyclerView.adapter = adapter
         binding.maltRecyclerView.hasFixedSize()
 
         lifecycleScope.launch {
-            viewModel.allStockItems.collect { result ->
-                result.let {
-                        it -> adapter.submitList(it.map { it.toStockItem() })
-                }
+            viewModel.allStockItems.collect { it ->
+                adapter.submitList(it.map { it.toStockItem() }
+                    .filter { it.itemType == StockItemType.MALT })
             }
         }
 
@@ -59,9 +59,11 @@ class MaltStockFragment : Fragment() {
                 .actionMaltStockFragmentToHopStockFragment()
             findNavController().navigate(action)
         }
+
         binding.maltAddButton.setOnClickListener {
-            openDialog(false, 0)
+            openDialog(false)
         }
+
         return binding.root
     }
 
@@ -80,9 +82,12 @@ class MaltStockFragment : Fragment() {
         return dialog
     }
 
-    private fun openDialog(update: Boolean, position: Int) {
+    //Ersetzbar durch Dialogfragment und für die Attribute dasselbe machen wie im StockAdapter
+    private fun openDialog(editModus: Boolean) {
         val viewDialog = View.inflate(context, R.layout.dialog_stock, null)
+
         val dialog = createDialog(context, viewDialog)
+
         viewDialog.findViewById<Button>(R.id.stock_add_button).setOnClickListener {
             val itemTitle = viewDialog.findViewById<EditText>(R.id.stock_item_name).text.toString()
             val itemAmount = viewDialog.findViewById<EditText>(R.id.stock_item_amount).text.toString()
@@ -90,23 +95,26 @@ class MaltStockFragment : Fragment() {
             if (itemTitle == "" || itemAmount == "")
                 Toast.makeText(context, "Bitte Felder ausfüllen", Toast.LENGTH_SHORT).show()
             else {
-                val updatedList = adapter.currentList.toMutableList()
-
-                if (update) updatedList.removeAt(position)
-
                 val newItem = StockItem(hashCode(), StockItemType.MALT, itemTitle, itemAmount)
-                updatedList.add(newItem)
-                viewModel.addStock(newItem)
-                adapter.submitList(updatedList)
+                Log.i("test", newItem.toString())
+                if (editModus)
+                    viewModel.updateStock(hashCode(), StockItemType.MALT, itemTitle, itemAmount)
+                else
+                    viewModel.addStock(newItem)
                 dialog.dismiss()
             }
         }
+
         viewDialog.findViewById<Button>(R.id.abort_dialog).setOnClickListener {
             dialog.dismiss()
         }
     }
 
-    private fun onItemClick(position: Int) {
-        openDialog(true, position)
+    private fun onItemClick() {
+        openDialog(true)
+    }
+
+    private fun onDeleteClick(stockItem: StockItem) {
+        viewModel.deleteStock(stockItem)
     }
 }

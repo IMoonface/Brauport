@@ -6,8 +6,8 @@ import com.example.brauportv2.model.StockItemType
 
 @Entity(tableName = "stock_database")
 data class StockItemData(
-    @PrimaryKey
-    val id: Int,
+    @PrimaryKey(autoGenerate = true)
+    val id: Int = 0,
     val itemType: StockItemType,
     val stockName: String,
     val stockAmount: String
