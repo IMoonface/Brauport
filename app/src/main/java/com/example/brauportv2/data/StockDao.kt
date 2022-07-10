@@ -6,7 +6,6 @@ import androidx.room.Query
 import androidx.room.Update
 import androidx.room.Delete
 import androidx.room.OnConflictStrategy
-import com.example.brauportv2.model.StockItem
 import kotlinx.coroutines.flow.Flow
 
 @Dao

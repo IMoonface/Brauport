@@ -7,8 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.example.brauportv2.databinding.FragmentRecipeDetailsBinding
-import com.example.brauportv2.ui.HopStockFragmentDirections
-import com.example.brauportv2.ui.RecipeFragmentDirections
 
 class RecipeDetailsFragment : Fragment() {
 

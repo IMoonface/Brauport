@@ -4,7 +4,6 @@ import android.app.AlertDialog
 import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -25,6 +24,7 @@ import com.example.brauportv2.model.StockItemType
 import com.example.brauportv2.ui.viewmodel.StockViewModel
 import com.example.brauportv2.ui.viewmodel.StockViewModelFactory
 import kotlinx.coroutines.launch
+import java.util.*
 
 class MaltStockFragment : Fragment() {
 
@@ -91,11 +91,17 @@ class MaltStockFragment : Fragment() {
         viewDialog.findViewById<Button>(R.id.stock_add_button).setOnClickListener {
             val itemTitle = viewDialog.findViewById<EditText>(R.id.stock_item_name).text.toString()
             val itemAmount= viewDialog.findViewById<EditText>(R.id.stock_item_amount).text.toString()
+            val newItem = StockItem(
+                UUID.randomUUID().hashCode(),
+                StockItemType.MALT,
+                itemTitle,
+                itemAmount
+            )
 
             if (itemTitle == "" || itemAmount == "")
                 Toast.makeText(context, "Bitte Felder ausfüllen", Toast.LENGTH_SHORT).show()
             else {
-                viewModel.addStock(StockItem(hashCode(), StockItemType.MALT, itemTitle, itemAmount))
+                viewModel.addStock(newItem)
                 dialog.dismiss()
             }
         }

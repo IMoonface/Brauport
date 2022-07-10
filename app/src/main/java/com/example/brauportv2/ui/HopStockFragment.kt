@@ -87,8 +87,8 @@ class HopStockFragment : Fragment() {
 
         viewDialog.findViewById<Button>(R.id.stock_add_button).setOnClickListener {
             val itemTitle = viewDialog.findViewById<EditText>(R.id.stock_item_name).text.toString()
-            val itemAmount= viewDialog.findViewById<EditText>(R.id.stock_item_amount).text.toString()
-
+            val itemAmount= viewDialog.findViewById<EditText>(R.id.stock_item_amount).text.toString() + " g"
+            Log.i("lappen", itemAmount)
             if (itemTitle == "" || itemAmount == "")
                 Toast.makeText(context, "Bitte Felder ausfüllen", Toast.LENGTH_SHORT).show()
             else {
