@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_margin="5dp"
     android:layout_gravity="center_horizontal"
+    android:layout_margin="5dp"
     app:cardBackgroundColor="@color/card_color"
     app:cardCornerRadius="20dp">
 
@@ -17,26 +17,26 @@
 
         <TextView
             android:id="@+id/stock_item_title"
-            android:layout_width="wrap_content"
+            android:layout_width="210dp"
             android:layout_height="wrap_content"
+            android:maxWidth="210dp"
             android:text="@string/dummy_text"
             android:textColor="@color/appBars_color"
             android:textSize="20sp"
-            android:maxWidth="210dp"
             app:layout_constraintEnd_toStartOf="@+id/stock_delete_button"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/stock_item_amount"
-            android:layout_width="wrap_content"
+            android:layout_width="210dp"
             android:layout_height="wrap_content"
             android:layout_below="@id/stock_item_title"
             android:layout_marginTop="5dp"
+            android:maxWidth="210dp"
             android:text="@string/dummy_text"
             android:textColor="@color/appBars_color"
             android:textSize="20sp"
-            android:maxWidth="210dp"
             app:layout_constraintEnd_toStartOf="@+id/stock_delete_button"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/stock_item_title" />
@@ -47,8 +47,8 @@
             android:layout_height="50dp"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
-            android:src="@drawable/ic_close"
             android:contentDescription="@string/deletebutton"
+            android:src="@drawable/ic_close"
             app:backgroundTint="@color/card_color"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

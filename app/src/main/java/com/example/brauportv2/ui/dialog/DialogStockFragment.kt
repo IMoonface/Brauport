@@ -1,17 +1,14 @@
 package com.example.brauportv2.ui.dialog
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
-import androidx.room.Update
 import com.example.brauportv2.BaseApplication
-import com.example.brauportv2.R
 import com.example.brauportv2.databinding.FragmentDialogStockBinding
-import com.example.brauportv2.databinding.FragmentDialogYeastsBinding
 import com.example.brauportv2.model.StockItem
 import com.example.brauportv2.model.StockItemType
 import com.example.brauportv2.ui.viewmodel.StockViewModel
@@ -23,6 +20,7 @@ class DialogStockFragment(
     private val itemType: StockItemType,
     private val update: Boolean
 ) : DialogFragment() {
+
     private var _binding: FragmentDialogStockBinding? = null
     private val binding get() = _binding!!
 
@@ -35,23 +33,22 @@ class DialogStockFragment(
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentDialogStockBinding.inflate(inflater, container, false)
+
         binding.stockAddButton.setOnClickListener {
             val itemTitle = binding.stockItemName.text.toString()
-            val itemAmount = binding.stockItemAmount.text.toString()
-            if (update) {
-                viewModel.updateStock(stockItem.id, stockItem.itemType, itemTitle, itemAmount)
-            }
-            else {
-                viewModel.addStock(
-                    StockItem(
-                        UUID.randomUUID().hashCode(),
-                        itemType,
-                        itemTitle,
-                        itemAmount
+            val itemAmount = binding.stockItemAmount.text.toString() + "g"
+
+            if (itemTitle == "" || itemAmount == "") {
+                Toast.makeText(context, "Bitte Alle Felder ausfüllen", Toast.LENGTH_SHORT).show()
+            } else {
+                if (update)
+                    viewModel.updateStock(stockItem.id, itemType, itemTitle, itemAmount)
+                else
+                    viewModel.addStock(
+                        StockItem(UUID.randomUUID().hashCode(), itemType, itemTitle, itemAmount)
                     )
-                )
+                dismiss()
             }
-            dismiss()
         }
 
         binding.abortDialog.setOnClickListener {

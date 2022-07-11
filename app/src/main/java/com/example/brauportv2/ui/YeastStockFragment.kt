@@ -1,20 +1,15 @@
 package com.example.brauportv2.ui
 
-import android.app.AlertDialog
-import android.app.Dialog
-import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
-import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.brauportv2.BaseApplication
-import com.example.brauportv2.R
 import com.example.brauportv2.adapter.StockAdapter
 import com.example.brauportv2.databinding.FragmentYeastStockBinding
 import com.example.brauportv2.mapper.toStockItem
@@ -30,6 +25,27 @@ class YeastStockFragment : Fragment() {
     private var _binding: FragmentYeastStockBinding? = null
     private val binding get() = _binding!!
     private lateinit var adapter: StockAdapter
+    private lateinit var yeastStartList: List<StockItem>
+    private val textWatcher = object : TextWatcher {
+        override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+
+        override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+
+        override fun afterTextChanged(p0: Editable?) {
+
+            val textInputText = binding.yeastTextInputEditText.text.toString()
+
+            if (textInputText != "" && textInputText.endsWith("g")) {
+                adapter.submitList(yeastStartList.filter {
+                    it.stockAmount.removeSuffix("g").toInt() <=
+                            textInputText.removeSuffix("g").toInt()
+                })
+            } else if (textInputText != "")
+                adapter.submitList(yeastStartList.filter { it.stockName.contains(textInputText) })
+            else
+                adapter.submitList(yeastStartList)
+        }
+    }
 
     private val viewModel: StockViewModel by activityViewModels {
         StockViewModelFactory((activity?.application as BaseApplication).database.stockDao())
@@ -44,24 +60,24 @@ class YeastStockFragment : Fragment() {
             .inflate(inflater, container, false)
         adapter = StockAdapter(this::onItemClick, this::onDeleteClick)
         binding.yeastRecyclerView.adapter = adapter
-        binding.yeastRecyclerView.hasFixedSize()
+        //binding.yeastRecyclerView.hasFixedSize()
 
         lifecycleScope.launch {
             viewModel.allStockItems.collect { it ->
-                adapter.submitList(it.map { it.toStockItem() }
-                    .filter { it.itemType == StockItemType.YEAST })
+                yeastStartList = it.map { it.toStockItem() }
+                    .filter { it.itemType == StockItemType.YEAST }
+                adapter.submitList(yeastStartList)
             }
         }
 
+        binding.yeastTextInputEditText.text?.clear()
+
         binding.yeastAddButton.setOnClickListener {
-            openDialog(
-                StockItem(
-                    hashCode(),
-                    StockItemType.YEAST,
-                    "test",
-                    "test"
-                ), false)
+            openAddDialog()
         }
+
+        binding.yeastTextInputEditText.addTextChangedListener(textWatcher)
+
         return binding.root
     }
 
@@ -70,13 +86,24 @@ class YeastStockFragment : Fragment() {
         _binding = null
     }
 
-    private fun openDialog(stockItem: StockItem, update: Boolean) {
-        val dialog = DialogStockFragment(stockItem, StockItemType.YEAST, update)
+    private fun openAddDialog() {
+        val dialog = DialogStockFragment(
+            StockItem(hashCode(), StockItemType.YEAST, "test", "test"),
+            StockItemType.YEAST,
+            false
+        )
+
+        dialog.show(childFragmentManager, "stockDialog")
+    }
+
+    private fun openUpdateDialog(stockItem: StockItem) {
+        val dialog = DialogStockFragment(stockItem, StockItemType.YEAST, true)
+
         dialog.show(childFragmentManager, "stockDialog")
     }
 
     private fun onItemClick(stockItem: StockItem) {
-        openDialog(stockItem, true)
+        openUpdateDialog(stockItem)
     }
 
     private fun onDeleteClick(stockItem: StockItem) {

@@ -1,9 +1,8 @@
-package com.example.brauportv2.data
+package com.example.brauportv2.model
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.example.brauportv2.model.StockItemType
 
 @Entity(tableName = "stock_database")
 data class StockItemData(

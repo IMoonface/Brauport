@@ -2,8 +2,8 @@ package com.example.brauportv2.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.brauportv2.databinding.CardLayoutStockBinding
 import com.example.brauportv2.model.StockItem

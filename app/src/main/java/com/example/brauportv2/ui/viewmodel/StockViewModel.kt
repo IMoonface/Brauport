@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.example.brauportv2.data.StockDao
-import com.example.brauportv2.data.StockItemData
+import com.example.brauportv2.model.StockItemData
 import com.example.brauportv2.mapper.toStockItemData
 import com.example.brauportv2.model.StockItem
 import com.example.brauportv2.model.StockItemType
@@ -44,7 +44,6 @@ class StockViewModel(private val stockDao: StockDao) : ViewModel() {
         }
     }
 }
-
 
 class StockViewModelFactory(private val stockDao: StockDao) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
