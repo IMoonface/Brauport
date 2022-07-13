@@ -26,7 +26,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/malt_add_Button"
+            android:id="@+id/malt_addButton"
             android:layout_width="wrap_content"
             android:layout_height="60dp"
             android:layout_marginStart="10dp"
@@ -41,7 +41,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/malt_search_Button"
+            android:id="@+id/malt_infoButton"
             android:layout_width="50dp"
             android:layout_height="60dp"
             android:layout_marginTop="5dp"
@@ -71,7 +71,7 @@
             app:layout_constraintTop_toBottomOf="@+id/malt_title">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/malt_textInputEditText"
+                android:id="@+id/malt_textInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -97,7 +97,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/malt_next_button"
+        android:id="@+id/malt_nextButton"
         style="@style/Widget.MaterialComponents.Button"
         android:layout_width="40dp"
         android:layout_height="200dp"

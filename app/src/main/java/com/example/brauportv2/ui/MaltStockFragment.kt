@@ -16,6 +16,7 @@ import com.example.brauportv2.databinding.FragmentMaltStockBinding
 import com.example.brauportv2.mapper.toStockItem
 import com.example.brauportv2.model.StockItem
 import com.example.brauportv2.model.StockItemType
+import com.example.brauportv2.ui.dialog.DialogInstructionStockFragment
 import com.example.brauportv2.ui.dialog.DialogStockFragment
 import com.example.brauportv2.ui.viewmodel.StockViewModel
 import com.example.brauportv2.ui.viewmodel.StockViewModelFactory
@@ -34,11 +35,11 @@ class MaltStockFragment : Fragment() {
 
         override fun afterTextChanged(p0: Editable?) {
 
-            val textInputText = binding.maltTextInputEditText.text.toString()
+            val textInputText = binding.maltTextInput.text.toString()
 
             if (textInputText != "" && textInputText.endsWith("g")) {
                 adapter.submitList(maltStartList.filter {
-                    it.stockAmount.removeSuffix("g").toInt()<=
+                    it.stockAmount.removeSuffix("g").toInt() <=
                             textInputText.removeSuffix("g").toInt()
                 })
             } else if (textInputText != "")
@@ -49,7 +50,7 @@ class MaltStockFragment : Fragment() {
     }
 
     private val viewModel: StockViewModel by activityViewModels {
-        StockViewModelFactory((activity?.application as BaseApplication).database.stockDao())
+        StockViewModelFactory((activity?.application as BaseApplication).stockDatabase.stockDao())
     }
 
     override fun onCreateView(
@@ -78,14 +79,19 @@ class MaltStockFragment : Fragment() {
             val action = MaltStockFragmentDirections.actionMaltStockFragmentToHopStockFragment()
             findNavController().navigate(action)
 
-            binding.maltTextInputEditText.text?.clear()
+            binding.maltTextInput.text?.clear()
         }
 
         binding.maltAddButton.setOnClickListener {
             openAddDialog()
         }
 
-        binding.maltTextInputEditText.addTextChangedListener(textWatcher)
+        binding.maltTextInput.addTextChangedListener(textWatcher)
+
+        binding.maltInfoButton.setOnClickListener {
+            val dialog = DialogInstructionStockFragment()
+            dialog.show(childFragmentManager, "maltInfoDialog")
+        }
 
         return binding.root
     }
@@ -96,17 +102,13 @@ class MaltStockFragment : Fragment() {
     }
 
     private fun openAddDialog() {
-        val dialog = DialogStockFragment(
-            StockItem(hashCode(), StockItemType.MALT, "test", "test"),
-            StockItemType.MALT,
-            false
-        )
-        dialog.show(childFragmentManager, "stockDialog")
+        val dialog = DialogStockFragment(hashCode(), StockItemType.MALT, false)
+        dialog.show(childFragmentManager, "maltAddDialog")
     }
 
     private fun openUpdateDialog(stockItem: StockItem) {
-        val dialog = DialogStockFragment(stockItem, StockItemType.MALT, true)
-        dialog.show(childFragmentManager, "stockDialog")
+        val dialog = DialogStockFragment(stockItem.id, StockItemType.MALT, true)
+        dialog.show(childFragmentManager, "maltUpdateDialog")
     }
 
     private fun onItemClick(stockItem: StockItem) {

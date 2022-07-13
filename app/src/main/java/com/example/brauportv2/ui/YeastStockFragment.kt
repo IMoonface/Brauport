@@ -15,6 +15,7 @@ import com.example.brauportv2.databinding.FragmentYeastStockBinding
 import com.example.brauportv2.mapper.toStockItem
 import com.example.brauportv2.model.StockItem
 import com.example.brauportv2.model.StockItemType
+import com.example.brauportv2.ui.dialog.DialogInstructionStockFragment
 import com.example.brauportv2.ui.dialog.DialogStockFragment
 import com.example.brauportv2.ui.viewmodel.StockViewModel
 import com.example.brauportv2.ui.viewmodel.StockViewModelFactory
@@ -33,7 +34,7 @@ class YeastStockFragment : Fragment() {
 
         override fun afterTextChanged(p0: Editable?) {
 
-            val textInputText = binding.yeastTextInputEditText.text.toString()
+            val textInputText = binding.yeastTextInput.text.toString()
 
             if (textInputText != "" && textInputText.endsWith("g")) {
                 adapter.submitList(yeastStartList.filter {
@@ -48,7 +49,7 @@ class YeastStockFragment : Fragment() {
     }
 
     private val viewModel: StockViewModel by activityViewModels {
-        StockViewModelFactory((activity?.application as BaseApplication).database.stockDao())
+        StockViewModelFactory((activity?.application as BaseApplication).stockDatabase.stockDao())
     }
 
     override fun onCreateView(
@@ -70,13 +71,18 @@ class YeastStockFragment : Fragment() {
             }
         }
 
-        binding.yeastTextInputEditText.text?.clear()
+        binding.yeastTextInput.text?.clear()
 
         binding.yeastAddButton.setOnClickListener {
             openAddDialog()
         }
 
-        binding.yeastTextInputEditText.addTextChangedListener(textWatcher)
+        binding.yeastTextInput.addTextChangedListener(textWatcher)
+
+        binding.yeastInfoButton.setOnClickListener {
+            val dialog = DialogInstructionStockFragment()
+            dialog.show(childFragmentManager, "yeastInfoDialog")
+        }
 
         return binding.root
     }
@@ -87,17 +93,12 @@ class YeastStockFragment : Fragment() {
     }
 
     private fun openAddDialog() {
-        val dialog = DialogStockFragment(
-            StockItem(hashCode(), StockItemType.YEAST, "test", "test"),
-            StockItemType.YEAST,
-            false
-        )
-
+        val dialog = DialogStockFragment(hashCode(), StockItemType.YEAST, false)
         dialog.show(childFragmentManager, "stockDialog")
     }
 
     private fun openUpdateDialog(stockItem: StockItem) {
-        val dialog = DialogStockFragment(stockItem, StockItemType.YEAST, true)
+        val dialog = DialogStockFragment(stockItem.id, StockItemType.YEAST, true)
 
         dialog.show(childFragmentManager, "stockDialog")
     }

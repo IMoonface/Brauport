@@ -11,24 +11,24 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/stock_layout"
-        android:layout_width="300dp"
-        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:padding="10dp">
 
         <TextView
-            android:id="@+id/stock_item_title"
+            android:id="@+id/r_hopping_title"
             android:layout_width="210dp"
             android:layout_height="wrap_content"
             android:maxWidth="210dp"
             android:text="@string/dummy_text"
             android:textColor="@color/appBars_color"
             android:textSize="20sp"
-            app:layout_constraintEnd_toStartOf="@+id/stock_delete_button"
+            app:layout_constraintEnd_toStartOf="@+id/r_hopping_add"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/stock_item_amount"
+            android:id="@+id/r_hopping_amount"
             android:layout_width="210dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
@@ -36,18 +36,42 @@
             android:text="@string/dummy_text"
             android:textColor="@color/appBars_color"
             android:textSize="20sp"
-            app:layout_constraintEnd_toStartOf="@+id/stock_delete_button"
+            app:layout_constraintEnd_toStartOf="@+id/r_hopping_add"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/stock_item_title" />
+            app:layout_constraintTop_toBottomOf="@+id/r_hopping_title" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/r_hopping_timeInputLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            app:boxBackgroundColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/r_hopping_add"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/r_hopping_amount">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/r_hopping_timeInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:hint="@string/insert_time"
+                android:inputType="text"
+                android:textColorHint="#546E7A"
+                tools:ignore="TextContrastCheck" />
+
+        </com.google.android.material.textfield.TextInputLayout>
 
         <ImageButton
-            android:id="@+id/stock_delete_button"
+            android:id="@+id/r_hopping_add"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
-            android:contentDescription="@string/delete_button"
-            android:src="@drawable/ic_close"
+            android:contentDescription="@string/add_button"
+            android:src="@drawable/ic_add"
             app:backgroundTint="@color/card_color"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

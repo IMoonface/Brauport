@@ -16,6 +16,7 @@ import com.example.brauportv2.databinding.FragmentHopStockBinding
 import com.example.brauportv2.mapper.toStockItem
 import com.example.brauportv2.model.StockItem
 import com.example.brauportv2.model.StockItemType
+import com.example.brauportv2.ui.dialog.DialogInstructionStockFragment
 import com.example.brauportv2.ui.dialog.DialogStockFragment
 import com.example.brauportv2.ui.viewmodel.StockViewModel
 import com.example.brauportv2.ui.viewmodel.StockViewModelFactory
@@ -34,7 +35,7 @@ class HopStockFragment : Fragment() {
 
         override fun afterTextChanged(p0: Editable?) {
 
-            val textInputText = binding.hopTextInputEditText.text.toString()
+            val textInputText = binding.hopTextInput.text.toString()
 
             if (textInputText != "" && textInputText.endsWith("g")) {
                 adapter.submitList(hopStartList.filter {
@@ -49,7 +50,7 @@ class HopStockFragment : Fragment() {
     }
 
     private val viewModel: StockViewModel by activityViewModels {
-        StockViewModelFactory((activity?.application as BaseApplication).database.stockDao())
+        StockViewModelFactory((activity?.application as BaseApplication).stockDatabase.stockDao())
     }
 
     override fun onCreateView(
@@ -76,14 +77,19 @@ class HopStockFragment : Fragment() {
                 .actionHopStockFragmentToYeastStockFragment()
             findNavController().navigate(action)
 
-            binding.hopTextInputEditText.text?.clear()
+            binding.hopTextInput.text?.clear()
         }
 
         binding.hopAddButton.setOnClickListener {
             openAddDialog()
         }
 
-        binding.hopTextInputEditText.addTextChangedListener(textWatcher)
+        binding.hopTextInput.addTextChangedListener(textWatcher)
+
+        binding.hopInfoButton.setOnClickListener {
+            val dialog = DialogInstructionStockFragment()
+            dialog.show(childFragmentManager, "hopInfoDialog")
+        }
 
         return binding.root
     }
@@ -94,19 +100,13 @@ class HopStockFragment : Fragment() {
     }
 
     private fun openAddDialog() {
-        val dialog = DialogStockFragment(
-            StockItem(hashCode(), StockItemType.HOP, "test", "test"),
-            StockItemType.HOP,
-            false
-        )
-
-        dialog.show(childFragmentManager, "stockDialog")
+        val dialog = DialogStockFragment(hashCode(), StockItemType.HOP, false)
+        dialog.show(childFragmentManager, "hopAddDialog")
     }
 
     private fun openUpdateDialog(stockItem: StockItem) {
-        val dialog = DialogStockFragment(stockItem, StockItemType.HOP, true)
-
-        dialog.show(childFragmentManager, "stockDialog")
+        val dialog = DialogStockFragment(stockItem.id, StockItemType.HOP, true)
+        dialog.show(childFragmentManager, "hopUpdateDialog")
     }
 
     private fun onItemClick(stockItem: StockItem) {

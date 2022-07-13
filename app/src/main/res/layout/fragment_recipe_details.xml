@@ -48,11 +48,11 @@
         app:cornerRadius="20dp" />
 
     <Button
-        android:id="@+id/recipe_details_molding"
+        android:id="@+id/recipe_details_main_brew"
         android:layout_width="220dp"
         android:layout_height="60dp"
         android:layout_marginTop="10dp"
-        android:text="@string/molding"
+        android:text="@string/main_brew"
         android:textColor="@color/appBars_color"
         app:backgroundTint="@color/button_color"
         app:cornerRadius="20dp" />

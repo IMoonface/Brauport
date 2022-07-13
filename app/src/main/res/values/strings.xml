@@ -19,14 +19,17 @@
     <string name="rest">Rasten</string>
     <string name="hops">Hopfengaben</string>
     <string name="yeasts">Hefen</string>
-    <string name="molding">Guss</string>
+    <string name="main_brew">Guss</string>
     <string name="enter_name_text">Namen eingeben</string>
     <string name="enter_amount_text">Menge eingeben</string>
     <string name="confirm_text">Bestätigen</string>
     <string name="abort_text">Abbrechen</string>
     <string name="unit_of_measurement_grams">g</string>
-    <string name="deletebutton">DeleteButton</string>
+    <string name="delete_button">DeleteButton</string>
     <string name="search_string">Durchsuchen</string>
+    <string name="insert_time">Zeit eingeben</string>
+    <string name="add_button">AddButton</string>
+    <string name="instruction_text">Bitte tragen Sie hier Ihren Bestand ein indem Sie auf den \"+ Neu\"-Button drücken und den Namen, sowie die Menge Ihres Bestanditems angeben. Sie können durch ein Klick auf das entsprechende Item dessen Daten nachträglich abändern. Nutzen Sie dafür die Suchfunktion, um ihr Item zu finden und zu ändern. Durch Klick auf das \"x\" wird das Item aus ihren Bestand gelöscht.</string>
 
     <string-array name="spinnerContent">
         <item>1</item>

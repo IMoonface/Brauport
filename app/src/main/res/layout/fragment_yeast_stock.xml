@@ -22,7 +22,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/yeast_add_Button"
+        android:id="@+id/yeast_addButton"
         android:layout_width="wrap_content"
         android:layout_height="60dp"
         android:layout_marginStart="10dp"
@@ -37,7 +37,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/yeast_search_Button"
+        android:id="@+id/yeast_infoButton"
         android:layout_width="50dp"
         android:layout_height="60dp"
         android:layout_marginTop="5dp"
@@ -67,7 +67,7 @@
         app:layout_constraintTop_toBottomOf="@+id/yeast_title">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/yeast_textInputEditText"
+            android:id="@+id/yeast_textInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"

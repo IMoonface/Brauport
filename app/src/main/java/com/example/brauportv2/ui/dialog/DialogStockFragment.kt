@@ -16,7 +16,7 @@ import com.example.brauportv2.ui.viewmodel.StockViewModelFactory
 import java.util.*
 
 class DialogStockFragment(
-    private val stockItem: StockItem,
+    private val stockItemId: Int,
     private val itemType: StockItemType,
     private val update: Boolean
 ) : DialogFragment() {
@@ -25,7 +25,7 @@ class DialogStockFragment(
     private val binding get() = _binding!!
 
     private val viewModel: StockViewModel by activityViewModels {
-        StockViewModelFactory((activity?.application as BaseApplication).database.stockDao())
+        StockViewModelFactory((activity?.application as BaseApplication).stockDatabase.stockDao())
     }
 
     override fun onCreateView(
@@ -42,7 +42,7 @@ class DialogStockFragment(
                 Toast.makeText(context, "Bitte Alle Felder ausfüllen", Toast.LENGTH_SHORT).show()
             } else {
                 if (update)
-                    viewModel.updateStock(stockItem.id, itemType, itemTitle, itemAmount)
+                    viewModel.updateStock(stockItemId, itemType, itemTitle, itemAmount)
                 else
                     viewModel.addStock(
                         StockItem(UUID.randomUUID().hashCode(), itemType, itemTitle, itemAmount)
