@@ -1,11 +1,11 @@
 package com.example.brauportv2.model.recipeModel
 
 data class RecipeItem(
-    val id: Int,
+    val rId: Int,
     val recipeName: String,
-    val rMaltList: List<RStockItem>,
+    val rMaltList: List<Malt>,
     val rRest: Rest,
     val rHoppingList: List<Hopping>,
-    val rYeast: RStockItem,
+    val rYeast: Yeast,
     val rMainBrew: MainBrew
 )

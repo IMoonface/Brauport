@@ -13,6 +13,10 @@ fun StockItem.toStockItemData(): StockItemData {
     return StockItemData(id, itemType, stockName, stockAmount)
 }
 
+fun RecipeItemData.toRecipeItem(): RecipeItem {
+    return RecipeItem(rId, recipeName, rMaltList, rRest, rHoppingList, rYeast, rMainBrew)
+}
+
 fun RecipeItem.toRecipeItemData(): RecipeItemData {
-    return RecipeItemData(id, recipeName, rMaltList, rRest, rHoppingList, rYeast, rMainBrew)
+    return RecipeItemData(rId, recipeName, rMaltList, rRest, rHoppingList, rYeast, rMainBrew)
 }

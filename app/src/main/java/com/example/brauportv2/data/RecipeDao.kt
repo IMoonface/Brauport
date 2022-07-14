@@ -14,7 +14,7 @@ interface RecipeDao {
     @Query("SELECT * from recipe_database ORDER BY recipeName ASC")
     fun getAllRecipeItems(): Flow<List<RecipeItemData>>
 
-    @Query("SELECT * from recipe_database WHERE id = :id")
+    @Query("SELECT * from recipe_database WHERE rId = :id")
     fun getRecipeItem(id: Long): Flow<RecipeItemData>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

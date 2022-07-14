@@ -1,15 +1,26 @@
 package com.example.brauportv2.data.typeconverter
 
 import androidx.room.TypeConverter
-import com.example.brauportv2.model.recipeModel.Hopping
-import com.example.brauportv2.model.recipeModel.MainBrew
-import com.example.brauportv2.model.recipeModel.RStockItem
-import com.example.brauportv2.model.recipeModel.Rest
+import com.example.brauportv2.model.recipeModel.*
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import org.json.JSONObject
 
 class RoomConverters {
+    @TypeConverter
+    fun fromListMalt(malts: List<Malt>): String {
+        val gson = Gson()
+        val type = object : TypeToken<List<Hopping>>() {}.type
+        return gson.toJson(malts, type)
+    }
+
+    @TypeConverter
+    fun toMalt(source: String): List<Malt> {
+        val gson = Gson()
+        val type = object : TypeToken<List<Hopping>>() {}.type
+        return gson.fromJson(source, type)
+    }
+
     @TypeConverter
     fun fromRest(rest: Rest): String {
         return JSONObject().apply {
@@ -25,17 +36,32 @@ class RoomConverters {
     }
 
     @TypeConverter
-    fun fromRStockItem(rStockItem: RStockItem): String {
+    fun fromListHopping(hopping: List<Hopping>): String {
+        val gson = Gson()
+        val type = object : TypeToken<List<Hopping>>() {}.type
+        return gson.toJson(hopping, type)
+    }
+
+    @TypeConverter
+    fun toListHopping(source: String): List<Hopping> {
+        val gson = Gson()
+        val type = object : TypeToken<List<Hopping>>() {}.type
+        return gson.fromJson(source, type)
+    }
+
+    @TypeConverter
+    fun fromYeast(yeast: Yeast): String {
         return JSONObject().apply {
-            put("rStockName", rStockItem.rStockName)
-            put("rStockAmount", rStockItem.rStockAmount)
+            put("rStockName", yeast.rStockName)
+            put("itemType", yeast.itemType)
+            put("rStockAmount", yeast.rStockAmount)
         }.toString()
     }
 
     @TypeConverter
-    fun toRStockItem(source: String): RStockItem {
+    fun toYeast(source: String): Yeast {
         val json = JSONObject(source)
-        return RStockItem(json.getString("rStockName"), json.getString("rStockAmount"))
+        return Yeast(json.getString("rStockName"), json.getInt("itemType"), json.getString("rStockAmount"))
     }
 
     @TypeConverter
@@ -50,33 +76,5 @@ class RoomConverters {
     fun toMainBrew(source: String): MainBrew {
         val json = JSONObject(source)
         return MainBrew(json.getString("first"), json.getString("second"))
-    }
-
-    @TypeConverter
-    fun fromListHopping(value: List<Hopping>): String {
-        val gson = Gson()
-        val type = object : TypeToken<List<Hopping>>() {}.type
-        return gson.toJson(value, type)
-    }
-
-    @TypeConverter
-    fun toListHopping(value: String): List<Hopping> {
-        val gson = Gson()
-        val type = object : TypeToken<List<Hopping>>() {}.type
-        return gson.fromJson(value, type)
-    }
-
-    @TypeConverter
-    fun fromListRStockItem(value: List<RStockItem>): String {
-        val gson = Gson()
-        val type = object : TypeToken<List<RStockItem>>() {}.type
-        return gson.toJson(value, type)
-    }
-
-    @TypeConverter
-    fun toListRStockItem(value: String): List<RStockItem> {
-        val gson = Gson()
-        val type = object : TypeToken<List<RStockItem>>() {}.type
-        return gson.fromJson(value, type)
     }
 }

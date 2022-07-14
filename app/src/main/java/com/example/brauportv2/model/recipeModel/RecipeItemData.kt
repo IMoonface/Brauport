@@ -7,17 +7,17 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "recipe_database")
 data class RecipeItemData(
     @PrimaryKey
-    val id: Int,
+    val rId: Int,
     @ColumnInfo(name = "recipeName")
     val recipeName: String,
     @ColumnInfo(name = "maltList")
-    val rMaltList: List<RStockItem>,
+    val rMaltList: List<Malt>,
     @ColumnInfo(name = "rest")
     val rRest: Rest,
     @ColumnInfo(name = "hoppingList")
     val rHoppingList: List<Hopping>,
     @ColumnInfo(name = "yeast")
-    val rYeast: RStockItem,
+    val rYeast: Yeast,
     @ColumnInfo(name = "brew")
     val rMainBrew: MainBrew
 )

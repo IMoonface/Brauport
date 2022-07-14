@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.brauportv2.databinding.CardLayoutStockBinding
+import com.example.brauportv2.databinding.CardStockBinding
 import com.example.brauportv2.model.StockItem
 
 class StockAdapter(
@@ -13,11 +13,11 @@ class StockAdapter(
     private val onDelete: (StockItem) -> Unit
 ): ListAdapter<StockItem, StockAdapter.MaltViewHolder>(DiffCallback) {
 
-    class MaltViewHolder(val binding: CardLayoutStockBinding) : RecyclerView.ViewHolder(binding.root)
+    class MaltViewHolder(val binding: CardStockBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MaltViewHolder {
         return MaltViewHolder(
-            CardLayoutStockBinding.inflate(
+            CardStockBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false

@@ -14,7 +14,6 @@ import com.example.brauportv2.mapper.toStockItem
 import com.example.brauportv2.model.StockItem
 import com.example.brauportv2.model.StockItemType
 import com.example.brauportv2.model.recipeModel.Hopping
-import com.example.brauportv2.model.recipeModel.RStockItem
 import com.example.brauportv2.model.recipeModel.Recipe
 import com.example.brauportv2.ui.viewmodel.StockViewModel
 import com.example.brauportv2.ui.viewmodel.StockViewModelFactory
@@ -56,6 +55,11 @@ class DialogHopsFragment : DialogFragment() {
     }
 
     private fun onItemAdd(stockItem: StockItem, time: String) {
-        Recipe.rHoppingList.add(Hopping(stockItem.stockName, stockItem.stockAmount, time))
+        Recipe.rHoppingList.add(Hopping(
+            stockItem.stockName,
+            StockItemType.HOP.ordinal,
+            stockItem.stockAmount,
+            time)
+        )
     }
 }
