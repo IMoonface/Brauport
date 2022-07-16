@@ -25,7 +25,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/malt_textInputLayout"
+        android:id="@+id/recipe_textInputLayout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -37,7 +37,7 @@
         app:layout_constraintTop_toBottomOf="@+id/recipe_add_button">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/malt_textInput"
+            android:id="@+id/recipe_textInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/search_string"
@@ -57,6 +57,6 @@
         app:layoutManager="LinearLayoutManager"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/malt_textInputLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/recipe_textInputLayout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

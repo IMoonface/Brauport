@@ -2,9 +2,10 @@ package com.example.brauportv2.model
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
+import androidx.room.Index
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "stock_database")
+@Entity(tableName = "stock_database", indices = [Index(value = ["stockName", "itemType"], unique = true)])
 data class StockItemData(
     @PrimaryKey
     val id: Int,

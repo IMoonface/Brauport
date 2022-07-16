@@ -1,4 +1,4 @@
-package com.example.brauportv2.data.typeconverter
+package com.example.brauportv2.data
 
 import androidx.room.TypeConverter
 import com.example.brauportv2.model.recipeModel.*

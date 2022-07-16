@@ -6,7 +6,6 @@ import androidx.lifecycle.viewModelScope
 import com.example.brauportv2.data.RecipeDao
 import com.example.brauportv2.mapper.toRecipeItemData
 import com.example.brauportv2.model.recipeModel.*
-import com.example.brauportv2.model.recipeModel.Recipe.rId
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
@@ -23,9 +22,9 @@ class RecipeViewModel(private val recipeDao: RecipeDao) : ViewModel() {
     fun updateRecipe(
         rId: Int,
         recipeName: String,
-        rMaltList: List<Malt>,
+        rMaltList: MutableList<Malt>,
         rRest: Rest,
-        rHoppingList: List<Hopping>,
+        rHoppingList: MutableList<Hopping>,
         rYeast: Yeast,
         rMainBrew: MainBrew
     ) {

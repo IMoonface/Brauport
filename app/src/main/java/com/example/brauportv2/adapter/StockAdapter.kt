@@ -9,19 +9,17 @@ import com.example.brauportv2.databinding.CardStockBinding
 import com.example.brauportv2.model.StockItem
 
 class StockAdapter(
-    private val onClick: (StockItem) -> Unit,
-    private val onDelete: (StockItem) -> Unit
+    private val onItemClick: (StockItem) -> Unit,
+    private val onDeleteClick: (StockItem) -> Unit
 ): ListAdapter<StockItem, StockAdapter.MaltViewHolder>(DiffCallback) {
 
     class MaltViewHolder(val binding: CardStockBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MaltViewHolder {
-        return MaltViewHolder(
-            CardStockBinding.inflate(
-                LayoutInflater.from(parent.context),
-                parent,
-                false
-            )
+        return MaltViewHolder(CardStockBinding.inflate(
+            LayoutInflater.from(parent.context),
+            parent,
+            false)
         )
     }
 
@@ -31,11 +29,11 @@ class StockAdapter(
         stockItemAmount.text = item.stockAmount
 
         stockDeleteButton.setOnClickListener {
-            onDelete(item)
+            onDeleteClick(item)
         }
 
         root.setOnClickListener {
-            onClick(item)
+            onItemClick(item)
         }
     }
 

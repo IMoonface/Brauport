@@ -5,15 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/appBars_color"
-    tools:context=".ui.dialog.DialogStockFragment">
+    tools:context=".ui.dialog.DialogRestFragment">
 
     <EditText
-        android:id="@+id/stock_item_name"
+        android:id="@+id/rest_temp"
         android:layout_width="0dp"
         android:layout_height="48dp"
         android:layout_marginStart="30dp"
         android:layout_marginTop="15dp"
-        android:layout_marginEnd="40dp"
+        android:layout_marginEnd="10dp"
         android:background="@color/white"
         android:hint="@string/enter_name_text"
         android:importantForAutofill="no"
@@ -22,14 +22,14 @@
         android:textColor="@color/appBars_color"
         android:textColorHint="#78909C"
         android:textSize="25sp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/unit_temp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
     </EditText>
 
     <EditText
-        android:id="@+id/stock_item_amount"
+        android:id="@+id/rest_time"
         android:layout_width="0dp"
         android:layout_height="48dp"
         android:layout_marginStart="30dp"
@@ -43,26 +43,38 @@
         android:textColor="@color/appBars_color"
         android:textColorHint="#78909C"
         android:textSize="25sp"
-        app:layout_constraintEnd_toStartOf="@+id/unit_gram"
+        app:layout_constraintEnd_toStartOf="@+id/unit_time"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/stock_item_name">
+        app:layout_constraintTop_toBottomOf="@+id/rest_temp">
 
     </EditText>
 
     <TextView
-        android:id="@+id/unit_gram"
+        android:id="@+id/unit_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="73dp"
         android:layout_marginEnd="10dp"
-        android:text="@string/unit_of_measurement_grams"
+        android:text="@string/unit_of_measurement_time"
         android:textColor="@color/white"
-        android:textSize="36sp"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/rest_abort_dialog"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rest_temp" />
+
+    <TextView
+        android:id="@+id/unit_temp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="28dp"
+        android:text="@string/unit_of_measurement_temp"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/rest_time"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/stock_confirm_button"
+        android:id="@+id/rest_confirm_button"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
         android:layout_marginTop="10dp"
@@ -73,13 +85,13 @@
         app:backgroundTint="@color/button_color"
         app:cornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/stock_abort_dialog"
+        app:layout_constraintEnd_toStartOf="@+id/rest_abort_dialog"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/stock_item_amount"
+        app:layout_constraintTop_toBottomOf="@+id/rest_time"
         tools:ignore="SmallSp" />
 
     <Button
-        android:id="@+id/stock_abort_dialog"
+        android:id="@+id/rest_abort_dialog"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
         android:layout_marginTop="10dp"
@@ -91,7 +103,7 @@
         app:cornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/stock_confirm_button"
-        app:layout_constraintTop_toBottomOf="@+id/stock_item_amount" />
+        app:layout_constraintStart_toEndOf="@+id/rest_confirm_button"
+        app:layout_constraintTop_toBottomOf="@+id/rest_time" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,9 +1,11 @@
 package com.example.brauportv2.ui.dialog
 
+import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
@@ -14,6 +16,7 @@ import com.example.brauportv2.mapper.toStockItem
 import com.example.brauportv2.model.StockItem
 import com.example.brauportv2.model.StockItemType
 import com.example.brauportv2.model.recipeModel.Hopping
+import com.example.brauportv2.model.recipeModel.Malt
 import com.example.brauportv2.model.recipeModel.Recipe
 import com.example.brauportv2.ui.viewmodel.StockViewModel
 import com.example.brauportv2.ui.viewmodel.StockViewModelFactory
@@ -29,6 +32,16 @@ class DialogHopsFragment : DialogFragment() {
         StockViewModelFactory((activity?.application as BaseApplication).stockDatabase.stockDao())
     }
 
+    override fun onStart() {
+        super.onStart()
+        val dialog: Dialog? = dialog
+        dialog?.let {
+            val width = ViewGroup.LayoutParams.MATCH_PARENT
+            val height = ViewGroup.LayoutParams.WRAP_CONTENT
+            it.window?.setLayout(width, height)
+        }
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -36,13 +49,12 @@ class DialogHopsFragment : DialogFragment() {
         // Inflate the layout for this fragment
         _binding = FragmentDialogHopsBinding.inflate(inflater, container, false)
 
-        adapter = RecipeHoppingAdapter(this::onItemAdd)
+        adapter = RecipeHoppingAdapter(this::onItemAdd, this::onItemDelete)
         binding.rHoppingRecyclerView.adapter = adapter
 
         lifecycleScope.launch {
-            viewModel.allStockItems.collect { it ->
-                adapter.submitList(it.map { it.toStockItem() }
-                    .filter { it.itemType == StockItemType.HOP })
+            viewModel.allStockItems.collect { it -> adapter.submitList(it.map { it.toStockItem() }
+                .filter { it.itemType == StockItemType.HOP })
             }
         }
 
@@ -55,11 +67,23 @@ class DialogHopsFragment : DialogFragment() {
     }
 
     private fun onItemAdd(stockItem: StockItem, time: String) {
-        Recipe.rHoppingList.add(Hopping(
+        val newHopping = Hopping(
             stockItem.stockName,
             StockItemType.HOP.ordinal,
             stockItem.stockAmount,
-            time)
+            time
         )
+
+        if (Recipe.recipeItem.rHoppingList.contains(newHopping))
+            Toast.makeText(context, "Hopfengabe schon vorhanden", Toast.LENGTH_SHORT).show()
+        else {
+            Recipe.recipeItem.rHoppingList.add(newHopping)
+            Toast.makeText(context, "Hopfengabe hinzugefügt", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun onItemDelete(stockItem: StockItem) {
+        //Recipe.rHoppingList.removeIf
+        Toast.makeText(context, "Hopfengabe gelöscht", Toast.LENGTH_SHORT).show()
     }
 }

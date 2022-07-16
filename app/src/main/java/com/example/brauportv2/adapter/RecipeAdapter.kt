@@ -8,23 +8,32 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.brauportv2.databinding.CardRecipeBinding
 import com.example.brauportv2.model.recipeModel.RecipeItem
 
-class RecipeAdapter : ListAdapter<RecipeItem, RecipeAdapter.RecipeViewHolder>(DiffCallback) {
+class RecipeAdapter(
+    private val onItemClick: (RecipeItem) -> Unit,
+    private val onDeleteClick: (RecipeItem) -> Unit
+): ListAdapter<RecipeItem, RecipeAdapter.RecipeViewHolder>(DiffCallback) {
 
     class RecipeViewHolder(val binding: CardRecipeBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecipeViewHolder {
-        return RecipeViewHolder(
-            CardRecipeBinding.inflate(
-                LayoutInflater.from(parent.context),
-                parent,
-                false
-            )
+        return RecipeViewHolder(CardRecipeBinding.inflate(
+            LayoutInflater.from(parent.context),
+            parent,
+            false)
         )
     }
 
     override fun onBindViewHolder(holder: RecipeViewHolder, position: Int) = with(holder.binding) {
         val item = getItem(position)
         recipeItemTitle.text = item.recipeName
+
+        recipeDeleteButton.setOnClickListener {
+            onDeleteClick(item)
+        }
+
+        root.setOnClickListener {
+            onItemClick(item)
+        }
     }
 
     override fun getItemViewType(position: Int): Int {

@@ -67,9 +67,8 @@ class MaltStockFragment : Fragment() {
         //binding.maltRecyclerView.hasFixedSize()
 
         lifecycleScope.launch {
-            viewModel.allStockItems.collect { it ->
-                maltStartList = it.map { it.toStockItem() }
-                    .filter { it.itemType == StockItemType.MALT }
+            viewModel.allStockItems.collect { it -> maltStartList = it.map { it.toStockItem() }
+                .filter { it.itemType == StockItemType.MALT }
                 adapter.submitList(maltStartList)
             }
         }

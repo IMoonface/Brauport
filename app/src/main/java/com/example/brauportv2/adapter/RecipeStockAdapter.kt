@@ -5,18 +5,18 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.brauportv2.databinding.CardHoppingBinding
+import com.example.brauportv2.databinding.CardRecipeStockBinding
 import com.example.brauportv2.model.StockItem
 
-class RecipeHoppingAdapter(
-    private val onItemAdd: (StockItem, String) -> Unit,
-    private val onItemDelete: (StockItem) -> Unit,
-) : ListAdapter<StockItem, RecipeHoppingAdapter.RecipeViewHolder>(DiffCallback) {
+class RecipeStockAdapter(
+    private val onItemClick: (StockItem) -> Unit,
+    private val onDeleteClick: (StockItem) -> Unit
+) : ListAdapter<StockItem, RecipeStockAdapter.RecipeViewHolder>(DiffCallback) {
 
-    class RecipeViewHolder(val binding: CardHoppingBinding) : RecyclerView.ViewHolder(binding.root)
+    class RecipeViewHolder(val binding: CardRecipeStockBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecipeViewHolder {
-        return RecipeViewHolder(CardHoppingBinding.inflate(
+        return RecipeViewHolder(CardRecipeStockBinding.inflate(
             LayoutInflater.from(parent.context),
             parent,
             false)
@@ -25,15 +25,16 @@ class RecipeHoppingAdapter(
 
     override fun onBindViewHolder(holder: RecipeViewHolder, position: Int) = with(holder.binding) {
         val item = getItem(position)
-        rHoppingTitle.text = item.stockName
-        rHoppingAmount.text = item.stockAmount
 
-        rHoppingAdd.setOnClickListener {
-            onItemAdd(item, rHoppingTimeInput.text.toString())
+        rStockItemTitle.text = item.stockName
+        rStockItemAmount.text = item.stockAmount
+
+        rStockAddButton.setOnClickListener {
+            onItemClick(item)
         }
 
-        rHoppingDelete.setOnClickListener {
-            onItemDelete(item)
+        rStockDeleteButton.setOnClickListener {
+            onDeleteClick(item)
         }
     }
 

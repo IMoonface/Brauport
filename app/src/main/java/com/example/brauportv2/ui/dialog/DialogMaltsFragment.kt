@@ -1,16 +1,45 @@
 package com.example.brauportv2.ui.dialog
 
+import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
+import com.example.brauportv2.BaseApplication
+import com.example.brauportv2.adapter.RecipeStockAdapter
 import com.example.brauportv2.databinding.FragmentDialogMaltsBinding
+import com.example.brauportv2.mapper.toStockItem
+import com.example.brauportv2.model.StockItem
+import com.example.brauportv2.model.StockItemType
+import com.example.brauportv2.model.recipeModel.Malt
+import com.example.brauportv2.model.recipeModel.Recipe
+import com.example.brauportv2.ui.viewmodel.StockViewModel
+import com.example.brauportv2.ui.viewmodel.StockViewModelFactory
+import kotlinx.coroutines.launch
 
 class DialogMaltsFragment : DialogFragment() {
 
     private var _binding: FragmentDialogMaltsBinding? = null
     private val binding get() = _binding!!
+    private lateinit var adapter: RecipeStockAdapter
+
+    private val viewModel: StockViewModel by activityViewModels {
+        StockViewModelFactory((activity?.application as BaseApplication).stockDatabase.stockDao())
+    }
+
+    override fun onStart() {
+        super.onStart()
+        val dialog: Dialog? = dialog
+        dialog?.let {
+            val width = ViewGroup.LayoutParams.MATCH_PARENT
+            val height = ViewGroup.LayoutParams.WRAP_CONTENT
+            it.window?.setLayout(width, height)
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -19,11 +48,38 @@ class DialogMaltsFragment : DialogFragment() {
         // Inflate the layout for this fragment
         _binding = FragmentDialogMaltsBinding.inflate(inflater, container, false)
 
+        adapter = RecipeStockAdapter(this::onItemAdd, this::onItemDelete)
+        binding.rMaltsRecyclerView.adapter = adapter
+
+        lifecycleScope.launch {
+            viewModel.allStockItems.collect { it -> adapter.submitList(it.map { it.toStockItem() }
+                .filter { it.itemType == StockItemType.MALT })
+            }
+        }
+
         return binding.root
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun onItemAdd(stockItem: StockItem) {
+        val newMalt = Malt(stockItem.stockName, StockItemType.MALT.ordinal, stockItem.stockAmount)
+
+        if (Recipe.recipeItem.rMaltList.contains(newMalt))
+            Toast.makeText(context, "Malz schon vorhanden", Toast.LENGTH_SHORT).show()
+        else {
+            Recipe.recipeItem.rMaltList.add(newMalt)
+            Toast.makeText(context, "Malz hinzugefügt", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun onItemDelete(stockItem: StockItem) {
+        val newMalt = Malt(stockItem.stockName, StockItemType.MALT.ordinal, stockItem.stockAmount)
+
+        Recipe.recipeItem.rMaltList.remove(newMalt)
+        Toast.makeText(context, "Malz gelöscht", Toast.LENGTH_SHORT).show()
     }
 }

@@ -29,7 +29,10 @@
     <string name="search_string">Durchsuchen</string>
     <string name="insert_time">Zeit eingeben</string>
     <string name="add_button">AddButton</string>
-    <string name="instruction_text">Bitte tragen Sie hier Ihren Bestand ein indem Sie auf den \"+ Neu\"-Button drücken und den Namen, sowie die Menge Ihres Bestanditems angeben. Sie können durch ein Klick auf das entsprechende Item dessen Daten nachträglich abändern. Nutzen Sie dafür die Suchfunktion, um ihr Item zu finden und zu ändern. Durch Klick auf das \"x\" wird das Item aus ihren Bestand gelöscht.</string>
+    <string name="instruction_text">Bitte tragen Sie hier Ihren Bestand ein indem Sie auf den \"+ Neu\"-Button drücken und den Namen, sowie die Menge Ihres Bestandes angeben. Sie können durch ein Klick auf das entsprechende Item dessen Daten nachträglich abändern. Nutzen Sie dafür die Suchfunktion, um ihr Item zu finden und zu ändern. Durch Klick auf das \"x\" wird das Item aus ihren Bestand gelöscht. Bitte beachten Sie, dass alle Einträge einzigartig sind! Sie können nicht 2-mal denselben Namen verwenden. Nutzen Sie deshalb die \"Durchsuchen\"-Funktion, um ihr entsprechendes Item zu finden und bei Bedarf zu updaten. Alternativ wird bei dem Versuch ein Item mit einen bereits existierenden Namen hinzuzufügen das entsprechende Item geupdated.</string>
+    <string name="unit_of_measurement_time">min</string>
+    <string name="unit_of_measurement_temp">°C</string>
+    <string name="instruction_stock">Anleitung - Bestand:</string>
 
     <string-array name="spinnerContent">
         <item>1</item>
