@@ -11,13 +11,15 @@ data class RecipeItemData(
     @ColumnInfo(name = "recipeName")
     val recipeName: String,
     @ColumnInfo(name = "maltList")
-    val rMaltList: List<Malt>,
+    val rMaltList: List<RStockItem>,
     @ColumnInfo(name = "rest")
     val rRest: Rest,
-    @ColumnInfo(name = "hoppingList")
-    val rHoppingList: List<Hopping>,
+    @ColumnInfo(name = "hopsList")
+    val rHoppingList: List<RStockItem>,
+    @ColumnInfo(name = "timeList")
+    val timeList: List<String>,
     @ColumnInfo(name = "yeast")
-    val rYeast: Yeast,
+    val rYeast: RStockItem,
     @ColumnInfo(name = "brew")
     val rMainBrew: MainBrew
 )

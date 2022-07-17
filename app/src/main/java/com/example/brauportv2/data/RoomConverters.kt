@@ -8,17 +8,50 @@ import org.json.JSONObject
 
 class RoomConverters {
     @TypeConverter
-    fun fromListMalt(malts: List<Malt>): String {
+    fun fromRStockList(rStockItemList: List<RStockItem>): String {
         val gson = Gson()
-        val type = object : TypeToken<List<Hopping>>() {}.type
-        return gson.toJson(malts, type)
+        val type = object : TypeToken<List<RStockItem>>() {}.type
+        return gson.toJson(rStockItemList, type)
     }
 
     @TypeConverter
-    fun toMalt(source: String): List<Malt> {
+    fun toRStockList(source: String): List<RStockItem> {
         val gson = Gson()
-        val type = object : TypeToken<List<Hopping>>() {}.type
+        val type = object : TypeToken<List<RStockItem>>() {}.type
         return gson.fromJson(source, type)
+    }
+
+    @TypeConverter
+    fun fromTimeList(timeList: List<String>): String {
+        val gson = Gson()
+        val type = object : TypeToken<List<RStockItem>>() {}.type
+        return gson.toJson(timeList, type)
+    }
+
+    @TypeConverter
+    fun toTimeList(source: String): List<String> {
+        val gson = Gson()
+        val type = object : TypeToken<List<RStockItem>>() {}.type
+        return gson.fromJson(source, type)
+    }
+
+    @TypeConverter
+    fun fromRStockItem(rStockItem: RStockItem): String {
+        return JSONObject().apply {
+            put("rStockName", rStockItem.rStockName)
+            put("rItemType", rStockItem.rItemType)
+            put("rStockAmount", rStockItem.rStockAmount)
+        }.toString()
+    }
+
+    @TypeConverter
+    fun toRStockItem(source: String): RStockItem {
+        val json = JSONObject(source)
+        return RStockItem(
+            json.getString("rStockName"),
+            json.getInt("rItemType"),
+            json.getString("rStockAmount")
+        )
     }
 
     @TypeConverter
@@ -33,35 +66,6 @@ class RoomConverters {
     fun toRest(source: String): Rest {
         val json = JSONObject(source)
         return Rest(json.getString("restTemp"), json.getString("restTime"))
-    }
-
-    @TypeConverter
-    fun fromListHopping(hopping: List<Hopping>): String {
-        val gson = Gson()
-        val type = object : TypeToken<List<Hopping>>() {}.type
-        return gson.toJson(hopping, type)
-    }
-
-    @TypeConverter
-    fun toListHopping(source: String): List<Hopping> {
-        val gson = Gson()
-        val type = object : TypeToken<List<Hopping>>() {}.type
-        return gson.fromJson(source, type)
-    }
-
-    @TypeConverter
-    fun fromYeast(yeast: Yeast): String {
-        return JSONObject().apply {
-            put("rStockName", yeast.rStockName)
-            put("itemType", yeast.itemType)
-            put("rStockAmount", yeast.rStockAmount)
-        }.toString()
-    }
-
-    @TypeConverter
-    fun toYeast(source: String): Yeast {
-        val json = JSONObject(source)
-        return Yeast(json.getString("rStockName"), json.getInt("itemType"), json.getString("rStockAmount"))
     }
 
     @TypeConverter

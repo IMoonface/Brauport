@@ -13,10 +13,8 @@ import com.example.brauportv2.BaseApplication
 import com.example.brauportv2.adapter.RecipeHoppingAdapter
 import com.example.brauportv2.databinding.FragmentDialogHopsBinding
 import com.example.brauportv2.mapper.toStockItem
-import com.example.brauportv2.model.StockItem
 import com.example.brauportv2.model.StockItemType
-import com.example.brauportv2.model.recipeModel.Hopping
-import com.example.brauportv2.model.recipeModel.Malt
+import com.example.brauportv2.model.recipeModel.RStockItem
 import com.example.brauportv2.model.recipeModel.Recipe
 import com.example.brauportv2.ui.viewmodel.StockViewModel
 import com.example.brauportv2.ui.viewmodel.StockViewModelFactory
@@ -66,24 +64,22 @@ class DialogHopsFragment : DialogFragment() {
         _binding = null
     }
 
-    private fun onItemAdd(stockItem: StockItem, time: String) {
-        val newHopping = Hopping(
-            stockItem.stockName,
-            StockItemType.HOP.ordinal,
-            stockItem.stockAmount,
-            time
-        )
-
-        if (Recipe.recipeItem.rHoppingList.contains(newHopping))
-            Toast.makeText(context, "Hopfengabe schon vorhanden", Toast.LENGTH_SHORT).show()
-        else {
-            Recipe.recipeItem.rHoppingList.add(newHopping)
+    private fun onItemAdd(rStockItem: RStockItem, time: String) {
+        val index = Recipe.recipeItem.rHopsList.indexOf(rStockItem)
+        if (Recipe.recipeItem.rHopsList.contains(rStockItem)) {
+            Recipe.recipeItem.rTimeList[index] = time
+            Toast.makeText(context, "Hopfengabe schon vorhanden, Zeit wurde aktualisiert", Toast.LENGTH_SHORT).show()
+        } else {
+            Recipe.recipeItem.rHopsList.add(rStockItem)
+            Recipe.recipeItem.rTimeList.add(time)
             Toast.makeText(context, "Hopfengabe hinzugefügt", Toast.LENGTH_SHORT).show()
         }
     }
 
-    private fun onItemDelete(stockItem: StockItem) {
-        //Recipe.rHoppingList.removeIf
+    private fun onItemDelete(rStockItem: RStockItem) {
+        val index = Recipe.recipeItem.rHopsList.indexOf(rStockItem)
+        Recipe.recipeItem.rHopsList.remove(rStockItem)
+        Recipe.recipeItem.rTimeList.removeAt(index)
         Toast.makeText(context, "Hopfengabe gelöscht", Toast.LENGTH_SHORT).show()
     }
 }

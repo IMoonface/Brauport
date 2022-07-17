@@ -6,11 +6,13 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.brauportv2.databinding.CardRecipeStockBinding
+import com.example.brauportv2.mapper.toRStockItem
 import com.example.brauportv2.model.StockItem
+import com.example.brauportv2.model.recipeModel.RStockItem
 
 class RecipeStockAdapter(
-    private val onItemClick: (StockItem) -> Unit,
-    private val onDeleteClick: (StockItem) -> Unit
+    private val onItemClick: (RStockItem) -> Unit,
+    private val onDeleteClick: (RStockItem) -> Unit
 ) : ListAdapter<StockItem, RecipeStockAdapter.RecipeViewHolder>(DiffCallback) {
 
     class RecipeViewHolder(val binding: CardRecipeStockBinding) : RecyclerView.ViewHolder(binding.root)
@@ -30,11 +32,11 @@ class RecipeStockAdapter(
         rStockItemAmount.text = item.stockAmount
 
         rStockAddButton.setOnClickListener {
-            onItemClick(item)
+            onItemClick(item.toRStockItem())
         }
 
         rStockDeleteButton.setOnClickListener {
-            onDeleteClick(item)
+            onDeleteClick(item.toRStockItem())
         }
     }
 

@@ -13,9 +13,8 @@ import com.example.brauportv2.BaseApplication
 import com.example.brauportv2.adapter.RecipeStockAdapter
 import com.example.brauportv2.databinding.FragmentDialogMaltsBinding
 import com.example.brauportv2.mapper.toStockItem
-import com.example.brauportv2.model.StockItem
 import com.example.brauportv2.model.StockItemType
-import com.example.brauportv2.model.recipeModel.Malt
+import com.example.brauportv2.model.recipeModel.RStockItem
 import com.example.brauportv2.model.recipeModel.Recipe
 import com.example.brauportv2.ui.viewmodel.StockViewModel
 import com.example.brauportv2.ui.viewmodel.StockViewModelFactory
@@ -65,21 +64,17 @@ class DialogMaltsFragment : DialogFragment() {
         _binding = null
     }
 
-    private fun onItemAdd(stockItem: StockItem) {
-        val newMalt = Malt(stockItem.stockName, StockItemType.MALT.ordinal, stockItem.stockAmount)
-
-        if (Recipe.recipeItem.rMaltList.contains(newMalt))
+    private fun onItemAdd(rStockItem: RStockItem) {
+        if (Recipe.recipeItem.rMaltList.contains(rStockItem))
             Toast.makeText(context, "Malz schon vorhanden", Toast.LENGTH_SHORT).show()
         else {
-            Recipe.recipeItem.rMaltList.add(newMalt)
+            Recipe.recipeItem.rMaltList.add(rStockItem)
             Toast.makeText(context, "Malz hinzugefügt", Toast.LENGTH_SHORT).show()
         }
     }
 
-    private fun onItemDelete(stockItem: StockItem) {
-        val newMalt = Malt(stockItem.stockName, StockItemType.MALT.ordinal, stockItem.stockAmount)
-
-        Recipe.recipeItem.rMaltList.remove(newMalt)
+    private fun onItemDelete(rStockItem: RStockItem) {
+        Recipe.recipeItem.rMaltList.remove(rStockItem)
         Toast.makeText(context, "Malz gelöscht", Toast.LENGTH_SHORT).show()
     }
 }
