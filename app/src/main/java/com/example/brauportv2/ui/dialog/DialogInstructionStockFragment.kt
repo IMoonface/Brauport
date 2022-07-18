@@ -28,8 +28,12 @@ class DialogInstructionStockFragment : DialogFragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        _binding = FragmentDialogInstructionStockBinding.inflate(inflater, container, false)
+        _binding = FragmentDialogInstructionStockBinding
+            .inflate(inflater, container, false)
 
+        binding.instructionConfirmButton.setOnClickListener {
+            dismiss()
+        }
         return binding.root
     }
 }

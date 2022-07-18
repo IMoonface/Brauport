@@ -4,5 +4,4 @@ enum class StockItemType {
     MALT,
     HOP,
     YEAST
-
 }

@@ -22,16 +22,16 @@ class RoomConverters {
     }
 
     @TypeConverter
-    fun fromTimeList(timeList: List<String>): String {
+    fun fromHoppingList(rhoppingList: List<Hopping>): String {
         val gson = Gson()
-        val type = object : TypeToken<List<RStockItem>>() {}.type
-        return gson.toJson(timeList, type)
+        val type = object : TypeToken<List<Hopping>>() {}.type
+        return gson.toJson(rhoppingList, type)
     }
 
     @TypeConverter
-    fun toTimeList(source: String): List<String> {
+    fun toHoppingList(source: String): List<Hopping> {
         val gson = Gson()
-        val type = object : TypeToken<List<RStockItem>>() {}.type
+        val type = object : TypeToken<List<Hopping>>() {}.type
         return gson.fromJson(source, type)
     }
 

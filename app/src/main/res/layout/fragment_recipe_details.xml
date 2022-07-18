@@ -8,6 +8,25 @@
     android:orientation="vertical"
     tools:context=".ui.details.RecipeDetailsFragment">
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/recipe_details_textInputLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="340dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        app:boxBackgroundColor="@color/white">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/recipe_details_textInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/enter_recipe_name"
+            android:inputType="text"
+            android:textColorHint="#546E7A"
+            tools:ignore="TextContrastCheck" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
     <Button
         android:id="@+id/recipe_details_malts"
         android:layout_width="220dp"
@@ -53,6 +72,16 @@
         android:layout_height="60dp"
         android:layout_marginTop="10dp"
         android:text="@string/main_brew"
+        android:textColor="@color/appBars_color"
+        app:backgroundTint="@color/button_color"
+        app:cornerRadius="20dp" />
+
+    <Button
+        android:id="@+id/recipe_details_save"
+        android:layout_width="220dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/save_string"
         android:textColor="@color/appBars_color"
         app:backgroundTint="@color/button_color"
         app:cornerRadius="20dp" />

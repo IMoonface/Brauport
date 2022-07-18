@@ -8,8 +8,7 @@ object Recipe {
         "",
         emptyList<RStockItem>().toMutableList(),
         Rest("", ""),
-        emptyList<RStockItem>().toMutableList(),
-        emptyList<String>().toMutableList(),
+        emptyList<Hopping>().toMutableList(),
         RStockItem("", StockItemType.YEAST.ordinal, ""),
         MainBrew("", "")
     )
@@ -19,8 +18,7 @@ object Recipe {
         "",
         emptyList<RStockItem>().toMutableList(),
         Rest("", ""),
-        emptyList<RStockItem>().toMutableList(),
-        emptyList<String>().toMutableList(),
+        emptyList<Hopping>().toMutableList(),
         RStockItem("", StockItemType.YEAST.ordinal, ""),
         MainBrew("", "")
     )

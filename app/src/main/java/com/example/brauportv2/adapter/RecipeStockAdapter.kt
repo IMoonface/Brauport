@@ -15,7 +15,8 @@ class RecipeStockAdapter(
     private val onDeleteClick: (RStockItem) -> Unit
 ) : ListAdapter<StockItem, RecipeStockAdapter.RecipeViewHolder>(DiffCallback) {
 
-    class RecipeViewHolder(val binding: CardRecipeStockBinding) : RecyclerView.ViewHolder(binding.root)
+    class RecipeViewHolder(val binding: CardRecipeStockBinding)
+        : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecipeViewHolder {
         return RecipeViewHolder(CardRecipeStockBinding.inflate(
@@ -53,10 +54,10 @@ class RecipeStockAdapter(
     }
 
     object DiffCallback : DiffUtil.ItemCallback<StockItem>() {
-        override fun areItemsTheSame(oldItem: StockItem, newItem: StockItem):
-                Boolean = oldItem.id == newItem.id
+        override fun areItemsTheSame(oldItem: StockItem, newItem: StockItem)
+            : Boolean = oldItem.id == newItem.id
 
-        override fun areContentsTheSame(oldItem: StockItem, newItem: StockItem):
-                Boolean = oldItem == newItem
+        override fun areContentsTheSame(oldItem: StockItem, newItem: StockItem)
+            : Boolean = oldItem == newItem
     }
 }

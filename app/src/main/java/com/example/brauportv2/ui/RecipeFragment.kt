@@ -43,7 +43,6 @@ class RecipeFragment : Fragment() {
         }
     }
 
-
     private val viewModel: RecipeViewModel by activityViewModels {
         RecipeViewModelFactory((activity?.application as BaseApplication).recipeDatabase.recipeDao())
     }
@@ -65,6 +64,10 @@ class RecipeFragment : Fragment() {
         binding.recipeAddButton.setOnClickListener {
             Recipe.recipeItem = Recipe.recipeStartConfig
             onNewRecipeClick()
+        }
+
+        binding.recipeInfoButton.setOnClickListener {
+
         }
 
         binding.recipeTextInput.addTextChangedListener(textWatcher)

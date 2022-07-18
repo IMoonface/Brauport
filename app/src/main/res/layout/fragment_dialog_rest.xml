@@ -15,9 +15,9 @@
         android:layout_marginTop="15dp"
         android:layout_marginEnd="10dp"
         android:background="@color/white"
-        android:hint="@string/enter_name_text"
+        android:hint="@string/enter_temp"
         android:importantForAutofill="no"
-        android:inputType="text"
+        android:inputType="number"
         android:maxLength="20"
         android:textColor="@color/appBars_color"
         android:textColorHint="#78909C"
@@ -36,7 +36,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:background="@color/white"
-        android:hint="@string/enter_amount_text"
+        android:hint="@string/enter_time"
         android:importantForAutofill="no"
         android:inputType="number"
         android:maxLength="20"
@@ -57,7 +57,7 @@
         android:text="@string/unit_of_measurement_time"
         android:textColor="@color/white"
         android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/rest_abort_dialog"
+        app:layout_constraintBottom_toTopOf="@+id/rest_abort_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/rest_temp" />
 
@@ -85,13 +85,13 @@
         app:backgroundTint="@color/button_color"
         app:cornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/rest_abort_dialog"
+        app:layout_constraintEnd_toStartOf="@+id/rest_abort_button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/rest_time"
         tools:ignore="SmallSp" />
 
     <Button
-        android:id="@+id/rest_abort_dialog"
+        android:id="@+id/rest_abort_button"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
         android:layout_marginTop="10dp"

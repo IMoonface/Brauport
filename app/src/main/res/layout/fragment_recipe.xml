@@ -13,16 +13,33 @@
         android:layout_width="200dp"
         android:layout_height="60dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
         android:text="@string/recipe_add_text"
         android:textColor="@color/appBars_color"
         app:backgroundTint="@color/card_color"
         app:cornerRadius="20dp"
         app:icon="@drawable/ic_add"
         app:iconTint="@color/appBars_color"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/recipe_info_button"
+        android:layout_width="50dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="10dp"
+        android:textColor="@color/appBars_color"
+        app:backgroundTint="@color/card_color"
+        app:cornerRadius="20dp"
+        app:icon="@drawable/ic_info"
+        app:iconGravity="textStart"
+        app:iconPadding="0dp"
+        app:iconTint="@color/appBars_color"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/recipe_textInputLayout"
@@ -48,7 +65,7 @@
 
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recipe_recyclerView"
+        android:id="@+id/recipe_recycler_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/recipe_add_button"

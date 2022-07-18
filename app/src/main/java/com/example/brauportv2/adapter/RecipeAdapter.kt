@@ -49,10 +49,10 @@ class RecipeAdapter(
     }
 
     object DiffCallback : DiffUtil.ItemCallback<RecipeItem>() {
-        override fun areItemsTheSame(oldItem: RecipeItem, newItem: RecipeItem):
-                Boolean = oldItem.rId == newItem.rId
+        override fun areItemsTheSame(oldItem: RecipeItem, newItem: RecipeItem)
+            : Boolean = oldItem.rId == newItem.rId
 
-        override fun areContentsTheSame(oldItem: RecipeItem, newItem: RecipeItem):
-                Boolean = oldItem == newItem
+        override fun areContentsTheSame(oldItem: RecipeItem, newItem: RecipeItem)
+            : Boolean = oldItem == newItem
     }
 }

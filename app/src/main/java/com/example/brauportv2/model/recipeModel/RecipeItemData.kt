@@ -14,10 +14,8 @@ data class RecipeItemData(
     val rMaltList: List<RStockItem>,
     @ColumnInfo(name = "rest")
     val rRest: Rest,
-    @ColumnInfo(name = "hopsList")
-    val rHoppingList: List<RStockItem>,
-    @ColumnInfo(name = "timeList")
-    val timeList: List<String>,
+    @ColumnInfo(name = "hoppingList")
+    val rHoppingList: List<Hopping>,
     @ColumnInfo(name = "yeast")
     val rYeast: RStockItem,
     @ColumnInfo(name = "brew")

@@ -5,7 +5,10 @@ import androidx.room.Entity
 import androidx.room.Index
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "stock_database", indices = [Index(value = ["stockName", "itemType"], unique = true)])
+@Entity(
+    tableName = "stock_database",
+    indices = [Index(value = ["itemType", "stockName"], unique = true)]
+)
 data class StockItemData(
     @PrimaryKey
     val id: Int,

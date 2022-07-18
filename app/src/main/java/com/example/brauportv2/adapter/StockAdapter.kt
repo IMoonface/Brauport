@@ -50,10 +50,10 @@ class StockAdapter(
     }
 
     object DiffCallback : DiffUtil.ItemCallback<StockItem>() {
-        override fun areItemsTheSame(oldItem: StockItem, newItem: StockItem):
-                Boolean = oldItem.id == newItem.id
+        override fun areItemsTheSame(oldItem: StockItem, newItem: StockItem)
+            : Boolean = oldItem.id == newItem.id
 
-        override fun areContentsTheSame(oldItem: StockItem, newItem: StockItem):
-                Boolean = oldItem == newItem
+        override fun areContentsTheSame(oldItem: StockItem, newItem: StockItem)
+            : Boolean = oldItem == newItem
     }
 }

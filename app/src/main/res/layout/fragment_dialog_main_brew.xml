@@ -5,64 +5,76 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/appBars_color"
-    tools:context=".ui.dialog.DialogStockFragment">
+    tools:context=".ui.dialog.DialogRestFragment">
 
     <EditText
-        android:id="@+id/stock_item_name"
+        android:id="@+id/main_brew_first"
         android:layout_width="0dp"
         android:layout_height="48dp"
         android:layout_marginStart="30dp"
         android:layout_marginTop="15dp"
-        android:layout_marginEnd="40dp"
-        android:background="@color/white"
-        android:hint="@string/enter_name_text"
-        android:importantForAutofill="no"
-        android:inputType="text"
-        android:maxLength="20"
-        android:textColor="@color/appBars_color"
-        android:textColorHint="#78909C"
-        android:textSize="25sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-    </EditText>
-
-    <EditText
-        android:id="@+id/stock_item_amount"
-        android:layout_width="0dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:background="@color/white"
-        android:hint="@string/enter_amount_text"
+        android:hint="@string/enter_main_brew"
         android:importantForAutofill="no"
         android:inputType="number"
         android:maxLength="20"
         android:textColor="@color/appBars_color"
         android:textColorHint="#78909C"
         android:textSize="25sp"
-        app:layout_constraintEnd_toStartOf="@+id/unit_gram"
+        app:layout_constraintEnd_toStartOf="@+id/unit_milliliters_second"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/stock_item_name">
+        app:layout_constraintTop_toTopOf="parent">
+
+    </EditText>
+
+    <EditText
+        android:id="@+id/main_brew_second"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:background="@color/white"
+        android:hint="@string/enter_second_brew"
+        android:importantForAutofill="no"
+        android:inputType="number"
+        android:maxLength="20"
+        android:textColor="@color/appBars_color"
+        android:textColorHint="#78909C"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toStartOf="@+id/unit_milliliters_first"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/main_brew_first">
 
     </EditText>
 
     <TextView
-        android:id="@+id/unit_gram"
+        android:id="@+id/unit_milliliters_first"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="73dp"
         android:layout_marginEnd="10dp"
-        android:text="@string/unit_of_measurement_grams"
+        android:text="@string/measurement_unit_milliliters"
         android:textColor="@color/white"
-        android:textSize="36sp"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/main_brew_abort_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/main_brew_first" />
+
+    <TextView
+        android:id="@+id/unit_milliliters_second"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:text="ml"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/main_brew_second"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/stock_confirm_button"
+        android:id="@+id/main_brew_confirm_button"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
         android:layout_marginTop="10dp"
@@ -73,13 +85,13 @@
         app:backgroundTint="@color/button_color"
         app:cornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/stock_abort_button"
+        app:layout_constraintEnd_toStartOf="@+id/main_brew_abort_button"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/stock_item_amount"
+        app:layout_constraintTop_toBottomOf="@+id/main_brew_second"
         tools:ignore="SmallSp" />
 
     <Button
-        android:id="@+id/stock_abort_button"
+        android:id="@+id/main_brew_abort_button"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
         android:layout_marginTop="10dp"
@@ -91,7 +103,7 @@
         app:cornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/stock_confirm_button"
-        app:layout_constraintTop_toBottomOf="@+id/stock_item_amount" />
+        app:layout_constraintStart_toEndOf="@+id/main_brew_confirm_button"
+        app:layout_constraintTop_toBottomOf="@+id/main_brew_second" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

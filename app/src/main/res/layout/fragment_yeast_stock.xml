@@ -8,26 +8,13 @@
     android:background="@color/button_color"
     tools:context=".ui.YeastStockFragment">
 
-    <TextView
-        android:id="@+id/yeast_title"
-        style="@style/Widget.MaterialComponents.Button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="@string/yeast"
-        android:textColor="@color/appBars_color"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/yeast_addButton"
+        android:id="@+id/yeast_add_button"
         android:layout_width="wrap_content"
         android:layout_height="60dp"
         android:layout_marginStart="10dp"
         android:layout_marginTop="5dp"
-        android:text="@string/stock_add_item"
+        android:text="@string/new_yeast"
         android:textColor="@color/appBars_color"
         app:backgroundTint="@color/card_color"
         app:cornerRadius="20dp"
@@ -37,7 +24,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/yeast_infoButton"
+        android:id="@+id/yeast_info_button"
         android:layout_width="50dp"
         android:layout_height="60dp"
         android:layout_marginTop="5dp"
@@ -59,18 +46,16 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         app:boxBackgroundColor="@color/card_color"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/yeast_title">
+        app:layout_constraintTop_toBottomOf="@+id/yeast_add_button">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/yeast_textInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:hint="@string/search_string"
             android:inputType="text"
             android:textColorHint="#546E7A"

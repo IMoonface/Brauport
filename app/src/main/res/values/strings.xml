@@ -10,7 +10,6 @@
     <string name="cl_recipe_item_name">Test Rezept</string>
     <string name="brew_text">Brauen</string>
     <string name="stock_text">Bestand</string>
-    <string name="stock_add_item">Neu</string>
     <string name="malt">Malz</string>
     <string name="yeast">Hefe</string>
     <string name="hop">Hopfen</string>
@@ -33,6 +32,16 @@
     <string name="unit_of_measurement_time">min</string>
     <string name="unit_of_measurement_temp">°C</string>
     <string name="instruction_stock">Anleitung - Bestand:</string>
+    <string name="new_yeast">Neue Hefe</string>
+    <string name="new_malt">Neues Malz</string>
+    <string name="new_hop">Neuer Hopfen</string>
+    <string name="save_string">Speichern</string>
+    <string name="enter_temp">Temperatur eingeben</string>
+    <string name="enter_time">Zeit eingeben</string>
+    <string name="enter_recipe_name">Bitte Rezeptnamen eingeben!</string>
+    <string name="enter_main_brew">Hauptguss eingeben</string>
+    <string name="enter_second_brew">Nachguss eingeben</string>
+    <string name="measurement_unit_milliliters">ml</string>
 
     <string-array name="spinnerContent">
         <item>1</item>

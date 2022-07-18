@@ -2,18 +2,22 @@ package com.example.brauportv2.ui.dialog
 
 import android.app.Dialog
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
-import com.example.brauportv2.databinding.FragmentDialogRestBinding
+import com.example.brauportv2.R
+import com.example.brauportv2.databinding.FragmentDialogHopsBinding
+import com.example.brauportv2.databinding.FragmentDialogMainBrewBinding
+import com.example.brauportv2.databinding.FragmentDialogMaltsBinding
+import com.example.brauportv2.model.recipeModel.MainBrew
 import com.example.brauportv2.model.recipeModel.Recipe.recipeItem
-import com.example.brauportv2.model.recipeModel.Rest
 
-class DialogRestFragment : DialogFragment() {
+class DialogMainBrewFragment : DialogFragment() {
 
-    private var _binding: FragmentDialogRestBinding? = null
+    private var _binding: FragmentDialogMainBrewBinding? = null
     private val binding get() = _binding!!
 
     override fun onStart() {
@@ -31,21 +35,22 @@ class DialogRestFragment : DialogFragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        _binding = FragmentDialogRestBinding.inflate(inflater, container, false)
+        _binding = FragmentDialogMainBrewBinding.inflate(inflater, container, false)
 
-        binding.restConfirmButton.setOnClickListener {
-            val restTemp = binding.restTemp.text.toString()
-            val restTime = binding.restTime.text.toString()
-            if (restTemp == "" || restTemp == "")
+        binding.mainBrewConfirmButton.setOnClickListener {
+            val firstBrew = binding.mainBrewFirst.text.toString()
+            val secondBrew = binding.mainBrewSecond.text.toString()
+
+            if (firstBrew == "" || secondBrew == "")
                 Toast.makeText(context, "Bitte alle Felder ausfüllen", Toast.LENGTH_SHORT)
                     .show()
             else {
-                recipeItem.rRest = Rest("$restTemp°C", restTime + "min")
+                recipeItem.rMainBrew = MainBrew(firstBrew, secondBrew)
                 dismiss()
             }
         }
 
-        binding.restAbortButton.setOnClickListener {
+        binding.mainBrewAbortButton.setOnClickListener {
             dismiss()
         }
 

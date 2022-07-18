@@ -24,8 +24,7 @@ class RecipeViewModel(private val recipeDao: RecipeDao) : ViewModel() {
         recipeName: String,
         rMaltList: MutableList<RStockItem>,
         rRest: Rest,
-        rHoppingList: MutableList<RStockItem>,
-        rTimeList: MutableList<String>,
+        rHoppingList: MutableList<Hopping>,
         rYeast: RStockItem,
         rMainBrew: MainBrew
     ) {
@@ -34,8 +33,7 @@ class RecipeViewModel(private val recipeDao: RecipeDao) : ViewModel() {
             recipeName = recipeName,
             rMaltList = rMaltList,
             rRest = rRest,
-            rHopsList = rHoppingList,
-            rTimeList = rTimeList,
+            rHoppingList = rHoppingList,
             rYeast = rYeast,
             rMainBrew = rMainBrew
         )

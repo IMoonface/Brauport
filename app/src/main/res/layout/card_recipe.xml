@@ -22,7 +22,7 @@
             android:textColor="@color/appBars_color"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/r_hopping_delete"
+            app:layout_constraintEnd_toStartOf="@+id/recipe_delete_button"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
