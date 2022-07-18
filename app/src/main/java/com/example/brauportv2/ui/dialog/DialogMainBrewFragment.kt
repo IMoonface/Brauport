@@ -2,18 +2,14 @@ package com.example.brauportv2.ui.dialog
 
 import android.app.Dialog
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
-import com.example.brauportv2.R
-import com.example.brauportv2.databinding.FragmentDialogHopsBinding
 import com.example.brauportv2.databinding.FragmentDialogMainBrewBinding
-import com.example.brauportv2.databinding.FragmentDialogMaltsBinding
 import com.example.brauportv2.model.recipeModel.MainBrew
-import com.example.brauportv2.model.recipeModel.Recipe.recipeItem
+import com.example.brauportv2.model.recipeModel.RecipeDataSource.recipeItem
 
 class DialogMainBrewFragment : DialogFragment() {
 
@@ -45,7 +41,7 @@ class DialogMainBrewFragment : DialogFragment() {
                 Toast.makeText(context, "Bitte alle Felder ausfüllen", Toast.LENGTH_SHORT)
                     .show()
             else {
-                recipeItem.rMainBrew = MainBrew(firstBrew, secondBrew)
+                recipeItem.mainBrew = MainBrew(firstBrew, secondBrew)
                 dismiss()
             }
         }

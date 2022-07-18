@@ -95,4 +95,18 @@
         app:iconTint="@color/appBars_color"
         tools:ignore="SpeakableTextPresentCheck" />
 
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/hop_before_button"
+        style="@style/Widget.MaterialComponents.Button"
+        android:layout_width="40dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center_vertical|start"
+        app:backgroundTint="@color/button_color"
+        app:cornerRadius="20dp"
+        app:icon="@drawable/ic_navigate_before"
+        app:iconGravity="textStart"
+        app:iconPadding="0dp"
+        app:iconTint="@color/appBars_color"
+        tools:ignore="SpeakableTextPresentCheck" />
+
 </FrameLayout>

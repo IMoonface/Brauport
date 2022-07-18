@@ -79,6 +79,14 @@ class HopStockFragment : Fragment() {
             binding.hopTextInput.text?.clear()
         }
 
+        binding.hopBeforeButton.setOnClickListener {
+            val action = HopStockFragmentDirections
+                .actionHopStockFragmentToMaltStockFragment()
+            findNavController().navigate(action)
+
+            binding.hopTextInput.text?.clear()
+        }
+
         binding.hopAddButton.setOnClickListener {
             openAddDialog()
         }

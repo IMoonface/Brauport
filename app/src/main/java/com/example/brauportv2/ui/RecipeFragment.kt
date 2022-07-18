@@ -16,10 +16,11 @@ import com.example.brauportv2.databinding.FragmentRecipeBinding
 import com.example.brauportv2.mapper.toRecipeItem
 import com.example.brauportv2.model.StockItemType
 import com.example.brauportv2.model.recipeModel.*
+import com.example.brauportv2.model.recipeModel.RecipeDataSource.recipeItem
+import com.example.brauportv2.model.recipeModel.RecipeDataSource.update
 import com.example.brauportv2.ui.viewmodel.RecipeViewModel
 import com.example.brauportv2.ui.viewmodel.RecipeViewModelFactory
 import kotlinx.coroutines.launch
-import java.util.*
 
 class RecipeFragment : Fragment() {
 
@@ -62,8 +63,20 @@ class RecipeFragment : Fragment() {
         }
 
         binding.recipeAddButton.setOnClickListener {
-            Recipe.recipeItem = Recipe.recipeStartConfig
-            onNewRecipeClick()
+            update = false
+            recipeItem = RecipeItem(
+                1,
+                "",
+                emptyList<RStockItem>().toMutableList(),
+                emptyList<Rest>().toMutableList(),
+                emptyList<Hopping>().toMutableList(),
+                RStockItem("", StockItemType.YEAST.ordinal, ""),
+                MainBrew("", "")
+            )
+
+            val action = RecipeFragmentDirections
+                .actionRecipeFragmentToRecipeDetailsFragment()
+            findNavController().navigate(action)
         }
 
         binding.recipeInfoButton.setOnClickListener {
@@ -75,14 +88,9 @@ class RecipeFragment : Fragment() {
         return binding.root
     }
 
-    private fun onNewRecipeClick() {
-        val action = RecipeFragmentDirections
-            .actionRecipeFragmentToRecipeDetailsFragment()
-        findNavController().navigate(action)
-    }
-
     private fun onItemClick(recipe: RecipeItem) {
-        Recipe.recipeItem = recipe
+        update = true
+        recipeItem = recipe
 
         val action = RecipeFragmentDirections
             .actionRecipeFragmentToRecipeDetailsFragment()

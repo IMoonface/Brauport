@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.example.brauportv2.BaseApplication
 import com.example.brauportv2.adapter.StockAdapter
 import com.example.brauportv2.databinding.FragmentYeastStockBinding
@@ -71,7 +72,21 @@ class YeastStockFragment : Fragment() {
             }
         }
 
-        binding.yeastTextInput.text?.clear()
+        binding.yeastNextButton.setOnClickListener {
+            val action = YeastStockFragmentDirections
+                .actionYeastStockFragmentToMaltStockFragment()
+            findNavController().navigate(action)
+
+            binding.yeastTextInput.text?.clear()
+        }
+
+        binding.yeastBeforeButton.setOnClickListener {
+            val action = YeastStockFragmentDirections
+                .actionYeastStockFragmentToHopStockFragment()
+            findNavController().navigate(action)
+
+            binding.yeastTextInput.text?.clear()
+        }
 
         binding.yeastAddButton.setOnClickListener {
             openAddDialog()

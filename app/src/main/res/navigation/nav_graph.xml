@@ -34,6 +34,9 @@
         <action
             android:id="@+id/action_malt_stock_fragment_to_hopStockFragment"
             app:destination="@id/hop_stock_fragment" />
+        <action
+            android:id="@+id/action_malt_stock_fragment_to_yeast_stock_fragment"
+            app:destination="@id/yeast_stock_fragment" />
     </fragment>
     <fragment
         android:id="@+id/brew_fragment"
@@ -72,12 +75,22 @@
         <action
             android:id="@+id/action_hopStockFragment_to_yeastStockFragment"
             app:destination="@id/yeast_stock_fragment" />
+        <action
+            android:id="@+id/action_hop_stock_fragment_to_malt_stock_fragment"
+            app:destination="@id/malt_stock_fragment" />
     </fragment>
     <fragment
         android:id="@+id/yeast_stock_fragment"
         android:name="com.example.brauportv2.ui.YeastStockFragment"
         android:label="Brauport - Hefebestand"
-        tools:layout="@layout/fragment_yeast_stock" />
+        tools:layout="@layout/fragment_yeast_stock" >
+        <action
+            android:id="@+id/action_yeast_stock_fragment_to_hop_stock_fragment"
+            app:destination="@id/hop_stock_fragment" />
+        <action
+            android:id="@+id/action_yeast_stock_fragment_to_malt_stock_fragment"
+            app:destination="@id/malt_stock_fragment" />
+    </fragment>
     <dialog
         android:id="@+id/dialog_malts_fragment"
         android:name="com.example.brauportv2.ui.dialog.DialogMaltsFragment"

@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import com.example.brauportv2.databinding.FragmentDialogRestBinding
-import com.example.brauportv2.model.recipeModel.Recipe.recipeItem
+import com.example.brauportv2.model.recipeModel.RecipeDataSource.recipeItem
 import com.example.brauportv2.model.recipeModel.Rest
 
 class DialogRestFragment : DialogFragment() {
@@ -40,7 +40,7 @@ class DialogRestFragment : DialogFragment() {
                 Toast.makeText(context, "Bitte alle Felder ausfüllen", Toast.LENGTH_SHORT)
                     .show()
             else {
-                recipeItem.rRest = Rest("$restTemp°C", restTime + "min")
+                recipeItem.restList.add(Rest("$restTemp°C", restTime + "min"))
                 dismiss()
             }
         }

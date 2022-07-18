@@ -15,8 +15,7 @@ import com.example.brauportv2.databinding.FragmentDialogYeastsBinding
 import com.example.brauportv2.mapper.toStockItem
 import com.example.brauportv2.model.StockItemType
 import com.example.brauportv2.model.recipeModel.RStockItem
-import com.example.brauportv2.model.recipeModel.Recipe
-import com.example.brauportv2.model.recipeModel.Recipe.recipeItem
+import com.example.brauportv2.model.recipeModel.RecipeDataSource.recipeItem
 import com.example.brauportv2.ui.viewmodel.StockViewModel
 import com.example.brauportv2.ui.viewmodel.StockViewModelFactory
 import kotlinx.coroutines.launch
@@ -56,6 +55,10 @@ class DialogYeastsFragment : DialogFragment() {
             }
         }
 
+        binding.rYeastsAbortButton.setOnClickListener {
+            dismiss()
+        }
+
         return binding.root
     }
 
@@ -65,17 +68,17 @@ class DialogYeastsFragment : DialogFragment() {
     }
 
     private fun onItemAdd(rStockItem: RStockItem) {
-        if (recipeItem.rYeast.rStockName != "" && recipeItem.rYeast.rStockAmount != "" )
+        if (recipeItem.yeast.rStockName != "" && recipeItem.yeast.rStockAmount != "" )
             Toast.makeText(context, "Nur eine Hefe pro Rezept möglich", Toast.LENGTH_SHORT)
                 .show()
         else {
-            recipeItem.rYeast = rStockItem
+            recipeItem.yeast = rStockItem
             Toast.makeText(context, "Hefe hinzugefügt", Toast.LENGTH_SHORT).show()
         }
     }
 
     private fun onItemDelete(rStockItem: RStockItem) {
-        recipeItem.rYeast = RStockItem("", StockItemType.YEAST.ordinal, "")
+        recipeItem.yeast = RStockItem("", StockItemType.YEAST.ordinal, "")
         Toast.makeText(context, "Hefe gelöscht", Toast.LENGTH_SHORT).show()
     }
 }

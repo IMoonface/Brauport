@@ -2,22 +2,26 @@ package com.example.brauportv2.model.recipeModel
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
+import androidx.room.Index
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "recipe_database")
+@Entity(
+    tableName = "recipe_database",
+    indices = [Index(value = ["recipeName"], unique = true)]
+)
 data class RecipeItemData(
     @PrimaryKey
     val rId: Int,
     @ColumnInfo(name = "recipeName")
     val recipeName: String,
     @ColumnInfo(name = "maltList")
-    val rMaltList: List<RStockItem>,
+    val maltList: List<RStockItem>,
     @ColumnInfo(name = "rest")
-    val rRest: Rest,
+    val restList: List<Rest>,
     @ColumnInfo(name = "hoppingList")
-    val rHoppingList: List<Hopping>,
+    val hoppingList: List<Hopping>,
     @ColumnInfo(name = "yeast")
-    val rYeast: RStockItem,
+    val yeast: RStockItem,
     @ColumnInfo(name = "brew")
-    val rMainBrew: MainBrew
+    val mainBrew: MainBrew
 )

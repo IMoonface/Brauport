@@ -22,10 +22,10 @@ class RoomConverters {
     }
 
     @TypeConverter
-    fun fromHoppingList(rhoppingList: List<Hopping>): String {
+    fun fromHoppingList(hoppingList: List<Hopping>): String {
         val gson = Gson()
         val type = object : TypeToken<List<Hopping>>() {}.type
-        return gson.toJson(rhoppingList, type)
+        return gson.toJson(hoppingList, type)
     }
 
     @TypeConverter
@@ -55,24 +55,24 @@ class RoomConverters {
     }
 
     @TypeConverter
-    fun fromRest(rest: Rest): String {
-        return JSONObject().apply {
-            put("restTemp", rest.restTemp)
-            put("restTime", rest.restTime)
-        }.toString()
+    fun fromRestList(restList: List<Rest>): String {
+        val gson = Gson()
+        val type = object : TypeToken<List<Hopping>>() {}.type
+        return gson.toJson(restList, type)
     }
 
     @TypeConverter
-    fun toRest(source: String): Rest {
-        val json = JSONObject(source)
-        return Rest(json.getString("restTemp"), json.getString("restTime"))
+    fun toRestList(source: String): List<Rest> {
+        val gson = Gson()
+        val type = object : TypeToken<List<Hopping>>() {}.type
+        return gson.fromJson(source, type)
     }
 
     @TypeConverter
     fun fromMainBrew(mainBrew: MainBrew): String {
         return JSONObject().apply {
-            put("first", mainBrew.first)
-            put("second", mainBrew.second)
+            put("first", mainBrew.firstBrew)
+            put("second", mainBrew.secondBrew)
         }.toString()
     }
 

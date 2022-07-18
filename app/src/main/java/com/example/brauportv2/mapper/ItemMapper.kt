@@ -16,11 +16,19 @@ fun StockItem.toStockItemData(): StockItemData {
 }
 
 fun RecipeItemData.toRecipeItem(): RecipeItem {
-    return RecipeItem(rId, recipeName, rMaltList.toMutableList(), rRest, rHoppingList.toMutableList(), rYeast, rMainBrew)
+    return RecipeItem(
+        rId,
+        recipeName,
+        maltList.toMutableList(),
+        restList.toMutableList(),
+        hoppingList.toMutableList(),
+        yeast,
+        mainBrew
+    )
 }
 
 fun RecipeItem.toRecipeItemData(): RecipeItemData {
-    return RecipeItemData(rId, recipeName, rMaltList, rRest, rHoppingList, rYeast, rMainBrew)
+    return RecipeItemData(rId, recipeName, maltList, restList, hoppingList, yeast, mainBrew)
 }
 
 fun StockItem.toRStockItem(): RStockItem {
@@ -28,5 +36,5 @@ fun StockItem.toRStockItem(): RStockItem {
 }
 
 fun Hopping.toRStockItem(): RStockItem {
-    return RStockItem(rHoppingName, rItemType, rHoppingAmount)
+    return RStockItem(hoppingName, rItemType, hoppingAmount)
 }

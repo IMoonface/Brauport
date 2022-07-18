@@ -74,8 +74,16 @@ class MaltStockFragment : Fragment() {
         }
 
         binding.maltNextButton.setOnClickListener {
+            val action = MaltStockFragmentDirections
+                .actionMaltStockFragmentToHopStockFragment()
+            findNavController().navigate(action)
 
-            val action = MaltStockFragmentDirections.actionMaltStockFragmentToHopStockFragment()
+            binding.maltTextInput.text?.clear()
+        }
+
+        binding.maltBeforeButton.setOnClickListener {
+            val action = MaltStockFragmentDirections
+                .actionMaltStockFragmentToYeastStockFragment()
             findNavController().navigate(action)
 
             binding.maltTextInput.text?.clear()
