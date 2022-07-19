@@ -37,11 +37,10 @@ class DialogRestFragment : DialogFragment() {
             val restTemp = binding.restTemp.text.toString()
             val restTime = binding.restTime.text.toString()
             if (restTemp == "" || restTemp == "")
-                Toast.makeText(context, "Bitte alle Felder ausfüllen", Toast.LENGTH_SHORT)
-                    .show()
+                Toast.makeText(context, "Bitte alle Felder ausfüllen", Toast.LENGTH_SHORT).show()
             else {
                 recipeItem.restList.add(Rest("$restTemp°C", restTime + "min"))
-                dismiss()
+                Toast.makeText(context, "Rast wurde hinzugefügt", Toast.LENGTH_SHORT).show()
             }
         }
 

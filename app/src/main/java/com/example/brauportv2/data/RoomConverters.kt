@@ -57,14 +57,14 @@ class RoomConverters {
     @TypeConverter
     fun fromRestList(restList: List<Rest>): String {
         val gson = Gson()
-        val type = object : TypeToken<List<Hopping>>() {}.type
+        val type = object : TypeToken<List<Rest>>() {}.type
         return gson.toJson(restList, type)
     }
 
     @TypeConverter
     fun toRestList(source: String): List<Rest> {
         val gson = Gson()
-        val type = object : TypeToken<List<Hopping>>() {}.type
+        val type = object : TypeToken<List<Rest>>() {}.type
         return gson.fromJson(source, type)
     }
 

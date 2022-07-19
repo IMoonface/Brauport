@@ -5,13 +5,26 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.example.brauportv2.BaseApplication
 import com.example.brauportv2.databinding.FragmentHomeBinding
+import com.example.brauportv2.mapper.toRecipeItem
+import com.example.brauportv2.model.recipeModel.RecipeDataSource
+import com.example.brauportv2.model.recipeModel.RecipeDataSource.recipeItemList
+import com.example.brauportv2.ui.viewmodel.RecipeViewModel
+import com.example.brauportv2.ui.viewmodel.RecipeViewModelFactory
+import kotlinx.coroutines.launch
 
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
+
+    private val viewModel: RecipeViewModel by activityViewModels {
+        RecipeViewModelFactory((activity?.application as BaseApplication).recipeDatabase.recipeDao())
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -19,24 +32,35 @@ class HomeFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
+
+        lifecycleScope.launch {
+            viewModel.allRecipeItems.collect { it ->
+                recipeItemList = it.map { it.toRecipeItem() }.toMutableList()
+            }
+        }
+
+
         binding.mainRecipeButton.setOnClickListener {
             findNavController().navigate(
                 HomeFragmentDirections
                     .actionHomeFragmentToRecipeFragment()
             )
         }
+
         binding.mainStockButton.setOnClickListener {
             findNavController().navigate(
                 HomeFragmentDirections
                     .actionHomeFragmentToStockFragment()
             )
         }
+
         binding.mainBrewButton.setOnClickListener {
             findNavController().navigate(
                 HomeFragmentDirections
                     .actionHomeFragmentToBrewFragment()
             )
         }
+
         return binding.root
     }
 

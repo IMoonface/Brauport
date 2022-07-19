@@ -21,4 +21,6 @@ object RecipeDataSource {
         RStockItem("", StockItemType.YEAST.ordinal, ""),
         MainBrew("", "")
     )
+
+    var recipeItemList = emptyList<RecipeItem>().toMutableList()
 }

@@ -42,6 +42,7 @@
     <string name="enter_main_brew">Hauptguss eingeben</string>
     <string name="enter_second_brew">Nachguss eingeben</string>
     <string name="unit_of_measurement_milliliters">ml</string>
+    <string name="back_text">Zurück</string>
 
     <string-array name="spinnerContent">
         <item>1</item>
