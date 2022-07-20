@@ -35,7 +35,7 @@
             android:layout_marginStart="5dp"
             android:textOff="Offen"
             android:textOn="Fertig"
-            android:backgroundTint="@color/button_color"
+            app:backgroundTint="@color/button_color"
             app:cornerRadius="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
