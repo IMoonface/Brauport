@@ -41,7 +41,7 @@ class DialogMainBrewFragment : DialogFragment() {
                 Toast.makeText(context, "Bitte alle Felder ausfüllen", Toast.LENGTH_SHORT)
                     .show()
             else {
-                recipeItem.mainBrew = MainBrew(firstBrew, secondBrew)
+                recipeItem.mainBrew = MainBrew(firstBrew + "ml", secondBrew + "ml")
                 dismiss()
             }
         }
