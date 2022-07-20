@@ -21,13 +21,14 @@
         <entry key="..\:/Users/marc-/AndroidStudioProjects/BrauportV2/app/src/main/res/layout-v21/fragment_stock.xml" value="0.22418478260869565" />
         <entry key="..\:/Users/marc-/AndroidStudioProjects/BrauportV2/app/src/main/res/layout/abs_layout.xml" value="0.286231884057971" />
         <entry key="..\:/Users/marc-/AndroidStudioProjects/BrauportV2/app/src/main/res/layout/activity_main.xml" value="0.3333333333333333" />
+        <entry key="..\:/Users/marc-/AndroidStudioProjects/BrauportV2/app/src/main/res/layout/card_brew.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/marc-/AndroidStudioProjects/BrauportV2/app/src/main/res/layout/card_hopping.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/marc-/AndroidStudioProjects/BrauportV2/app/src/main/res/layout/card_layout.xml" value="0.286231884057971" />
         <entry key="..\:/Users/marc-/AndroidStudioProjects/BrauportV2/app/src/main/res/layout/card_layout_recipe.xml" value="0.30052083333333335" />
         <entry key="..\:/Users/marc-/AndroidStudioProjects/BrauportV2/app/src/main/res/layout/card_layout_stock.xml" value="0.2994791666666667" />
         <entry key="..\:/Users/marc-/AndroidStudioProjects/BrauportV2/app/src/main/res/layout/card_recipe.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/marc-/AndroidStudioProjects/BrauportV2/app/src/main/res/layout/card_recipe_stock.xml" value="0.3333333333333333" />
-        <entry key="..\:/Users/marc-/AndroidStudioProjects/BrauportV2/app/src/main/res/layout/card_stock.xml" value="0.2866847826086957" />
+        <entry key="..\:/Users/marc-/AndroidStudioProjects/BrauportV2/app/src/main/res/layout/card_stock.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/marc-/AndroidStudioProjects/BrauportV2/app/src/main/res/layout/dialog_stock.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/marc-/AndroidStudioProjects/BrauportV2/app/src/main/res/layout/fragment_brew.xml" value="0.4466666666666667" />
         <entry key="..\:/Users/marc-/AndroidStudioProjects/BrauportV2/app/src/main/res/layout/fragment_dialog_hops.xml" value="0.30052083333333335" />
@@ -39,7 +40,7 @@
         <entry key="..\:/Users/marc-/AndroidStudioProjects/BrauportV2/app/src/main/res/layout/fragment_dialog_stock.xml" value="0.4466666666666667" />
         <entry key="..\:/Users/marc-/AndroidStudioProjects/BrauportV2/app/src/main/res/layout/fragment_dialog_yeasts.xml" value="0.30052083333333335" />
         <entry key="..\:/Users/marc-/AndroidStudioProjects/BrauportV2/app/src/main/res/layout/fragment_home.xml" value="0.21818181818181817" />
-        <entry key="..\:/Users/marc-/AndroidStudioProjects/BrauportV2/app/src/main/res/layout/fragment_hop_stock.xml" value="0.3333333333333333" />
+        <entry key="..\:/Users/marc-/AndroidStudioProjects/BrauportV2/app/src/main/res/layout/fragment_hop_stock.xml" value="0.1" />
         <entry key="..\:/Users/marc-/AndroidStudioProjects/BrauportV2/app/src/main/res/layout/fragment_hops_stock.xml" value="0.2864583333333333" />
         <entry key="..\:/Users/marc-/AndroidStudioProjects/BrauportV2/app/src/main/res/layout/fragment_malt_stock.xml" value="0.5" />
         <entry key="..\:/Users/marc-/AndroidStudioProjects/BrauportV2/app/src/main/res/layout/fragment_recipe.xml" value="0.286231884057971" />
