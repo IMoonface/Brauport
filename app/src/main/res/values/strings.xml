@@ -43,4 +43,6 @@
     <string name="start_brew_timer">Start</string>
     <string name="stop_brew_timer">Stop</string>
     <string name="timer_dummy">00:00</string>
+    <string name="main_brew_history_text">Brauhistorie</string>
+    <string name="rest_delete_button_text">Letzte Rast löschen</string>
 </resources>

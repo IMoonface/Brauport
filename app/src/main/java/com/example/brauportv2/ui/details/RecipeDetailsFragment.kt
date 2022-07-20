@@ -63,24 +63,30 @@ class RecipeDetailsFragment : Fragment() {
         }
 
         binding.recipeDetailsSave.setOnClickListener {
+            val recipeName = binding.recipeDetailsTextInput.text.toString()
+
             if (update) {
-                recipeItem.recipeName = binding.recipeDetailsTextInput.text.toString()
-                viewModel.updateRecipe(
-                    recipeItem.rId,
-                    recipeItem.recipeName,
-                    recipeItem.maltList,
-                    recipeItem.restList,
-                    recipeItem.hoppingList,
-                    recipeItem.yeast,
-                    recipeItem.mainBrew
-                )
+                if (recipeName == "")
+                    Toast.makeText(context, "Bitte Namen eingeben!", Toast.LENGTH_SHORT).show()
+                else {
+                    recipeItem.recipeName = recipeName
+                    viewModel.updateRecipe(
+                        recipeItem.rId,
+                        recipeItem.recipeName,
+                        recipeItem.maltList,
+                        recipeItem.restList,
+                        recipeItem.hoppingList,
+                        recipeItem.yeast,
+                        recipeItem.mainBrew
+                    )
+                }
             } else {
                 recipeItem.rId = UUID.randomUUID().hashCode()
-                recipeItem.recipeName = binding.recipeDetailsTextInput.text.toString()
+                recipeItem.recipeName = recipeName
 
-                if (recipeItem.maltList == startMaltList || recipeItem.restList == startRestList ||
-                    recipeItem.hoppingList == startHoppingList || recipeItem.yeast == startYeast ||
-                    recipeItem.mainBrew == startMainBrew)
+                if (recipeItem.recipeName == "" || recipeItem.maltList == startMaltList ||
+                    recipeItem.restList == startRestList || recipeItem.mainBrew == startMainBrew ||
+                    recipeItem.hoppingList == startHoppingList || recipeItem.yeast == startYeast)
                     Toast.makeText(context, "Bitte alle Attribute setzen!", Toast.LENGTH_SHORT)
                         .show()
                 else

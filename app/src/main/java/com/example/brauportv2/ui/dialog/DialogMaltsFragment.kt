@@ -13,6 +13,7 @@ import com.example.brauportv2.BaseApplication
 import com.example.brauportv2.adapter.RecipeStockAdapter
 import com.example.brauportv2.databinding.FragmentDialogMaltsBinding
 import com.example.brauportv2.mapper.toStockItem
+import com.example.brauportv2.model.StockItem
 import com.example.brauportv2.model.StockItemType
 import com.example.brauportv2.model.recipeModel.RStockItem
 import com.example.brauportv2.model.recipeModel.RecipeDataSource.recipeItem
@@ -78,7 +79,10 @@ class DialogMaltsFragment : DialogFragment() {
     }
 
     private fun onItemDelete(rStockItem: RStockItem) {
-        recipeItem.maltList.remove(rStockItem)
-        Toast.makeText(context, "Malz gelöscht", Toast.LENGTH_SHORT).show()
+        if (recipeItem.maltList.remove(rStockItem)) {
+            Toast.makeText(context, "Malz gelöscht", Toast.LENGTH_SHORT).show()
+        } else {
+            Toast.makeText(context, "Malz nicht vorhanden", Toast.LENGTH_SHORT).show()
+        }
     }
 }

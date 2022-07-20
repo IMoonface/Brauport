@@ -2,6 +2,7 @@ package com.example.brauportv2.ui.dialog
 
 import android.app.Dialog
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -41,6 +42,16 @@ class DialogRestFragment : DialogFragment() {
             else {
                 recipeItem.restList.add(Rest("$restTemp°C", restTime + "min"))
                 Toast.makeText(context, "Rast wurde hinzugefügt", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        binding.restDeleteButton.setOnClickListener {
+            if (recipeItem.restList.isEmpty()) {
+                Toast.makeText(context, "Keine Rast vorhanden", Toast.LENGTH_SHORT).show()
+            } else {
+                val index = recipeItem.restList.count()
+                recipeItem.restList.removeAt(index-1)
+                Toast.makeText(context, "Rast wurde gelöscht", Toast.LENGTH_SHORT).show()
             }
         }
 

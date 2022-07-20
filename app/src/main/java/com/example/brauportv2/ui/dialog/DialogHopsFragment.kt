@@ -95,7 +95,11 @@ class DialogHopsFragment : DialogFragment() {
 
     private fun onItemDelete(rStockItem: RStockItem) {
         val index = recipeItem.hoppingList.map { it.toRStockItem() }.indexOf(rStockItem)
-        recipeItem.hoppingList.removeAt(index)
-        Toast.makeText(context, "Hopfengabe gelöscht", Toast.LENGTH_SHORT).show()
+        if (index != -1) {
+            recipeItem.hoppingList.removeAt(index)
+            Toast.makeText(context, "Hopfengabe gelöscht", Toast.LENGTH_SHORT).show()
+        } else {
+            Toast.makeText(context, "Hopfengabe nicht vorhanden", Toast.LENGTH_SHORT).show()
+        }
     }
 }

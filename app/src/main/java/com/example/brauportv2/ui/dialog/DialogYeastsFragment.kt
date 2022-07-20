@@ -16,6 +16,7 @@ import com.example.brauportv2.mapper.toStockItem
 import com.example.brauportv2.model.StockItemType
 import com.example.brauportv2.model.recipeModel.RStockItem
 import com.example.brauportv2.model.recipeModel.RecipeDataSource.recipeItem
+import com.example.brauportv2.model.recipeModel.RecipeDataSource.startYeast
 import com.example.brauportv2.ui.viewmodel.StockViewModel
 import com.example.brauportv2.ui.viewmodel.StockViewModelFactory
 import kotlinx.coroutines.launch
@@ -78,7 +79,11 @@ class DialogYeastsFragment : DialogFragment() {
     }
 
     private fun onItemDelete(rStockItem: RStockItem) {
-        recipeItem.yeast = RStockItem("", StockItemType.YEAST.ordinal, "")
-        Toast.makeText(context, "Hefe gelöscht", Toast.LENGTH_SHORT).show()
+        if (recipeItem.yeast == startYeast) {
+            Toast.makeText(context, "Hefe nicht vorhanden", Toast.LENGTH_SHORT).show()
+        } else {
+            recipeItem.yeast = RStockItem("", StockItemType.YEAST.ordinal, "")
+            Toast.makeText(context, "Hefe gelöscht", Toast.LENGTH_SHORT).show()
+        }
     }
 }
