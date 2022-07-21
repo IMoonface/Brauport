@@ -1,7 +1,8 @@
 package com.example.brauportv2.ui
 
+import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
+import android.os.CountDownTimer
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,8 +22,12 @@ class BrewFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var adapter: BrewAdapter
     private var spinnerOptions: MutableList<String> = mutableListOf()
-    private var finished = false
+    private lateinit var countDownTimer: CountDownTimer
+    private var milliLeft: Long = 0
+    private var milliFromItem: Long = 0
+    private var startTimer = false
 
+    @SuppressLint("SetTextI18n")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -56,23 +61,33 @@ class BrewFragment : Fragment() {
         }
 
         binding.brewFinishButton.setOnClickListener {
+            var finished = false
             adapter.currentList.forEach {
                 finished = it.state
             }
 
             if (finished) {
-                Toast.makeText(
-                    context,
-                    "Rezept abgeschlossen",
-                    Toast.LENGTH_SHORT
-                ).show()
+                Toast.makeText(context, "Rezept abgeschlossen", Toast.LENGTH_SHORT)
+                    .show()
+            } else
+                Toast.makeText(context, "Es sind noch Schritte offen", Toast.LENGTH_SHORT)
+                    .show()
+        }
+
+        binding.brewTimerStartButton.setOnClickListener {
+            if (binding.brewTimerStartButton.text.equals("Start") &&
+                binding.brewTimerText.text != "timer") {
+                startTimer = true
+                timerStart(milliFromItem)
+            } else if (binding.brewTimerText.text != "timer") {
+                startTimer = true
+                timerStart(milliLeft)
             }
-            else
-                Toast.makeText(
-                    context,
-                    "Noch nicht alle Schritte bestätigt",
-                    Toast.LENGTH_SHORT
-                ).show()
+        }
+
+        binding.brewTimerStopButton.setOnClickListener {
+            countDownTimer.cancel()
+            binding.brewTimerStartButton.text = "Weiter"
         }
 
         return binding.root
@@ -83,8 +98,51 @@ class BrewFragment : Fragment() {
         _binding = null
     }
 
-    fun onItemClick(brewItem: BrewItem) {
-        //TODO: Timer programmieren
+    @SuppressLint("SetTextI18n")
+    private fun onItemClick(brewItem: BrewItem) {
+        binding.brewTimerStartButton.text = "Start"
+        if (brewItem.brewTime != "") {
+            milliFromItem = brewItem.brewTime.toLong() * 60000
+            timerStart(milliFromItem)
+        }
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun timerStart(timeInMilli: Long) {
+        binding.brewTimerText.text = (timeInMilli / (1000 * 60)).toString() + ":00"
+        if (startTimer) {
+            countDownTimer = object : CountDownTimer((timeInMilli), 1000) {
+                override fun onTick(millisUntilFinished: Long) {
+                    milliLeft = millisUntilFinished
+                    val min = (millisUntilFinished / (1000 * 60))
+                    val sec = ((millisUntilFinished / 1000) - min * 60)
+                    binding.brewTimerText.text = "$min:$sec"
+                }
+
+                override fun onFinish() {
+                    binding.brewTimerText.text = "Ende"
+                }
+            }.start()
+            startTimer = false
+        }
+    }
+
+    private fun minutes(millis: Long): String {
+        if (millis / 60000 < 1) return "00"
+        if (millis / 60000 in 1..9) return "0" + (millis / 60000)
+        return "" + (millis / 60000)
+    }
+
+    private fun seconds(millis: Long): String {
+        var millisSeconds: Long = millis
+        while (millisSeconds >= 60000) {
+            millisSeconds -= 60000
+        }
+        return when (millisSeconds / 1000) {
+            in 0..0 -> "00"
+            in 1..9 -> "0" + +(millisSeconds / 1000)
+            else -> "" + millisSeconds / 1000
+        }
     }
 
     fun createStringList(recipeItem: RecipeItem): List<BrewItem> {
@@ -93,7 +151,7 @@ class BrewFragment : Fragment() {
             newBrewList.add(BrewItem(it.rStockName + " " + it.rStockAmount, "", false))
         }
 
-        newBrewList.add(BrewItem("Malz Schroten", "", false))
+        newBrewList.add(BrewItem("Malz Schroten", "333", false))
         newBrewList.add(BrewItem("Hauptguss: " + recipeItem.mainBrew.firstBrew, "", false))
 
         //Rasten Frage: Alle auf einmal???

@@ -60,10 +60,9 @@
         android:id="@+id/brew_timer_text"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
-        android:layout_marginEnd="10dp"
+        android:layout_marginEnd="22dp"
         android:text="@string/timer_dummy"
         android:textSize="25sp"
-        app:layout_constraintBottom_toTopOf="@+id/brew_recycler_view"
         app:layout_constraintEnd_toStartOf="@+id/brew_timer_stop_button"
         app:layout_constraintTop_toBottomOf="@+id/brew_spinner" />
 
