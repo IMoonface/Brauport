@@ -14,6 +14,7 @@ import com.example.brauportv2.adapter.RecipeStockAdapter
 import com.example.brauportv2.databinding.FragmentDialogYeastsBinding
 import com.example.brauportv2.mapper.toStockItem
 import com.example.brauportv2.model.StockItemType
+import com.example.brauportv2.model.recipeModel.RSNoAmount
 import com.example.brauportv2.model.recipeModel.RStockItem
 import com.example.brauportv2.model.recipeModel.RecipeDataSource.recipeItem
 import com.example.brauportv2.model.recipeModel.RecipeDataSource.startYeast
@@ -51,8 +52,9 @@ class DialogYeastsFragment : DialogFragment() {
         binding.rYeastsRecyclerView.adapter = adapter
 
         lifecycleScope.launch {
-            viewModel.allStockItems.collect { it -> adapter.submitList(it.map { it.toStockItem() }
-                .filter { it.itemType == StockItemType.YEAST })
+            viewModel.allStockItems.collect { it ->
+                adapter.submitList(it.map { it.toStockItem() }
+                    .filter { it.itemType == StockItemType.YEAST })
             }
         }
 
@@ -68,22 +70,21 @@ class DialogYeastsFragment : DialogFragment() {
         _binding = null
     }
 
-    private fun onItemAdd(rStockItem: RStockItem) {
-        if (recipeItem.yeast.rStockName != "" && recipeItem.yeast.rStockAmount != "" )
-            Toast.makeText(context, "Nur eine Hefe pro Rezept möglich", Toast.LENGTH_SHORT)
-                .show()
+    private fun onItemAdd(item: RStockItem, amount: String) {
+        if (recipeItem.yeast.rStockName != "" && recipeItem.yeast.rStockAmount != "")
+            Toast.makeText(context, "Nur eine Hefe pro Rezept möglich!", Toast.LENGTH_SHORT).show()
         else {
-            recipeItem.yeast = rStockItem
-            Toast.makeText(context, "Hefe hinzugefügt", Toast.LENGTH_SHORT).show()
+            recipeItem.yeast = RStockItem(item.rStockName, item.rItemType, amount)
+            Toast.makeText(context, "Hefe hinzugefügt!", Toast.LENGTH_SHORT).show()
         }
     }
 
-    private fun onItemDelete(rStockItem: RStockItem) {
+    private fun onItemDelete(item: RSNoAmount) {
         if (recipeItem.yeast == startYeast) {
-            Toast.makeText(context, "Hefe nicht vorhanden", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, "Hefe nicht vorhanden!", Toast.LENGTH_SHORT).show()
         } else {
             recipeItem.yeast = RStockItem("", StockItemType.YEAST.ordinal, "")
-            Toast.makeText(context, "Hefe gelöscht", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, "Hefe gelöscht!", Toast.LENGTH_SHORT).show()
         }
     }
 }

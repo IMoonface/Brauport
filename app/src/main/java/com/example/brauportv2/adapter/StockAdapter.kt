@@ -28,7 +28,7 @@ class StockAdapter(
         stockItemTitle.text = item.stockName
         stockItemAmount.text = item.stockAmount
 
-        stockDeleteButton.setOnClickListener {
+        stockItemDelete.setOnClickListener {
             onDeleteClick(item)
         }
 

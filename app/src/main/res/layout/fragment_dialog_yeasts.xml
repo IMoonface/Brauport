@@ -6,25 +6,25 @@
     android:layout_height="match_parent"
     tools:context=".ui.dialog.DialogYeastsFragment">
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/r_yeasts_recycler_view"
+        android:layout_width="wrap_content"
+        android:layout_height="480dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        app:layoutManager="LinearLayoutManager" />
+
     <Button
         android:id="@+id/r_yeasts_abort_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/r_yeasts_recycler_view"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
         android:text="@string/back_text"
         android:textColor="@color/appBars_color"
         app:backgroundTint="@color/button_color"
         app:cornerRadius="20dp" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/r_yeasts_recycler_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/r_yeasts_abort_button"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="10dp"
-        app:layoutManager="LinearLayoutManager" />
 
 </RelativeLayout>

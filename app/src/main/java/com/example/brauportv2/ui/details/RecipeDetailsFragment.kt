@@ -44,7 +44,7 @@ class RecipeDetailsFragment : Fragment() {
 
         binding.recipeDetailsHops.setOnClickListener {
             val dialog = DialogHopsFragment()
-            dialog.show(childFragmentManager, "hoppingDialog")
+            dialog.show(childFragmentManager, "hopsDialog")
         }
 
         binding.recipeDetailsYeasts.setOnClickListener {
@@ -59,7 +59,7 @@ class RecipeDetailsFragment : Fragment() {
 
         binding.recipeDetailsMainBrew.setOnClickListener {
             val dialog = DialogMainBrewFragment()
-            dialog.show(childFragmentManager, "restDialog")
+            dialog.show(childFragmentManager, "mainBrewDialog")
         }
 
         binding.recipeDetailsSave.setOnClickListener {

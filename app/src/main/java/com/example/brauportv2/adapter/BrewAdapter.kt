@@ -5,7 +5,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.brauportv2.R
 import com.example.brauportv2.databinding.CardBrewBinding
 import com.example.brauportv2.model.BrewItem
 

@@ -76,18 +76,28 @@ class BrewFragment : Fragment() {
 
         binding.brewTimerStartButton.setOnClickListener {
             if (binding.brewTimerStartButton.text.equals("Start") &&
-                binding.brewTimerText.text != "timer") {
+                binding.brewTimerText.text != "Bitte Item anklicken!") {
                 startTimer = true
                 timerStart(milliFromItem)
-            } else if (binding.brewTimerText.text != "timer") {
-                startTimer = true
+            } else if (binding.brewTimerText.text != "Bitte Item anklicken!") {
                 timerStart(milliLeft)
+                binding.brewTimerStopButton.text = "Stop"
             }
         }
 
         binding.brewTimerStopButton.setOnClickListener {
-            countDownTimer.cancel()
-            binding.brewTimerStartButton.text = "Weiter"
+            if (binding.brewTimerStopButton.text.equals("Stop")) {
+                countDownTimer.cancel()
+                binding.brewTimerStartButton.text = "Weiter"
+                binding.brewTimerStopButton.text = "Cancel"
+            } else {
+                countDownTimer.cancel()
+                binding.brewTimerText.text = "Ende"
+                binding.brewTimerStartButton.text = "Start"
+                binding.brewTimerStopButton.text = "Stop"
+                milliFromItem = 0
+                startTimer = false
+            }
         }
 
         return binding.root
@@ -121,27 +131,11 @@ class BrewFragment : Fragment() {
 
                 override fun onFinish() {
                     binding.brewTimerText.text = "Ende"
+                    binding.brewTimerStartButton.text = "Start"
+                    milliFromItem = 0
+                    startTimer = false
                 }
             }.start()
-            startTimer = false
-        }
-    }
-
-    private fun minutes(millis: Long): String {
-        if (millis / 60000 < 1) return "00"
-        if (millis / 60000 in 1..9) return "0" + (millis / 60000)
-        return "" + (millis / 60000)
-    }
-
-    private fun seconds(millis: Long): String {
-        var millisSeconds: Long = millis
-        while (millisSeconds >= 60000) {
-            millisSeconds -= 60000
-        }
-        return when (millisSeconds / 1000) {
-            in 0..0 -> "00"
-            in 1..9 -> "0" + +(millisSeconds / 1000)
-            else -> "" + millisSeconds / 1000
         }
     }
 
@@ -151,10 +145,12 @@ class BrewFragment : Fragment() {
             newBrewList.add(BrewItem(it.rStockName + " " + it.rStockAmount, "", false))
         }
 
-        newBrewList.add(BrewItem("Malz Schroten", "333", false))
+        newBrewList.add(BrewItem("Malz Schroten", "1", false))
         newBrewList.add(BrewItem("Hauptguss: " + recipeItem.mainBrew.firstBrew, "", false))
 
-        //Rasten Frage: Alle auf einmal???
+        recipeItem.restList.forEach {
+            newBrewList.add(BrewItem(it.restTemp, it.restTime.substringBefore("min"), false))
+        }
 
         newBrewList.add(BrewItem("Nachguss: " + recipeItem.mainBrew.secondBrew, "", false))
         newBrewList.add(BrewItem("Malz entnehmen", "", false))
@@ -178,9 +174,6 @@ class BrewFragment : Fragment() {
                 false
             )
         )
-
-        newBrewList.add(BrewItem("Abfüllen evt. Flaschengärung", "", false))
-        newBrewList.add(BrewItem("Genießen", "", false))
 
         return newBrewList
     }

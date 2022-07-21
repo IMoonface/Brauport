@@ -2,10 +2,7 @@ package com.example.brauportv2.mapper
 
 import com.example.brauportv2.model.StockItem
 import com.example.brauportv2.model.StockItemData
-import com.example.brauportv2.model.recipeModel.Hopping
-import com.example.brauportv2.model.recipeModel.RStockItem
-import com.example.brauportv2.model.recipeModel.RecipeItem
-import com.example.brauportv2.model.recipeModel.RecipeItemData
+import com.example.brauportv2.model.recipeModel.*
 
 fun StockItemData.toStockItem(): StockItem {
     return StockItem(id, itemType, stockName, stockAmount)
@@ -35,6 +32,14 @@ fun StockItem.toRStockItem(): RStockItem {
     return RStockItem(stockName, itemType.ordinal, stockAmount)
 }
 
+fun StockItem.toRSNoAmount(): RSNoAmount {
+    return RSNoAmount(stockName, itemType.ordinal)
+}
+
 fun Hopping.toRStockItem(): RStockItem {
     return RStockItem(hoppingName, rItemType, hoppingAmount)
+}
+
+fun RStockItem.toRSNoAmount(): RSNoAmount {
+    return RSNoAmount(rStockName, rItemType)
 }

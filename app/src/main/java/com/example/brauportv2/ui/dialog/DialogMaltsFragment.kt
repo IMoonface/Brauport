@@ -12,9 +12,12 @@ import androidx.lifecycle.lifecycleScope
 import com.example.brauportv2.BaseApplication
 import com.example.brauportv2.adapter.RecipeStockAdapter
 import com.example.brauportv2.databinding.FragmentDialogMaltsBinding
+import com.example.brauportv2.mapper.toRSNoAmount
+import com.example.brauportv2.mapper.toRStockItem
 import com.example.brauportv2.mapper.toStockItem
 import com.example.brauportv2.model.StockItem
 import com.example.brauportv2.model.StockItemType
+import com.example.brauportv2.model.recipeModel.RSNoAmount
 import com.example.brauportv2.model.recipeModel.RStockItem
 import com.example.brauportv2.model.recipeModel.RecipeDataSource.recipeItem
 import com.example.brauportv2.ui.viewmodel.StockViewModel
@@ -69,20 +72,23 @@ class DialogMaltsFragment : DialogFragment() {
         _binding = null
     }
 
-    private fun onItemAdd(rStockItem: RStockItem) {
-        if (recipeItem.maltList.contains(rStockItem))
-            Toast.makeText(context, "Malz schon vorhanden", Toast.LENGTH_SHORT).show()
+    private fun onItemAdd(item: RStockItem, amount: String) {
+        val maltListNA = recipeItem.maltList.map { it.toRSNoAmount() }
+        if (maltListNA.contains(item.toRSNoAmount()))
+            Toast.makeText(context, "Malz schon vorhanden!", Toast.LENGTH_SHORT).show()
         else {
-            recipeItem.maltList.add(rStockItem)
-            Toast.makeText(context, "Malz hinzugefügt", Toast.LENGTH_SHORT).show()
+            recipeItem.maltList.add(RStockItem(item.rStockName, item.rItemType, amount))
+            Toast.makeText(context, "Malz hinzugefügt!", Toast.LENGTH_SHORT).show()
         }
     }
 
-    private fun onItemDelete(rStockItem: RStockItem) {
-        if (recipeItem.maltList.remove(rStockItem)) {
-            Toast.makeText(context, "Malz gelöscht", Toast.LENGTH_SHORT).show()
+    private fun onItemDelete(item: RSNoAmount) {
+        val index = recipeItem.maltList.map { it.toRSNoAmount() }.indexOf(item)
+        if (index != -1) {
+            recipeItem.maltList.removeAt(index)
+            Toast.makeText(context, "Malz gelöscht!", Toast.LENGTH_SHORT).show()
         } else {
-            Toast.makeText(context, "Malz nicht vorhanden", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, "Malz nicht vorhanden!", Toast.LENGTH_SHORT).show()
         }
     }
 }

@@ -1,7 +1,6 @@
 package com.example.brauportv2.model.recipeModel
 
-data class RStockItem(
+data class RSNoAmount(
     val rStockName: String,
-    var rItemType: Int,
-    var rStockAmount: String
+    var rItemType: Int
 )
