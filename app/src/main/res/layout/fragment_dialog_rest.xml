@@ -92,7 +92,7 @@
         android:layout_width="wrap_content"
         android:layout_height="48dp"
         android:layout_marginTop="10dp"
-        android:text="@string/abort_text"
+        android:text="@string/back_text"
         android:textColor="@color/appBars_color"
         android:textSize="15sp"
         app:backgroundTint="@color/button_color"

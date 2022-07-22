@@ -62,16 +62,15 @@
                 android:id="@+id/r_stock_item_amount_input"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/insert_time"
+                android:hint="@string/enter_amount_text"
                 android:inputType="number"
                 android:textColorHint="#546E7A"
                 tools:ignore="TextContrastCheck" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.button.MaterialButton
+        <Button
             android:id="@+id/r_stock_item_add"
-            style="@style/Widget.MaterialComponents.Button"
             android:layout_width="50dp"
             android:layout_height="60dp"
             android:layout_marginEnd="5dp"
@@ -82,12 +81,10 @@
             app:iconPadding="0dp"
             app:iconTint="@color/appBars_color"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="SpeakableTextPresentCheck" />
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <com.google.android.material.button.MaterialButton
+        <Button
             android:id="@+id/r_stock_item_delete"
-            style="@style/Widget.MaterialComponents.Button"
             android:layout_width="50dp"
             android:layout_height="60dp"
             android:layout_marginEnd="5dp"
@@ -98,8 +95,7 @@
             app:iconPadding="0dp"
             app:iconTint="@color/appBars_color"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/r_stock_item_add"
-            tools:ignore="SpeakableTextPresentCheck" />
+            app:layout_constraintTop_toBottomOf="@+id/r_stock_item_add" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

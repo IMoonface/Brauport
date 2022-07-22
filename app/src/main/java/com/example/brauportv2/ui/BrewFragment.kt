@@ -155,14 +155,14 @@ class BrewFragment : Fragment() {
         newBrewList.add(BrewItem("Nachguss: " + recipeItem.mainBrew.secondBrew, "", false))
         newBrewList.add(BrewItem("Malz entnehmen", "", false))
         newBrewList.add(BrewItem("Auf etwa Temperatur erhitzen", "", false))
-        recipeItem.hoppingList.forEach {
-            newBrewList.add(
-                BrewItem(
-                    it.hoppingName + " " + it.hoppingAmount,
-                    it.hoppingTime,
-                    false
-                )
-            )
+
+        //Hier ist noch ein Bug drin
+        var hoppingListString = ""
+        recipeItem.hoppingList.forEach { hopping ->
+            hopping.hopsList.forEach {
+                hoppingListString += it.rStockName + " " + it.rStockAmount + " "
+            }
+            newBrewList.add(BrewItem(hoppingListString, hopping.hoppingTime, false))
         }
 
         newBrewList.add(BrewItem("Schlauchen", "", false))

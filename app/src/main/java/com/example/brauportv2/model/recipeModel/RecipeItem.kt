@@ -5,7 +5,7 @@ data class RecipeItem(
     var recipeName: String,
     var maltList: MutableList<RStockItem>,
     var restList: MutableList<Rest>,
-    val hoppingList: MutableList<Hopping>,
+    var hoppingList: MutableList<Hopping>,
     var yeast: RStockItem,
     var mainBrew: MainBrew
 )

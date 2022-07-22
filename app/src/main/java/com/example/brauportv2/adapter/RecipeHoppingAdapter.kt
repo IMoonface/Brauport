@@ -7,23 +7,23 @@ import android.widget.Toast
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.brauportv2.databinding.CardHoppingBinding
+import com.example.brauportv2.databinding.CardRecipeStockBinding
 import com.example.brauportv2.mapper.toRStockItem
 import com.example.brauportv2.model.StockItem
+import com.example.brauportv2.model.recipeModel.Hopping
 import com.example.brauportv2.model.recipeModel.RStockItem
 
-class RecipeHoppingAdapter(
-    private val onItemAdd: (RStockItem, String) -> Unit,
-    private val onItemDelete: (RStockItem) -> Unit,
-) : ListAdapter<StockItem, RecipeHoppingAdapter.RecipeViewHolder>(DiffCallback) {
+class RecipeHoppingAdapter
+    : ListAdapter<StockItem, RecipeHoppingAdapter.RecipeViewHolder>(DiffCallback) {
 
     lateinit var context: Context
+    var newhopsList : Hopping = Hopping(emptyList<RStockItem>().toMutableList(), "")
 
-    class RecipeViewHolder(val binding: CardHoppingBinding) : RecyclerView.ViewHolder(binding.root)
+    class RecipeViewHolder(val binding: CardRecipeStockBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecipeViewHolder {
         context = parent.context
-        return RecipeViewHolder(CardHoppingBinding.inflate(
+        return RecipeViewHolder(CardRecipeStockBinding.inflate(
             LayoutInflater.from(parent.context),
             parent,
             false)
@@ -32,20 +32,35 @@ class RecipeHoppingAdapter(
 
     override fun onBindViewHolder(holder: RecipeViewHolder, position: Int) = with(holder.binding) {
         val item = getItem(position)
-        rHoppingTitle.text = item.stockName
-        rHoppingAmount.text = item.stockAmount
+        rStockItemTitle.text = item.stockName
+        rStockItemAmount.text = item.stockAmount
 
-        rHoppingAdd.setOnClickListener {
-            val newTime = rHoppingTimeInput.text.toString()
+        rStockItemAdd.setOnClickListener {
+            val newAmount = rStockItemAmountInput.text.toString()
 
-            if (newTime == "")
-                Toast.makeText(context, "Bitte Zeit angeben!", Toast.LENGTH_SHORT).show()
-            else
-                onItemAdd(item.toRStockItem(), newTime)
+            if (newAmount == "")
+                Toast.makeText(context, "Bitte Menge angeben!", Toast.LENGTH_SHORT).show()
+            else if (newAmount.substringBefore("g").toInt() >
+                item.stockAmount.substringBefore("g").toInt()
+            )
+                Toast.makeText(context, "Menge im Bestand nicht vorhanden!", Toast.LENGTH_SHORT)
+                    .show()
+            else {
+                val newItem = item.toRStockItem()
+                newItem.rStockAmount = newAmount
+                newhopsList.hopsList.add(newItem)
+                Toast.makeText(context, "Hopfen wurde hinzugefügt!", Toast.LENGTH_SHORT).show()
+            }
         }
 
-        rHoppingDelete.setOnClickListener {
-            onItemDelete(item.toRStockItem())
+        rStockItemDelete.setOnClickListener {
+            if (newhopsList.hopsList == emptyList<RStockItem>().toMutableList()) {
+                Toast.makeText(context, "Kein Hopfen vorhanden!", Toast.LENGTH_SHORT).show()
+            } else {
+                //hier nochmal gucken
+                newhopsList.hopsList.remove(item.toRStockItem())
+                Toast.makeText(context, "Hopfen wurde entfernt!", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 

@@ -44,7 +44,8 @@
     <string name="stop_brew_timer">Stop</string>
     <string name="timer_dummy">Bitte Item anklicken!</string>
     <string name="main_brew_history_text">Brauhistorie</string>
-    <string name="rest_delete_button_text">Letzte Rast löschen</string>
+    <string name="rest_delete_button_text">Letzte Rast entfernen</string>
     <string name="open_text">Offen</string>
     <string name="done_text">Fertig</string>
+    <string name="delete_hopping_text">Letze Hopfengabe entfernen</string>
 </resources>

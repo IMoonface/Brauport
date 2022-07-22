@@ -49,8 +49,8 @@ class DialogRestFragment : DialogFragment() {
             if (recipeItem.restList.isEmpty()) {
                 Toast.makeText(context, "Keine Rast vorhanden", Toast.LENGTH_SHORT).show()
             } else {
-                val index = recipeItem.restList.count()
-                recipeItem.restList.removeAt(index-1)
+                val index = recipeItem.restList.count() - 1
+                recipeItem.restList.removeAt(index)
                 Toast.makeText(context, "Rast wurde gelöscht", Toast.LENGTH_SHORT).show()
             }
         }

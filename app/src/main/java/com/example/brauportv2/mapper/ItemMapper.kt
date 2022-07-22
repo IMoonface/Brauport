@@ -36,10 +36,6 @@ fun StockItem.toRSNoAmount(): RSNoAmount {
     return RSNoAmount(stockName, itemType.ordinal)
 }
 
-fun Hopping.toRStockItem(): RStockItem {
-    return RStockItem(hoppingName, rItemType, hoppingAmount)
-}
-
 fun RStockItem.toRSNoAmount(): RSNoAmount {
     return RSNoAmount(rStockName, rItemType)
 }

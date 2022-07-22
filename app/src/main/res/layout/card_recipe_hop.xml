@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_gravity="center_horizontal"
@@ -15,7 +14,7 @@
         android:padding="10dp">
 
         <TextView
-            android:id="@+id/r_hopping_title"
+            android:id="@+id/r_hop_title"
             android:layout_width="210dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
@@ -24,54 +23,29 @@
             android:text="@string/dummy_text"
             android:textColor="@color/appBars_color"
             android:textSize="20sp"
-            app:layout_constraintEnd_toStartOf="@+id/r_hopping_add"
+            app:layout_constraintBottom_toBottomOf="@+id/r_hop_add"
+            app:layout_constraintEnd_toStartOf="@+id/r_hop_add"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@+id/r_hop_add" />
 
         <TextView
-            android:id="@+id/r_hopping_amount"
+            android:id="@+id/r_hop_amount"
             android:layout_width="210dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="5dp"
             android:layout_marginEnd="10dp"
             android:maxWidth="210dp"
             android:text="@string/dummy_text"
             android:textColor="@color/appBars_color"
             android:textSize="20sp"
-            app:layout_constraintEnd_toStartOf="@+id/r_hopping_add"
+            app:layout_constraintBottom_toBottomOf="@+id/r_hop_delete"
+            app:layout_constraintEnd_toStartOf="@+id/r_hop_add"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/r_hopping_title" />
+            app:layout_constraintTop_toBottomOf="@+id/r_hop_add" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/r_hopping_timeInputLayout"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="5dp"
-            app:boxBackgroundColor="@color/white"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/r_hopping_delete"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/r_hopping_amount">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/r_hopping_timeInput"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/insert_time"
-                android:inputType="number"
-                android:textColorHint="#546E7A"
-                tools:ignore="TextContrastCheck" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/r_hopping_add"
-            style="@style/Widget.MaterialComponents.Button"
+        <Button
+            android:id="@+id/r_hop_add"
             android:layout_width="50dp"
             android:layout_height="60dp"
             android:layout_marginEnd="5dp"
@@ -82,12 +56,10 @@
             app:iconPadding="0dp"
             app:iconTint="@color/appBars_color"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="SpeakableTextPresentCheck" />
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/r_hopping_delete"
-            style="@style/Widget.MaterialComponents.Button"
+        <Button
+            android:id="@+id/r_hop_delete"
             android:layout_width="50dp"
             android:layout_height="60dp"
             android:layout_marginEnd="5dp"
@@ -98,8 +70,7 @@
             app:iconPadding="0dp"
             app:iconTint="@color/appBars_color"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/r_hopping_add"
-            tools:ignore="SpeakableTextPresentCheck" />
+            app:layout_constraintTop_toBottomOf="@+id/r_hop_add" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
