@@ -18,7 +18,7 @@ import java.util.*
 
 class DialogStockFragment(
     private val stockItemId: Int,
-    private val itemType: StockItemType,
+    private val itemType: Int,
     private val update: Boolean
 ) : DialogFragment() {
 
@@ -50,7 +50,7 @@ class DialogStockFragment(
             val itemAmount = binding.stockItemAmount.text.toString()
 
             if (itemTitle == "" || itemAmount == "") {
-                Toast.makeText(context, "Bitte alle Felder ausfüllen", Toast.LENGTH_SHORT)
+                Toast.makeText(context, "Bitte alle Felder ausfüllen!", Toast.LENGTH_SHORT)
                     .show()
             } else {
                 if (update) viewModel.updateStock(

@@ -12,13 +12,11 @@ import androidx.lifecycle.lifecycleScope
 import com.example.brauportv2.BaseApplication
 import com.example.brauportv2.adapter.RecipeStockAdapter
 import com.example.brauportv2.databinding.FragmentDialogMaltsBinding
-import com.example.brauportv2.mapper.toRSNoAmount
-import com.example.brauportv2.mapper.toRStockItem
+import com.example.brauportv2.mapper.toSNoAmount
 import com.example.brauportv2.mapper.toStockItem
 import com.example.brauportv2.model.StockItem
 import com.example.brauportv2.model.StockItemType
-import com.example.brauportv2.model.recipeModel.RSNoAmount
-import com.example.brauportv2.model.recipeModel.RStockItem
+import com.example.brauportv2.model.recipeModel.SNoAmount
 import com.example.brauportv2.model.recipeModel.RecipeDataSource.recipeItem
 import com.example.brauportv2.ui.viewmodel.StockViewModel
 import com.example.brauportv2.ui.viewmodel.StockViewModelFactory
@@ -56,7 +54,7 @@ class DialogMaltsFragment : DialogFragment() {
 
         lifecycleScope.launch {
             viewModel.allStockItems.collect { it -> adapter.submitList(it.map { it.toStockItem() }
-                .filter { it.itemType == StockItemType.MALT })
+                .filter { it.itemType == StockItemType.MALT.ordinal })
             }
         }
 
@@ -72,18 +70,19 @@ class DialogMaltsFragment : DialogFragment() {
         _binding = null
     }
 
-    private fun onItemAdd(item: RStockItem, amount: String) {
-        val maltListNA = recipeItem.maltList.map { it.toRSNoAmount() }
-        if (maltListNA.contains(item.toRSNoAmount()))
+    private fun onItemAdd(item: StockItem, amount: String) {
+        val maltListNA = recipeItem.maltList.map { it.toSNoAmount() }
+        if (maltListNA.contains(item.toSNoAmount()))
             Toast.makeText(context, "Malz schon vorhanden!", Toast.LENGTH_SHORT).show()
         else {
-            recipeItem.maltList.add(RStockItem(item.rStockName, item.rItemType, amount))
+            item.stockAmount = amount
+            recipeItem.maltList.add(item)
             Toast.makeText(context, "Malz hinzugefügt!", Toast.LENGTH_SHORT).show()
         }
     }
 
-    private fun onItemDelete(item: RSNoAmount) {
-        val index = recipeItem.maltList.map { it.toRSNoAmount() }.indexOf(item)
+    private fun onItemDelete(item: SNoAmount) {
+        val index = recipeItem.maltList.map { it.toSNoAmount() }.indexOf(item)
         if (index != -1) {
             recipeItem.maltList.removeAt(index)
             Toast.makeText(context, "Malz gelöscht!", Toast.LENGTH_SHORT).show()

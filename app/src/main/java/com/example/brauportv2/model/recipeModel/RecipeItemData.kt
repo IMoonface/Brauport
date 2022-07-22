@@ -4,6 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.Index
 import androidx.room.PrimaryKey
+import com.example.brauportv2.model.StockItem
 
 @Entity(
     tableName = "recipe_database",
@@ -15,13 +16,13 @@ data class RecipeItemData(
     @ColumnInfo(name = "recipeName")
     val recipeName: String,
     @ColumnInfo(name = "maltList")
-    val maltList: List<RStockItem>,
+    val maltList: List<StockItem>,
     @ColumnInfo(name = "rest")
     val restList: List<Rest>,
     @ColumnInfo(name = "hoppingList")
     val hoppingList: List<Hopping>,
     @ColumnInfo(name = "yeast")
-    val yeast: RStockItem,
+    val yeast: StockItem,
     @ColumnInfo(name = "brew")
     val mainBrew: MainBrew
 )

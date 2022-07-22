@@ -8,16 +8,15 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.brauportv2.databinding.CardRecipeStockBinding
-import com.example.brauportv2.mapper.toRStockItem
+import com.example.brauportv2.mapper.toSNoAmount
 import com.example.brauportv2.model.StockItem
 import com.example.brauportv2.model.recipeModel.Hopping
-import com.example.brauportv2.model.recipeModel.RStockItem
 
 class RecipeHoppingAdapter
     : ListAdapter<StockItem, RecipeHoppingAdapter.RecipeViewHolder>(DiffCallback) {
 
     lateinit var context: Context
-    var newhopsList : Hopping = Hopping(emptyList<RStockItem>().toMutableList(), "")
+    var newhopsList : Hopping = Hopping(emptyList<StockItem>().toMutableList(), "")
 
     class RecipeViewHolder(val binding: CardRecipeStockBinding) : RecyclerView.ViewHolder(binding.root)
 
@@ -40,25 +39,23 @@ class RecipeHoppingAdapter
 
             if (newAmount == "")
                 Toast.makeText(context, "Bitte Menge angeben!", Toast.LENGTH_SHORT).show()
-            else if (newAmount.substringBefore("g").toInt() >
-                item.stockAmount.substringBefore("g").toInt()
-            )
-                Toast.makeText(context, "Menge im Bestand nicht vorhanden!", Toast.LENGTH_SHORT)
-                    .show()
-            else {
-                val newItem = item.toRStockItem()
-                newItem.rStockAmount = newAmount
-                newhopsList.hopsList.add(newItem)
+            else if (newhopsList.hopsList.map { it.toSNoAmount() }.contains(item.toSNoAmount())){
+                Toast.makeText(context, "Hopfen ist schon vorhanden!", Toast.LENGTH_SHORT).show()
+            } else {
+                item.stockAmount = newAmount
+                newhopsList.hopsList.add(item)
                 Toast.makeText(context, "Hopfen wurde hinzugefügt!", Toast.LENGTH_SHORT).show()
             }
         }
 
         rStockItemDelete.setOnClickListener {
-            if (newhopsList.hopsList == emptyList<RStockItem>().toMutableList()) {
+            if (newhopsList.hopsList == emptyList<StockItem>().toMutableList()) {
                 Toast.makeText(context, "Kein Hopfen vorhanden!", Toast.LENGTH_SHORT).show()
             } else {
-                //hier nochmal gucken
-                newhopsList.hopsList.remove(item.toRStockItem())
+                val index = newhopsList.hopsList.map {
+                    it.toSNoAmount()
+                }.indexOf(item.toSNoAmount())
+                newhopsList.hopsList.removeAt(index)
                 Toast.makeText(context, "Hopfen wurde entfernt!", Toast.LENGTH_SHORT).show()
             }
         }

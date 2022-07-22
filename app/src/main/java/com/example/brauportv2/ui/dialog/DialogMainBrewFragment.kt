@@ -38,7 +38,7 @@ class DialogMainBrewFragment : DialogFragment() {
             val secondBrew = binding.mainBrewSecond.text.toString()
 
             if (firstBrew == "" || secondBrew == "")
-                Toast.makeText(context, "Bitte alle Felder ausfüllen", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Bitte alle Felder ausfüllen!", Toast.LENGTH_SHORT).show()
             else {
                 recipeItem.mainBrew = MainBrew(firstBrew + "ml", secondBrew + "ml")
                 dismiss()

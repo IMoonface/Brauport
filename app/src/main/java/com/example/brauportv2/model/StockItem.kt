@@ -2,7 +2,7 @@ package com.example.brauportv2.model
 
 data class StockItem(
     var id: Int,
-    var itemType: StockItemType,
+    var itemType: Int,
     var stockName: String,
     var stockAmount: String
 )

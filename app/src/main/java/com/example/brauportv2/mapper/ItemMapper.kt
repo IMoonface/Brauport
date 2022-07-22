@@ -28,14 +28,6 @@ fun RecipeItem.toRecipeItemData(): RecipeItemData {
     return RecipeItemData(rId, recipeName, maltList, restList, hoppingList, yeast, mainBrew)
 }
 
-fun StockItem.toRStockItem(): RStockItem {
-    return RStockItem(stockName, itemType.ordinal, stockAmount)
-}
-
-fun StockItem.toRSNoAmount(): RSNoAmount {
-    return RSNoAmount(stockName, itemType.ordinal)
-}
-
-fun RStockItem.toRSNoAmount(): RSNoAmount {
-    return RSNoAmount(rStockName, rItemType)
+fun StockItem.toSNoAmount(): SNoAmount {
+    return SNoAmount(stockName, itemType)
 }

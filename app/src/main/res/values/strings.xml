@@ -48,4 +48,5 @@
     <string name="open_text">Offen</string>
     <string name="done_text">Fertig</string>
     <string name="delete_hopping_text">Letze Hopfengabe entfernen</string>
+    <string name="make_recipe_text">Bitte Rezept erstellen!</string>
 </resources>

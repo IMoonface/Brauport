@@ -23,7 +23,7 @@ class StockViewModel(private val stockDao: StockDao) : ViewModel() {
 
     fun updateStock(
         id: Int,
-        itemType: StockItemType,
+        itemType: Int,
         stockName: String,
         stockAmount: String
     ) {

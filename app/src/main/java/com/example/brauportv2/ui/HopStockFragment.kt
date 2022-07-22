@@ -66,7 +66,7 @@ class HopStockFragment : Fragment() {
 
         lifecycleScope.launch {
             viewModel.allStockItems.collect { it -> hopStartList = it.map { it.toStockItem() }
-                .filter { it.itemType == StockItemType.HOP }
+                .filter { it.itemType == StockItemType.HOP.ordinal }
                 adapter.submitList(hopStartList)
             }
         }
@@ -107,12 +107,12 @@ class HopStockFragment : Fragment() {
     }
 
     private fun openAddDialog() {
-        val dialog = DialogStockFragment(hashCode(), StockItemType.HOP, false)
+        val dialog = DialogStockFragment(hashCode(), StockItemType.HOP.ordinal, false)
         dialog.show(childFragmentManager, "hopAddDialog")
     }
 
     private fun openUpdateDialog(stockItem: StockItem) {
-        val dialog = DialogStockFragment(stockItem.id, StockItemType.HOP, true)
+        val dialog = DialogStockFragment(stockItem.id, StockItemType.HOP.ordinal, true)
         dialog.show(childFragmentManager, "hopUpdateDialog")
     }
 

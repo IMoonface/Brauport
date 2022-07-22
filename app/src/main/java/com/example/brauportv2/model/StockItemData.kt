@@ -13,7 +13,7 @@ data class StockItemData(
     @PrimaryKey
     val id: Int,
     @ColumnInfo (name = "itemType")
-    val itemType: StockItemType,
+    val itemType: Int,
     @ColumnInfo (name = "stockName")
     val stockName: String,
     @ColumnInfo (name = "stockAmount")

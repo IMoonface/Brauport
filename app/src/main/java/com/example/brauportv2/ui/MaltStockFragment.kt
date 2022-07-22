@@ -68,7 +68,7 @@ class MaltStockFragment : Fragment() {
 
         lifecycleScope.launch {
             viewModel.allStockItems.collect { it -> maltStartList = it.map { it.toStockItem() }
-                .filter { it.itemType == StockItemType.MALT }
+                .filter { it.itemType == StockItemType.MALT.ordinal }
                 adapter.submitList(maltStartList)
             }
         }
@@ -109,12 +109,12 @@ class MaltStockFragment : Fragment() {
     }
 
     private fun openAddDialog() {
-        val dialog = DialogStockFragment(hashCode(), StockItemType.MALT, false)
+        val dialog = DialogStockFragment(hashCode(), StockItemType.MALT.ordinal, false)
         dialog.show(childFragmentManager, "maltAddDialog")
     }
 
     private fun openUpdateDialog(stockItem: StockItem) {
-        val dialog = DialogStockFragment(stockItem.id, StockItemType.MALT, true)
+        val dialog = DialogStockFragment(stockItem.id, StockItemType.MALT.ordinal, true)
         dialog.show(childFragmentManager, "maltUpdateDialog")
     }
 

@@ -25,7 +25,6 @@ class DialogHopsFragment : DialogFragment() {
     private var _binding: FragmentDialogHopsBinding? = null
     private val binding get() = _binding!!
     private lateinit var adapter: RecipeHoppingAdapter
-    private var endHoppingList: MutableList<Hopping> = mutableListOf()
 
     private val viewModel: StockViewModel by activityViewModels {
         StockViewModelFactory((activity?.application as BaseApplication).stockDatabase.stockDao())
@@ -53,7 +52,7 @@ class DialogHopsFragment : DialogFragment() {
 
         lifecycleScope.launch {
             viewModel.allStockItems.collect { it -> adapter.submitList(it.map { it.toStockItem() }
-                .filter { it.itemType == StockItemType.HOP })
+                .filter { it.itemType == StockItemType.HOP.ordinal })
             }
         }
 
@@ -62,7 +61,6 @@ class DialogHopsFragment : DialogFragment() {
         }
 
         binding.rHoppingBackButton.setOnClickListener {
-            recipeItem.hoppingList = endHoppingList
             dismiss()
         }
 
@@ -85,15 +83,15 @@ class DialogHopsFragment : DialogFragment() {
             Toast.makeText(context, "Bitte Zeit angeben!", Toast.LENGTH_SHORT).show()
         else {
             adapter.newhopsList.hoppingTime = newTime
-            endHoppingList.add(adapter.newhopsList)
+            recipeItem.hoppingList.add(adapter.newhopsList)
             Toast.makeText(context, "Hopfengabe wurde hinzugefügt!", Toast.LENGTH_SHORT).show()
         }
     }
 
     private fun onItemDelete() {
-        val index = endHoppingList.count() - 1
+        val index = recipeItem.hoppingList.count() - 1
         if (index != -1) {
-            endHoppingList.removeAt(index)
+            recipeItem.hoppingList.removeAt(index)
             Toast.makeText(context, "Hofengabe wurde entfernt!", Toast.LENGTH_SHORT).show()
         } else
             Toast.makeText(context, "Hofengabe nicht vorhanden!", Toast.LENGTH_SHORT).show()

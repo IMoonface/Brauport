@@ -14,6 +14,7 @@ import com.example.brauportv2.BaseApplication
 import com.example.brauportv2.adapter.RecipeAdapter
 import com.example.brauportv2.databinding.FragmentRecipeBinding
 import com.example.brauportv2.mapper.toRecipeItem
+import com.example.brauportv2.model.StockItem
 import com.example.brauportv2.model.StockItemType
 import com.example.brauportv2.model.recipeModel.*
 import com.example.brauportv2.model.recipeModel.RecipeDataSource.recipeItem
@@ -67,10 +68,10 @@ class RecipeFragment : Fragment() {
             recipeItem = RecipeItem(
                 1,
                 "",
-                emptyList<RStockItem>().toMutableList(),
+                emptyList<StockItem>().toMutableList(),
                 emptyList<Rest>().toMutableList(),
                 emptyList<Hopping>().toMutableList(),
-                RStockItem("", StockItemType.YEAST.ordinal, ""),
+                StockItem(1, StockItemType.YEAST.ordinal, "", ""),
                 MainBrew("", "")
             )
 

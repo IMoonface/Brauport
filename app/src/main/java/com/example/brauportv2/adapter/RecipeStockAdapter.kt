@@ -8,15 +8,13 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.brauportv2.databinding.CardRecipeStockBinding
-import com.example.brauportv2.mapper.toRSNoAmount
-import com.example.brauportv2.mapper.toRStockItem
+import com.example.brauportv2.mapper.toSNoAmount
 import com.example.brauportv2.model.StockItem
-import com.example.brauportv2.model.recipeModel.RSNoAmount
-import com.example.brauportv2.model.recipeModel.RStockItem
+import com.example.brauportv2.model.recipeModel.SNoAmount
 
 class RecipeStockAdapter(
-    private val onItemClick: (RStockItem, String) -> Unit,
-    private val onDeleteClick: (RSNoAmount) -> Unit
+    private val onItemClick: (StockItem, String) -> Unit,
+    private val onDeleteClick: (SNoAmount) -> Unit
 ) : ListAdapter<StockItem, RecipeStockAdapter.RecipeViewHolder>(DiffCallback) {
 
     lateinit var context: Context
@@ -46,17 +44,12 @@ class RecipeStockAdapter(
 
             if (newAmount == "")
                 Toast.makeText(context, "Bitte Menge angeben!", Toast.LENGTH_SHORT).show()
-            else if (newAmount.substringBefore("g").toInt() >
-                item.stockAmount.substringBefore("g").toInt()
-            )
-                Toast.makeText(context, "Menge im Bestand nicht vorhanden!", Toast.LENGTH_SHORT)
-                    .show()
             else
-                onItemClick(item.toRStockItem(), rStockItemAmountInput.text.toString())
+                onItemClick(item, rStockItemAmountInput.text.toString())
         }
 
         rStockItemDelete.setOnClickListener {
-            onDeleteClick(item.toRSNoAmount())
+            onDeleteClick(item.toSNoAmount())
         }
     }
 

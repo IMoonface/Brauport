@@ -1,6 +1,7 @@
 package com.example.brauportv2.data
 
 import androidx.room.TypeConverter
+import com.example.brauportv2.model.StockItem
 import com.example.brauportv2.model.recipeModel.*
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -8,16 +9,16 @@ import org.json.JSONObject
 
 class RoomConverters {
     @TypeConverter
-    fun fromRStockList(rStockItemList: List<RStockItem>): String {
+    fun fromStockList(rStockItemList: List<StockItem>): String {
         val gson = Gson()
-        val type = object : TypeToken<List<RStockItem>>() {}.type
+        val type = object : TypeToken<List<StockItem>>() {}.type
         return gson.toJson(rStockItemList, type)
     }
 
     @TypeConverter
-    fun toRStockList(source: String): List<RStockItem> {
+    fun toStockList(source: String): List<StockItem> {
         val gson = Gson()
-        val type = object : TypeToken<List<RStockItem>>() {}.type
+        val type = object : TypeToken<List<StockItem>>() {}.type
         return gson.fromJson(source, type)
     }
 
@@ -36,21 +37,23 @@ class RoomConverters {
     }
 
     @TypeConverter
-    fun fromRStockItem(rStockItem: RStockItem): String {
+    fun fromStockItem(rStockItem: StockItem): String {
         return JSONObject().apply {
-            put("rStockName", rStockItem.rStockName)
-            put("rItemType", rStockItem.rItemType)
-            put("rStockAmount", rStockItem.rStockAmount)
+            put("id", rStockItem.id)
+            put("stockName", rStockItem.stockName)
+            put("itemType", rStockItem.itemType)
+            put("stockAmount", rStockItem.stockAmount)
         }.toString()
     }
 
     @TypeConverter
-    fun toRStockItem(source: String): RStockItem {
+    fun toStockItem(source: String): StockItem {
         val json = JSONObject(source)
-        return RStockItem(
-            json.getString("rStockName"),
-            json.getInt("rItemType"),
-            json.getString("rStockAmount")
+        return StockItem(
+            json.getInt("id"),
+            json.getInt("itemType"),
+            json.getString("stockName"),
+            json.getString("stockAmount")
         )
     }
 

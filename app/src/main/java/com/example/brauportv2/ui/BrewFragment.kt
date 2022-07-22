@@ -10,11 +10,15 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import com.example.brauportv2.BaseApplication
 import com.example.brauportv2.adapter.BrewAdapter
 import com.example.brauportv2.databinding.FragmentBrewBinding
 import com.example.brauportv2.model.BrewItem
 import com.example.brauportv2.model.recipeModel.RecipeDataSource.recipeItemList
 import com.example.brauportv2.model.recipeModel.RecipeItem
+import com.example.brauportv2.ui.viewmodel.StockViewModel
+import com.example.brauportv2.ui.viewmodel.StockViewModelFactory
 
 class BrewFragment : Fragment() {
 
@@ -23,9 +27,14 @@ class BrewFragment : Fragment() {
     private lateinit var adapter: BrewAdapter
     private var spinnerOptions: MutableList<String> = mutableListOf()
     private lateinit var countDownTimer: CountDownTimer
+    private lateinit var choosenRecipe: RecipeItem
     private var milliLeft: Long = 0
     private var milliFromItem: Long = 0
     private var startTimer = false
+
+    private val viewModel: StockViewModel by activityViewModels {
+        StockViewModelFactory((activity?.application as BaseApplication).stockDatabase.stockDao())
+    }
 
     @SuppressLint("SetTextI18n")
     override fun onCreateView(
@@ -52,7 +61,9 @@ class BrewFragment : Fragment() {
                 position: Int,
                 id: Long
             ) {
-                adapter.submitList(createStringList(recipeItemList[position]))
+                binding.brewTimerText.text = "Bitte Item anklicken!"
+                choosenRecipe = recipeItemList[position]
+                adapter.submitList(createStringList(choosenRecipe))
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -65,13 +76,10 @@ class BrewFragment : Fragment() {
             adapter.currentList.forEach {
                 finished = it.state
             }
-
             if (finished) {
-                Toast.makeText(context, "Rezept abgeschlossen", Toast.LENGTH_SHORT)
-                    .show()
+                Toast.makeText(context, "Rezept abgeschlossen", Toast.LENGTH_SHORT).show()
             } else
-                Toast.makeText(context, "Es sind noch Schritte offen", Toast.LENGTH_SHORT)
-                    .show()
+                Toast.makeText(context, "Es sind noch Schritte offen", Toast.LENGTH_SHORT).show()
         }
 
         binding.brewTimerStartButton.setOnClickListener {
@@ -86,16 +94,22 @@ class BrewFragment : Fragment() {
         }
 
         binding.brewTimerStopButton.setOnClickListener {
-            if (binding.brewTimerStopButton.text.equals("Stop")) {
+            if (binding.brewTimerStopButton.text.equals("Stop") &&
+                binding.brewTimerText.text != "Bitte Item anklicken!") {
                 countDownTimer.cancel()
                 binding.brewTimerStartButton.text = "Weiter"
                 binding.brewTimerStopButton.text = "Cancel"
-            } else {
+            } else if (binding.brewTimerText.text == "Bitte Item anklicken!")
+                Toast.makeText(
+                    context,
+                    "Es wurde noch keine Zeit ausgewählt!",
+                    Toast.LENGTH_SHORT
+                ).show()
+            else {
                 countDownTimer.cancel()
                 binding.brewTimerText.text = "Ende"
                 binding.brewTimerStartButton.text = "Start"
                 binding.brewTimerStopButton.text = "Stop"
-                milliFromItem = 0
                 startTimer = false
             }
         }
@@ -110,10 +124,14 @@ class BrewFragment : Fragment() {
 
     @SuppressLint("SetTextI18n")
     private fun onItemClick(brewItem: BrewItem) {
-        binding.brewTimerStartButton.text = "Start"
-        if (brewItem.brewTime != "") {
-            milliFromItem = brewItem.brewTime.toLong() * 60000
-            timerStart(milliFromItem)
+        if (startTimer) {
+            Toast.makeText(context, "Es läuft schon ein Timer!", Toast.LENGTH_SHORT).show()
+        } else {
+            binding.brewTimerStartButton.text = "Start"
+            if (brewItem.brewTime != "") {
+                milliFromItem = brewItem.brewTime.toLong() * 60000
+                timerStart(milliFromItem)
+            }
         }
     }
 
@@ -139,13 +157,13 @@ class BrewFragment : Fragment() {
         }
     }
 
-    fun createStringList(recipeItem: RecipeItem): List<BrewItem> {
+    private fun createStringList(recipeItem: RecipeItem): List<BrewItem> {
         val newBrewList = emptyList<BrewItem>().toMutableList()
         recipeItem.maltList.forEach {
-            newBrewList.add(BrewItem(it.rStockName + " " + it.rStockAmount, "", false))
+            newBrewList.add(BrewItem(it.stockName + " " + it.stockAmount, "", false))
         }
 
-        newBrewList.add(BrewItem("Malz Schroten", "1", false))
+        newBrewList.add(BrewItem("Malz Schroten", "", false))
         newBrewList.add(BrewItem("Hauptguss: " + recipeItem.mainBrew.firstBrew, "", false))
 
         recipeItem.restList.forEach {
@@ -156,11 +174,10 @@ class BrewFragment : Fragment() {
         newBrewList.add(BrewItem("Malz entnehmen", "", false))
         newBrewList.add(BrewItem("Auf etwa Temperatur erhitzen", "", false))
 
-        //Hier ist noch ein Bug drin
         var hoppingListString = ""
         recipeItem.hoppingList.forEach { hopping ->
             hopping.hopsList.forEach {
-                hoppingListString += it.rStockName + " " + it.rStockAmount + " "
+                hoppingListString += it.stockName + " " + it.stockAmount + " "
             }
             newBrewList.add(BrewItem(hoppingListString, hopping.hoppingTime, false))
         }
@@ -169,12 +186,32 @@ class BrewFragment : Fragment() {
         newBrewList.add(BrewItem("Abkühlen lassen", "", false))
         newBrewList.add(
             BrewItem(
-                recipeItem.yeast.rStockName + " " + recipeItem.yeast.rStockAmount,
+                recipeItem.yeast.stockName + " " + recipeItem.yeast.stockAmount,
                 "",
                 false
             )
         )
 
         return newBrewList
+    }
+
+    private fun updateDatabase(recipeItem: RecipeItem) {
+        recipeItem.maltList.forEach {
+            //TODO: Mit getStockItem anhand der id das objekt holen die Menge von der vorhanden Menge abziehen und updaten
+            viewModel.updateStock(it.id, it.itemType, it.stockName, it.stockAmount)
+        }
+
+        recipeItem.hoppingList.forEach { hopping ->
+            hopping.hopsList.forEach {
+                viewModel.updateStock(it.id, it.itemType, it.stockName, it.stockAmount)
+            }
+        }
+
+        viewModel.updateStock(
+            recipeItem.yeast.id,
+            recipeItem.yeast.itemType,
+            recipeItem.yeast.stockName,
+            recipeItem.yeast.stockAmount
+        )
     }
 }

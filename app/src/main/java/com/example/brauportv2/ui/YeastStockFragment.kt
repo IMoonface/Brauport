@@ -67,7 +67,7 @@ class YeastStockFragment : Fragment() {
         lifecycleScope.launch {
             viewModel.allStockItems.collect { it ->
                 yeastStartList = it.map { it.toStockItem() }
-                    .filter { it.itemType == StockItemType.YEAST }
+                    .filter { it.itemType == StockItemType.YEAST.ordinal }
                 adapter.submitList(yeastStartList)
             }
         }
@@ -108,14 +108,14 @@ class YeastStockFragment : Fragment() {
     }
 
     private fun openAddDialog() {
-        val dialog = DialogStockFragment(hashCode(), StockItemType.YEAST, false)
-        dialog.show(childFragmentManager, "stockDialog")
+        val dialog = DialogStockFragment(hashCode(), StockItemType.YEAST.ordinal, false)
+        dialog.show(childFragmentManager, "stockAddDialog")
     }
 
     private fun openUpdateDialog(stockItem: StockItem) {
-        val dialog = DialogStockFragment(stockItem.id, StockItemType.YEAST, true)
+        val dialog = DialogStockFragment(stockItem.id, StockItemType.YEAST.ordinal, true)
 
-        dialog.show(childFragmentManager, "stockDialog")
+        dialog.show(childFragmentManager, "stockUpdateDialog")
     }
 
     private fun onItemClick(stockItem: StockItem) {
