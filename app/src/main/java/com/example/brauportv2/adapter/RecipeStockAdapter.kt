@@ -35,7 +35,7 @@ class RecipeStockAdapter(
 
     override fun onBindViewHolder(holder: RecipeViewHolder, position: Int) = with(holder.binding) {
         val item = getItem(position)
-
+        //TODO: g's weg, weil man auch ohne damit klarkommt
         rStockItemTitle.text = item.stockName
         rStockItemAmount.text = item.stockAmount
 

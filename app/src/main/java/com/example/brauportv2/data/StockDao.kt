@@ -15,7 +15,7 @@ interface StockDao {
     fun getAllStockItems(): Flow<List<StockItemData>>
 
     @Query("SELECT * from stock_database WHERE id = :id")
-    fun getStockItem(id: Long): Flow<StockItemData>
+    fun getStockItem(id: Int): Flow<StockItemData>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(stockItem: StockItemData)

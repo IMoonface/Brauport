@@ -33,10 +33,14 @@
         tools:layout="@layout/fragment_malt_stock">
         <action
             android:id="@+id/action_malt_stock_fragment_to_hopStockFragment"
-            app:destination="@id/hop_stock_fragment" />
+            app:destination="@id/hop_stock_fragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left" />
         <action
             android:id="@+id/action_malt_stock_fragment_to_yeast_stock_fragment"
-            app:destination="@id/yeast_stock_fragment" />
+            app:destination="@id/yeast_stock_fragment"
+            app:enterAnim="@anim/from_left"
+            app:exitAnim="@anim/to_right" />
     </fragment>
     <fragment
         android:id="@+id/brew_fragment"
@@ -74,10 +78,14 @@
         tools:layout="@layout/fragment_hop_stock">
         <action
             android:id="@+id/action_hopStockFragment_to_yeastStockFragment"
-            app:destination="@id/yeast_stock_fragment" />
+            app:destination="@id/yeast_stock_fragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left" />
         <action
             android:id="@+id/action_hop_stock_fragment_to_malt_stock_fragment"
-            app:destination="@id/malt_stock_fragment" />
+            app:destination="@id/malt_stock_fragment"
+            app:enterAnim="@anim/from_left"
+            app:exitAnim="@anim/to_right" />
     </fragment>
     <fragment
         android:id="@+id/yeast_stock_fragment"
@@ -86,10 +94,14 @@
         tools:layout="@layout/fragment_yeast_stock" >
         <action
             android:id="@+id/action_yeast_stock_fragment_to_hop_stock_fragment"
-            app:destination="@id/hop_stock_fragment" />
+            app:destination="@id/hop_stock_fragment"
+            app:enterAnim="@anim/from_left"
+            app:exitAnim="@anim/to_right" />
         <action
             android:id="@+id/action_yeast_stock_fragment_to_malt_stock_fragment"
-            app:destination="@id/malt_stock_fragment" />
+            app:destination="@id/malt_stock_fragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left" />
     </fragment>
     <dialog
         android:id="@+id/dialog_malts_fragment"

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">BrauportV2</string>
+    <string name="app_name">Brauport</string>
     <string name="main_recipe_button_text">Rezepte</string>
     <string name="main_stock_button_text">Bestand</string>
     <string name="main_brew_button_text">Brauen</string>
@@ -49,4 +49,5 @@
     <string name="done_text">Fertig</string>
     <string name="delete_hopping_text">Letze Hopfengabe entfernen</string>
     <string name="make_recipe_text">Bitte Rezept erstellen!</string>
+    <string name="title_activity_start">StartActivity</string>
 </resources>

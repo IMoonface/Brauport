@@ -19,4 +19,13 @@
         <item name="android:textColorSecondary">@color/button_color</item>
         <item name="actionMenuTextColor">@color/button_color</item>
     </style>
+
+    <style name="Theme.BrauportV2.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.BrauportV2.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.BrauportV2.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>
