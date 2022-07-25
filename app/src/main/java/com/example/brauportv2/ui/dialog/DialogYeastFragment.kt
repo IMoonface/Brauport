@@ -23,7 +23,7 @@ import com.example.brauportv2.ui.viewmodel.StockViewModel
 import com.example.brauportv2.ui.viewmodel.StockViewModelFactory
 import kotlinx.coroutines.launch
 
-class DialogYeastsFragment : DialogFragment() {
+class DialogYeastFragment : DialogFragment() {
 
     private var _binding: FragmentDialogYeastsBinding? = null
     private val binding get() = _binding!!
@@ -59,7 +59,7 @@ class DialogYeastsFragment : DialogFragment() {
             }
         }
 
-        binding.rYeastsAbortButton.setOnClickListener {
+        binding.rYeastsBackButton.setOnClickListener {
             dismiss()
         }
 

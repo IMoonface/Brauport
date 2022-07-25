@@ -25,6 +25,11 @@
             app:destination="@id/brew_fragment"
             app:popUpTo="@+id/nav_graph"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_home_fragment_to_brewHistoryFragment"
+            app:destination="@id/brewHistoryFragment"
+            app:popUpTo="@+id/nav_graph"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/malt_stock_fragment"
@@ -54,7 +59,11 @@
         tools:layout="@layout/fragment_recipe">
         <action
             android:id="@+id/action_recipeFragment_to_recipeDetailsFragment"
-            app:destination="@id/recipe_details_fragment" />
+            app:destination="@id/recipe_details_fragment"
+            app:enterAnim="@anim/from_above"
+            app:exitAnim="@anim/to_below"
+            app:popEnterAnim="@anim/from_below"
+            app:popExitAnim="@anim/to_above" />
     </fragment>
     <fragment
         android:id="@+id/recipe_details_fragment"
@@ -91,7 +100,7 @@
         android:id="@+id/yeast_stock_fragment"
         android:name="com.example.brauportv2.ui.YeastStockFragment"
         android:label="Brauport - Hefebestand"
-        tools:layout="@layout/fragment_yeast_stock" >
+        tools:layout="@layout/fragment_yeast_stock">
         <action
             android:id="@+id/action_yeast_stock_fragment_to_hop_stock_fragment"
             app:destination="@id/hop_stock_fragment"
@@ -115,7 +124,12 @@
         tools:layout="@layout/fragment_dialog_hops" />
     <dialog
         android:id="@+id/dialog_yeasts_fragment"
-        android:name="com.example.brauportv2.ui.dialog.DialogYeastsFragment"
+        android:name="com.example.brauportv2.ui.dialog.DialogYeastFragment"
         android:label="Brauport - Rezeptdetails Hefe"
         tools:layout="@layout/fragment_dialog_yeasts" />
+    <fragment
+        android:id="@+id/brewHistoryFragment"
+        android:name="com.example.brauportv2.ui.BrewHistoryFragment"
+        android:label="Brauport - Brauhistorie"
+        tools:layout="@layout/fragment_brew_history" />
 </navigation>

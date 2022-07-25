@@ -3,6 +3,7 @@ package com.example.brauportv2.ui.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import androidx.room.ColumnInfo
 import com.example.brauportv2.data.RecipeDao
 import com.example.brauportv2.mapper.toRecipeItemData
 import com.example.brauportv2.model.StockItem
@@ -27,7 +28,9 @@ class RecipeViewModel(private val recipeDao: RecipeDao) : ViewModel() {
         restList: MutableList<Rest>,
         hoppingList: MutableList<Hopping>,
         yeast: StockItem,
-        mainBrew: MainBrew
+        mainBrew: MainBrew,
+        dateOfCompletion: String,
+        endOfFermentation: String
     ) {
         val recipeItem = RecipeItem(
             rId = rId,
@@ -36,7 +39,9 @@ class RecipeViewModel(private val recipeDao: RecipeDao) : ViewModel() {
             restList = restList,
             hoppingList = hoppingList,
             yeast = yeast,
-            mainBrew = mainBrew
+            mainBrew = mainBrew,
+            dateOfCompletion = dateOfCompletion,
+            endOfFermentation = endOfFermentation
         )
         viewModelScope.launch(Dispatchers.IO) {
             recipeDao.update(recipeItem.toRecipeItemData())

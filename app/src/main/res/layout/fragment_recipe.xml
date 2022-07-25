@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginHorizontal="45dp"
-    android:background="@color/button_color"
+    android:layout_marginHorizontal="10dp"
     tools:context=".ui.RecipeFragment">
 
     <Button
@@ -17,29 +16,28 @@
         android:layout_marginTop="5dp"
         android:text="@string/recipe_add_text"
         android:textColor="@color/appBars_color"
-        app:backgroundTint="@color/card_color"
+        app:backgroundTint="@color/button_color"
         app:cornerRadius="20dp"
         app:icon="@drawable/ic_add"
         app:iconTint="@color/appBars_color"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.button.MaterialButton
+    <Button
         android:id="@+id/recipe_info_button"
         android:layout_width="50dp"
         android:layout_height="60dp"
         android:layout_marginTop="5dp"
         android:layout_marginEnd="10dp"
         android:textColor="@color/appBars_color"
-        app:backgroundTint="@color/card_color"
+        app:backgroundTint="@color/button_color"
         app:cornerRadius="20dp"
         app:icon="@drawable/ic_info"
         app:iconGravity="textStart"
         app:iconPadding="0dp"
         app:iconTint="@color/appBars_color"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="SpeakableTextPresentCheck" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/recipe_textInputLayout"
@@ -48,7 +46,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
-        app:boxBackgroundColor="@color/card_color"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/recipe_add_button">

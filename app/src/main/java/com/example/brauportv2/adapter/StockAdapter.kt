@@ -11,19 +11,19 @@ import com.example.brauportv2.model.StockItem
 class StockAdapter(
     private val onItemClick: (StockItem) -> Unit,
     private val onDeleteClick: (StockItem) -> Unit
-): ListAdapter<StockItem, StockAdapter.MaltViewHolder>(DiffCallback) {
+): ListAdapter<StockItem, StockAdapter.StockViewHolder>(DiffCallback) {
 
-    class MaltViewHolder(val binding: CardStockBinding) : RecyclerView.ViewHolder(binding.root)
+    class StockViewHolder(val binding: CardStockBinding) : RecyclerView.ViewHolder(binding.root)
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MaltViewHolder {
-        return MaltViewHolder(CardStockBinding.inflate(
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StockViewHolder {
+        return StockViewHolder(CardStockBinding.inflate(
             LayoutInflater.from(parent.context),
             parent,
             false)
         )
     }
 
-    override fun onBindViewHolder(holder: MaltViewHolder, position: Int) = with(holder.binding) {
+    override fun onBindViewHolder(holder: StockViewHolder, position: Int) = with(holder.binding) {
         val item = getItem(position)
         stockItemTitle.text = item.stockName
         stockItemAmount.text = item.stockAmount

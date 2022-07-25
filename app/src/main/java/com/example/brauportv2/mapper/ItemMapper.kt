@@ -20,12 +20,24 @@ fun RecipeItemData.toRecipeItem(): RecipeItem {
         restList.toMutableList(),
         hoppingList.toMutableList(),
         yeast,
-        mainBrew
+        mainBrew,
+        dateOfCompletion,
+        endOfFermentation
     )
 }
 
 fun RecipeItem.toRecipeItemData(): RecipeItemData {
-    return RecipeItemData(rId, recipeName, maltList, restList, hoppingList, yeast, mainBrew)
+    return RecipeItemData(
+        rId,
+        recipeName,
+        maltList,
+        restList,
+        hoppingList,
+        yeast,
+        mainBrew,
+        dateOfCompletion,
+        endOfFermentation
+    )
 }
 
 fun StockItem.toSNoAmount(): SNoAmount {

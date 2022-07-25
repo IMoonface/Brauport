@@ -10,11 +10,10 @@ import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.brauportv2.BaseApplication
-import com.example.brauportv2.adapter.RecipeHoppingAdapter
+import com.example.brauportv2.adapter.HoppingAdapter
 import com.example.brauportv2.databinding.FragmentDialogHopsBinding
 import com.example.brauportv2.mapper.toStockItem
 import com.example.brauportv2.model.StockItemType
-import com.example.brauportv2.model.recipeModel.Hopping
 import com.example.brauportv2.model.recipeModel.RecipeDataSource.recipeItem
 import com.example.brauportv2.ui.viewmodel.StockViewModel
 import com.example.brauportv2.ui.viewmodel.StockViewModelFactory
@@ -24,8 +23,7 @@ class DialogHopsFragment : DialogFragment() {
 
     private var _binding: FragmentDialogHopsBinding? = null
     private val binding get() = _binding!!
-    private lateinit var adapter: RecipeHoppingAdapter
-
+    private lateinit var adapter: HoppingAdapter
     private val viewModel: StockViewModel by activityViewModels {
         StockViewModelFactory((activity?.application as BaseApplication).stockDatabase.stockDao())
     }
@@ -47,7 +45,7 @@ class DialogHopsFragment : DialogFragment() {
         // Inflate the layout for this fragment
         _binding = FragmentDialogHopsBinding.inflate(inflater, container, false)
 
-        adapter = RecipeHoppingAdapter()
+        adapter = HoppingAdapter()
         binding.rHoppingRecyclerView.adapter = adapter
 
         lifecycleScope.launch {

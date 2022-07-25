@@ -21,6 +21,8 @@ import com.example.brauportv2.model.BrewItem
 import com.example.brauportv2.model.StockItem
 import com.example.brauportv2.model.recipeModel.RecipeDataSource.recipeItemList
 import com.example.brauportv2.model.recipeModel.RecipeItem
+import com.example.brauportv2.ui.dialog.DialogCookingFragment
+import com.example.brauportv2.ui.dialog.DialogInstructionStockFragment
 import com.example.brauportv2.ui.viewmodel.StockViewModel
 import com.example.brauportv2.ui.viewmodel.StockViewModelFactory
 import kotlinx.coroutines.launch
@@ -88,9 +90,18 @@ class BrewFragment : Fragment() {
                 finished = it.state
             }
             if (finished) {
-                //TODO: Dialof aufrufen für einstellung des endgärrungszeitpunktes
-                updateDatabase(choosenRecipe)
-                Toast.makeText(context, "Rezept abgeschlossen", Toast.LENGTH_SHORT).show()
+                val dialog = DialogCookingFragment(choosenRecipe)
+                dialog.show(childFragmentManager, "brewHistoryDialog")
+
+                if (dialog.abort)
+                    Toast.makeText(
+                        context,
+                        "Rezept wurde nicht abgeschlossen",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                else
+                    updateDatabase(choosenRecipe)
+
             } else
                 Toast.makeText(context, "Es sind noch Schritte offen", Toast.LENGTH_SHORT)
                     .show()

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.dialog.DialogRecipeInspectFragment">
+
+    <TextView
+        android:id="@+id/inspect_recipe_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:text="@string/recipe_inspect_name_text"
+        android:textSize="30sp" />
+
+    <ScrollView
+        android:id="@+id/inspect_scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:layout_below="@id/inspect_recipe_name"
+        android:layout_marginTop="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/inspect_malt_list"
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                android:maxWidth="360dp"
+                android:text="@string/malts"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/inspect_rest_list"
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:maxWidth="360dp"
+                android:text="@string/rests"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/inspect_hopping_list"
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:maxWidth="360dp"
+                android:text="@string/hopping"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/inspect_yeast"
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:maxWidth="360dp"
+                android:text="@string/yeast"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/inspect_main_brew"
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:maxWidth="360dp"
+                android:text="@string/main_brew"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <Button
+        android:id="@+id/inspect_back_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/inspect_scroll_view"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="@string/back_text"
+        android:textColor="@color/appBars_color"
+        app:backgroundTint="@color/button_color"
+        app:cornerRadius="20dp" />
+
+</RelativeLayout>

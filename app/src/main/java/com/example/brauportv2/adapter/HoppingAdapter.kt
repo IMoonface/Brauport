@@ -12,24 +12,23 @@ import com.example.brauportv2.mapper.toSNoAmount
 import com.example.brauportv2.model.StockItem
 import com.example.brauportv2.model.recipeModel.Hopping
 
-class RecipeHoppingAdapter
-    : ListAdapter<StockItem, RecipeHoppingAdapter.RecipeViewHolder>(DiffCallback) {
+class HoppingAdapter : ListAdapter<StockItem, HoppingAdapter.HoppingViewHolder>(DiffCallback) {
 
     lateinit var context: Context
     var newhopsList : Hopping = Hopping(emptyList<StockItem>().toMutableList(), "")
 
-    class RecipeViewHolder(val binding: CardRecipeStockBinding) : RecyclerView.ViewHolder(binding.root)
+    class HoppingViewHolder(val binding: CardRecipeStockBinding) : RecyclerView.ViewHolder(binding.root)
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecipeViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HoppingViewHolder {
         context = parent.context
-        return RecipeViewHolder(CardRecipeStockBinding.inflate(
+        return HoppingViewHolder(CardRecipeStockBinding.inflate(
             LayoutInflater.from(parent.context),
             parent,
             false)
         )
     }
 
-    override fun onBindViewHolder(holder: RecipeViewHolder, position: Int) = with(holder.binding) {
+    override fun onBindViewHolder(holder: HoppingViewHolder, position: Int) = with(holder.binding) {
         val item = getItem(position)
         rStockItemTitle.text = item.stockName
         rStockItemAmount.text = item.stockAmount

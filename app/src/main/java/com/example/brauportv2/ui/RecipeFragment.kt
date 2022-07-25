@@ -20,6 +20,8 @@ import com.example.brauportv2.model.recipeModel.*
 import com.example.brauportv2.model.recipeModel.RecipeDataSource.recipeItem
 import com.example.brauportv2.model.recipeModel.RecipeDataSource.update
 import com.example.brauportv2.ui.dialog.DialogInstructionRecipeFragment
+import com.example.brauportv2.ui.dialog.DialogInstructionStockFragment
+import com.example.brauportv2.ui.dialog.DialogRecipeInspectFragment
 import com.example.brauportv2.ui.dialog.DialogStockFragment
 import com.example.brauportv2.ui.viewmodel.RecipeViewModel
 import com.example.brauportv2.ui.viewmodel.RecipeViewModelFactory
@@ -57,7 +59,7 @@ class RecipeFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         _binding = FragmentRecipeBinding.inflate(inflater, container, false)
-        adapter = RecipeAdapter(this::onItemClick, this::onDeleteClick)
+        adapter = RecipeAdapter(this::onItemClick, this::onDeleteClick, this::onInspectClick)
         binding.recipeRecyclerView.adapter = adapter
         lifecycleScope.launch {
             viewModel.allRecipeItems.collect { it -> recipeStartList = it.map { it.toRecipeItem() }
@@ -74,7 +76,9 @@ class RecipeFragment : Fragment() {
                 emptyList<Rest>().toMutableList(),
                 emptyList<Hopping>().toMutableList(),
                 StockItem(1, StockItemType.YEAST.ordinal, "", ""),
-                MainBrew("", "")
+                MainBrew("", ""),
+                "",
+                ""
             )
 
             val action = RecipeFragmentDirections
@@ -92,6 +96,11 @@ class RecipeFragment : Fragment() {
         return binding.root
     }
 
+    private fun onInspectClick(recipe: RecipeItem) {
+        val dialog = DialogRecipeInspectFragment(recipe)
+        dialog.show(childFragmentManager, "recipeInspectDialog")
+    }
+
     private fun onItemClick(recipe: RecipeItem) {
         update = true
         recipeItem = recipe
@@ -102,6 +111,7 @@ class RecipeFragment : Fragment() {
     }
 
     private fun onDeleteClick(recipe: RecipeItem) {
+        //Todo: Dialog öffnen und fragen ob das Rezept gelöscht werden soll
         viewModel.deleteRecipe(recipe)
     }
 

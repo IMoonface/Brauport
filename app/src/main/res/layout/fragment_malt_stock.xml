@@ -9,10 +9,9 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginHorizontal="45dp"
-        android:background="@color/button_color">
+        android:layout_marginHorizontal="45dp" >
 
-        <com.google.android.material.button.MaterialButton
+        <Button
             android:id="@+id/malt_add_button"
             android:layout_width="wrap_content"
             android:layout_height="60dp"
@@ -20,29 +19,28 @@
             android:layout_marginTop="5dp"
             android:text="@string/new_malt"
             android:textColor="@color/appBars_color"
-            app:backgroundTint="@color/card_color"
+            app:backgroundTint="@color/button_color"
             app:cornerRadius="20dp"
             app:icon="@drawable/ic_add"
             app:iconTint="@color/appBars_color"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <com.google.android.material.button.MaterialButton
+        <Button
             android:id="@+id/malt_info_button"
             android:layout_width="50dp"
             android:layout_height="60dp"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="10dp"
             android:textColor="@color/appBars_color"
-            app:backgroundTint="@color/card_color"
+            app:backgroundTint="@color/button_color"
             app:cornerRadius="20dp"
             app:icon="@drawable/ic_info"
             app:iconGravity="textStart"
             app:iconPadding="0dp"
             app:iconTint="@color/appBars_color"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="SpeakableTextPresentCheck" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/malt_textInputLayout"
@@ -51,7 +49,6 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
-            app:boxBackgroundColor="@color/card_color"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/malt_add_button">
@@ -81,9 +78,8 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <com.google.android.material.button.MaterialButton
+    <Button
         android:id="@+id/malt_next_button"
-        style="@style/Widget.MaterialComponents.Button"
         android:layout_width="40dp"
         android:layout_height="200dp"
         android:layout_gravity="center_vertical|end"
@@ -92,12 +88,10 @@
         app:icon="@drawable/ic_navigate_next"
         app:iconGravity="textStart"
         app:iconPadding="0dp"
-        app:iconTint="@color/appBars_color"
-        tools:ignore="SpeakableTextPresentCheck" />
+        app:iconTint="@color/appBars_color" />
 
-    <com.google.android.material.button.MaterialButton
+    <Button
         android:id="@+id/malt_before_button"
-        style="@style/Widget.MaterialComponents.Button"
         android:layout_width="40dp"
         android:layout_height="200dp"
         android:layout_gravity="center_vertical|start"
@@ -106,7 +100,6 @@
         app:icon="@drawable/ic_navigate_before"
         app:iconGravity="textStart"
         app:iconPadding="0dp"
-        app:iconTint="@color/appBars_color"
-        tools:ignore="SpeakableTextPresentCheck" />
+        app:iconTint="@color/appBars_color" />
 
 </FrameLayout>

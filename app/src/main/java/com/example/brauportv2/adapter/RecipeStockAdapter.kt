@@ -15,16 +15,16 @@ import com.example.brauportv2.model.recipeModel.SNoAmount
 class RecipeStockAdapter(
     private val onItemClick: (StockItem, String) -> Unit,
     private val onDeleteClick: (SNoAmount) -> Unit
-) : ListAdapter<StockItem, RecipeStockAdapter.RecipeViewHolder>(DiffCallback) {
+) : ListAdapter<StockItem, RecipeStockAdapter.RecipeStockViewHolder>(DiffCallback) {
 
     lateinit var context: Context
 
-    class RecipeViewHolder(val binding: CardRecipeStockBinding) :
+    class RecipeStockViewHolder(val binding: CardRecipeStockBinding) :
         RecyclerView.ViewHolder(binding.root)
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecipeViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecipeStockViewHolder {
         context = parent.context
-        return RecipeViewHolder(
+        return RecipeStockViewHolder(
             CardRecipeStockBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
@@ -33,7 +33,7 @@ class RecipeStockAdapter(
         )
     }
 
-    override fun onBindViewHolder(holder: RecipeViewHolder, position: Int) = with(holder.binding) {
+    override fun onBindViewHolder(holder: RecipeStockViewHolder, position: Int) = with(holder.binding) {
         val item = getItem(position)
         //TODO: g's weg, weil man auch ohne damit klarkommt
         rStockItemTitle.text = item.stockName

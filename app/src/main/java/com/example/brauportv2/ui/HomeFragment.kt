@@ -61,6 +61,13 @@ class HomeFragment : Fragment() {
             )
         }
 
+        binding.mainBrewHistoryButton.setOnClickListener {
+            findNavController().navigate(
+                HomeFragmentDirections
+                    .actionHomeFragmentToBrewHistoryFragment()
+            )
+        }
+
         return binding.root
     }
 

@@ -41,7 +41,7 @@
         android:layout_width="220dp"
         android:layout_height="60dp"
         android:layout_marginTop="10dp"
-        android:text="@string/rest"
+        android:text="@string/rests"
         android:textColor="@color/appBars_color"
         app:backgroundTint="@color/button_color"
         app:cornerRadius="20dp" />
@@ -51,7 +51,7 @@
         android:layout_width="220dp"
         android:layout_height="60dp"
         android:layout_marginTop="10dp"
-        android:text="@string/hops"
+        android:text="@string/hopping"
         android:textColor="@color/appBars_color"
         app:backgroundTint="@color/button_color"
         app:cornerRadius="20dp" />

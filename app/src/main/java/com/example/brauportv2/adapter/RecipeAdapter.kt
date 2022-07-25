@@ -9,6 +9,7 @@ import com.example.brauportv2.databinding.CardRecipeBinding
 import com.example.brauportv2.model.recipeModel.RecipeItem
 
 class RecipeAdapter(
+    private val onInspectClick: (RecipeItem) -> Unit,
     private val onItemClick: (RecipeItem) -> Unit,
     private val onDeleteClick: (RecipeItem) -> Unit
 ): ListAdapter<RecipeItem, RecipeAdapter.RecipeViewHolder>(DiffCallback) {
@@ -26,6 +27,10 @@ class RecipeAdapter(
     override fun onBindViewHolder(holder: RecipeViewHolder, position: Int) = with(holder.binding) {
         val item = getItem(position)
         recipeItemTitle.text = item.recipeName
+
+        recipeInspectButton.setOnClickListener {
+            onInspectClick(item)
+        }
 
         recipeDeleteButton.setOnClickListener {
             onDeleteClick(item)

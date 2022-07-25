@@ -10,19 +10,19 @@ import com.example.brauportv2.model.BrewItem
 
 class BrewAdapter(
     private val onItemClick: (BrewItem) -> Unit
-): ListAdapter<BrewItem, BrewAdapter.RecipeViewHolder>(DiffCallback) {
+): ListAdapter<BrewItem, BrewAdapter.BrewViewHolder>(DiffCallback) {
 
-    class RecipeViewHolder(val binding: CardBrewBinding) : RecyclerView.ViewHolder(binding.root)
+    class BrewViewHolder(val binding: CardBrewBinding) : RecyclerView.ViewHolder(binding.root)
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecipeViewHolder {
-        return RecipeViewHolder(CardBrewBinding.inflate(
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BrewViewHolder {
+        return BrewViewHolder(CardBrewBinding.inflate(
             LayoutInflater.from(parent.context),
             parent,
             false)
         )
     }
 
-    override fun onBindViewHolder(holder: RecipeViewHolder, position: Int) = with(holder.binding) {
+    override fun onBindViewHolder(holder: BrewViewHolder, position: Int) = with(holder.binding) {
         val item = getItem(position)
         brewItemTitle.text = item.itemString
 

@@ -9,5 +9,7 @@ data class RecipeItem(
     var restList: MutableList<Rest>,
     var hoppingList: MutableList<Hopping>,
     var yeast: StockItem,
-    var mainBrew: MainBrew
+    var mainBrew: MainBrew,
+    val dateOfCompletion: String,
+    val endOfFermentation: String
 )

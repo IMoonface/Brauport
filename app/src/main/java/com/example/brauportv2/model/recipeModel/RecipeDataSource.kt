@@ -20,7 +20,9 @@ object RecipeDataSource {
         emptyList<Rest>().toMutableList(),
         emptyList<Hopping>().toMutableList(),
         StockItem(1, StockItemType.YEAST.ordinal, "", ""),
-        MainBrew("", "")
+        MainBrew("", ""),
+        "",
+        ""
     )
 
     var recipeItemList = emptyList<RecipeItem>().toMutableList()

@@ -48,7 +48,7 @@ class RecipeDetailsFragment : Fragment() {
         }
 
         binding.recipeDetailsYeasts.setOnClickListener {
-            val dialog = DialogYeastsFragment()
+            val dialog = DialogYeastFragment()
             dialog.show(childFragmentManager, "yeastsDialog")
         }
 
@@ -77,7 +77,9 @@ class RecipeDetailsFragment : Fragment() {
                         recipeItem.restList,
                         recipeItem.hoppingList,
                         recipeItem.yeast,
-                        recipeItem.mainBrew
+                        recipeItem.mainBrew,
+                        recipeItem.dateOfCompletion,
+                        recipeItem.endOfFermentation
                     )
                 }
             } else {

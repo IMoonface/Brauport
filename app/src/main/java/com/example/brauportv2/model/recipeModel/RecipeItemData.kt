@@ -23,6 +23,10 @@ data class RecipeItemData(
     val hoppingList: List<Hopping>,
     @ColumnInfo(name = "yeast")
     val yeast: StockItem,
-    @ColumnInfo(name = "brew")
-    val mainBrew: MainBrew
+    @ColumnInfo(name = "mainBrew")
+    val mainBrew: MainBrew,
+    @ColumnInfo(name = "dateOfCompletion")
+    val dateOfCompletion: String,
+    @ColumnInfo(name = "endOfFermentation")
+    val endOfFermentation: String
 )

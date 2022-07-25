@@ -13,8 +13,8 @@
     <string name="hop">Hopfen</string>
     <string name="dummy_text">Test</string>
     <string name="malts">Malze</string>
-    <string name="rest">Rasten</string>
-    <string name="hops">Hopfengaben</string>
+    <string name="rests">Rasten</string>
+    <string name="hopping">Hopfengaben</string>
     <string name="yeasts">Hefen</string>
     <string name="main_brew">Guss</string>
     <string name="enter_name_text">Namen eingeben</string>
@@ -52,6 +52,6 @@
     <string name="delete_hopping_text">Letze Hopfengabe entfernen</string>
     <string name="make_recipe_text">Bitte Rezept erstellen!</string>
     <string name="title_activity_start">StartActivity</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="date_dummy_text">DD/MM/YY</string>
+    <string name="recipe_inspect_name_text">Rezeptname</string>
 </resources>
