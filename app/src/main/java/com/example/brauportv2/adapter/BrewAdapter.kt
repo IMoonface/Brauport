@@ -10,15 +10,17 @@ import com.example.brauportv2.model.BrewItem
 
 class BrewAdapter(
     private val onItemClick: (BrewItem) -> Unit
-): ListAdapter<BrewItem, BrewAdapter.BrewViewHolder>(DiffCallback) {
+) : ListAdapter<BrewItem, BrewAdapter.BrewViewHolder>(DiffCallback) {
 
     class BrewViewHolder(val binding: CardBrewBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BrewViewHolder {
-        return BrewViewHolder(CardBrewBinding.inflate(
-            LayoutInflater.from(parent.context),
-            parent,
-            false)
+        return BrewViewHolder(
+            CardBrewBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
         )
     }
 
@@ -50,9 +52,9 @@ class BrewAdapter(
 
     object DiffCallback : DiffUtil.ItemCallback<BrewItem>() {
         override fun areItemsTheSame(oldItem: BrewItem, newItem: BrewItem)
-            : Boolean = oldItem == newItem
+                : Boolean = oldItem == newItem
 
         override fun areContentsTheSame(oldItem: BrewItem, newItem: BrewItem)
-            : Boolean = oldItem == newItem
+                : Boolean = oldItem == newItem
     }
 }

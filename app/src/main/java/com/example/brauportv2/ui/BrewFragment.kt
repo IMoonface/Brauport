@@ -22,7 +22,6 @@ import com.example.brauportv2.model.StockItem
 import com.example.brauportv2.model.recipeModel.RecipeDataSource.recipeItemList
 import com.example.brauportv2.model.recipeModel.RecipeItem
 import com.example.brauportv2.ui.dialog.DialogCookingFragment
-import com.example.brauportv2.ui.dialog.DialogInstructionStockFragment
 import com.example.brauportv2.ui.viewmodel.StockViewModel
 import com.example.brauportv2.ui.viewmodel.StockViewModelFactory
 import kotlinx.coroutines.launch
@@ -33,7 +32,7 @@ class BrewFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var adapter: BrewAdapter
     private var spinnerOptions: MutableList<String> = mutableListOf()
-    private var countDownTimer : CountDownTimer? = null
+    private var countDownTimer: CountDownTimer? = null
     private lateinit var choosenRecipe: RecipeItem
     private lateinit var stockStartList: List<StockItem>
     private var milliLeft: Long = 0
@@ -110,11 +109,13 @@ class BrewFragment : Fragment() {
         binding.brewTimerStartButton.setOnClickListener {
             if (binding.brewTimerStartButton.text.equals("Start") &&
                 binding.brewTimerText.text != "Bitte Item anklicken!" &&
-                binding.brewTimerText.text != "Bitte Rezept erstellen!") {
+                binding.brewTimerText.text != "Bitte Rezept erstellen!"
+            ) {
                 startTimer = true
                 timerStart(milliFromItem)
             } else if (binding.brewTimerText.text != "Bitte Item anklicken!" &&
-                binding.brewTimerText.text != "Bitte Rezept erstellen!") {
+                binding.brewTimerText.text != "Bitte Rezept erstellen!"
+            ) {
                 timerStart(milliLeft)
                 binding.brewTimerStopButton.text = "Stop"
             }
@@ -123,7 +124,8 @@ class BrewFragment : Fragment() {
         binding.brewTimerStopButton.setOnClickListener {
             countDownTimer?.let {
                 if (binding.brewTimerStopButton.text.equals("Stop") &&
-                    binding.brewTimerText.text != "Bitte Item anklicken!") {
+                    binding.brewTimerText.text != "Bitte Item anklicken!"
+                ) {
                     it.cancel()
                     binding.brewTimerStartButton.text = "Weiter"
                     binding.brewTimerStopButton.text = "Cancel"
@@ -201,7 +203,8 @@ class BrewFragment : Fragment() {
         newBrewList.add(BrewItem("Malz Schroten", "", false))
 
         newBrewList.add(
-            BrewItem("Hauptguss: " + recipeItem.mainBrew.firstBrew,
+            BrewItem(
+                "Hauptguss: " + recipeItem.mainBrew.firstBrew,
                 "",
                 false
             )

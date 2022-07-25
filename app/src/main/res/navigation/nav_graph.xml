@@ -119,9 +119,9 @@
         tools:layout="@layout/fragment_dialog_malts" />
     <dialog
         android:id="@+id/dialog_hops_fragment"
-        android:name="com.example.brauportv2.ui.dialog.DialogHopsFragment"
+        android:name="com.example.brauportv2.ui.dialog.DialogHoppingFragment"
         android:label="Brauport - Rezeptdetails Hopfen"
-        tools:layout="@layout/fragment_dialog_hops" />
+        tools:layout="@layout/fragment_dialog_hopping" />
     <dialog
         android:id="@+id/dialog_yeasts_fragment"
         android:name="com.example.brauportv2.ui.dialog.DialogYeastFragment"

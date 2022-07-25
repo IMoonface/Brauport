@@ -11,15 +11,17 @@ import com.example.brauportv2.model.StockItem
 class StockAdapter(
     private val onItemClick: (StockItem) -> Unit,
     private val onDeleteClick: (StockItem) -> Unit
-): ListAdapter<StockItem, StockAdapter.StockViewHolder>(DiffCallback) {
+) : ListAdapter<StockItem, StockAdapter.StockViewHolder>(DiffCallback) {
 
     class StockViewHolder(val binding: CardStockBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StockViewHolder {
-        return StockViewHolder(CardStockBinding.inflate(
-            LayoutInflater.from(parent.context),
-            parent,
-            false)
+        return StockViewHolder(
+            CardStockBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
         )
     }
 
@@ -51,9 +53,9 @@ class StockAdapter(
 
     object DiffCallback : DiffUtil.ItemCallback<StockItem>() {
         override fun areItemsTheSame(oldItem: StockItem, newItem: StockItem)
-            : Boolean = oldItem.id == newItem.id
+                : Boolean = oldItem.id == newItem.id
 
         override fun areContentsTheSame(oldItem: StockItem, newItem: StockItem)
-            : Boolean = oldItem == newItem
+                : Boolean = oldItem == newItem
     }
 }

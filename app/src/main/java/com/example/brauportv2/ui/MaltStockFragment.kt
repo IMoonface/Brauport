@@ -21,7 +21,6 @@ import com.example.brauportv2.ui.dialog.DialogStockFragment
 import com.example.brauportv2.ui.viewmodel.StockViewModel
 import com.example.brauportv2.ui.viewmodel.StockViewModelFactory
 import kotlinx.coroutines.launch
-import java.util.*
 
 class MaltStockFragment : Fragment() {
 
@@ -72,8 +71,9 @@ class MaltStockFragment : Fragment() {
         //binding.maltRecyclerView.hasFixedSize()
 
         lifecycleScope.launch {
-            viewModel.allStockItems.collect { it -> maltStartList = it.map { it.toStockItem() }
-                .filter { it.itemType == StockItemType.MALT.ordinal }
+            viewModel.allStockItems.collect { it ->
+                maltStartList = it.map { it.toStockItem() }
+                    .filter { it.itemType == StockItemType.MALT.ordinal }
                 adapter.submitList(maltStartList)
             }
         }

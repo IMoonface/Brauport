@@ -11,7 +11,6 @@ import androidx.fragment.app.activityViewModels
 import com.example.brauportv2.BaseApplication
 import com.example.brauportv2.databinding.FragmentDialogStockBinding
 import com.example.brauportv2.model.StockItem
-import com.example.brauportv2.model.StockItemType
 import com.example.brauportv2.ui.viewmodel.StockViewModel
 import com.example.brauportv2.ui.viewmodel.StockViewModelFactory
 import java.util.*

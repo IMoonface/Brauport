@@ -81,7 +81,8 @@
             app:iconPadding="0dp"
             app:iconTint="@color/appBars_color"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="SpeakableTextPresentCheck" />
 
         <Button
             android:id="@+id/r_stock_item_delete"
@@ -95,7 +96,8 @@
             app:iconPadding="0dp"
             app:iconTint="@color/appBars_color"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/r_stock_item_add" />
+            app:layout_constraintTop_toBottomOf="@+id/r_stock_item_add"
+            tools:ignore="SpeakableTextPresentCheck" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

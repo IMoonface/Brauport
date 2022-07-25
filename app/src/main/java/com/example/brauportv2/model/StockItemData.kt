@@ -12,10 +12,10 @@ import androidx.room.PrimaryKey
 data class StockItemData(
     @PrimaryKey
     val id: Int,
-    @ColumnInfo (name = "itemType")
+    @ColumnInfo(name = "itemType")
     val itemType: Int,
-    @ColumnInfo (name = "stockName")
+    @ColumnInfo(name = "stockName")
     val stockName: String,
-    @ColumnInfo (name = "stockAmount")
+    @ColumnInfo(name = "stockAmount")
     val stockAmount: String
 )

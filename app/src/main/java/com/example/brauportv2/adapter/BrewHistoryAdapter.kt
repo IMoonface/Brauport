@@ -12,28 +12,30 @@ import com.example.brauportv2.model.recipeModel.RecipeItem
 class BrewHistoryAdapter
     : ListAdapter<RecipeItem, BrewHistoryAdapter.BrewHistoryViewHolder>(DiffCallback) {
 
-    class BrewHistoryViewHolder(val binding: CardBrewHistoryBinding)
-        : RecyclerView.ViewHolder(binding.root)
+    class BrewHistoryViewHolder(val binding: CardBrewHistoryBinding) :
+        RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BrewHistoryViewHolder {
         return BrewHistoryViewHolder(
             CardBrewHistoryBinding.inflate(
-            LayoutInflater.from(parent.context),
-            parent,
-            false)
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
         )
     }
 
     @SuppressLint("SetTextI18n")
-    override fun onBindViewHolder(holder: BrewHistoryViewHolder, position: Int) = with(holder.binding) {
-        val item = getItem(position)
-        brewHistoryTitle.text = item.recipeName
-        brewHistoryEndDate.text = "Ende der Gärung: " + item.endOfFermentation
+    override fun onBindViewHolder(holder: BrewHistoryViewHolder, position: Int) =
+        with(holder.binding) {
+            val item = getItem(position)
+            brewHistoryTitle.text = item.recipeName
+            brewHistoryEndDate.text = "Ende der Gärung: " + item.endOfFermentation
 
-        brewHistoryInspect.setOnClickListener {
-            //Todo: Dialog öffnen und Details anzeigen
+            brewHistoryInspect.setOnClickListener {
+                //Todo: Dialog öffnen und Details anzeigen
+            }
         }
-    }
 
     override fun getItemViewType(position: Int): Int {
         return position

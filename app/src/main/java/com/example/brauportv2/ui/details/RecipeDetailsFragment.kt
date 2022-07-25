@@ -43,7 +43,7 @@ class RecipeDetailsFragment : Fragment() {
         }
 
         binding.recipeDetailsHops.setOnClickListener {
-            val dialog = DialogHopsFragment()
+            val dialog = DialogHoppingFragment()
             dialog.show(childFragmentManager, "hopsDialog")
         }
 
@@ -88,7 +88,8 @@ class RecipeDetailsFragment : Fragment() {
 
                 if (recipeItem.recipeName == "" || recipeItem.maltList == startMaltList ||
                     recipeItem.restList == startRestList || recipeItem.mainBrew == startMainBrew ||
-                    recipeItem.hoppingList == startHoppingList || recipeItem.yeast == startYeast)
+                    recipeItem.hoppingList == startHoppingList || recipeItem.yeast == startYeast
+                )
                     Toast.makeText(context, "Bitte alle Attribute setzen!", Toast.LENGTH_SHORT)
                         .show()
                 else

@@ -3,10 +3,10 @@ package com.example.brauportv2.ui
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -16,13 +16,14 @@ import com.example.brauportv2.databinding.FragmentRecipeBinding
 import com.example.brauportv2.mapper.toRecipeItem
 import com.example.brauportv2.model.StockItem
 import com.example.brauportv2.model.StockItemType
-import com.example.brauportv2.model.recipeModel.*
+import com.example.brauportv2.model.recipeModel.Hopping
+import com.example.brauportv2.model.recipeModel.MainBrew
 import com.example.brauportv2.model.recipeModel.RecipeDataSource.recipeItem
 import com.example.brauportv2.model.recipeModel.RecipeDataSource.update
+import com.example.brauportv2.model.recipeModel.RecipeItem
+import com.example.brauportv2.model.recipeModel.Rest
 import com.example.brauportv2.ui.dialog.DialogInstructionRecipeFragment
-import com.example.brauportv2.ui.dialog.DialogInstructionStockFragment
 import com.example.brauportv2.ui.dialog.DialogRecipeInspectFragment
-import com.example.brauportv2.ui.dialog.DialogStockFragment
 import com.example.brauportv2.ui.viewmodel.RecipeViewModel
 import com.example.brauportv2.ui.viewmodel.RecipeViewModelFactory
 import kotlinx.coroutines.launch
@@ -62,7 +63,8 @@ class RecipeFragment : Fragment() {
         adapter = RecipeAdapter(this::onItemClick, this::onDeleteClick, this::onInspectClick)
         binding.recipeRecyclerView.adapter = adapter
         lifecycleScope.launch {
-            viewModel.allRecipeItems.collect { it -> recipeStartList = it.map { it.toRecipeItem() }
+            viewModel.allRecipeItems.collect { it ->
+                recipeStartList = it.map { it.toRecipeItem() }
                 adapter.submitList(recipeStartList)
             }
         }

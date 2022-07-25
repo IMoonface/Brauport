@@ -16,8 +16,8 @@ import com.example.brauportv2.mapper.toSNoAmount
 import com.example.brauportv2.mapper.toStockItem
 import com.example.brauportv2.model.StockItem
 import com.example.brauportv2.model.StockItemType
-import com.example.brauportv2.model.recipeModel.SNoAmount
 import com.example.brauportv2.model.recipeModel.RecipeDataSource.recipeItem
+import com.example.brauportv2.model.recipeModel.SNoAmount
 import com.example.brauportv2.ui.viewmodel.StockViewModel
 import com.example.brauportv2.ui.viewmodel.StockViewModelFactory
 import kotlinx.coroutines.launch
@@ -52,8 +52,9 @@ class DialogMaltsFragment : DialogFragment() {
         binding.rMaltsRecyclerView.adapter = adapter
 
         lifecycleScope.launch {
-            viewModel.allStockItems.collect { it -> adapter.submitList(it.map { it.toStockItem() }
-                .filter { it.itemType == StockItemType.MALT.ordinal })
+            viewModel.allStockItems.collect { it ->
+                adapter.submitList(it.map { it.toStockItem() }
+                    .filter { it.itemType == StockItemType.MALT.ordinal })
             }
         }
 

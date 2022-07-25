@@ -12,15 +12,17 @@ class RecipeAdapter(
     private val onInspectClick: (RecipeItem) -> Unit,
     private val onItemClick: (RecipeItem) -> Unit,
     private val onDeleteClick: (RecipeItem) -> Unit
-): ListAdapter<RecipeItem, RecipeAdapter.RecipeViewHolder>(DiffCallback) {
+) : ListAdapter<RecipeItem, RecipeAdapter.RecipeViewHolder>(DiffCallback) {
 
     class RecipeViewHolder(val binding: CardRecipeBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecipeViewHolder {
-        return RecipeViewHolder(CardRecipeBinding.inflate(
-            LayoutInflater.from(parent.context),
-            parent,
-            false)
+        return RecipeViewHolder(
+            CardRecipeBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
         )
     }
 
@@ -55,9 +57,9 @@ class RecipeAdapter(
 
     object DiffCallback : DiffUtil.ItemCallback<RecipeItem>() {
         override fun areItemsTheSame(oldItem: RecipeItem, newItem: RecipeItem)
-            : Boolean = oldItem.rId == newItem.rId
+                : Boolean = oldItem.rId == newItem.rId
 
         override fun areContentsTheSame(oldItem: RecipeItem, newItem: RecipeItem)
-            : Boolean = oldItem == newItem
+                : Boolean = oldItem == newItem
     }
 }

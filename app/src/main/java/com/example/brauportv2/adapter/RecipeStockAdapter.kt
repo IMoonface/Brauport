@@ -33,25 +33,26 @@ class RecipeStockAdapter(
         )
     }
 
-    override fun onBindViewHolder(holder: RecipeStockViewHolder, position: Int) = with(holder.binding) {
-        val item = getItem(position)
-        //TODO: g's weg, weil man auch ohne damit klarkommt
-        rStockItemTitle.text = item.stockName
-        rStockItemAmount.text = item.stockAmount
+    override fun onBindViewHolder(holder: RecipeStockViewHolder, position: Int) =
+        with(holder.binding) {
+            val item = getItem(position)
+            //TODO: g's weg, weil man auch ohne damit klarkommt
+            rStockItemTitle.text = item.stockName
+            rStockItemAmount.text = item.stockAmount
 
-        rStockItemAdd.setOnClickListener {
-            val newAmount = rStockItemAmountInput.text.toString()
+            rStockItemAdd.setOnClickListener {
+                val newAmount = rStockItemAmountInput.text.toString()
 
-            if (newAmount == "")
-                Toast.makeText(context, "Bitte Menge angeben!", Toast.LENGTH_SHORT).show()
-            else
-                onItemClick(item, rStockItemAmountInput.text.toString())
+                if (newAmount == "")
+                    Toast.makeText(context, "Bitte Menge angeben!", Toast.LENGTH_SHORT).show()
+                else
+                    onItemClick(item, rStockItemAmountInput.text.toString())
+            }
+
+            rStockItemDelete.setOnClickListener {
+                onDeleteClick(item.toSNoAmount())
+            }
         }
-
-        rStockItemDelete.setOnClickListener {
-            onDeleteClick(item.toSNoAmount())
-        }
-    }
 
     override fun getItemViewType(position: Int): Int {
         return position

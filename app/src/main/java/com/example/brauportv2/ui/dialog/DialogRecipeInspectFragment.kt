@@ -61,14 +61,14 @@ class DialogRecipeInspectFragment(private val recipe: RecipeItem) : DialogFragme
         binding.inspectHoppingList.text = "Hopfengaben: $hoppingNameList"
 
         binding.inspectYeast.text = "Hefe: " +
-                      recipe.yeast.stockName +
-                    recipe.yeast.stockAmount +
-                                           "g"
+                recipe.yeast.stockName +
+                recipe.yeast.stockAmount +
+                "g"
 
         binding.inspectMainBrew.text = "Guss: Hauptguss mit " +
-                                    recipe.mainBrew.firstBrew +
-                                         " und Nachguss mit " +
-                                     recipe.mainBrew.secondBrew
+                recipe.mainBrew.firstBrew +
+                " und Nachguss mit " +
+                recipe.mainBrew.secondBrew
 
         binding.inspectBackButton.setOnClickListener {
             dismiss()

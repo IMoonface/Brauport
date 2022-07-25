@@ -11,7 +11,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.brauportv2.BaseApplication
 import com.example.brauportv2.adapter.HoppingAdapter
-import com.example.brauportv2.databinding.FragmentDialogHopsBinding
+import com.example.brauportv2.databinding.FragmentDialogHoppingBinding
 import com.example.brauportv2.mapper.toStockItem
 import com.example.brauportv2.model.StockItemType
 import com.example.brauportv2.model.recipeModel.RecipeDataSource.recipeItem
@@ -19,9 +19,9 @@ import com.example.brauportv2.ui.viewmodel.StockViewModel
 import com.example.brauportv2.ui.viewmodel.StockViewModelFactory
 import kotlinx.coroutines.launch
 
-class DialogHopsFragment : DialogFragment() {
+class DialogHoppingFragment : DialogFragment() {
 
-    private var _binding: FragmentDialogHopsBinding? = null
+    private var _binding: FragmentDialogHoppingBinding? = null
     private val binding get() = _binding!!
     private lateinit var adapter: HoppingAdapter
     private val viewModel: StockViewModel by activityViewModels {
@@ -43,14 +43,15 @@ class DialogHopsFragment : DialogFragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        _binding = FragmentDialogHopsBinding.inflate(inflater, container, false)
+        _binding = FragmentDialogHoppingBinding.inflate(inflater, container, false)
 
         adapter = HoppingAdapter()
         binding.rHoppingRecyclerView.adapter = adapter
 
         lifecycleScope.launch {
-            viewModel.allStockItems.collect { it -> adapter.submitList(it.map { it.toStockItem() }
-                .filter { it.itemType == StockItemType.HOP.ordinal })
+            viewModel.allStockItems.collect { it ->
+                adapter.submitList(it.map { it.toStockItem() }
+                    .filter { it.itemType == StockItemType.HOP.ordinal })
             }
         }
 

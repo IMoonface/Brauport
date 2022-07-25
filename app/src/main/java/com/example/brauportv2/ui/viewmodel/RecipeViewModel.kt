@@ -3,7 +3,6 @@ package com.example.brauportv2.ui.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import androidx.room.ColumnInfo
 import com.example.brauportv2.data.RecipeDao
 import com.example.brauportv2.mapper.toRecipeItemData
 import com.example.brauportv2.model.StockItem

@@ -15,16 +15,19 @@ import com.example.brauportv2.model.recipeModel.Hopping
 class HoppingAdapter : ListAdapter<StockItem, HoppingAdapter.HoppingViewHolder>(DiffCallback) {
 
     lateinit var context: Context
-    var newhopsList : Hopping = Hopping(emptyList<StockItem>().toMutableList(), "")
+    var newhopsList: Hopping = Hopping(emptyList<StockItem>().toMutableList(), "")
 
-    class HoppingViewHolder(val binding: CardRecipeStockBinding) : RecyclerView.ViewHolder(binding.root)
+    class HoppingViewHolder(val binding: CardRecipeStockBinding) :
+        RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HoppingViewHolder {
         context = parent.context
-        return HoppingViewHolder(CardRecipeStockBinding.inflate(
-            LayoutInflater.from(parent.context),
-            parent,
-            false)
+        return HoppingViewHolder(
+            CardRecipeStockBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
         )
     }
 
@@ -38,7 +41,7 @@ class HoppingAdapter : ListAdapter<StockItem, HoppingAdapter.HoppingViewHolder>(
 
             if (newAmount == "")
                 Toast.makeText(context, "Bitte Menge angeben!", Toast.LENGTH_SHORT).show()
-            else if (newhopsList.hopsList.map { it.toSNoAmount() }.contains(item.toSNoAmount())){
+            else if (newhopsList.hopsList.map { it.toSNoAmount() }.contains(item.toSNoAmount())) {
                 Toast.makeText(context, "Hopfen ist schon vorhanden!", Toast.LENGTH_SHORT).show()
             } else {
                 item.stockAmount = newAmount
@@ -74,9 +77,9 @@ class HoppingAdapter : ListAdapter<StockItem, HoppingAdapter.HoppingViewHolder>(
 
     object DiffCallback : DiffUtil.ItemCallback<StockItem>() {
         override fun areItemsTheSame(oldItem: StockItem, newItem: StockItem)
-            : Boolean = oldItem.id == newItem.id
+                : Boolean = oldItem.id == newItem.id
 
         override fun areContentsTheSame(oldItem: StockItem, newItem: StockItem)
-            : Boolean = oldItem == newItem
+                : Boolean = oldItem == newItem
     }
 }
