@@ -43,7 +43,11 @@ class HopStockFragment : Fragment() {
                             textInputText.removeSuffix("g").toInt()
                 })
             } else if (textInputText != "")
-                adapter.submitList(hopStartList.filter { it.stockName.contains(textInputText) })
+                adapter.submitList(
+                    hopStartList.filter {
+                        it.stockName.lowercase().contains(textInputText.lowercase())
+                    }
+                )
             else
                 adapter.submitList(hopStartList)
         }

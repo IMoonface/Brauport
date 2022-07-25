@@ -21,6 +21,7 @@ import com.example.brauportv2.ui.dialog.DialogStockFragment
 import com.example.brauportv2.ui.viewmodel.StockViewModel
 import com.example.brauportv2.ui.viewmodel.StockViewModelFactory
 import kotlinx.coroutines.launch
+import java.util.*
 
 class MaltStockFragment : Fragment() {
 
@@ -43,7 +44,11 @@ class MaltStockFragment : Fragment() {
                             textInputText.removeSuffix("g").toInt()
                 })
             } else if (textInputText != "")
-                adapter.submitList(maltStartList.filter { it.stockName.contains(textInputText) })
+                adapter.submitList(
+                    maltStartList.filter {
+                        it.stockName.lowercase().contains(textInputText.lowercase())
+                    }
+                )
             else
                 adapter.submitList(maltStartList)
         }

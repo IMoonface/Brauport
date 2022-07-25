@@ -19,6 +19,8 @@ import com.example.brauportv2.model.StockItemType
 import com.example.brauportv2.model.recipeModel.*
 import com.example.brauportv2.model.recipeModel.RecipeDataSource.recipeItem
 import com.example.brauportv2.model.recipeModel.RecipeDataSource.update
+import com.example.brauportv2.ui.dialog.DialogInstructionRecipeFragment
+import com.example.brauportv2.ui.dialog.DialogStockFragment
 import com.example.brauportv2.ui.viewmodel.RecipeViewModel
 import com.example.brauportv2.ui.viewmodel.RecipeViewModelFactory
 import kotlinx.coroutines.launch
@@ -81,7 +83,8 @@ class RecipeFragment : Fragment() {
         }
 
         binding.recipeInfoButton.setOnClickListener {
-
+            val dialog = DialogInstructionRecipeFragment()
+            dialog.show(childFragmentManager, "recipeInfoDialog")
         }
 
         binding.recipeTextInput.addTextChangedListener(textWatcher)

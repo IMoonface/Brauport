@@ -6,11 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
-import com.example.brauportv2.databinding.FragmentDialogInstructionStockBinding
+import com.example.brauportv2.databinding.FragmentDialogInstructionRecipeBinding
 
-class DialogInstructionStockFragment : DialogFragment() {
+class DialogInstructionRecipeFragment : DialogFragment() {
 
-    private var _binding: FragmentDialogInstructionStockBinding? = null
+    private var _binding: FragmentDialogInstructionRecipeBinding? = null
     private val binding get() = _binding!!
 
     override fun onStart() {
@@ -28,10 +28,10 @@ class DialogInstructionStockFragment : DialogFragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        _binding = FragmentDialogInstructionStockBinding
+        _binding = FragmentDialogInstructionRecipeBinding
             .inflate(inflater, container, false)
 
-        binding.instructionSBackButton.setOnClickListener {
+        binding.instructionRBackButton.setOnClickListener {
             dismiss()
         }
 

@@ -5,8 +5,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.brauportv2.R
-import com.example.brauportv2.databinding.FragmentBrewBinding
 import com.example.brauportv2.databinding.FragmentBrewHistoryBinding
 
 class BrewHistoryFragment : Fragment() {

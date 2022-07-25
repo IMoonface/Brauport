@@ -43,7 +43,11 @@ class YeastStockFragment : Fragment() {
                             textInputText.removeSuffix("g").toInt()
                 })
             } else if (textInputText != "")
-                adapter.submitList(yeastStartList.filter { it.stockName.contains(textInputText) })
+                adapter.submitList(
+                    yeastStartList.filter {
+                        it.stockName.lowercase().contains(textInputText.lowercase())
+                    }
+                )
             else
                 adapter.submitList(yeastStartList)
         }

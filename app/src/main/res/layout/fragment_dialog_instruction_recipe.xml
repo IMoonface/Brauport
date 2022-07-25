@@ -9,10 +9,10 @@
     tools:context=".ui.dialog.DialogInstructionStockFragment">
 
     <TextView
-        android:id="@+id/instruction_s_title"
+        android:id="@+id/instruction_r_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/instruction_stock"
+        android:text="@string/instruction_recipe"
         android:textColor="@color/appBars_color"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -20,19 +20,19 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ScrollView
-        android:id="@+id/instruction_s_scroll_view"
+        android:id="@+id/instruction_r_scroll_view"
         android:layout_width="wrap_content"
         android:layout_height="400dp"
         android:layout_marginTop="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/instruction_s_title">
+        app:layout_constraintTop_toBottomOf="@+id/instruction_r_title">
 
         <TextView
-            android:id="@+id/instruction_s_description"
+            android:id="@+id/instruction_r_description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/instruction_s_text"
+            android:text="@string/instruction_r_text"
             android:textAlignment="textStart"
             android:textColor="@color/appBars_color"
             android:textSize="20sp" />
@@ -40,7 +40,7 @@
     </ScrollView>
 
     <Button
-        android:id="@+id/instruction_s_back_button"
+        android:id="@+id/instruction_r_back_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -50,6 +50,6 @@
         app:cornerRadius="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/instruction_s_scroll_view" />
+        app:layout_constraintTop_toBottomOf="@+id/instruction_r_scroll_view" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
