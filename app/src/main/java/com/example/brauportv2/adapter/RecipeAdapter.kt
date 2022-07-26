@@ -34,12 +34,12 @@ class RecipeAdapter(
             onInspectClick(item)
         }
 
-        recipeDeleteButton.setOnClickListener {
-            onDeleteClick(item)
-        }
-
         root.setOnClickListener {
             onItemClick(item)
+        }
+
+        recipeDeleteButton.setOnClickListener {
+            onDeleteClick(item)
         }
     }
 

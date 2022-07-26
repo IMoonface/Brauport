@@ -60,7 +60,7 @@ class RecipeFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         _binding = FragmentRecipeBinding.inflate(inflater, container, false)
-        adapter = RecipeAdapter(this::onItemClick, this::onDeleteClick, this::onInspectClick)
+        adapter = RecipeAdapter(this::onInspectClick, this::onItemClick, this::onDeleteClick)
         binding.recipeRecyclerView.adapter = adapter
         lifecycleScope.launch {
             viewModel.allRecipeItems.collect { it ->

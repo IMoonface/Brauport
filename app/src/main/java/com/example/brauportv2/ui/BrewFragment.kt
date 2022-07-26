@@ -58,7 +58,6 @@ class BrewFragment : Fragment() {
             viewModel.allStockItems.collect { it -> stockStartList = it.map { it.toStockItem() } }
         }
 
-
         recipeItemList.forEach {
             spinnerOptions.add(it.recipeName)
         }
@@ -88,6 +87,7 @@ class BrewFragment : Fragment() {
             adapter.currentList.forEach {
                 finished = it.state
             }
+
             if (finished) {
                 val dialog = DialogCookingFragment(choosenRecipe)
                 dialog.show(childFragmentManager, "brewHistoryDialog")
@@ -109,15 +109,20 @@ class BrewFragment : Fragment() {
         binding.brewTimerStartButton.setOnClickListener {
             if (binding.brewTimerStartButton.text.equals("Start") &&
                 binding.brewTimerText.text != "Bitte Item anklicken!" &&
-                binding.brewTimerText.text != "Bitte Rezept erstellen!"
+                binding.brewTimerText.text != "Bitte Rezept erstellen!" && !startTimer
             ) {
                 startTimer = true
                 timerStart(milliFromItem)
-            } else if (binding.brewTimerText.text != "Bitte Item anklicken!" &&
+            } else if (binding.brewTimerStartButton.text.equals("Weiter") &&
+                binding.brewTimerText.text != "Bitte Item anklicken!" &&
                 binding.brewTimerText.text != "Bitte Rezept erstellen!"
             ) {
                 timerStart(milliLeft)
+                binding.brewTimerStartButton.text = "Start"
                 binding.brewTimerStopButton.text = "Stop"
+                startTimer = true
+            } else if (binding.brewTimerStartButton.text.equals("Start") && startTimer) {
+                Toast.makeText(context, "Der Timer läuft bereits!", Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -131,9 +136,7 @@ class BrewFragment : Fragment() {
                     binding.brewTimerStopButton.text = "Cancel"
                 } else if (binding.brewTimerText.text == "Bitte Item anklicken!")
                     Toast.makeText(
-                        context,
-                        "Es wurde noch keine Zeit ausgewählt!",
-                        Toast.LENGTH_SHORT
+                        context, "Es wurde noch keine Zeit ausgewählt!", Toast.LENGTH_SHORT
                     ).show()
                 else {
                     it.cancel()
@@ -168,14 +171,14 @@ class BrewFragment : Fragment() {
 
     @SuppressLint("SetTextI18n")
     private fun timerStart(timeInMilli: Long) {
-        binding.brewTimerText.text = (timeInMilli / (1000 * 60)).toString() + ":00"
+        binding.brewTimerText.text = minutes(timeInMilli) + ":00"
         if (startTimer) {
             countDownTimer = object : CountDownTimer((timeInMilli), 1000) {
                 override fun onTick(millisUntilFinished: Long) {
                     milliLeft = millisUntilFinished
-                    val min = (millisUntilFinished / (1000 * 60))
-                    val sec = ((millisUntilFinished / 1000) - min * 60)
-                    binding.brewTimerText.text = "$min:$sec"
+                    binding.brewTimerText.text = minutes(millisUntilFinished) +
+                            ":" +
+                            seconds(millisUntilFinished)
                 }
 
                 override fun onFinish() {
@@ -185,6 +188,24 @@ class BrewFragment : Fragment() {
                     startTimer = false
                 }
             }.start()
+        }
+    }
+
+    private fun minutes (millis : Long) : String {
+        if (millis / 60000 < 1) return "00"
+        if (millis / 60000 in 1..9) return "0" + (millis / 60000)
+        return "" + (millis / 60000)
+    }
+
+    private fun seconds (millis : Long) : String {
+        var millisSeconds : Long = millis
+        while (millisSeconds >= 60000) {
+            millisSeconds -= 60000
+        }
+        return when (millisSeconds/1000) {
+            in 0..0 -> "00"
+            in 1..9 -> "0" + + (millisSeconds / 1000)
+            else -> "" + millisSeconds/1000
         }
     }
 

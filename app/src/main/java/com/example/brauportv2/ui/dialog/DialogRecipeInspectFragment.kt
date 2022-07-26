@@ -62,6 +62,7 @@ class DialogRecipeInspectFragment(private val recipe: RecipeItem) : DialogFragme
 
         binding.inspectYeast.text = "Hefe: " +
                 recipe.yeast.stockName +
+                " " +
                 recipe.yeast.stockAmount +
                 "g"
 

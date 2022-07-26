@@ -18,7 +18,7 @@
         android:hint="@string/date_dummy_text"
         android:importantForAutofill="no"
         android:inputType="date"
-        android:maxLength="13"
+        android:maxLength="10"
         android:textColor="@color/appBars_color"
         android:textColorHint="#78909C"
         android:textSize="25sp"

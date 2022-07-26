@@ -59,11 +59,7 @@
         tools:layout="@layout/fragment_recipe">
         <action
             android:id="@+id/action_recipeFragment_to_recipeDetailsFragment"
-            app:destination="@id/recipe_details_fragment"
-            app:enterAnim="@anim/from_above"
-            app:exitAnim="@anim/to_below"
-            app:popEnterAnim="@anim/from_below"
-            app:popExitAnim="@anim/to_above" />
+            app:destination="@id/recipe_details_fragment" />
     </fragment>
     <fragment
         android:id="@+id/recipe_details_fragment"
