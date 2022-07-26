@@ -8,9 +8,13 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.brauportv2.databinding.CardBrewHistoryBinding
 import com.example.brauportv2.model.recipeModel.RecipeItem
+import com.example.brauportv2.ui.dialog.DialogCookingFragment
+import com.example.brauportv2.ui.dialog.DialogInstructionStockFragment
+import com.example.brauportv2.ui.dialog.DialogRecipeInspectFragment
 
-class BrewHistoryAdapter
-    : ListAdapter<RecipeItem, BrewHistoryAdapter.BrewHistoryViewHolder>(DiffCallback) {
+class BrewHistoryAdapter(
+    private val onInspectClick: (RecipeItem) -> Unit
+) : ListAdapter<RecipeItem, BrewHistoryAdapter.BrewHistoryViewHolder>(DiffCallback) {
 
     class BrewHistoryViewHolder(val binding: CardBrewHistoryBinding) :
         RecyclerView.ViewHolder(binding.root)
@@ -33,7 +37,11 @@ class BrewHistoryAdapter
             brewHistoryEndDate.text = "Ende der Gärung: " + item.endOfFermentation
 
             brewHistoryInspect.setOnClickListener {
-                //Todo: Dialog öffnen und Details anzeigen
+                onInspectClick(item)
+            }
+
+            root.setOnClickListener {
+
             }
         }
 

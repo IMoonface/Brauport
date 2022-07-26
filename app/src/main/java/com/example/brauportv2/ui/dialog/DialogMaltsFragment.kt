@@ -45,7 +45,6 @@ class DialogMaltsFragment : DialogFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         _binding = FragmentDialogMaltsBinding.inflate(inflater, container, false)
 
         adapter = RecipeStockAdapter(this::onItemAdd, this::onItemDelete)
@@ -71,8 +70,7 @@ class DialogMaltsFragment : DialogFragment() {
     }
 
     private fun onItemAdd(item: StockItem, amount: String) {
-        val maltListNA = recipeItem.maltList.map { it.toSNoAmount() }
-        if (maltListNA.contains(item.toSNoAmount()))
+        if (recipeItem.maltList.map { it.toSNoAmount() }.contains(item.toSNoAmount()))
             Toast.makeText(context, "Malz schon vorhanden!", Toast.LENGTH_SHORT).show()
         else {
             item.stockAmount = amount

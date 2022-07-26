@@ -30,12 +30,12 @@ class DialogRestFragment : DialogFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         _binding = FragmentDialogRestBinding.inflate(inflater, container, false)
 
         binding.restConfirmButton.setOnClickListener {
             val restTemp = binding.restTemp.text.toString()
             val restTime = binding.restTime.text.toString()
+
             if (restTemp == "" || restTemp == "")
                 Toast.makeText(context, "Bitte alle Felder ausfüllen!", Toast.LENGTH_SHORT).show()
             else {
@@ -48,8 +48,7 @@ class DialogRestFragment : DialogFragment() {
             if (recipeItem.restList.isEmpty()) {
                 Toast.makeText(context, "Keine Rast vorhanden!", Toast.LENGTH_SHORT).show()
             } else {
-                val index = recipeItem.restList.count() - 1
-                recipeItem.restList.removeAt(index)
+                recipeItem.restList.removeAt(recipeItem.restList.count() - 1)
                 Toast.makeText(context, "Rast wurde gelöscht!", Toast.LENGTH_SHORT).show()
             }
         }
@@ -59,5 +58,10 @@ class DialogRestFragment : DialogFragment() {
         }
 
         return binding.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

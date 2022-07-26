@@ -48,7 +48,6 @@ class BrewFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         _binding = FragmentBrewBinding.inflate(inflater, container, false)
 
         adapter = BrewAdapter(this::onItemClick)
@@ -90,7 +89,7 @@ class BrewFragment : Fragment() {
 
             if (finished) {
                 val dialog = DialogCookingFragment(choosenRecipe)
-                dialog.show(childFragmentManager, "brewHistoryDialog")
+                dialog.show(childFragmentManager, "cookingDialog")
 
                 if (dialog.abort)
                     Toast.makeText(

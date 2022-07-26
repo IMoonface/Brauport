@@ -16,6 +16,7 @@ import com.example.brauportv2.databinding.FragmentMaltStockBinding
 import com.example.brauportv2.mapper.toStockItem
 import com.example.brauportv2.model.StockItem
 import com.example.brauportv2.model.StockItemType
+import com.example.brauportv2.ui.TextWatchLogic.filterListForKeyword
 import com.example.brauportv2.ui.dialog.DialogInstructionStockFragment
 import com.example.brauportv2.ui.dialog.DialogStockFragment
 import com.example.brauportv2.ui.viewmodel.StockViewModel
@@ -27,29 +28,13 @@ class MaltStockFragment : Fragment() {
     private var _binding: FragmentMaltStockBinding? = null
     private val binding get() = _binding!!
     private lateinit var adapter: StockAdapter
-    private lateinit var maltStartList: List<StockItem>
+    private lateinit var startList: List<StockItem>
+
     private val textWatcher = object : TextWatcher {
         override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
-
         override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
-
         override fun afterTextChanged(p0: Editable?) {
-
-            val textInputText = binding.maltTextInput.text.toString()
-
-            if (textInputText != "" && textInputText.endsWith("g")) {
-                adapter.submitList(maltStartList.filter {
-                    it.stockAmount.removeSuffix("g").toInt() <=
-                            textInputText.removeSuffix("g").toInt()
-                })
-            } else if (textInputText != "")
-                adapter.submitList(
-                    maltStartList.filter {
-                        it.stockName.lowercase().contains(textInputText.lowercase())
-                    }
-                )
-            else
-                adapter.submitList(maltStartList)
+            filterListForKeyword(binding.maltTextInput.text.toString(), adapter, startList)
         }
     }
 
@@ -61,20 +46,18 @@ class MaltStockFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         _binding = FragmentMaltStockBinding
             .inflate(inflater, container, false)
 
         adapter = StockAdapter(this::onItemClick, this::onDeleteClick)
 
         binding.maltRecyclerView.adapter = adapter
-        //binding.maltRecyclerView.hasFixedSize()
 
         lifecycleScope.launch {
             viewModel.allStockItems.collect { it ->
-                maltStartList = it.map { it.toStockItem() }
+                startList = it.map { it.toStockItem() }
                     .filter { it.itemType == StockItemType.MALT.ordinal }
-                adapter.submitList(maltStartList)
+                adapter.submitList(startList)
             }
         }
 

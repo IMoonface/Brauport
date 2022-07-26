@@ -40,7 +40,9 @@
         <entry key="..\:/Users/marc-/AndroidStudioProjects/BrauportV2/app/src/main/res/layout/dialog_stock.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/marc-/AndroidStudioProjects/BrauportV2/app/src/main/res/layout/fragment_brew.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/marc-/AndroidStudioProjects/BrauportV2/app/src/main/res/layout/fragment_brew_history.xml" value="0.1461499493414387" />
+        <entry key="..\:/Users/marc-/AndroidStudioProjects/BrauportV2/app/src/main/res/layout/fragment_dialof_history_inspect.xml" value="0.17028985507246377" />
         <entry key="..\:/Users/marc-/AndroidStudioProjects/BrauportV2/app/src/main/res/layout/fragment_dialog_cooking.xml" value="0.3333333333333333" />
+        <entry key="..\:/Users/marc-/AndroidStudioProjects/BrauportV2/app/src/main/res/layout/fragment_dialog_hopping.xml" value="0.17028985507246377" />
         <entry key="..\:/Users/marc-/AndroidStudioProjects/BrauportV2/app/src/main/res/layout/fragment_dialog_hops.xml" value="0.30052083333333335" />
         <entry key="..\:/Users/marc-/AndroidStudioProjects/BrauportV2/app/src/main/res/layout/fragment_dialog_instruction_recipe.xml" value="0.1461499493414387" />
         <entry key="..\:/Users/marc-/AndroidStudioProjects/BrauportV2/app/src/main/res/layout/fragment_dialog_instruction_stock.xml" value="0.1" />

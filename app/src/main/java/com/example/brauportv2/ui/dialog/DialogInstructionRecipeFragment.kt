@@ -27,7 +27,6 @@ class DialogInstructionRecipeFragment : DialogFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         _binding = FragmentDialogInstructionRecipeBinding
             .inflate(inflater, container, false)
 
@@ -36,5 +35,10 @@ class DialogInstructionRecipeFragment : DialogFragment() {
         }
 
         return binding.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

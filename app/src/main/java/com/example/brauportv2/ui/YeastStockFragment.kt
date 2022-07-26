@@ -16,6 +16,7 @@ import com.example.brauportv2.databinding.FragmentYeastStockBinding
 import com.example.brauportv2.mapper.toStockItem
 import com.example.brauportv2.model.StockItem
 import com.example.brauportv2.model.StockItemType
+import com.example.brauportv2.ui.TextWatchLogic.filterListForKeyword
 import com.example.brauportv2.ui.dialog.DialogInstructionStockFragment
 import com.example.brauportv2.ui.dialog.DialogStockFragment
 import com.example.brauportv2.ui.viewmodel.StockViewModel
@@ -27,29 +28,14 @@ class YeastStockFragment : Fragment() {
     private var _binding: FragmentYeastStockBinding? = null
     private val binding get() = _binding!!
     private lateinit var adapter: StockAdapter
-    private lateinit var yeastStartList: List<StockItem>
+    private lateinit var startList: List<StockItem>
     private val textWatcher = object : TextWatcher {
         override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
 
         override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
 
         override fun afterTextChanged(p0: Editable?) {
-
-            val textInputText = binding.yeastTextInput.text.toString()
-
-            if (textInputText != "" && textInputText.endsWith("g")) {
-                adapter.submitList(yeastStartList.filter {
-                    it.stockAmount.removeSuffix("g").toInt() <=
-                            textInputText.removeSuffix("g").toInt()
-                })
-            } else if (textInputText != "")
-                adapter.submitList(
-                    yeastStartList.filter {
-                        it.stockName.lowercase().contains(textInputText.lowercase())
-                    }
-                )
-            else
-                adapter.submitList(yeastStartList)
+            filterListForKeyword(binding.yeastTextInput.text.toString(), adapter, startList)
         }
     }
 
@@ -61,18 +47,16 @@ class YeastStockFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         _binding = FragmentYeastStockBinding
             .inflate(inflater, container, false)
         adapter = StockAdapter(this::onItemClick, this::onDeleteClick)
         binding.yeastRecyclerView.adapter = adapter
-        //binding.yeastRecyclerView.hasFixedSize()
 
         lifecycleScope.launch {
             viewModel.allStockItems.collect { it ->
-                yeastStartList = it.map { it.toStockItem() }
+                startList = it.map { it.toStockItem() }
                     .filter { it.itemType == StockItemType.YEAST.ordinal }
-                adapter.submitList(yeastStartList)
+                adapter.submitList(startList)
             }
         }
 

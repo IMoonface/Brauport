@@ -30,7 +30,6 @@ class DialogMainBrewFragment : DialogFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         _binding = FragmentDialogMainBrewBinding.inflate(inflater, container, false)
 
         binding.mainBrewConfirmButton.setOnClickListener {
@@ -50,5 +49,10 @@ class DialogMainBrewFragment : DialogFragment() {
         }
 
         return binding.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

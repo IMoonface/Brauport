@@ -72,6 +72,24 @@
                 android:text="@string/main_brew"
                 android:textSize="20sp" />
 
+            <TextView
+                android:id="@+id/inspect_date_of_comp"
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:maxWidth="360dp"
+                android:text="@string/date_of_completion"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/inspect_end_of_ferm"
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:maxWidth="360dp"
+                android:text="@string/end_of_fermentation"
+                android:textSize="20sp" />
+
         </LinearLayout>
 
     </ScrollView>

@@ -34,7 +34,6 @@ class DialogRecipeInspectFragment(private val recipe: RecipeItem) : DialogFragme
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         _binding = FragmentDialogRecipeInspectBinding.inflate(inflater, container, false)
 
         recipe.maltList.forEach {
@@ -71,10 +70,20 @@ class DialogRecipeInspectFragment(private val recipe: RecipeItem) : DialogFragme
                 " und Nachguss mit " +
                 recipe.mainBrew.secondBrew
 
+        if (recipe.dateOfCompletion != "" && recipe.endOfFermentation != "") {
+            binding.inspectDateOfComp.text = "Fertigstellungsdatum: " + recipe.dateOfCompletion
+            binding.inspectEndOfFerm.text = "Ende der Gärung: " + recipe.endOfFermentation
+        }
+
         binding.inspectBackButton.setOnClickListener {
             dismiss()
         }
 
         return binding.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

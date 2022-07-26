@@ -51,7 +51,8 @@
     <string name="done_text">Fertig</string>
     <string name="delete_hopping_text">Letze Hopfengabe entfernen</string>
     <string name="make_recipe_text">Bitte Rezept erstellen!</string>
-    <string name="title_activity_start">StartActivity</string>
     <string name="date_dummy_text">DD/MM/YY</string>
     <string name="recipe_inspect_name_text">Rezeptname</string>
+    <string name="date_of_completion">Fertigstellungsdatum</string>
+    <string name="end_of_fermentation">Ende der Gärung</string>
 </resources>

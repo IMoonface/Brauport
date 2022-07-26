@@ -12,6 +12,7 @@ import com.example.brauportv2.adapter.BrewHistoryAdapter
 import com.example.brauportv2.databinding.FragmentBrewHistoryBinding
 import com.example.brauportv2.mapper.toRecipeItem
 import com.example.brauportv2.model.recipeModel.RecipeItem
+import com.example.brauportv2.ui.dialog.DialogRecipeInspectFragment
 import com.example.brauportv2.ui.viewmodel.RecipeViewModel
 import com.example.brauportv2.ui.viewmodel.RecipeViewModelFactory
 import kotlinx.coroutines.launch
@@ -22,6 +23,7 @@ class BrewHistoryFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var adapter: BrewHistoryAdapter
     private lateinit var brewHistoryList: List<RecipeItem>
+
     private val viewModel: RecipeViewModel by activityViewModels {
         RecipeViewModelFactory((activity?.application as BaseApplication).recipeDatabase.recipeDao())
     }
@@ -33,7 +35,7 @@ class BrewHistoryFragment : Fragment() {
         // Inflate the layout for this fragment
         _binding = FragmentBrewHistoryBinding.inflate(inflater, container, false)
 
-        adapter = BrewHistoryAdapter()
+        adapter = BrewHistoryAdapter(this::onInspectItem)
         binding.brewHistoryRecyclerView.adapter = adapter
 
         lifecycleScope.launch {
@@ -45,5 +47,24 @@ class BrewHistoryFragment : Fragment() {
         }
 
         return binding.root
+    }
+
+    private fun onInspectItem(item: RecipeItem) {
+        val dialog = DialogRecipeInspectFragment(item)
+        dialog.show(childFragmentManager, "cookingDialog")
+    }
+
+    private fun onItemClick(item: RecipeItem) {
+        viewModel.updateRecipe(
+            item.rId,
+            item.recipeName,
+            item.maltList,
+            item.restList,
+            item.hoppingList,
+            item.yeast,
+            item.mainBrew,
+            item.endOfFermentation,
+            item.dateOfCompletion
+        )
     }
 }

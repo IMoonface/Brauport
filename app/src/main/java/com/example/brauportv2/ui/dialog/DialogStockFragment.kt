@@ -16,7 +16,7 @@ import com.example.brauportv2.ui.viewmodel.StockViewModelFactory
 import java.util.*
 
 class DialogStockFragment(
-    private val stockItemId: Int,
+    private val stockId: Int,
     private val itemType: Int,
     private val update: Boolean
 ) : DialogFragment() {
@@ -52,9 +52,8 @@ class DialogStockFragment(
                 Toast.makeText(context, "Bitte alle Felder ausfüllen!", Toast.LENGTH_SHORT)
                     .show()
             } else {
-                if (update) viewModel.updateStock(
-                    stockItemId, itemType, itemTitle, itemAmount + "g"
-                )
+                if (update)
+                    viewModel.updateStock(stockId, itemType, itemTitle, itemAmount + "g")
                 else viewModel.addStock(
                     StockItem(
                         UUID.randomUUID().hashCode(),

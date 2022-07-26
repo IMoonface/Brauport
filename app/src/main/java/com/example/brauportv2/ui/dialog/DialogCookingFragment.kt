@@ -14,15 +14,15 @@ import com.example.brauportv2.model.recipeModel.RecipeItem
 import com.example.brauportv2.ui.viewmodel.RecipeViewModel
 import com.example.brauportv2.ui.viewmodel.RecipeViewModelFactory
 
-class DialogCookingFragment(
-    private val recipe: RecipeItem
-) : DialogFragment() {
+class DialogCookingFragment(private val recipe: RecipeItem) : DialogFragment() {
 
     private var _binding: FragmentDialogCookingBinding? = null
     private val binding get() = _binding!!
     var abort = false
+
     private val viewModel: RecipeViewModel by activityViewModels {
-        RecipeViewModelFactory((activity?.application as BaseApplication).recipeDatabase.recipeDao())
+        RecipeViewModelFactory((activity?.application as BaseApplication)
+            .recipeDatabase.recipeDao())
     }
 
     override fun onStart() {
@@ -39,7 +39,6 @@ class DialogCookingFragment(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         _binding = FragmentDialogCookingBinding.inflate(inflater, container, false)
 
         binding.brewHistoryConfirmButton.setOnClickListener {
@@ -62,6 +61,11 @@ class DialogCookingFragment(
         }
 
         return binding.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     private fun onItemAdd(dateOfCompletion: String, endOfFermentation: String) {

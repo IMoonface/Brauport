@@ -16,6 +16,7 @@ import com.example.brauportv2.databinding.FragmentHopStockBinding
 import com.example.brauportv2.mapper.toStockItem
 import com.example.brauportv2.model.StockItem
 import com.example.brauportv2.model.StockItemType
+import com.example.brauportv2.ui.TextWatchLogic.filterListForKeyword
 import com.example.brauportv2.ui.dialog.DialogInstructionStockFragment
 import com.example.brauportv2.ui.dialog.DialogStockFragment
 import com.example.brauportv2.ui.viewmodel.StockViewModel
@@ -27,29 +28,13 @@ class HopStockFragment : Fragment() {
     private var _binding: FragmentHopStockBinding? = null
     private val binding get() = _binding!!
     private lateinit var adapter: StockAdapter
-    private lateinit var hopStartList: List<StockItem>
+    private lateinit var startList: List<StockItem>
+
     private val textWatcher = object : TextWatcher {
         override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
-
         override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
-
         override fun afterTextChanged(p0: Editable?) {
-
-            val textInputText = binding.hopTextInput.text.toString()
-
-            if (textInputText != "" && textInputText.endsWith("g")) {
-                adapter.submitList(hopStartList.filter {
-                    it.stockAmount.removeSuffix("g").toInt() <=
-                            textInputText.removeSuffix("g").toInt()
-                })
-            } else if (textInputText != "")
-                adapter.submitList(
-                    hopStartList.filter {
-                        it.stockName.lowercase().contains(textInputText.lowercase())
-                    }
-                )
-            else
-                adapter.submitList(hopStartList)
+            filterListForKeyword(binding.hopTextInput.text.toString(), adapter, startList)
         }
     }
 
@@ -61,7 +46,6 @@ class HopStockFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         _binding = FragmentHopStockBinding
             .inflate(inflater, container, false)
         adapter = StockAdapter(this::onItemClick, this::onDeleteClick)
@@ -70,9 +54,9 @@ class HopStockFragment : Fragment() {
 
         lifecycleScope.launch {
             viewModel.allStockItems.collect { it ->
-                hopStartList = it.map { it.toStockItem() }
+                startList = it.map { it.toStockItem() }
                     .filter { it.itemType == StockItemType.HOP.ordinal }
-                adapter.submitList(hopStartList)
+                adapter.submitList(startList)
             }
         }
 
