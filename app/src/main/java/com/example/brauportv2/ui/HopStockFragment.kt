@@ -16,7 +16,7 @@ import com.example.brauportv2.databinding.FragmentHopStockBinding
 import com.example.brauportv2.mapper.toStockItem
 import com.example.brauportv2.model.StockItem
 import com.example.brauportv2.model.StockItemType
-import com.example.brauportv2.ui.TextWatchLogic.filterListForKeyword
+import com.example.brauportv2.ui.`object`.TextWatcherLogic.filterListForKeyword
 import com.example.brauportv2.ui.dialog.DialogInstructionStockFragment
 import com.example.brauportv2.ui.dialog.DialogStockFragment
 import com.example.brauportv2.ui.viewmodel.StockViewModel

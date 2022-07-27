@@ -1,9 +1,9 @@
-package com.example.brauportv2.ui
+package com.example.brauportv2.ui.`object`
 
 import com.example.brauportv2.adapter.StockAdapter
 import com.example.brauportv2.model.StockItem
 
-object TextWatchLogic {
+object TextWatcherLogic {
     fun filterListForKeyword(text: String, adapter: StockAdapter, stockList: List<StockItem>) {
         if (text != "" && text.endsWith("g")) {
             adapter.submitList(stockList.filter {

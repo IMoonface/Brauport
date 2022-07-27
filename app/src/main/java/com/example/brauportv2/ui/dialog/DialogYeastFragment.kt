@@ -15,9 +15,9 @@ import com.example.brauportv2.databinding.FragmentDialogYeastsBinding
 import com.example.brauportv2.mapper.toStockItem
 import com.example.brauportv2.model.StockItem
 import com.example.brauportv2.model.StockItemType
-import com.example.brauportv2.model.recipeModel.RecipeDataSource.recipeItem
-import com.example.brauportv2.model.recipeModel.RecipeDataSource.startYeast
 import com.example.brauportv2.model.recipeModel.SNoAmount
+import com.example.brauportv2.ui.`object`.RecipeDataSource.recipeItem
+import com.example.brauportv2.ui.`object`.RecipeDataSource.startYeast
 import com.example.brauportv2.ui.viewmodel.StockViewModel
 import com.example.brauportv2.ui.viewmodel.StockViewModelFactory
 import kotlinx.coroutines.launch

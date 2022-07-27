@@ -14,7 +14,7 @@ import com.example.brauportv2.adapter.HoppingAdapter
 import com.example.brauportv2.databinding.FragmentDialogHoppingBinding
 import com.example.brauportv2.mapper.toStockItem
 import com.example.brauportv2.model.StockItemType
-import com.example.brauportv2.model.recipeModel.RecipeDataSource.recipeItem
+import com.example.brauportv2.ui.`object`.RecipeDataSource.recipeItem
 import com.example.brauportv2.ui.viewmodel.StockViewModel
 import com.example.brauportv2.ui.viewmodel.StockViewModelFactory
 import kotlinx.coroutines.launch
@@ -24,6 +24,7 @@ class DialogHoppingFragment : DialogFragment() {
     private var _binding: FragmentDialogHoppingBinding? = null
     private val binding get() = _binding!!
     private lateinit var adapter: HoppingAdapter
+
     private val viewModel: StockViewModel by activityViewModels {
         StockViewModelFactory((activity?.application as BaseApplication).stockDatabase.stockDao())
     }
@@ -80,8 +81,8 @@ class DialogHoppingFragment : DialogFragment() {
         if (newTime == "")
             Toast.makeText(context, "Bitte Zeit angeben!", Toast.LENGTH_SHORT).show()
         else {
-            adapter.newhopsList.hoppingTime = newTime
-            recipeItem.hoppingList.add(adapter.newhopsList)
+            adapter.hopping.hoppingTime = newTime
+            recipeItem.hoppingList.add(adapter.hopping)
             Toast.makeText(context, "Hopfengabe wurde hinzugefügt!", Toast.LENGTH_SHORT).show()
         }
     }

@@ -18,10 +18,10 @@ import com.example.brauportv2.model.StockItem
 import com.example.brauportv2.model.StockItemType
 import com.example.brauportv2.model.recipeModel.Hopping
 import com.example.brauportv2.model.recipeModel.MainBrew
-import com.example.brauportv2.model.recipeModel.RecipeDataSource.recipeItem
-import com.example.brauportv2.model.recipeModel.RecipeDataSource.update
 import com.example.brauportv2.model.recipeModel.RecipeItem
 import com.example.brauportv2.model.recipeModel.Rest
+import com.example.brauportv2.ui.`object`.RecipeDataSource.recipeItem
+import com.example.brauportv2.ui.`object`.RecipeDataSource.update
 import com.example.brauportv2.ui.dialog.DialogInstructionRecipeFragment
 import com.example.brauportv2.ui.dialog.DialogRecipeInspectFragment
 import com.example.brauportv2.ui.viewmodel.RecipeViewModel

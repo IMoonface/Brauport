@@ -15,7 +15,7 @@ import com.example.brauportv2.model.recipeModel.Hopping
 class HoppingAdapter : ListAdapter<StockItem, HoppingAdapter.HoppingViewHolder>(DiffCallback) {
 
     lateinit var context: Context
-    var newhopsList: Hopping = Hopping(emptyList<StockItem>().toMutableList(), "")
+    var hopping: Hopping = Hopping(emptyList<StockItem>().toMutableList(), "")
 
     class HoppingViewHolder(val binding: CardRecipeStockBinding) :
         RecyclerView.ViewHolder(binding.root)
@@ -41,23 +41,23 @@ class HoppingAdapter : ListAdapter<StockItem, HoppingAdapter.HoppingViewHolder>(
 
             if (newAmount == "")
                 Toast.makeText(context, "Bitte Menge angeben!", Toast.LENGTH_SHORT).show()
-            else if (newhopsList.hopsList.map { it.toSNoAmount() }.contains(item.toSNoAmount())) {
-                Toast.makeText(context, "Hopfen ist schon vorhanden!", Toast.LENGTH_SHORT).show()
+            else if (hopping.hopsList.map { it.toSNoAmount() }.contains(item.toSNoAmount())) {
+                Toast.makeText(context, "Hopfen ist schon vorhanden!", Toast.LENGTH_SHORT)
+                    .show()
             } else {
                 item.stockAmount = newAmount
-                newhopsList.hopsList.add(item)
-                Toast.makeText(context, "Hopfen wurde hinzugefügt!", Toast.LENGTH_SHORT).show()
+                hopping.hopsList.add(item)
+                Toast.makeText(context, "Hopfen wurde hinzugefügt!", Toast.LENGTH_SHORT)
+                    .show()
             }
         }
 
         rStockItemDelete.setOnClickListener {
-            if (newhopsList.hopsList == emptyList<StockItem>().toMutableList()) {
+            if (hopping.hopsList == emptyList<StockItem>().toMutableList()) {
                 Toast.makeText(context, "Kein Hopfen vorhanden!", Toast.LENGTH_SHORT).show()
             } else {
-                val index = newhopsList.hopsList.map {
-                    it.toSNoAmount()
-                }.indexOf(item.toSNoAmount())
-                newhopsList.hopsList.removeAt(index)
+                val index = hopping.hopsList.map { it.toSNoAmount() }.indexOf(item.toSNoAmount())
+                hopping.hopsList.removeAt(index)
                 Toast.makeText(context, "Hopfen wurde entfernt!", Toast.LENGTH_SHORT).show()
             }
         }

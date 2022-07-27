@@ -11,7 +11,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.brauportv2.BaseApplication
 import com.example.brauportv2.databinding.FragmentHomeBinding
 import com.example.brauportv2.mapper.toRecipeItem
-import com.example.brauportv2.model.recipeModel.RecipeDataSource.recipeItemList
+import com.example.brauportv2.ui.`object`.RecipeDataSource.recipeItemList
 import com.example.brauportv2.ui.viewmodel.RecipeViewModel
 import com.example.brauportv2.ui.viewmodel.RecipeViewModelFactory
 import kotlinx.coroutines.launch

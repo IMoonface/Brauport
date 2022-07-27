@@ -49,9 +49,7 @@ class RecipeStockAdapter(
                     onItemClick(item, rStockItemAmountInput.text.toString())
             }
 
-            rStockItemDelete.setOnClickListener {
-                onDeleteClick(item.toSNoAmount())
-            }
+            rStockItemDelete.setOnClickListener { onDeleteClick(item.toSNoAmount()) }
         }
 
     override fun getItemViewType(position: Int): Int {

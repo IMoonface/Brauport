@@ -13,6 +13,8 @@ import com.example.brauportv2.databinding.FragmentDialogCookingBinding
 import com.example.brauportv2.model.recipeModel.RecipeItem
 import com.example.brauportv2.ui.viewmodel.RecipeViewModel
 import com.example.brauportv2.ui.viewmodel.RecipeViewModelFactory
+import java.text.SimpleDateFormat
+import java.util.*
 
 class DialogCookingFragment(private val recipe: RecipeItem) : DialogFragment() {
 
@@ -42,8 +44,8 @@ class DialogCookingFragment(private val recipe: RecipeItem) : DialogFragment() {
         _binding = FragmentDialogCookingBinding.inflate(inflater, container, false)
 
         binding.brewHistoryConfirmButton.setOnClickListener {
-            //TODO: Datum abfragen
-            val dateOfCompletion = "1"
+            val dateOfCompletion = SimpleDateFormat("dd/mm/yyyy", Locale.getDefault())
+                .format(Calendar.getInstance().time)
             val endOfFermentation = binding.brewHistoryDate.text.toString()
 
             if (dateOfCompletion != "" && endOfFermentation != "") {

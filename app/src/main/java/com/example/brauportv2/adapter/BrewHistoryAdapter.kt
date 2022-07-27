@@ -8,9 +8,6 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.brauportv2.databinding.CardBrewHistoryBinding
 import com.example.brauportv2.model.recipeModel.RecipeItem
-import com.example.brauportv2.ui.dialog.DialogCookingFragment
-import com.example.brauportv2.ui.dialog.DialogInstructionStockFragment
-import com.example.brauportv2.ui.dialog.DialogRecipeInspectFragment
 
 class BrewHistoryAdapter(
     private val onInspectClick: (RecipeItem) -> Unit
@@ -36,9 +33,7 @@ class BrewHistoryAdapter(
             brewHistoryTitle.text = item.recipeName
             brewHistoryEndDate.text = "Ende der Gärung: " + item.endOfFermentation
 
-            brewHistoryInspect.setOnClickListener {
-                onInspectClick(item)
-            }
+            brewHistoryInspect.setOnClickListener { onInspectClick(item) }
 
             root.setOnClickListener {
 
