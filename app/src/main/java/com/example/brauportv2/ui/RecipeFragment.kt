@@ -20,10 +20,10 @@ import com.example.brauportv2.model.recipeModel.Hopping
 import com.example.brauportv2.model.recipeModel.MainBrew
 import com.example.brauportv2.model.recipeModel.RecipeItem
 import com.example.brauportv2.model.recipeModel.Rest
-import com.example.brauportv2.ui.objects.RecipeDataSource.recipeItem
-import com.example.brauportv2.ui.objects.RecipeDataSource.update
 import com.example.brauportv2.ui.dialog.DialogInstructionRecipeFragment
 import com.example.brauportv2.ui.dialog.DialogRecipeInspectFragment
+import com.example.brauportv2.ui.objects.RecipeDataSource.recipeItem
+import com.example.brauportv2.ui.objects.RecipeDataSource.update
 import com.example.brauportv2.ui.viewmodel.RecipeViewModel
 import com.example.brauportv2.ui.viewmodel.RecipeViewModelFactory
 import kotlinx.coroutines.launch

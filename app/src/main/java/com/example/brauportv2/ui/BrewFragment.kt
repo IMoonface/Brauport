@@ -20,10 +20,10 @@ import com.example.brauportv2.mapper.toStockItem
 import com.example.brauportv2.model.BrewItem
 import com.example.brauportv2.model.StockItem
 import com.example.brauportv2.model.recipeModel.RecipeItem
-import com.example.brauportv2.ui.objects.RecipeDataSource.recipeItemList
-import com.example.brauportv2.ui.objects.StringCreator.createStringList
 import com.example.brauportv2.ui.dialog.DialogCookingFragment
 import com.example.brauportv2.ui.dialog.DialogQuestionFragment
+import com.example.brauportv2.ui.objects.RecipeDataSource.recipeItemList
+import com.example.brauportv2.ui.objects.StringCreator.createStringList
 import com.example.brauportv2.ui.objects.TextWatcherLogic.startTimer
 import com.example.brauportv2.ui.viewmodel.StockViewModel
 import com.example.brauportv2.ui.viewmodel.StockViewModelFactory
@@ -91,7 +91,8 @@ class BrewFragment : Fragment() {
             }
 
             if (finished) {
-                val dialog = DialogCookingFragment(false, chosenRecipe, this::onDialogCookingDismiss)
+                val dialog =
+                    DialogCookingFragment(false, chosenRecipe, this::onDialogCookingDismiss)
                 dialog.show(childFragmentManager, "cookingDialog")
             } else
                 Toast.makeText(context, "Es sind noch Schritte offen", Toast.LENGTH_SHORT)
@@ -223,14 +224,14 @@ class BrewFragment : Fragment() {
         )
     }
 
-    private fun calcForShortage(item: StockItem) : Boolean {
+    private fun calcForShortage(item: StockItem): Boolean {
         val recipeAmount = item.stockAmount.substringBefore("g").toInt()
         val index = stockStartList.map { it.toSNoAmount() }.indexOf(item.toSNoAmount())
         val databaseAmount = stockStartList[index].stockAmount.substringBefore("g").toInt()
         return databaseAmount - recipeAmount <= 0
     }
 
-    private fun proveForNegAmount(recipeItem: RecipeItem) : Boolean {
+    private fun proveForNegAmount(recipeItem: RecipeItem): Boolean {
         var possible = true
         recipeItem.maltList.forEach { malt ->
             if (!calcForShortage(malt))

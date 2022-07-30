@@ -14,6 +14,10 @@ fun StockItem.toStockItemData(): StockItemData {
     return StockItemData(id, itemType, stockName, stockAmount)
 }
 
+fun StockItem.toSNoAmount(): SNoAmount {
+    return SNoAmount(stockName, itemType)
+}
+
 fun RecipeItemData.toRecipeItem(): RecipeItem {
     return RecipeItem(
         rId,
@@ -40,8 +44,4 @@ fun RecipeItem.toRecipeItemData(): RecipeItemData {
         dateOfCompletion,
         endOfFermentation
     )
-}
-
-fun StockItem.toSNoAmount(): SNoAmount {
-    return SNoAmount(stockName, itemType)
 }

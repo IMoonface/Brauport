@@ -57,4 +57,9 @@ class DialogQuestionFragment(
         super.onDismiss(dialog)
         onDialogQuestionDismiss(abort, subtract)
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }
