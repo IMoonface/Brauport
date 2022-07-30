@@ -6,10 +6,7 @@ import androidx.room.Index
 import androidx.room.PrimaryKey
 import com.example.brauportv2.model.StockItem
 
-@Entity(
-    tableName = "recipe_database",
-    indices = [Index(value = ["recipeName"], unique = true)]
-)
+@Entity(tableName = "recipe_database")
 data class RecipeItemData(
     @PrimaryKey
     val rId: Int,

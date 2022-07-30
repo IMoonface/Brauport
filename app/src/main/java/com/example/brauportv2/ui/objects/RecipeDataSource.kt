@@ -1,4 +1,4 @@
-package com.example.brauportv2.ui.`object`
+package com.example.brauportv2.ui.objects
 
 import com.example.brauportv2.model.StockItem
 import com.example.brauportv2.model.StockItemType

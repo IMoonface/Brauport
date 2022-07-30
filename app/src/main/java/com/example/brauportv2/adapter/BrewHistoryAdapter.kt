@@ -10,7 +10,8 @@ import com.example.brauportv2.databinding.CardBrewHistoryBinding
 import com.example.brauportv2.model.recipeModel.RecipeItem
 
 class BrewHistoryAdapter(
-    private val onInspectClick: (RecipeItem) -> Unit
+    private val onInspectClick: (RecipeItem) -> Unit,
+    private val onItemClick: (RecipeItem) -> Unit
 ) : ListAdapter<RecipeItem, BrewHistoryAdapter.BrewHistoryViewHolder>(DiffCallback) {
 
     class BrewHistoryViewHolder(val binding: CardBrewHistoryBinding) :
@@ -36,7 +37,7 @@ class BrewHistoryAdapter(
             brewHistoryInspect.setOnClickListener { onInspectClick(item) }
 
             root.setOnClickListener {
-
+                onItemClick(item)
             }
         }
 

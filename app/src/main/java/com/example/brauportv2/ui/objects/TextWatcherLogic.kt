@@ -1,9 +1,12 @@
-package com.example.brauportv2.ui.`object`
+package com.example.brauportv2.ui.objects
 
 import com.example.brauportv2.adapter.StockAdapter
 import com.example.brauportv2.model.StockItem
 
 object TextWatcherLogic {
+
+    var startTimer = false
+
     fun filterListForKeyword(text: String, adapter: StockAdapter, stockList: List<StockItem>) {
         if (text != "" && text.endsWith("g")) {
             adapter.submitList(stockList.filter {

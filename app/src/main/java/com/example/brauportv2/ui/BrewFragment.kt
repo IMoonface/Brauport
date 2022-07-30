@@ -20,9 +20,11 @@ import com.example.brauportv2.mapper.toStockItem
 import com.example.brauportv2.model.BrewItem
 import com.example.brauportv2.model.StockItem
 import com.example.brauportv2.model.recipeModel.RecipeItem
-import com.example.brauportv2.ui.`object`.RecipeDataSource.recipeItemList
-import com.example.brauportv2.ui.`object`.StringCreator.createStringList
+import com.example.brauportv2.ui.objects.RecipeDataSource.recipeItemList
+import com.example.brauportv2.ui.objects.StringCreator.createStringList
 import com.example.brauportv2.ui.dialog.DialogCookingFragment
+import com.example.brauportv2.ui.dialog.DialogQuestionFragment
+import com.example.brauportv2.ui.objects.TextWatcherLogic.startTimer
 import com.example.brauportv2.ui.viewmodel.StockViewModel
 import com.example.brauportv2.ui.viewmodel.StockViewModelFactory
 import kotlinx.coroutines.launch
@@ -38,8 +40,7 @@ class BrewFragment : Fragment() {
     private lateinit var stockStartList: List<StockItem>
     private var milliLeft: Long = 0
     private var milliFromItem: Long = 0
-    private var startTimer = false
-    private var possible = true
+    private var withSubtract = true
 
     private val viewModel: StockViewModel by activityViewModels {
         StockViewModelFactory((activity?.application as BaseApplication).stockDatabase.stockDao())
@@ -73,13 +74,13 @@ class BrewFragment : Fragment() {
                 if (proveForNegAmount(chosenRecipe)) {
                     adapter.submitList(createStringList(chosenRecipe))
                 } else {
-                    //TODO Dialog öffnen und fragen ob man trotzdem ausführen möchte, obwohl der Bestand negativ wird
+                    val dialog = DialogQuestionFragment(this@BrewFragment::onDialogQuestionDismiss)
+                    dialog.show(childFragmentManager, "questionDialog")
                 }
-
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
-
+                binding.brewTimerText.text = "Bitte Rezept erstellen!"
             }
         }
 
@@ -90,18 +91,8 @@ class BrewFragment : Fragment() {
             }
 
             if (finished) {
-                val dialog = DialogCookingFragment(chosenRecipe)
+                val dialog = DialogCookingFragment(false, chosenRecipe, this::onDialogCookingDismiss)
                 dialog.show(childFragmentManager, "cookingDialog")
-
-                if (dialog.abort)
-                    Toast.makeText(
-                        context,
-                        "Rezept wurde nicht abgeschlossen",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                else
-                    updateDatabase(chosenRecipe)
-
             } else
                 Toast.makeText(context, "Es sind noch Schritte offen", Toast.LENGTH_SHORT)
                     .show()
@@ -232,26 +223,55 @@ class BrewFragment : Fragment() {
         )
     }
 
-    private fun calcForShortage(item: StockItem) {
+    private fun calcForShortage(item: StockItem) : Boolean {
         val recipeAmount = item.stockAmount.substringBefore("g").toInt()
         val index = stockStartList.map { it.toSNoAmount() }.indexOf(item.toSNoAmount())
         val databaseAmount = stockStartList[index].stockAmount.substringBefore("g").toInt()
-        possible = databaseAmount - recipeAmount >= 0
+        return databaseAmount - recipeAmount <= 0
     }
 
     private fun proveForNegAmount(recipeItem: RecipeItem) : Boolean {
+        var possible = true
         recipeItem.maltList.forEach { malt ->
-            calcForShortage(malt)
+            if (!calcForShortage(malt))
+                possible = false
         }
 
         recipeItem.hoppingList.forEach { hopping ->
             hopping.hopsList.forEach { hop ->
-                calcForShortage(hop)
+                if (!calcForShortage(hop))
+                    possible = false
             }
         }
 
-        calcForShortage(recipeItem.yeast)
+        if (!calcForShortage(recipeItem.yeast))
+            possible = false
 
         return possible
+    }
+
+    private fun onDialogCookingDismiss(abort: Boolean) {
+        if (abort)
+            Toast.makeText(
+                context,
+                "Rezept wurde nicht abgeschlossen",
+                Toast.LENGTH_SHORT
+            ).show()
+        else
+            if (withSubtract)
+                updateDatabase(chosenRecipe)
+    }
+
+    fun onDialogQuestionDismiss(abort: Boolean, subtract: Boolean) {
+        if (abort)
+            Toast.makeText(
+                context,
+                "Bitte wählen Sie ein anderes Rezept!",
+                Toast.LENGTH_SHORT
+            ).show()
+        else {
+            withSubtract = subtract
+            adapter.submitList(createStringList(chosenRecipe))
+        }
     }
 }

@@ -24,8 +24,26 @@
     <string name="unit_of_measurement_grams">g</string>
     <string name="search_string">Durchsuchen</string>
     <string name="insert_time">Zeit eingeben</string>
-    <string name="instruction_s_text">Bitte tragen Sie hier Ihren gesamten Bestand ein, indem Sie auf den \"+ Neu\"-Button drücken und den Namen, sowie die Menge Ihres Bestanditems angeben. Sie können durch ein Klick auf das entsprechende Bestandsitem dessen Daten nachträglich abändern. Nutzen Sie dafür die Suchfunktion, um ihr Bestandsitem zu finden und zu ändern. Durch Klick auf das \"x\" wird das Bestandsitem aus ihren Bestand gelöscht. Bitte beachten Sie, dass alle Einträge einzigartig sind! Sie können nicht 2-mal denselben Namen verwenden. Nutzen Sie deshalb die \"Durchsuchen\"-Funktion, um ihr entsprechendes Item zu finden und bei Bedarf zu updaten. Alternativ wird bei dem Versuch ein Item mit einen bereits existierenden Namen hinzuzufügen das entsprechende Item geupdated.</string>
-    <string name="instruction_r_text">Bitte legen Sie hier ihre Rezepte an, indem Sie auf den \"+ Neues Rezept\"-Button drücken und den Namen, sowie die anderen Attribute Ihres Rezeptes angeben. Sie können durch ein Klick auf das entsprechende Rezept dessen Daten nachträglich abändern. Nutzen Sie dafür die Suchfunktion, um ihr Rezept zu finden und zu ändern. Durch Klick auf das \"x\" wird das Rezept gelöscht. Bitte beachten Sie, dass alle Einträge einzigartig sind! Sie können nicht 2-mal denselben Namen verwenden. Nutzen Sie deshalb die \"Durchsuchen\"-Funktion, um ihr entsprechendes Rezept zu finden und bei Bedarf zu updaten. Alternativ wird bei dem Versuch ein Rezept mit einen bereits existierenden Namen hinzuzufügen das entsprechende Rezept geupdated.</string>
+    <string name="instruction_s_text">Bitte tragen Sie hier Ihren gesamten Bestand ein, indem Sie
+        auf den \"+ Neu\"-Button drücken und den Namen, sowie die Menge Ihres Bestanditems angeben.
+        Sie können durch ein Klick auf das entsprechende Bestandsitem dessen Daten nachträglich
+        abändern. Nutzen Sie dafür die Suchfunktion, um ihr Bestandsitem zu finden und zu ändern.
+        Durch Klick auf das \"x\" wird das Bestandsitem aus ihren Bestand gelöscht. Bitte beachten
+        Sie, dass alle Einträge einzigartig sind! Sie können nicht 2-mal denselben Namen verwenden.
+        Nutzen Sie deshalb die \"Durchsuchen\"-Funktion, um ihr entsprechendes Item zu finden und
+        bei Bedarf zu updaten. Alternativ wird bei dem Versuch ein Item mit einen bereits
+        existierenden Namen hinzuzufügen das entsprechende Item geupdated.
+    </string>
+    <string name="instruction_r_text">Bitte legen Sie hier ihre Rezepte an, indem Sie auf den
+        \"+ Neues Rezept\"-Button drücken und den Namen, sowie die anderen Attribute Ihres Rezeptes
+        angeben. Sie können durch ein Klick auf das entsprechende Rezept dessen Daten nachträglich
+        abändern. Nutzen Sie dafür die Suchfunktion, um ihr Rezept zu finden und zu ändern. Durch
+        Klick auf das \"x\" wird das Rezept gelöscht. Bitte beachten Sie, dass alle Einträge
+        einzigartig sind! Sie können nicht 2-mal denselben Namen verwenden. Nutzen Sie deshalb
+        die \"Durchsuchen\"-Funktion, um ihr entsprechendes Rezept zu finden und bei Bedarf zu
+        updaten. Alternativ wird bei dem Versuch ein Rezept mit einen bereits existierenden Namen
+        hinzuzufügen das entsprechende Rezept geupdated.
+    </string>
     <string name="unit_of_measurement_time">min</string>
     <string name="unit_of_measurement_temp">°C</string>
     <string name="instruction_stock">Anleitung - Bestand:</string>
@@ -51,8 +69,11 @@
     <string name="done_text">Fertig</string>
     <string name="delete_hopping_text">Letze Hopfengabe entfernen</string>
     <string name="make_recipe_text">Bitte Rezept erstellen!</string>
-    <string name="date_dummy_text">DD/MM/YY</string>
+    <string name="date_dummy_text">TT/MM/JJJJ</string>
     <string name="recipe_inspect_name_text">Rezeptname</string>
     <string name="date_of_completion">Fertigstellungsdatum</string>
     <string name="end_of_fermentation">Ende der Gärung</string>
+    <string name="warning_text">!! Warnung !! \n Es ist zu wenig im Lager. Wenn Sie dieses Rezept durchführen, dann würden Bestände negativ werden!</string>
+    <string name="brew_without_subtracting_stock">Trotzdem Brauen und Bestand nicht abziehen</string>
+    <string name="brew_with_subtracting_stock">Trotzdem Brauen und Bestand abziehen</string>
 </resources>

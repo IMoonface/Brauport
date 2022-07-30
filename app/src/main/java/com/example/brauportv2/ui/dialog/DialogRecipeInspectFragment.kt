@@ -10,7 +10,10 @@ import androidx.fragment.app.DialogFragment
 import com.example.brauportv2.databinding.FragmentDialogRecipeInspectBinding
 import com.example.brauportv2.model.recipeModel.RecipeItem
 
-class DialogRecipeInspectFragment(private val recipe: RecipeItem) : DialogFragment() {
+class DialogRecipeInspectFragment(
+    private val recipe: RecipeItem,
+    private val fromBrewHistory: Boolean
+) : DialogFragment() {
 
     private var _binding: FragmentDialogRecipeInspectBinding? = null
     private val binding get() = _binding!!
@@ -41,7 +44,7 @@ class DialogRecipeInspectFragment(private val recipe: RecipeItem) : DialogFragme
         }
 
         recipe.restList.forEach {
-            restNameList.add(it.restTime + it.restTemp)
+            restNameList.add(it.restTime + " " + it.restTemp)
         }
 
         recipe.hoppingList.forEach { hopping ->
@@ -70,7 +73,7 @@ class DialogRecipeInspectFragment(private val recipe: RecipeItem) : DialogFragme
                 " und Nachguss mit " +
                 recipe.mainBrew.secondBrew
 
-        if (recipe.dateOfCompletion != "" && recipe.endOfFermentation != "") {
+        if (fromBrewHistory) {
             binding.inspectDateOfComp.text = "Fertigstellungsdatum: " + recipe.dateOfCompletion
             binding.inspectEndOfFerm.text = "Ende der Gärung: " + recipe.endOfFermentation
         }

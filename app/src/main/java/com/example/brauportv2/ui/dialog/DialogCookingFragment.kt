@@ -1,6 +1,7 @@
 package com.example.brauportv2.ui.dialog
 
 import android.app.Dialog
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -16,11 +17,15 @@ import com.example.brauportv2.ui.viewmodel.RecipeViewModelFactory
 import java.text.SimpleDateFormat
 import java.util.*
 
-class DialogCookingFragment(private val recipe: RecipeItem) : DialogFragment() {
+class DialogCookingFragment(
+    private val update: Boolean,
+    private val recipe: RecipeItem,
+    private val onDialogCookingDismiss: (Boolean) -> Unit
+) : DialogFragment() {
 
     private var _binding: FragmentDialogCookingBinding? = null
     private val binding get() = _binding!!
-    var abort = false
+    private var abort = false
 
     private val viewModel: RecipeViewModel by activityViewModels {
         RecipeViewModelFactory((activity?.application as BaseApplication)
@@ -43,26 +48,36 @@ class DialogCookingFragment(private val recipe: RecipeItem) : DialogFragment() {
     ): View? {
         _binding = FragmentDialogCookingBinding.inflate(inflater, container, false)
 
-        binding.brewHistoryConfirmButton.setOnClickListener {
-            val dateOfCompletion = SimpleDateFormat("dd/mm/yyyy", Locale.getDefault())
+        binding.cookingConfirmButton.setOnClickListener {
+            val dateOfCompletion = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
                 .format(Calendar.getInstance().time)
-            val endOfFermentation = binding.brewHistoryDate.text.toString()
+            val endOfFermentation = binding.cookingDate.text.toString()
 
-            if (dateOfCompletion != "" && endOfFermentation != "") {
+            abort = false
+
+            if (endOfFermentation != "" && !update) {
                 onItemAdd(dateOfCompletion, endOfFermentation)
-                Toast.makeText(context, "Rezept abgeschlossen", Toast.LENGTH_SHORT).show()
-                abort = false
+                Toast.makeText(context, "Rezept abgeschlossen!", Toast.LENGTH_SHORT).show()
+                dismiss()
+            } else if (endOfFermentation != "" && update) {
+                onItemUpdate(endOfFermentation)
+                Toast.makeText(context, "Datum aktualisiert!", Toast.LENGTH_SHORT).show()
                 dismiss()
             } else
                 Toast.makeText(context, "Bitte Datum angeben!", Toast.LENGTH_SHORT).show()
         }
 
-        binding.brewHistoryAbortButton.setOnClickListener {
+        binding.cookingAbortButton.setOnClickListener {
             abort = true
             dismiss()
         }
 
         return binding.root
+    }
+
+    override fun onDismiss(dialog: DialogInterface) {
+        super.onDismiss(dialog)
+        onDialogCookingDismiss(abort)
     }
 
     override fun onDestroyView() {
@@ -80,6 +95,20 @@ class DialogCookingFragment(private val recipe: RecipeItem) : DialogFragment() {
             recipe.yeast,
             recipe.mainBrew,
             dateOfCompletion,
+            endOfFermentation
+        )
+    }
+
+    private fun onItemUpdate(endOfFermentation: String) {
+        viewModel.updateRecipe(
+            recipe.rId,
+            recipe.recipeName,
+            recipe.maltList,
+            recipe.restList,
+            recipe.hoppingList,
+            recipe.yeast,
+            recipe.mainBrew,
+            recipe.dateOfCompletion,
             endOfFermentation
         )
     }

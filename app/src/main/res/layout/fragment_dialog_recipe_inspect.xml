@@ -78,8 +78,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:maxWidth="360dp"
-                android:text="@string/date_of_completion"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                tools:text="@string/date_of_completion" />
 
             <TextView
                 android:id="@+id/inspect_end_of_ferm"
@@ -87,8 +87,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:maxWidth="360dp"
-                android:text="@string/end_of_fermentation"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                tools:text="@string/end_of_fermentation" />
 
         </LinearLayout>
 
