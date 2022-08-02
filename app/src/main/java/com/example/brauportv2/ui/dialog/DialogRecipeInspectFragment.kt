@@ -8,10 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import com.example.brauportv2.databinding.FragmentDialogRecipeInspectBinding
-import com.example.brauportv2.model.recipeModel.RecipeItem
+import com.example.brauportv2.model.brewHistory.BrewHistoryItem
 
 class DialogRecipeInspectFragment(
-    private val recipe: RecipeItem,
+    private val recipe: BrewHistoryItem,
     private val fromBrewHistory: Boolean
 ) : DialogFragment() {
 
@@ -39,22 +39,22 @@ class DialogRecipeInspectFragment(
     ): View? {
         _binding = FragmentDialogRecipeInspectBinding.inflate(inflater, container, false)
 
-        recipe.maltList.forEach {
+        recipe.bMaltList.forEach {
             maltNameList.add(it.stockName + " " + it.stockAmount + "g")
         }
 
-        recipe.restList.forEach {
+        recipe.bRestList.forEach {
             restNameList.add(it.restTime + " " + it.restTemp)
         }
 
-        recipe.hoppingList.forEach { hopping ->
+        recipe.bHoppingList.forEach { hopping ->
             hopping.hopsList.forEach {
                 hopsNameList.add(it.stockName + " " + it.stockAmount + "g")
             }
             hoppingNameList.add(hopsNameList.toString() + " " + hopping.hoppingTime + "min")
         }
 
-        binding.inspectRecipeName.text = recipe.recipeName
+        binding.inspectRecipeName.text = recipe.bName
 
         binding.inspectMaltList.text = "Malze: $maltNameList"
 
@@ -63,19 +63,19 @@ class DialogRecipeInspectFragment(
         binding.inspectHoppingList.text = "Hopfengaben: $hoppingNameList"
 
         binding.inspectYeast.text = "Hefe: " +
-                recipe.yeast.stockName +
+                recipe.bYeast.stockName +
                 " " +
-                recipe.yeast.stockAmount +
+                recipe.bYeast.stockAmount +
                 "g"
 
         binding.inspectMainBrew.text = "Guss: Hauptguss mit " +
-                recipe.mainBrew.firstBrew +
+                recipe.bMainBrew.firstBrew +
                 " und Nachguss mit " +
-                recipe.mainBrew.secondBrew
+                recipe.bMainBrew.secondBrew
 
         if (fromBrewHistory) {
-            binding.inspectDateOfComp.text = "Fertigstellungsdatum: " + recipe.dateOfCompletion
-            binding.inspectEndOfFerm.text = "Ende der Gärung: " + recipe.endOfFermentation
+            binding.inspectDateOfComp.text = "Fertigstellungsdatum: " + recipe.bDateOfCompletion
+            binding.inspectEndOfFerm.text = "Ende der Gärung: " + recipe.bEndOfFermentation
         }
 
         binding.inspectBackButton.setOnClickListener {

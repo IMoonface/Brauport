@@ -1,10 +1,10 @@
-package com.example.brauportv2.data
+package com.example.brauportv2.data.stock
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.example.brauportv2.model.StockItemData
+import com.example.brauportv2.model.stock.StockItemData
 
 @Database(entities = [StockItemData::class], version = 2, exportSchema = false)
 abstract class StockDatabase : RoomDatabase() {

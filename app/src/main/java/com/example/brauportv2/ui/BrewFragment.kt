@@ -15,18 +15,19 @@ import androidx.lifecycle.lifecycleScope
 import com.example.brauportv2.BaseApplication
 import com.example.brauportv2.adapter.BrewAdapter
 import com.example.brauportv2.databinding.FragmentBrewBinding
+import com.example.brauportv2.mapper.toBrewHistoryItem
 import com.example.brauportv2.mapper.toSNoAmount
 import com.example.brauportv2.mapper.toStockItem
 import com.example.brauportv2.model.BrewItem
-import com.example.brauportv2.model.StockItem
-import com.example.brauportv2.model.recipeModel.RecipeItem
+import com.example.brauportv2.model.stock.StockItem
+import com.example.brauportv2.model.recipe.RecipeItem
 import com.example.brauportv2.ui.dialog.DialogCookingFragment
 import com.example.brauportv2.ui.dialog.DialogQuestionFragment
 import com.example.brauportv2.ui.objects.RecipeDataSource.recipeItemList
 import com.example.brauportv2.ui.objects.StringCreator.createStringList
 import com.example.brauportv2.ui.objects.TextWatcherLogic.startTimer
-import com.example.brauportv2.ui.viewmodel.StockViewModel
-import com.example.brauportv2.ui.viewmodel.StockViewModelFactory
+import com.example.brauportv2.ui.viewModel.StockViewModel
+import com.example.brauportv2.ui.viewModel.StockViewModelFactory
 import kotlinx.coroutines.launch
 
 class BrewFragment : Fragment() {
@@ -92,7 +93,11 @@ class BrewFragment : Fragment() {
 
             if (finished) {
                 val dialog =
-                    DialogCookingFragment(false, chosenRecipe, this::onDialogCookingDismiss)
+                    DialogCookingFragment(
+                        false,
+                        chosenRecipe.toBrewHistoryItem(),
+                        this::onDialogCookingDismiss
+                    )
                 dialog.show(childFragmentManager, "cookingDialog")
             } else
                 Toast.makeText(context, "Es sind noch Schritte offen", Toast.LENGTH_SHORT)

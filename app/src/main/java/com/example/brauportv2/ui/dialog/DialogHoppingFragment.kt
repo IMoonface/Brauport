@@ -13,10 +13,10 @@ import com.example.brauportv2.BaseApplication
 import com.example.brauportv2.adapter.HoppingAdapter
 import com.example.brauportv2.databinding.FragmentDialogHoppingBinding
 import com.example.brauportv2.mapper.toStockItem
-import com.example.brauportv2.model.StockItemType
+import com.example.brauportv2.model.stock.StockItemType
 import com.example.brauportv2.ui.objects.RecipeDataSource.recipeItem
-import com.example.brauportv2.ui.viewmodel.StockViewModel
-import com.example.brauportv2.ui.viewmodel.StockViewModelFactory
+import com.example.brauportv2.ui.viewModel.StockViewModel
+import com.example.brauportv2.ui.viewModel.StockViewModelFactory
 import kotlinx.coroutines.launch
 
 class DialogHoppingFragment : DialogFragment() {

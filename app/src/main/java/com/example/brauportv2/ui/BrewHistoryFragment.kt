@@ -10,12 +10,12 @@ import androidx.lifecycle.lifecycleScope
 import com.example.brauportv2.BaseApplication
 import com.example.brauportv2.adapter.BrewHistoryAdapter
 import com.example.brauportv2.databinding.FragmentBrewHistoryBinding
-import com.example.brauportv2.mapper.toRecipeItem
-import com.example.brauportv2.model.recipeModel.RecipeItem
+import com.example.brauportv2.mapper.toBrewHistoryItem
+import com.example.brauportv2.model.brewHistory.BrewHistoryItem
 import com.example.brauportv2.ui.dialog.DialogCookingFragment
 import com.example.brauportv2.ui.dialog.DialogRecipeInspectFragment
-import com.example.brauportv2.ui.viewmodel.RecipeViewModel
-import com.example.brauportv2.ui.viewmodel.RecipeViewModelFactory
+import com.example.brauportv2.ui.viewModel.BrewHistoryViewModel
+import com.example.brauportv2.ui.viewModel.BrewHistoryViewModelFactory
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
@@ -25,10 +25,13 @@ class BrewHistoryFragment : Fragment() {
     private var _binding: FragmentBrewHistoryBinding? = null
     private val binding get() = _binding!!
     private lateinit var adapter: BrewHistoryAdapter
-    private lateinit var brewHistoryList: List<RecipeItem>
+    private lateinit var brewHistoryList: List<BrewHistoryItem>
 
-    private val viewModel: RecipeViewModel by activityViewModels {
-        RecipeViewModelFactory((activity?.application as BaseApplication).recipeDatabase.recipeDao())
+    private val viewModel: BrewHistoryViewModel by activityViewModels {
+        BrewHistoryViewModelFactory(
+            (activity?.application as BaseApplication)
+                .brewHistoryDatabase.brewHistoryDao()
+        )
     }
 
     override fun onCreateView(
@@ -45,16 +48,21 @@ class BrewHistoryFragment : Fragment() {
             .format(Calendar.getInstance().time)
 
         lifecycleScope.launch {
-            viewModel.allRecipeItems.collect { it ->
-                brewHistoryList = it.map { it.toRecipeItem() }
-                    .filter {
-                        SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
-                            .parse(it.endOfFermentation)
-                            .after(
+            viewModel.allBrewHistoryItems.collect { it ->
+                brewHistoryList = it.map { it.toBrewHistoryItem() }
+
+                brewHistoryList.forEach {
+                    if (SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+                            .parse(it.bEndOfFermentation)
+                            .before(
                                 SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
                                     .parse(dateNow)
                             )
+                    ) {
+                        viewModel.deleteRecipe(it)
                     }
+                }
+
                 adapter.submitList(brewHistoryList)
             }
         }
@@ -62,12 +70,12 @@ class BrewHistoryFragment : Fragment() {
         return binding.root
     }
 
-    private fun onInspectItem(item: RecipeItem) {
+    private fun onInspectItem(item: BrewHistoryItem) {
         val dialog = DialogRecipeInspectFragment(item, true)
         dialog.show(childFragmentManager, "cookingDialog")
     }
 
-    private fun onItemClick(item: RecipeItem) {
+    private fun onItemClick(item: BrewHistoryItem) {
         val dialog = DialogCookingFragment(true, item, this::onDialogCookingDismiss)
         dialog.show(childFragmentManager, "cookingDialog")
     }

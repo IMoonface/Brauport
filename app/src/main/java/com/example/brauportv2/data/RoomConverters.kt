@@ -1,20 +1,20 @@
 package com.example.brauportv2.data
 
 import androidx.room.TypeConverter
-import com.example.brauportv2.model.StockItem
-import com.example.brauportv2.model.recipeModel.Hopping
-import com.example.brauportv2.model.recipeModel.MainBrew
-import com.example.brauportv2.model.recipeModel.Rest
+import com.example.brauportv2.model.stock.StockItem
+import com.example.brauportv2.model.recipe.Hopping
+import com.example.brauportv2.model.recipe.MainBrew
+import com.example.brauportv2.model.recipe.Rest
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import org.json.JSONObject
 
 class RoomConverters {
     @TypeConverter
-    fun fromStockList(rStockItemList: List<StockItem>): String {
+    fun fromStockList(stockItemList: List<StockItem>): String {
         val gson = Gson()
         val type = object : TypeToken<List<StockItem>>() {}.type
-        return gson.toJson(rStockItemList, type)
+        return gson.toJson(stockItemList, type)
     }
 
     @TypeConverter
@@ -39,12 +39,12 @@ class RoomConverters {
     }
 
     @TypeConverter
-    fun fromStockItem(rStockItem: StockItem): String {
+    fun fromStockItem(stockItem: StockItem): String {
         return JSONObject().apply {
-            put("id", rStockItem.id)
-            put("stockName", rStockItem.stockName)
-            put("itemType", rStockItem.itemType)
-            put("stockAmount", rStockItem.stockAmount)
+            put("id", stockItem.id)
+            put("stockName", stockItem.stockName)
+            put("itemType", stockItem.itemType)
+            put("stockAmount", stockItem.stockAmount)
         }.toString()
     }
 

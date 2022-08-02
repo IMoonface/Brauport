@@ -1,10 +1,9 @@
-package com.example.brauportv2.model.recipeModel
+package com.example.brauportv2.model.recipe
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
-import androidx.room.Index
 import androidx.room.PrimaryKey
-import com.example.brauportv2.model.StockItem
+import com.example.brauportv2.model.stock.StockItem
 
 @Entity(tableName = "recipe_database")
 data class RecipeItemData(
@@ -21,9 +20,5 @@ data class RecipeItemData(
     @ColumnInfo(name = "yeast")
     val yeast: StockItem,
     @ColumnInfo(name = "mainBrew")
-    val mainBrew: MainBrew,
-    @ColumnInfo(name = "dateOfCompletion")
-    val dateOfCompletion: String,
-    @ColumnInfo(name = "endOfFermentation")
-    val endOfFermentation: String
+    val mainBrew: MainBrew
 )

@@ -13,13 +13,13 @@ import com.example.brauportv2.BaseApplication
 import com.example.brauportv2.adapter.RecipeStockAdapter
 import com.example.brauportv2.databinding.FragmentDialogYeastsBinding
 import com.example.brauportv2.mapper.toStockItem
-import com.example.brauportv2.model.StockItem
-import com.example.brauportv2.model.StockItemType
-import com.example.brauportv2.model.recipeModel.SNoAmount
+import com.example.brauportv2.model.stock.StockItem
+import com.example.brauportv2.model.stock.StockItemType
+import com.example.brauportv2.model.recipe.SNoAmount
 import com.example.brauportv2.ui.objects.RecipeDataSource.recipeItem
 import com.example.brauportv2.ui.objects.RecipeDataSource.startYeast
-import com.example.brauportv2.ui.viewmodel.StockViewModel
-import com.example.brauportv2.ui.viewmodel.StockViewModelFactory
+import com.example.brauportv2.ui.viewModel.StockViewModel
+import com.example.brauportv2.ui.viewModel.StockViewModelFactory
 import kotlinx.coroutines.launch
 
 class DialogYeastFragment : DialogFragment() {

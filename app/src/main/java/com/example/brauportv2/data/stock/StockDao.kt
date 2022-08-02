@@ -1,7 +1,7 @@
-package com.example.brauportv2.data
+package com.example.brauportv2.data.stock
 
 import androidx.room.*
-import com.example.brauportv2.model.StockItemData
+import com.example.brauportv2.model.stock.StockItemData
 import kotlinx.coroutines.flow.Flow
 
 @Dao

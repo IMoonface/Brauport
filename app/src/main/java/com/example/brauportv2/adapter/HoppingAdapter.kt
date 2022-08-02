@@ -9,8 +9,8 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.brauportv2.databinding.CardRecipeStockBinding
 import com.example.brauportv2.mapper.toSNoAmount
-import com.example.brauportv2.model.StockItem
-import com.example.brauportv2.model.recipeModel.Hopping
+import com.example.brauportv2.model.stock.StockItem
+import com.example.brauportv2.model.recipe.Hopping
 
 class HoppingAdapter : ListAdapter<StockItem, HoppingAdapter.HoppingViewHolder>(DiffCallback) {
 

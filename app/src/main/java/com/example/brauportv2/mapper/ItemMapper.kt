@@ -1,10 +1,12 @@
 package com.example.brauportv2.mapper
 
-import com.example.brauportv2.model.StockItem
-import com.example.brauportv2.model.StockItemData
-import com.example.brauportv2.model.recipeModel.RecipeItem
-import com.example.brauportv2.model.recipeModel.RecipeItemData
-import com.example.brauportv2.model.recipeModel.SNoAmount
+import com.example.brauportv2.model.brewHistory.BrewHistoryItem
+import com.example.brauportv2.model.brewHistory.BrewHistoryItemData
+import com.example.brauportv2.model.stock.StockItem
+import com.example.brauportv2.model.stock.StockItemData
+import com.example.brauportv2.model.recipe.RecipeItem
+import com.example.brauportv2.model.recipe.RecipeItemData
+import com.example.brauportv2.model.recipe.SNoAmount
 
 fun StockItemData.toStockItem(): StockItem {
     return StockItem(id, itemType, stockName, stockAmount)
@@ -26,9 +28,7 @@ fun RecipeItemData.toRecipeItem(): RecipeItem {
         restList.toMutableList(),
         hoppingList.toMutableList(),
         yeast,
-        mainBrew,
-        dateOfCompletion,
-        endOfFermentation
+        mainBrew
     )
 }
 
@@ -40,8 +40,48 @@ fun RecipeItem.toRecipeItemData(): RecipeItemData {
         restList,
         hoppingList,
         yeast,
+        mainBrew
+    )
+}
+
+fun RecipeItem.toBrewHistoryItem(): BrewHistoryItem {
+    return BrewHistoryItem(
+        rId,
+        recipeName,
+        maltList.toMutableList(),
+        restList.toMutableList(),
+        hoppingList.toMutableList(),
+        yeast,
         mainBrew,
-        dateOfCompletion,
-        endOfFermentation
+        "",
+        ""
+    )
+}
+
+fun BrewHistoryItemData.toBrewHistoryItem(): BrewHistoryItem {
+    return BrewHistoryItem(
+        bId,
+        bName,
+        bMaltList.toMutableList(),
+        bRestList.toMutableList(),
+        bHoppingList.toMutableList(),
+        bYeast,
+        bMainBrew,
+        bDateOfCompletion,
+        bEndOfFermentation
+    )
+}
+
+fun BrewHistoryItem.toBrewHistoryItemData(): BrewHistoryItemData {
+    return BrewHistoryItemData(
+        bId,
+        bName,
+        bMaltList.toMutableList(),
+        bRestList.toMutableList(),
+        bHoppingList.toMutableList(),
+        bYeast,
+        bMainBrew,
+        bDateOfCompletion,
+        bEndOfFermentation
     )
 }

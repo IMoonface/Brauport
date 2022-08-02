@@ -1,7 +1,7 @@
 package com.example.brauportv2.ui.objects
 
 import com.example.brauportv2.model.BrewItem
-import com.example.brauportv2.model.recipeModel.RecipeItem
+import com.example.brauportv2.model.recipe.RecipeItem
 
 object StringCreator {
     fun createStringList(recipeItem: RecipeItem): List<BrewItem> {

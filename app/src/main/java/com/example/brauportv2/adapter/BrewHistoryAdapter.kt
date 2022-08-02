@@ -7,12 +7,12 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.brauportv2.databinding.CardBrewHistoryBinding
-import com.example.brauportv2.model.recipeModel.RecipeItem
+import com.example.brauportv2.model.brewHistory.BrewHistoryItem
 
 class BrewHistoryAdapter(
-    private val onInspectClick: (RecipeItem) -> Unit,
-    private val onItemClick: (RecipeItem) -> Unit
-) : ListAdapter<RecipeItem, BrewHistoryAdapter.BrewHistoryViewHolder>(DiffCallback) {
+    private val onInspectClick: (BrewHistoryItem) -> Unit,
+    private val onItemClick: (BrewHistoryItem) -> Unit
+) : ListAdapter<BrewHistoryItem, BrewHistoryAdapter.BrewHistoryViewHolder>(DiffCallback) {
 
     class BrewHistoryViewHolder(val binding: CardBrewHistoryBinding) :
         RecyclerView.ViewHolder(binding.root)
@@ -31,8 +31,8 @@ class BrewHistoryAdapter(
     override fun onBindViewHolder(holder: BrewHistoryViewHolder, position: Int) =
         with(holder.binding) {
             val item = getItem(position)
-            brewHistoryTitle.text = item.recipeName
-            brewHistoryEndDate.text = "Ende der Gärung: " + item.endOfFermentation
+            brewHistoryTitle.text = item.bName
+            brewHistoryEndDate.text = "Ende der Gärung: " + item.bEndOfFermentation
 
             brewHistoryInspect.setOnClickListener { onInspectClick(item) }
 
@@ -53,11 +53,11 @@ class BrewHistoryAdapter(
         return currentList.size
     }
 
-    object DiffCallback : DiffUtil.ItemCallback<RecipeItem>() {
-        override fun areItemsTheSame(oldItem: RecipeItem, newItem: RecipeItem)
-                : Boolean = oldItem.rId == newItem.rId
+    object DiffCallback : DiffUtil.ItemCallback<BrewHistoryItem>() {
+        override fun areItemsTheSame(oldItem: BrewHistoryItem, newItem: BrewHistoryItem)
+                : Boolean = oldItem.bId == newItem.bId
 
-        override fun areContentsTheSame(oldItem: RecipeItem, newItem: RecipeItem)
+        override fun areContentsTheSame(oldItem: BrewHistoryItem, newItem: BrewHistoryItem)
                 : Boolean = oldItem == newItem
     }
 }

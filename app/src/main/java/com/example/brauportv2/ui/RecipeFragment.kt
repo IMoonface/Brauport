@@ -13,19 +13,21 @@ import androidx.navigation.fragment.findNavController
 import com.example.brauportv2.BaseApplication
 import com.example.brauportv2.adapter.RecipeAdapter
 import com.example.brauportv2.databinding.FragmentRecipeBinding
+import com.example.brauportv2.mapper.toBrewHistoryItem
 import com.example.brauportv2.mapper.toRecipeItem
-import com.example.brauportv2.model.StockItem
-import com.example.brauportv2.model.StockItemType
-import com.example.brauportv2.model.recipeModel.Hopping
-import com.example.brauportv2.model.recipeModel.MainBrew
-import com.example.brauportv2.model.recipeModel.RecipeItem
-import com.example.brauportv2.model.recipeModel.Rest
+import com.example.brauportv2.model.stock.StockItem
+import com.example.brauportv2.model.stock.StockItemType
+import com.example.brauportv2.model.recipe.Hopping
+import com.example.brauportv2.model.recipe.MainBrew
+import com.example.brauportv2.model.recipe.RecipeItem
+import com.example.brauportv2.model.recipe.Rest
+import com.example.brauportv2.ui.dialog.DialogDeleteFragment
 import com.example.brauportv2.ui.dialog.DialogInstructionRecipeFragment
 import com.example.brauportv2.ui.dialog.DialogRecipeInspectFragment
 import com.example.brauportv2.ui.objects.RecipeDataSource.recipeItem
 import com.example.brauportv2.ui.objects.RecipeDataSource.update
-import com.example.brauportv2.ui.viewmodel.RecipeViewModel
-import com.example.brauportv2.ui.viewmodel.RecipeViewModelFactory
+import com.example.brauportv2.ui.viewModel.RecipeViewModel
+import com.example.brauportv2.ui.viewModel.RecipeViewModelFactory
 import kotlinx.coroutines.launch
 
 class RecipeFragment : Fragment() {
@@ -34,6 +36,7 @@ class RecipeFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var recipeStartList: List<RecipeItem>
     private lateinit var adapter: RecipeAdapter
+    private var deleteRecipe = false
 
     private val textWatcher = object : TextWatcher {
         override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
@@ -76,9 +79,7 @@ class RecipeFragment : Fragment() {
                 emptyList<Rest>().toMutableList(),
                 emptyList<Hopping>().toMutableList(),
                 StockItem(1, StockItemType.YEAST.ordinal, "", ""),
-                MainBrew("", ""),
-                "",
-                ""
+                MainBrew("", "")
             )
 
             val action = RecipeFragmentDirections
@@ -97,7 +98,7 @@ class RecipeFragment : Fragment() {
     }
 
     private fun onInspectClick(recipe: RecipeItem) {
-        val dialog = DialogRecipeInspectFragment(recipe, false)
+        val dialog = DialogRecipeInspectFragment(recipe.toBrewHistoryItem(), false)
         dialog.show(childFragmentManager, "recipeInspectDialog")
     }
 
@@ -111,8 +112,15 @@ class RecipeFragment : Fragment() {
     }
 
     private fun onDeleteClick(recipe: RecipeItem) {
-        //Todo: Dialog öffnen und fragen ob das Rezept gelöscht werden soll
-        viewModel.deleteRecipe(recipe)
+        val dialog = DialogDeleteFragment(this::onDialogDeleteDismiss)
+        dialog.show(childFragmentManager, "recipeDeleteDialog")
+        if (deleteRecipe) {
+            viewModel.deleteRecipe(recipe)
+        }
+    }
+
+    private fun onDialogDeleteDismiss(delete: Boolean) {
+        deleteRecipe = delete
     }
 
     override fun onDestroyView() {

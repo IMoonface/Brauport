@@ -1,4 +1,4 @@
-package com.example.brauportv2.model.recipeModel
+package com.example.brauportv2.model.recipe
 
 data class SNoAmount(
     val rStockName: String,

@@ -1,6 +1,6 @@
-package com.example.brauportv2.model.recipeModel
+package com.example.brauportv2.model.recipe
 
-import com.example.brauportv2.model.StockItem
+import com.example.brauportv2.model.stock.StockItem
 
 data class RecipeItem(
     var rId: Int,
@@ -9,7 +9,5 @@ data class RecipeItem(
     var restList: MutableList<Rest>,
     var hoppingList: MutableList<Hopping>,
     var yeast: StockItem,
-    var mainBrew: MainBrew,
-    val dateOfCompletion: String,
-    val endOfFermentation: String
+    var mainBrew: MainBrew
 )

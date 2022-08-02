@@ -17,8 +17,8 @@ import com.example.brauportv2.ui.objects.RecipeDataSource.startRestList
 import com.example.brauportv2.ui.objects.RecipeDataSource.startYeast
 import com.example.brauportv2.ui.objects.RecipeDataSource.update
 import com.example.brauportv2.ui.dialog.*
-import com.example.brauportv2.ui.viewmodel.RecipeViewModel
-import com.example.brauportv2.ui.viewmodel.RecipeViewModelFactory
+import com.example.brauportv2.ui.viewModel.RecipeViewModel
+import com.example.brauportv2.ui.viewModel.RecipeViewModelFactory
 import java.util.*
 
 class RecipeDetailsFragment : Fragment() {
@@ -76,9 +76,7 @@ class RecipeDetailsFragment : Fragment() {
                         recipeItem.restList,
                         recipeItem.hoppingList,
                         recipeItem.yeast,
-                        recipeItem.mainBrew,
-                        recipeItem.dateOfCompletion,
-                        recipeItem.endOfFermentation
+                        recipeItem.mainBrew
                     )
                 }
             } else {
@@ -91,8 +89,11 @@ class RecipeDetailsFragment : Fragment() {
                 )
                     Toast.makeText(context, "Bitte alle Attribute setzen!", Toast.LENGTH_SHORT)
                         .show()
-                else
+                else {
                     viewModel.addRecipe(recipeItem)
+                    Toast.makeText(context, "Rezept wurde erstellt!", Toast.LENGTH_SHORT)
+                        .show()
+                }
             }
         }
 

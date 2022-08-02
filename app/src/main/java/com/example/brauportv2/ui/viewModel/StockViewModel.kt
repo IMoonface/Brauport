@@ -1,12 +1,12 @@
-package com.example.brauportv2.ui.viewmodel
+package com.example.brauportv2.ui.viewModel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import com.example.brauportv2.data.StockDao
+import com.example.brauportv2.data.stock.StockDao
 import com.example.brauportv2.mapper.toStockItemData
-import com.example.brauportv2.model.StockItem
-import com.example.brauportv2.model.StockItemData
+import com.example.brauportv2.model.stock.StockItem
+import com.example.brauportv2.model.stock.StockItemData
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch

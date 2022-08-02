@@ -11,15 +11,15 @@ import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
 import com.example.brauportv2.BaseApplication
 import com.example.brauportv2.databinding.FragmentDialogCookingBinding
-import com.example.brauportv2.model.recipeModel.RecipeItem
-import com.example.brauportv2.ui.viewmodel.RecipeViewModel
-import com.example.brauportv2.ui.viewmodel.RecipeViewModelFactory
+import com.example.brauportv2.model.brewHistory.BrewHistoryItem
+import com.example.brauportv2.ui.viewModel.BrewHistoryViewModel
+import com.example.brauportv2.ui.viewModel.BrewHistoryViewModelFactory
 import java.text.SimpleDateFormat
 import java.util.*
 
 class DialogCookingFragment(
     private val update: Boolean,
-    private val recipe: RecipeItem,
+    private val brewHistoryItem: BrewHistoryItem,
     private val onDialogCookingDismiss: (Boolean) -> Unit
 ) : DialogFragment() {
 
@@ -27,10 +27,10 @@ class DialogCookingFragment(
     private val binding get() = _binding!!
     private var abort = false
 
-    private val viewModel: RecipeViewModel by activityViewModels {
-        RecipeViewModelFactory(
+    private val viewModel: BrewHistoryViewModel by activityViewModels {
+        BrewHistoryViewModelFactory(
             (activity?.application as BaseApplication)
-                .recipeDatabase.recipeDao()
+                .brewHistoryDatabase.brewHistoryDao()
         )
     }
 
@@ -88,29 +88,24 @@ class DialogCookingFragment(
     }
 
     private fun onItemAdd(dateOfCompletion: String, endOfFermentation: String) {
-        viewModel.updateRecipe(
-            recipe.rId,
-            recipe.recipeName,
-            recipe.maltList,
-            recipe.restList,
-            recipe.hoppingList,
-            recipe.yeast,
-            recipe.mainBrew,
-            dateOfCompletion,
-            endOfFermentation
-        )
+        //kann man eventuell weglassen
+        brewHistoryItem.bId = UUID.randomUUID().hashCode()
+        brewHistoryItem.bDateOfCompletion = dateOfCompletion
+        brewHistoryItem.bEndOfFermentation = endOfFermentation
+
+        viewModel.addBrewHistoryItem(brewHistoryItem)
     }
 
     private fun onItemUpdate(endOfFermentation: String) {
-        viewModel.updateRecipe(
-            recipe.rId,
-            recipe.recipeName,
-            recipe.maltList,
-            recipe.restList,
-            recipe.hoppingList,
-            recipe.yeast,
-            recipe.mainBrew,
-            recipe.dateOfCompletion,
+        viewModel.updateBrewHistoryItem(
+            brewHistoryItem.bId,
+            brewHistoryItem.bName,
+            brewHistoryItem.bMaltList,
+            brewHistoryItem.bRestList,
+            brewHistoryItem.bHoppingList,
+            brewHistoryItem.bYeast,
+            brewHistoryItem.bMainBrew,
+            brewHistoryItem.bDateOfCompletion,
             endOfFermentation
         )
     }

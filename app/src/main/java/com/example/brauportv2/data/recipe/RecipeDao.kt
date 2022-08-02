@@ -1,7 +1,7 @@
-package com.example.brauportv2.data
+package com.example.brauportv2.data.recipe
 
 import androidx.room.*
-import com.example.brauportv2.model.recipeModel.RecipeItemData
+import com.example.brauportv2.model.recipe.RecipeItemData
 import kotlinx.coroutines.flow.Flow
 
 @Dao

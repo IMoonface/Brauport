@@ -12,8 +12,8 @@ import com.example.brauportv2.BaseApplication
 import com.example.brauportv2.databinding.FragmentHomeBinding
 import com.example.brauportv2.mapper.toRecipeItem
 import com.example.brauportv2.ui.objects.RecipeDataSource.recipeItemList
-import com.example.brauportv2.ui.viewmodel.RecipeViewModel
-import com.example.brauportv2.ui.viewmodel.RecipeViewModelFactory
+import com.example.brauportv2.ui.viewModel.RecipeViewModel
+import com.example.brauportv2.ui.viewModel.RecipeViewModelFactory
 import kotlinx.coroutines.launch
 
 class HomeFragment : Fragment() {

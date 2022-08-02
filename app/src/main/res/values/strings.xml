@@ -76,4 +76,7 @@
     <string name="warning_text">!! Warnung !! \n Es ist zu wenig im Lager. Wenn Sie dieses Rezept durchführen, dann würden Bestände negativ werden!</string>
     <string name="brew_without_subtracting_stock">Trotzdem Brauen und Bestand nicht abziehen</string>
     <string name="brew_with_subtracting_stock">Trotzdem Brauen und Bestand abziehen</string>
+    <string name="delete_recipe_text">Wollen Sie dieses Rezept entfernen?</string>
+    <string name="yes_text">Ja</string>
+    <string name="no_text">Nein</string>
 </resources>

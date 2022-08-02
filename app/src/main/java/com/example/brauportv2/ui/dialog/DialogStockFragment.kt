@@ -10,9 +10,9 @@ import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
 import com.example.brauportv2.BaseApplication
 import com.example.brauportv2.databinding.FragmentDialogStockBinding
-import com.example.brauportv2.model.StockItem
-import com.example.brauportv2.ui.viewmodel.StockViewModel
-import com.example.brauportv2.ui.viewmodel.StockViewModelFactory
+import com.example.brauportv2.model.stock.StockItem
+import com.example.brauportv2.ui.viewModel.StockViewModel
+import com.example.brauportv2.ui.viewModel.StockViewModelFactory
 import java.util.*
 
 class DialogStockFragment(

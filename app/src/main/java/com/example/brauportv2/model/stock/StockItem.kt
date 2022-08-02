@@ -1,4 +1,4 @@
-package com.example.brauportv2.model
+package com.example.brauportv2.model.stock
 
 data class StockItem(
     var id: Int,
