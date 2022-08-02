@@ -1,20 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
-    android:orientation="vertical"
     tools:context=".ui.details.RecipeDetailsFragment">
+
+    <Button
+        android:id="@+id/recipe_details_inspect_button"
+        android:layout_width="50dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="15dp"
+        app:backgroundTint="@color/button_color"
+        app:cornerRadius="20dp"
+        app:icon="@drawable/ic_search"
+        app:iconGravity="textStart"
+        app:iconPadding="0dp"
+        app:iconTint="@color/appBars_color"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/recipe_details_textInputLayout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="340dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        app:boxBackgroundColor="@color/white">
+        app:boxBackgroundColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/recipe_details_malts"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recipe_details_inspect_button">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/recipe_details_textInput"
@@ -34,56 +51,75 @@
         android:text="@string/malts"
         android:textColor="@color/appBars_color"
         app:backgroundTint="@color/button_color"
-        app:cornerRadius="20dp" />
+        app:cornerRadius="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/recipe_details_rest"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recipe_details_textInputLayout" />
 
     <Button
         android:id="@+id/recipe_details_rest"
         android:layout_width="220dp"
         android:layout_height="60dp"
-        android:layout_marginTop="10dp"
         android:text="@string/rests"
         android:textColor="@color/appBars_color"
         app:backgroundTint="@color/button_color"
-        app:cornerRadius="20dp" />
+        app:cornerRadius="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/recipe_details_hops"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recipe_details_malts" />
 
     <Button
         android:id="@+id/recipe_details_hops"
         android:layout_width="220dp"
         android:layout_height="60dp"
-        android:layout_marginTop="10dp"
         android:text="@string/hopping"
         android:textColor="@color/appBars_color"
         app:backgroundTint="@color/button_color"
-        app:cornerRadius="20dp" />
+        app:cornerRadius="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/recipe_details_yeasts"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recipe_details_rest" />
 
     <Button
         android:id="@+id/recipe_details_yeasts"
         android:layout_width="220dp"
         android:layout_height="60dp"
-        android:layout_marginTop="10dp"
         android:text="@string/yeasts"
         android:textColor="@color/appBars_color"
         app:backgroundTint="@color/button_color"
-        app:cornerRadius="20dp" />
+        app:cornerRadius="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/recipe_details_main_brew"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recipe_details_hops" />
 
     <Button
         android:id="@+id/recipe_details_main_brew"
         android:layout_width="220dp"
         android:layout_height="60dp"
-        android:layout_marginTop="10dp"
         android:text="@string/main_brew"
         android:textColor="@color/appBars_color"
         app:backgroundTint="@color/button_color"
-        app:cornerRadius="20dp" />
+        app:cornerRadius="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/recipe_details_save"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recipe_details_yeasts" />
 
     <Button
         android:id="@+id/recipe_details_save"
         android:layout_width="220dp"
         android:layout_height="60dp"
-        android:layout_marginTop="10dp"
         android:text="@string/save_string"
         android:textColor="@color/appBars_color"
         app:backgroundTint="@color/button_color"
-        app:cornerRadius="20dp" />
+        app:cornerRadius="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recipe_details_main_brew" />
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

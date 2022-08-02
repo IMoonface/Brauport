@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.example.brauportv2.BaseApplication
 import com.example.brauportv2.databinding.FragmentRecipeDetailsBinding
+import com.example.brauportv2.mapper.toBrewHistoryItem
 import com.example.brauportv2.ui.objects.RecipeDataSource.recipeItem
 import com.example.brauportv2.ui.objects.RecipeDataSource.startHoppingList
 import com.example.brauportv2.ui.objects.RecipeDataSource.startMainBrew
@@ -35,6 +36,11 @@ class RecipeDetailsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentRecipeDetailsBinding.inflate(inflater, container, false)
+
+        binding.recipeDetailsInspectButton.setOnClickListener {
+            val dialog = DialogRecipeInspectFragment(recipeItem.toBrewHistoryItem(), false)
+            dialog.show(childFragmentManager, "recipeDetailsInspectDialog")
+        }
 
         binding.recipeDetailsMalts.setOnClickListener {
             val dialog = DialogMaltsFragment()

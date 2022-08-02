@@ -17,10 +17,6 @@ class DialogRecipeInspectFragment(
 
     private var _binding: FragmentDialogRecipeInspectBinding? = null
     private val binding get() = _binding!!
-    private var maltNameList = mutableListOf<String>()
-    private var restNameList = mutableListOf<String>()
-    private var hopsNameList = mutableListOf<String>()
-    private var hoppingNameList = mutableListOf<String>()
 
     override fun onStart() {
         super.onStart()
@@ -38,6 +34,11 @@ class DialogRecipeInspectFragment(
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentDialogRecipeInspectBinding.inflate(inflater, container, false)
+
+        val maltNameList = mutableListOf<String>()
+        val restNameList = mutableListOf<String>()
+        val hopsNameList = mutableListOf<String>()
+        val hoppingNameList = mutableListOf<String>()
 
         recipe.bMaltList.forEach {
             maltNameList.add(it.stockName + " " + it.stockAmount + "g")
