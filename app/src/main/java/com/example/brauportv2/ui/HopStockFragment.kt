@@ -15,10 +15,10 @@ import com.example.brauportv2.adapter.StockAdapter
 import com.example.brauportv2.databinding.FragmentHopStockBinding
 import com.example.brauportv2.mapper.toStockItem
 import com.example.brauportv2.model.stock.StockItem
-import com.example.brauportv2.model.stock.StockItemType
+import com.example.brauportv2.model.stock.StockItemType.HOP
 import com.example.brauportv2.ui.dialog.DialogInstructionStockFragment
 import com.example.brauportv2.ui.dialog.DialogStockFragment
-import com.example.brauportv2.ui.objects.TextWatcherLogic.filterListForKeyword
+import com.example.brauportv2.ui.objects.TextWatcherLogic.filterListForStock
 import com.example.brauportv2.ui.viewModel.StockViewModel
 import com.example.brauportv2.ui.viewModel.StockViewModelFactory
 import kotlinx.coroutines.launch
@@ -34,7 +34,7 @@ class HopStockFragment : Fragment() {
         override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
         override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
         override fun afterTextChanged(p0: Editable?) {
-            filterListForKeyword(binding.hopTextInput.text.toString(), adapter, startList)
+            filterListForStock(binding.hopTextInput.text.toString(), adapter, startList)
         }
     }
 
@@ -45,17 +45,17 @@ class HopStockFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        _binding = FragmentHopStockBinding
-            .inflate(inflater, container, false)
+    ): View {
+        _binding = FragmentHopStockBinding.inflate(inflater, container, false)
+
         adapter = StockAdapter(this::onItemClick, this::onDeleteClick)
+
         binding.hopRecyclerView.adapter = adapter
-        //binding.hopRecyclerView.hasFixedSize()
 
         lifecycleScope.launch {
             viewModel.allStockItems.collect { it ->
                 startList = it.map { it.toStockItem() }
-                    .filter { it.itemType == StockItemType.HOP.ordinal }
+                    .filter { it.itemType == HOP.ordinal }
                 adapter.submitList(startList)
             }
         }
@@ -96,12 +96,12 @@ class HopStockFragment : Fragment() {
     }
 
     private fun openAddDialog() {
-        val dialog = DialogStockFragment(hashCode(), StockItemType.HOP.ordinal, false)
+        val dialog = DialogStockFragment(hashCode(), HOP.ordinal, false)
         dialog.show(childFragmentManager, "hopAddDialog")
     }
 
     private fun openUpdateDialog(stockItem: StockItem) {
-        val dialog = DialogStockFragment(stockItem.id, StockItemType.HOP.ordinal, true)
+        val dialog = DialogStockFragment(stockItem.id, HOP.ordinal, true)
         dialog.show(childFragmentManager, "hopUpdateDialog")
     }
 

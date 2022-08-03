@@ -10,6 +10,7 @@ import androidx.fragment.app.activityViewModels
 import com.example.brauportv2.BaseApplication
 import com.example.brauportv2.databinding.FragmentRecipeDetailsBinding
 import com.example.brauportv2.mapper.toBrewHistoryItem
+import com.example.brauportv2.ui.dialog.*
 import com.example.brauportv2.ui.objects.RecipeDataSource.recipeItem
 import com.example.brauportv2.ui.objects.RecipeDataSource.startHoppingList
 import com.example.brauportv2.ui.objects.RecipeDataSource.startMainBrew
@@ -17,7 +18,6 @@ import com.example.brauportv2.ui.objects.RecipeDataSource.startMaltList
 import com.example.brauportv2.ui.objects.RecipeDataSource.startRestList
 import com.example.brauportv2.ui.objects.RecipeDataSource.startYeast
 import com.example.brauportv2.ui.objects.RecipeDataSource.update
-import com.example.brauportv2.ui.dialog.*
 import com.example.brauportv2.ui.viewModel.RecipeViewModel
 import com.example.brauportv2.ui.viewModel.RecipeViewModelFactory
 import java.util.*
@@ -28,17 +28,20 @@ class RecipeDetailsFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val viewModel: RecipeViewModel by activityViewModels {
-        RecipeViewModelFactory((activity?.application as BaseApplication).recipeDatabase.recipeDao())
+        RecipeViewModelFactory((activity?.application as BaseApplication)
+            .recipeDatabase.recipeDao())
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentRecipeDetailsBinding.inflate(inflater, container, false)
 
         binding.recipeDetailsInspectButton.setOnClickListener {
-            val dialog = DialogRecipeInspectFragment(recipeItem.toBrewHistoryItem(), false)
+            val dialog = DialogRecipeInspectFragment(
+                recipeItem.toBrewHistoryItem(), false
+            )
             dialog.show(childFragmentManager, "recipeDetailsInspectDialog")
         }
 
@@ -89,16 +92,15 @@ class RecipeDetailsFragment : Fragment() {
                 recipeItem.rId = UUID.randomUUID().hashCode()
                 recipeItem.recipeName = recipeName
 
-                if (recipeItem.recipeName == "" || recipeItem.maltList == startMaltList ||
-                    recipeItem.restList == startRestList || recipeItem.mainBrew == startMainBrew ||
+                if (recipeItem.maltList == startMaltList || recipeItem.restList == startRestList ||
+                    recipeItem.mainBrew == startMainBrew ||
                     recipeItem.hoppingList == startHoppingList || recipeItem.yeast == startYeast
                 )
                     Toast.makeText(context, "Bitte alle Attribute setzen!", Toast.LENGTH_SHORT)
                         .show()
                 else {
                     viewModel.addRecipe(recipeItem)
-                    Toast.makeText(context, "Rezept wurde erstellt!", Toast.LENGTH_SHORT)
-                        .show()
+                    Toast.makeText(context, "Rezept wurde erstellt!", Toast.LENGTH_SHORT).show()
                 }
             }
         }

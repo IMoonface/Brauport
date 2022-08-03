@@ -17,13 +17,12 @@
     <string name="hopping">Hopfengaben</string>
     <string name="yeasts">Hefen</string>
     <string name="main_brew">Guss</string>
-    <string name="enter_name_text">Namen eingeben</string>
-    <string name="enter_amount_text">Menge eingeben</string>
+    <string name="enter_name_text">Name</string>
+    <string name="enter_amount_text">Menge</string>
     <string name="confirm_text">Bestätigen</string>
     <string name="abort_text">Abbrechen</string>
     <string name="unit_of_measurement_grams">g</string>
     <string name="search_string">Durchsuchen</string>
-    <string name="insert_time">Zeit eingeben</string>
     <string name="instruction_s_text">Bitte tragen Sie hier Ihren gesamten Bestand ein, indem Sie
         auf den \"+ Neu\"-Button drücken und den Namen, sowie die Menge Ihres Bestanditems angeben.
         Sie können durch ein Klick auf das entsprechende Bestandsitem dessen Daten nachträglich
@@ -52,11 +51,11 @@
     <string name="new_malt">Neues Malz</string>
     <string name="new_hop">Neuer Hopfen</string>
     <string name="save_string">Speichern</string>
-    <string name="enter_temp">Temperatur eingeben</string>
-    <string name="enter_time">Zeit eingeben</string>
+    <string name="enter_temp">Temperatur</string>
+    <string name="enter_time">Zeit</string>
     <string name="enter_recipe_name">Bitte Rezeptnamen eingeben!</string>
-    <string name="enter_main_brew">Hauptguss eingeben</string>
-    <string name="enter_second_brew">Nachguss eingeben</string>
+    <string name="enter_main_brew">Hauptguss</string>
+    <string name="enter_second_brew">Nachguss</string>
     <string name="unit_of_measurement_milliliters">ml</string>
     <string name="back_text">Zurück</string>
     <string name="end_brewing">Brauvorgang Beenden</string>
@@ -79,4 +78,6 @@
     <string name="delete_recipe_text">Wollen Sie dieses Rezept entfernen?</string>
     <string name="yes_text">Ja</string>
     <string name="no_text">Nein</string>
+    <string name="fill_all_fields_text">Bitte alle Felder ausfüllen!</string>
+    <string name="fill_amount_text">Bitte Menge angeben!</string>
 </resources>

@@ -1,10 +1,10 @@
 package com.example.brauportv2.data
 
 import androidx.room.TypeConverter
-import com.example.brauportv2.model.stock.StockItem
 import com.example.brauportv2.model.recipe.Hopping
 import com.example.brauportv2.model.recipe.MainBrew
 import com.example.brauportv2.model.recipe.Rest
+import com.example.brauportv2.model.stock.StockItem
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import org.json.JSONObject

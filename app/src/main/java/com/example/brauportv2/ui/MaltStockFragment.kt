@@ -15,10 +15,10 @@ import com.example.brauportv2.adapter.StockAdapter
 import com.example.brauportv2.databinding.FragmentMaltStockBinding
 import com.example.brauportv2.mapper.toStockItem
 import com.example.brauportv2.model.stock.StockItem
-import com.example.brauportv2.model.stock.StockItemType
+import com.example.brauportv2.model.stock.StockItemType.MALT
 import com.example.brauportv2.ui.dialog.DialogInstructionStockFragment
 import com.example.brauportv2.ui.dialog.DialogStockFragment
-import com.example.brauportv2.ui.objects.TextWatcherLogic.filterListForKeyword
+import com.example.brauportv2.ui.objects.TextWatcherLogic.filterListForStock
 import com.example.brauportv2.ui.viewModel.StockViewModel
 import com.example.brauportv2.ui.viewModel.StockViewModelFactory
 import kotlinx.coroutines.launch
@@ -34,7 +34,7 @@ class MaltStockFragment : Fragment() {
         override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
         override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
         override fun afterTextChanged(p0: Editable?) {
-            filterListForKeyword(binding.maltTextInput.text.toString(), adapter, startList)
+            filterListForStock(binding.maltTextInput.text.toString(), adapter, startList)
         }
     }
 
@@ -45,7 +45,7 @@ class MaltStockFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentMaltStockBinding
             .inflate(inflater, container, false)
 
@@ -56,7 +56,7 @@ class MaltStockFragment : Fragment() {
         lifecycleScope.launch {
             viewModel.allStockItems.collect { it ->
                 startList = it.map { it.toStockItem() }
-                    .filter { it.itemType == StockItemType.MALT.ordinal }
+                    .filter { it.itemType == MALT.ordinal }
                 adapter.submitList(startList)
             }
         }
@@ -97,12 +97,12 @@ class MaltStockFragment : Fragment() {
     }
 
     private fun openAddDialog() {
-        val dialog = DialogStockFragment(hashCode(), StockItemType.MALT.ordinal, false)
+        val dialog = DialogStockFragment(hashCode(), MALT.ordinal, false)
         dialog.show(childFragmentManager, "maltAddDialog")
     }
 
     private fun openUpdateDialog(stockItem: StockItem) {
-        val dialog = DialogStockFragment(stockItem.id, StockItemType.MALT.ordinal, true)
+        val dialog = DialogStockFragment(stockItem.id, MALT.ordinal, true)
         dialog.show(childFragmentManager, "maltUpdateDialog")
     }
 

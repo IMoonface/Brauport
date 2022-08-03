@@ -13,7 +13,7 @@ import com.example.brauportv2.BaseApplication
 import com.example.brauportv2.adapter.HoppingAdapter
 import com.example.brauportv2.databinding.FragmentDialogHoppingBinding
 import com.example.brauportv2.mapper.toStockItem
-import com.example.brauportv2.model.stock.StockItemType
+import com.example.brauportv2.model.stock.StockItemType.HOP
 import com.example.brauportv2.ui.objects.RecipeDataSource.recipeItem
 import com.example.brauportv2.ui.viewModel.StockViewModel
 import com.example.brauportv2.ui.viewModel.StockViewModelFactory
@@ -42,7 +42,7 @@ class DialogHoppingFragment : DialogFragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentDialogHoppingBinding.inflate(inflater, container, false)
 
         adapter = HoppingAdapter()
@@ -51,7 +51,7 @@ class DialogHoppingFragment : DialogFragment() {
         lifecycleScope.launch {
             viewModel.allStockItems.collect { it ->
                 adapter.submitList(it.map { it.toStockItem() }
-                    .filter { it.itemType == StockItemType.HOP.ordinal })
+                    .filter { it.itemType == HOP.ordinal })
             }
         }
 

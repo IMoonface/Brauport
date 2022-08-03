@@ -32,7 +32,7 @@ class DialogRecipeInspectFragment(
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentDialogRecipeInspectBinding.inflate(inflater, container, false)
 
         val maltNameList = mutableListOf<String>()
@@ -41,16 +41,16 @@ class DialogRecipeInspectFragment(
         val hoppingNameList = mutableListOf<String>()
 
         recipe.bMaltList.forEach {
-            maltNameList.add(it.stockName + " " + it.stockAmount + "g")
+            maltNameList.add(it.stockName + " " + it.stockAmount)
         }
 
         recipe.bRestList.forEach {
-            restNameList.add(it.restTime + " " + it.restTemp)
+            restNameList.add(it.restTime + " " + it.restTemp + "min")
         }
 
         recipe.bHoppingList.forEach { hopping ->
             hopping.hopsList.forEach {
-                hopsNameList.add(it.stockName + " " + it.stockAmount + "g")
+                hopsNameList.add(it.stockName + " " + it.stockAmount)
             }
             hoppingNameList.add(hopsNameList.toString() + " " + hopping.hoppingTime + "min")
         }
@@ -63,16 +63,11 @@ class DialogRecipeInspectFragment(
 
         binding.inspectHoppingList.text = "Hopfengaben: $hoppingNameList"
 
-        binding.inspectYeast.text = "Hefe: " +
-                recipe.bYeast.stockName +
-                " " +
-                recipe.bYeast.stockAmount +
-                "g"
+        binding.inspectYeast.text = "Hefe: " + recipe.bYeast.stockName + " " +
+                recipe.bYeast.stockAmount
 
-        binding.inspectMainBrew.text = "Guss: Hauptguss mit " +
-                recipe.bMainBrew.firstBrew +
-                " und Nachguss mit " +
-                recipe.bMainBrew.secondBrew
+        binding.inspectMainBrew.text = "Guss: Hauptguss mit " + recipe.bMainBrew.firstBrew +
+                " und Nachguss mit " + recipe.bMainBrew.secondBrew
 
         if (fromBrewHistory) {
             binding.inspectDateOfComp.text = "Fertigstellungsdatum: " + recipe.bDateOfCompletion

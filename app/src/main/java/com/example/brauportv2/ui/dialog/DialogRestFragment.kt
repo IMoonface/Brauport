@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
+import com.example.brauportv2.R
 import com.example.brauportv2.databinding.FragmentDialogRestBinding
 import com.example.brauportv2.model.recipe.Rest
 import com.example.brauportv2.ui.objects.RecipeDataSource.recipeItem
@@ -29,7 +30,7 @@ class DialogRestFragment : DialogFragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentDialogRestBinding.inflate(inflater, container, false)
 
         binding.restConfirmButton.setOnClickListener {
@@ -37,9 +38,9 @@ class DialogRestFragment : DialogFragment() {
             val restTime = binding.restTime.text.toString()
 
             if (restTemp == "" || restTemp == "")
-                Toast.makeText(context, "Bitte alle Felder ausfüllen!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, R.string.fill_all_fields_text, Toast.LENGTH_SHORT).show()
             else {
-                recipeItem.restList.add(Rest("$restTemp°C", restTime + "min"))
+                recipeItem.restList.add(Rest("$restTemp°C", restTime))
                 Toast.makeText(context, "Rast wurde hinzugefügt!", Toast.LENGTH_SHORT).show()
             }
         }

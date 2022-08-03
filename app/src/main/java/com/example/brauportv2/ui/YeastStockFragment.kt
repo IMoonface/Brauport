@@ -15,10 +15,10 @@ import com.example.brauportv2.adapter.StockAdapter
 import com.example.brauportv2.databinding.FragmentYeastStockBinding
 import com.example.brauportv2.mapper.toStockItem
 import com.example.brauportv2.model.stock.StockItem
-import com.example.brauportv2.model.stock.StockItemType
+import com.example.brauportv2.model.stock.StockItemType.YEAST
 import com.example.brauportv2.ui.dialog.DialogInstructionStockFragment
 import com.example.brauportv2.ui.dialog.DialogStockFragment
-import com.example.brauportv2.ui.objects.TextWatcherLogic.filterListForKeyword
+import com.example.brauportv2.ui.objects.TextWatcherLogic.filterListForStock
 import com.example.brauportv2.ui.viewModel.StockViewModel
 import com.example.brauportv2.ui.viewModel.StockViewModelFactory
 import kotlinx.coroutines.launch
@@ -31,11 +31,9 @@ class YeastStockFragment : Fragment() {
     private lateinit var startList: List<StockItem>
     private val textWatcher = object : TextWatcher {
         override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
-
         override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
-
         override fun afterTextChanged(p0: Editable?) {
-            filterListForKeyword(binding.yeastTextInput.text.toString(), adapter, startList)
+            filterListForStock(binding.yeastTextInput.text.toString(), adapter, startList)
         }
     }
 
@@ -46,31 +44,30 @@ class YeastStockFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        _binding = FragmentYeastStockBinding
-            .inflate(inflater, container, false)
+    ): View {
+        _binding = FragmentYeastStockBinding.inflate(inflater, container, false)
+
         adapter = StockAdapter(this::onItemClick, this::onDeleteClick)
+
         binding.yeastRecyclerView.adapter = adapter
 
         lifecycleScope.launch {
             viewModel.allStockItems.collect { it ->
                 startList = it.map { it.toStockItem() }
-                    .filter { it.itemType == StockItemType.YEAST.ordinal }
+                    .filter { it.itemType == YEAST.ordinal }
                 adapter.submitList(startList)
             }
         }
 
         binding.yeastNextButton.setOnClickListener {
-            val action = YeastStockFragmentDirections
-                .actionYeastStockFragmentToMaltStockFragment()
+            val action = YeastStockFragmentDirections.actionYeastStockFragmentToMaltStockFragment()
             findNavController().navigate(action)
 
             binding.yeastTextInput.text?.clear()
         }
 
         binding.yeastBeforeButton.setOnClickListener {
-            val action = YeastStockFragmentDirections
-                .actionYeastStockFragmentToHopStockFragment()
+            val action = YeastStockFragmentDirections.actionYeastStockFragmentToHopStockFragment()
             findNavController().navigate(action)
 
             binding.yeastTextInput.text?.clear()
@@ -96,13 +93,12 @@ class YeastStockFragment : Fragment() {
     }
 
     private fun openAddDialog() {
-        val dialog = DialogStockFragment(hashCode(), StockItemType.YEAST.ordinal, false)
+        val dialog = DialogStockFragment(hashCode(), YEAST.ordinal, false)
         dialog.show(childFragmentManager, "stockAddDialog")
     }
 
     private fun openUpdateDialog(stockItem: StockItem) {
-        val dialog = DialogStockFragment(stockItem.id, StockItemType.YEAST.ordinal, true)
-
+        val dialog = DialogStockFragment(stockItem.id, YEAST.ordinal, true)
         dialog.show(childFragmentManager, "stockUpdateDialog")
     }
 

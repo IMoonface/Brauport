@@ -29,16 +29,14 @@ class BrewHistoryFragment : Fragment() {
 
     private val viewModel: BrewHistoryViewModel by activityViewModels {
         BrewHistoryViewModelFactory(
-            (activity?.application as BaseApplication)
-                .brewHistoryDatabase.brewHistoryDao()
+            (activity?.application as BaseApplication).brewHistoryDatabase.brewHistoryDao()
         )
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
+    ): View {
         _binding = FragmentBrewHistoryBinding.inflate(inflater, container, false)
 
         adapter = BrewHistoryAdapter(this::onInspectItem, this::onItemClick)
@@ -50,7 +48,6 @@ class BrewHistoryFragment : Fragment() {
         lifecycleScope.launch {
             viewModel.allBrewHistoryItems.collect { it ->
                 brewHistoryList = it.map { it.toBrewHistoryItem() }
-
                 brewHistoryList.forEach {
                     if (SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
                             .parse(it.bEndOfFermentation)
@@ -58,11 +55,9 @@ class BrewHistoryFragment : Fragment() {
                                 SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
                                     .parse(dateNow)
                             )
-                    ) {
+                    )
                         viewModel.deleteRecipe(it)
-                    }
                 }
-
                 adapter.submitList(brewHistoryList)
             }
         }
@@ -80,7 +75,5 @@ class BrewHistoryFragment : Fragment() {
         dialog.show(childFragmentManager, "cookingDialog")
     }
 
-    private fun onDialogCookingDismiss(abort: Boolean) {
-
-    }
+    private fun onDialogCookingDismiss(abort: Boolean) {}
 }

@@ -7,16 +7,17 @@ import com.example.brauportv2.data.brewHistory.BrewHistoryDao
 import com.example.brauportv2.mapper.toBrewHistoryItemData
 import com.example.brauportv2.model.brewHistory.BrewHistoryItem
 import com.example.brauportv2.model.brewHistory.BrewHistoryItemData
-import com.example.brauportv2.model.stock.StockItem
 import com.example.brauportv2.model.recipe.Hopping
 import com.example.brauportv2.model.recipe.MainBrew
 import com.example.brauportv2.model.recipe.Rest
+import com.example.brauportv2.model.stock.StockItem
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 
 class BrewHistoryViewModel(private val brewHistoryDao: BrewHistoryDao) : ViewModel() {
-    val allBrewHistoryItems: Flow<List<BrewHistoryItemData>> = brewHistoryDao.getAllBrewHistoryItems()
+    val allBrewHistoryItems: Flow<List<BrewHistoryItemData>> =
+        brewHistoryDao.getAllBrewHistoryItems()
 
     fun addBrewHistoryItem(brewHistoryItem: BrewHistoryItem) {
         viewModelScope.launch {
@@ -58,7 +59,8 @@ class BrewHistoryViewModel(private val brewHistoryDao: BrewHistoryDao) : ViewMod
     }
 }
 
-class BrewHistoryViewModelFactory(private val brewHistoryDao: BrewHistoryDao) : ViewModelProvider.Factory {
+class BrewHistoryViewModelFactory(private val brewHistoryDao: BrewHistoryDao) :
+    ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(BrewHistoryViewModel::class.java)) {
             @Suppress("UNCHECKED_CAST")

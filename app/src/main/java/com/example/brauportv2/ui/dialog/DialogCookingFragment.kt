@@ -47,7 +47,7 @@ class DialogCookingFragment(
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentDialogCookingBinding.inflate(inflater, container, false)
 
         binding.cookingConfirmButton.setOnClickListener {

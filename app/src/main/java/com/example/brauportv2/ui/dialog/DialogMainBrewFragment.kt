@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
+import com.example.brauportv2.R
 import com.example.brauportv2.databinding.FragmentDialogMainBrewBinding
 import com.example.brauportv2.model.recipe.MainBrew
 import com.example.brauportv2.ui.objects.RecipeDataSource.recipeItem
@@ -29,7 +30,7 @@ class DialogMainBrewFragment : DialogFragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentDialogMainBrewBinding.inflate(inflater, container, false)
 
         binding.mainBrewConfirmButton.setOnClickListener {
@@ -37,8 +38,7 @@ class DialogMainBrewFragment : DialogFragment() {
             val secondBrew = binding.mainBrewSecond.text.toString()
 
             if (firstBrew == "" || secondBrew == "")
-                Toast.makeText(context, "Bitte alle Felder ausfüllen!", Toast.LENGTH_SHORT)
-                    .show()
+                Toast.makeText(context, R.string.fill_all_fields_text, Toast.LENGTH_SHORT).show()
             else {
                 recipeItem.mainBrew = MainBrew(firstBrew + "ml", secondBrew + "ml")
                 Toast.makeText(context, "Guss wurde hinzugefügt!", Toast.LENGTH_SHORT).show()

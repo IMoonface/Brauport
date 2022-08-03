@@ -30,7 +30,7 @@ class DialogDeleteFragment(
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentDialogDeleteBinding.inflate(inflater, container, false)
 
         binding.deleteYesButton.setOnClickListener {

@@ -13,9 +13,9 @@ import com.example.brauportv2.BaseApplication
 import com.example.brauportv2.adapter.RecipeStockAdapter
 import com.example.brauportv2.databinding.FragmentDialogYeastsBinding
 import com.example.brauportv2.mapper.toStockItem
-import com.example.brauportv2.model.stock.StockItem
-import com.example.brauportv2.model.stock.StockItemType
 import com.example.brauportv2.model.recipe.SNoAmount
+import com.example.brauportv2.model.stock.StockItem
+import com.example.brauportv2.model.stock.StockItemType.YEAST
 import com.example.brauportv2.ui.objects.RecipeDataSource.recipeItem
 import com.example.brauportv2.ui.objects.RecipeDataSource.startYeast
 import com.example.brauportv2.ui.viewModel.StockViewModel
@@ -45,7 +45,7 @@ class DialogYeastFragment : DialogFragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentDialogYeastsBinding.inflate(inflater, container, false)
 
         adapter = RecipeStockAdapter(this::onItemAdd, this::onItemDelete)
@@ -54,7 +54,7 @@ class DialogYeastFragment : DialogFragment() {
         lifecycleScope.launch {
             viewModel.allStockItems.collect { it ->
                 adapter.submitList(it.map { it.toStockItem() }
-                    .filter { it.itemType == StockItemType.YEAST.ordinal })
+                    .filter { it.itemType == YEAST.ordinal })
             }
         }
 
@@ -72,9 +72,10 @@ class DialogYeastFragment : DialogFragment() {
 
     private fun onItemAdd(item: StockItem, amount: String) {
         if (recipeItem.yeast.stockName != "" && recipeItem.yeast.stockAmount != "")
-            Toast.makeText(context, "Nur eine Hefe pro Rezept möglich!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, "Nur eine Hefe pro Rezept möglich!", Toast.LENGTH_SHORT)
+                .show()
         else {
-            item.stockAmount = amount
+            item.stockAmount = amount + "g"
             recipeItem.yeast = item
             Toast.makeText(context, "Hefe hinzugefügt!", Toast.LENGTH_SHORT).show()
         }
@@ -84,7 +85,7 @@ class DialogYeastFragment : DialogFragment() {
         if (recipeItem.yeast == startYeast) {
             Toast.makeText(context, "Hefe nicht vorhanden!", Toast.LENGTH_SHORT).show()
         } else {
-            recipeItem.yeast = StockItem(1, StockItemType.YEAST.ordinal, "", "")
+            recipeItem.yeast = StockItem(1, YEAST.ordinal, "", "")
             Toast.makeText(context, "Hefe gelöscht!", Toast.LENGTH_SHORT).show()
         }
     }

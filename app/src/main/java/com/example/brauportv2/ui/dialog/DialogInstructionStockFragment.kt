@@ -26,7 +26,7 @@ class DialogInstructionStockFragment : DialogFragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentDialogInstructionStockBinding
             .inflate(inflater, container, false)
 

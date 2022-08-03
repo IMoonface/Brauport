@@ -15,17 +15,18 @@ import com.example.brauportv2.adapter.RecipeAdapter
 import com.example.brauportv2.databinding.FragmentRecipeBinding
 import com.example.brauportv2.mapper.toBrewHistoryItem
 import com.example.brauportv2.mapper.toRecipeItem
-import com.example.brauportv2.model.stock.StockItem
-import com.example.brauportv2.model.stock.StockItemType
 import com.example.brauportv2.model.recipe.Hopping
 import com.example.brauportv2.model.recipe.MainBrew
 import com.example.brauportv2.model.recipe.RecipeItem
 import com.example.brauportv2.model.recipe.Rest
+import com.example.brauportv2.model.stock.StockItem
+import com.example.brauportv2.model.stock.StockItemType
 import com.example.brauportv2.ui.dialog.DialogDeleteFragment
 import com.example.brauportv2.ui.dialog.DialogInstructionRecipeFragment
 import com.example.brauportv2.ui.dialog.DialogRecipeInspectFragment
 import com.example.brauportv2.ui.objects.RecipeDataSource.recipeItem
 import com.example.brauportv2.ui.objects.RecipeDataSource.update
+import com.example.brauportv2.ui.objects.TextWatcherLogic.filterListForRecipe
 import com.example.brauportv2.ui.viewModel.RecipeViewModel
 import com.example.brauportv2.ui.viewModel.RecipeViewModelFactory
 import kotlinx.coroutines.launch
@@ -37,29 +38,23 @@ class RecipeFragment : Fragment() {
     private lateinit var recipeStartList: List<RecipeItem>
     private lateinit var adapter: RecipeAdapter
     private var deleteRecipe = false
-
     private val textWatcher = object : TextWatcher {
         override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
         override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
         override fun afterTextChanged(p0: Editable?) {
-
-            val textInputText = binding.recipeTextInput.text.toString()
-
-            if (textInputText != "")
-                adapter.submitList(recipeStartList.filter { it.recipeName.contains(textInputText) })
-            else
-                adapter.submitList(recipeStartList)
+            filterListForRecipe(binding.recipeTextInput.text.toString(), adapter, recipeStartList)
         }
     }
 
     private val viewModel: RecipeViewModel by activityViewModels {
-        RecipeViewModelFactory((activity?.application as BaseApplication).recipeDatabase.recipeDao())
+        RecipeViewModelFactory((activity?.application as BaseApplication)
+            .recipeDatabase.recipeDao())
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentRecipeBinding.inflate(inflater, container, false)
         adapter = RecipeAdapter(this::onInspectClick, this::onItemClick, this::onDeleteClick)
         binding.recipeRecyclerView.adapter = adapter
@@ -82,8 +77,7 @@ class RecipeFragment : Fragment() {
                 MainBrew("", "")
             )
 
-            val action = RecipeFragmentDirections
-                .actionRecipeFragmentToRecipeDetailsFragment()
+            val action = RecipeFragmentDirections.actionRecipeFragmentToRecipeDetailsFragment()
             findNavController().navigate(action)
         }
 
@@ -106,8 +100,7 @@ class RecipeFragment : Fragment() {
         update = true
         recipeItem = recipe
 
-        val action = RecipeFragmentDirections
-            .actionRecipeFragmentToRecipeDetailsFragment()
+        val action = RecipeFragmentDirections.actionRecipeFragmentToRecipeDetailsFragment()
         findNavController().navigate(action)
     }
 

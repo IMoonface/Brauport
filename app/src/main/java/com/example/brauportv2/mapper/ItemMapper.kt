@@ -2,11 +2,11 @@ package com.example.brauportv2.mapper
 
 import com.example.brauportv2.model.brewHistory.BrewHistoryItem
 import com.example.brauportv2.model.brewHistory.BrewHistoryItemData
-import com.example.brauportv2.model.stock.StockItem
-import com.example.brauportv2.model.stock.StockItemData
 import com.example.brauportv2.model.recipe.RecipeItem
 import com.example.brauportv2.model.recipe.RecipeItemData
 import com.example.brauportv2.model.recipe.SNoAmount
+import com.example.brauportv2.model.stock.StockItem
+import com.example.brauportv2.model.stock.StockItemData
 
 fun StockItemData.toStockItem(): StockItem {
     return StockItem(id, itemType, stockName, stockAmount)

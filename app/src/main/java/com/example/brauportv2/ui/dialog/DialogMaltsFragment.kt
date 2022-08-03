@@ -14,9 +14,9 @@ import com.example.brauportv2.adapter.RecipeStockAdapter
 import com.example.brauportv2.databinding.FragmentDialogMaltsBinding
 import com.example.brauportv2.mapper.toSNoAmount
 import com.example.brauportv2.mapper.toStockItem
-import com.example.brauportv2.model.stock.StockItem
-import com.example.brauportv2.model.stock.StockItemType
 import com.example.brauportv2.model.recipe.SNoAmount
+import com.example.brauportv2.model.stock.StockItem
+import com.example.brauportv2.model.stock.StockItemType.MALT
 import com.example.brauportv2.ui.objects.RecipeDataSource.recipeItem
 import com.example.brauportv2.ui.viewModel.StockViewModel
 import com.example.brauportv2.ui.viewModel.StockViewModelFactory
@@ -44,16 +44,17 @@ class DialogMaltsFragment : DialogFragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentDialogMaltsBinding.inflate(inflater, container, false)
 
         adapter = RecipeStockAdapter(this::onItemAdd, this::onItemDelete)
+
         binding.rMaltsRecyclerView.adapter = adapter
 
         lifecycleScope.launch {
             viewModel.allStockItems.collect { it ->
                 adapter.submitList(it.map { it.toStockItem() }
-                    .filter { it.itemType == StockItemType.MALT.ordinal })
+                    .filter { it.itemType == MALT.ordinal })
             }
         }
 
@@ -73,7 +74,7 @@ class DialogMaltsFragment : DialogFragment() {
         if (recipeItem.maltList.map { it.toSNoAmount() }.contains(item.toSNoAmount()))
             Toast.makeText(context, "Malz schon vorhanden!", Toast.LENGTH_SHORT).show()
         else {
-            item.stockAmount = amount
+            item.stockAmount = amount + "g"
             recipeItem.maltList.add(item)
             Toast.makeText(context, "Malz hinzugefügt!", Toast.LENGTH_SHORT).show()
         }

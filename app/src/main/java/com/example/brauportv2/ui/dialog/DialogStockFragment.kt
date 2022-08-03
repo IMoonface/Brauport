@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
 import com.example.brauportv2.BaseApplication
+import com.example.brauportv2.R
 import com.example.brauportv2.databinding.FragmentDialogStockBinding
 import com.example.brauportv2.model.stock.StockItem
 import com.example.brauportv2.ui.viewModel.StockViewModel
@@ -41,27 +42,22 @@ class DialogStockFragment(
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentDialogStockBinding.inflate(inflater, container, false)
 
         binding.stockConfirmButton.setOnClickListener {
             val itemTitle = binding.stockItemName.text.toString()
-            val itemAmount = binding.stockItemAmount.text.toString()
+            val itemAmount = binding.stockItemAmount.text.toString() + "g"
 
             if (itemTitle == "" || itemAmount == "") {
-                Toast.makeText(context, "Bitte alle Felder ausfüllen!", Toast.LENGTH_SHORT)
-                    .show()
+                Toast.makeText(context, R.string.fill_all_fields_text, Toast.LENGTH_SHORT).show()
             } else {
                 if (update)
-                    viewModel.updateStock(stockId, itemType, itemTitle, itemAmount + "g")
-                else viewModel.addStock(
-                    StockItem(
-                        UUID.randomUUID().hashCode(),
-                        itemType,
-                        itemTitle,
-                        itemAmount + "g"
+                    viewModel.updateStock(stockId, itemType, itemTitle, itemAmount)
+                else
+                    viewModel.addStock(
+                        StockItem(UUID.randomUUID().hashCode(), itemType, itemTitle, itemAmount)
                     )
-                )
                 dismiss()
             }
         }

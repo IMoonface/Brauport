@@ -22,14 +22,14 @@ class HomeFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val viewModel: RecipeViewModel by activityViewModels {
-        RecipeViewModelFactory((activity?.application as BaseApplication).recipeDatabase.recipeDao())
+        RecipeViewModelFactory((activity?.application as BaseApplication)
+            .recipeDatabase.recipeDao())
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
+    ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
 
         lifecycleScope.launch {
@@ -41,29 +41,25 @@ class HomeFragment : Fragment() {
 
         binding.mainRecipeButton.setOnClickListener {
             findNavController().navigate(
-                HomeFragmentDirections
-                    .actionHomeFragmentToRecipeFragment()
+                HomeFragmentDirections.actionHomeFragmentToRecipeFragment()
             )
         }
 
         binding.mainStockButton.setOnClickListener {
             findNavController().navigate(
-                HomeFragmentDirections
-                    .actionHomeFragmentToStockFragment()
+                HomeFragmentDirections.actionHomeFragmentToStockFragment()
             )
         }
 
         binding.mainBrewButton.setOnClickListener {
             findNavController().navigate(
-                HomeFragmentDirections
-                    .actionHomeFragmentToBrewFragment()
+                HomeFragmentDirections.actionHomeFragmentToBrewFragment()
             )
         }
 
         binding.mainBrewHistoryButton.setOnClickListener {
             findNavController().navigate(
-                HomeFragmentDirections
-                    .actionHomeFragmentToBrewHistoryFragment()
+                HomeFragmentDirections.actionHomeFragmentToBrewHistoryFragment()
             )
         }
 

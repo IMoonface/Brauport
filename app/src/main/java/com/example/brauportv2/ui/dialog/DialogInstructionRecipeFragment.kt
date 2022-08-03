@@ -26,7 +26,7 @@ class DialogInstructionRecipeFragment : DialogFragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentDialogInstructionRecipeBinding
             .inflate(inflater, container, false)
 

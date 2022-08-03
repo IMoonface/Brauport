@@ -32,7 +32,7 @@
             android:id="@+id/r_hopping_time_input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/insert_time"
+            android:hint="@string/enter_time"
             android:inputType="number"
             android:textColorHint="#546E7A"
             tools:ignore="TextContrastCheck" />

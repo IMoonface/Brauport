@@ -19,8 +19,8 @@ import com.example.brauportv2.mapper.toBrewHistoryItem
 import com.example.brauportv2.mapper.toSNoAmount
 import com.example.brauportv2.mapper.toStockItem
 import com.example.brauportv2.model.BrewItem
-import com.example.brauportv2.model.stock.StockItem
 import com.example.brauportv2.model.recipe.RecipeItem
+import com.example.brauportv2.model.stock.StockItem
 import com.example.brauportv2.ui.dialog.DialogCookingFragment
 import com.example.brauportv2.ui.dialog.DialogQuestionFragment
 import com.example.brauportv2.ui.objects.RecipeDataSource.recipeItemList
@@ -51,7 +51,7 @@ class BrewFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentBrewBinding.inflate(inflater, container, false)
 
         adapter = BrewAdapter(this::onItemClick)

@@ -21,7 +21,7 @@ object StringCreator {
 
         recipeItem.restList.forEach {
             newBrewList.add(
-                BrewItem(it.restTemp, it.restTime.substringBefore("min"), false)
+                BrewItem(it.restTemp, it.restTime, false)
             )
         }
 

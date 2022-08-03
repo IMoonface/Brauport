@@ -7,6 +7,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.brauportv2.R
 import com.example.brauportv2.databinding.CardRecipeStockBinding
 import com.example.brauportv2.mapper.toSNoAmount
 import com.example.brauportv2.model.stock.StockItem
@@ -36,7 +37,7 @@ class RecipeStockAdapter(
     override fun onBindViewHolder(holder: RecipeStockViewHolder, position: Int) =
         with(holder.binding) {
             val item = getItem(position)
-            //TODO: g's weg, weil man auch ohne damit klarkommt
+
             rStockItemTitle.text = item.stockName
             rStockItemAmount.text = item.stockAmount
 
@@ -44,7 +45,7 @@ class RecipeStockAdapter(
                 val newAmount = rStockItemAmountInput.text.toString()
 
                 if (newAmount == "")
-                    Toast.makeText(context, "Bitte Menge angeben!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, R.string.fill_amount_text, Toast.LENGTH_SHORT).show()
                 else
                     onItemClick(item, rStockItemAmountInput.text.toString())
             }

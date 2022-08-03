@@ -7,6 +7,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.brauportv2.R
 import com.example.brauportv2.databinding.CardRecipeStockBinding
 import com.example.brauportv2.mapper.toSNoAmount
 import com.example.brauportv2.model.stock.StockItem
@@ -40,15 +41,14 @@ class HoppingAdapter : ListAdapter<StockItem, HoppingAdapter.HoppingViewHolder>(
             val newAmount = rStockItemAmountInput.text.toString()
 
             if (newAmount == "")
-                Toast.makeText(context, "Bitte Menge angeben!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, R.string.fill_amount_text, Toast.LENGTH_SHORT).show()
             else if (hopping.hopsList.map { it.toSNoAmount() }.contains(item.toSNoAmount())) {
                 Toast.makeText(context, "Hopfen ist schon vorhanden!", Toast.LENGTH_SHORT)
                     .show()
             } else {
-                item.stockAmount = newAmount
+                item.stockAmount = newAmount + "g"
                 hopping.hopsList.add(item)
-                Toast.makeText(context, "Hopfen wurde hinzugefügt!", Toast.LENGTH_SHORT)
-                    .show()
+                Toast.makeText(context, "Hopfen wurde hinzugefügt!", Toast.LENGTH_SHORT).show()
             }
         }
 
