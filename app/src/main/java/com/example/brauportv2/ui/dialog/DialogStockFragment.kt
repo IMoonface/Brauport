@@ -47,16 +47,21 @@ class DialogStockFragment(
 
         binding.stockConfirmButton.setOnClickListener {
             val itemTitle = binding.stockItemName.text.toString()
-            val itemAmount = binding.stockItemAmount.text.toString() + "g"
+            val itemAmount = binding.stockItemAmount.text.toString()
 
             if (itemTitle == "" || itemAmount == "") {
                 Toast.makeText(context, R.string.fill_all_fields_text, Toast.LENGTH_SHORT).show()
             } else {
-                if (update)
-                    viewModel.updateStock(stockId, itemType, itemTitle, itemAmount)
-                else
+                if (update) {
+                    viewModel.updateStock(stockId, itemType, itemTitle, itemAmount + "g")
+                } else
                     viewModel.addStock(
-                        StockItem(UUID.randomUUID().hashCode(), itemType, itemTitle, itemAmount)
+                        StockItem(
+                            UUID.randomUUID().hashCode(),
+                            itemType,
+                            itemTitle,
+                            itemAmount + "g"
+                        )
                     )
                 dismiss()
             }

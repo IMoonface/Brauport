@@ -16,11 +16,11 @@
 
         <TextView
             android:id="@+id/r_stock_item_title"
-            android:layout_width="210dp"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
-            android:maxWidth="210dp"
+            android:maxWidth="250dp"
             android:text="@string/dummy_text"
             android:textColor="@color/appBars_color"
             android:textSize="20sp"
@@ -30,12 +30,12 @@
 
         <TextView
             android:id="@+id/r_stock_item_amount"
-            android:layout_width="210dp"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="10dp"
-            android:maxWidth="210dp"
+            android:maxWidth="250dp"
             android:text="@string/dummy_text"
             android:textColor="@color/appBars_color"
             android:textSize="20sp"
@@ -88,6 +88,7 @@
             android:id="@+id/r_stock_item_delete"
             android:layout_width="50dp"
             android:layout_height="60dp"
+            android:layout_marginTop="7dp"
             android:layout_marginEnd="5dp"
             app:backgroundTint="@color/button_color"
             app:cornerRadius="20dp"

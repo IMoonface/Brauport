@@ -25,23 +25,22 @@
     <string name="search_string">Durchsuchen</string>
     <string name="instruction_s_text">Bitte tragen Sie hier Ihren gesamten Bestand ein, indem Sie
         auf den \"+ Neu\"-Button drücken und den Namen, sowie die Menge Ihres Bestanditems angeben.
-        Sie können durch ein Klick auf das entsprechende Bestandsitem dessen Daten nachträglich
-        abändern. Nutzen Sie dafür die Suchfunktion, um ihr Bestandsitem zu finden und zu ändern.
+        Sie können durch einen Klick auf das entsprechende Bestandsitem dessen Daten nachträglich
+        abändern. Nutzen Sie dafür die Suchfunktion, um Ihr Bestandsitem zu finden und zu ändern.
         Durch Klick auf das \"x\" wird das Bestandsitem aus ihren Bestand gelöscht. Bitte beachten
-        Sie, dass alle Einträge einzigartig sind! Sie können nicht 2-mal denselben Namen verwenden.
-        Nutzen Sie deshalb die \"Durchsuchen\"-Funktion, um ihr entsprechendes Item zu finden und
-        bei Bedarf zu updaten. Alternativ wird bei dem Versuch ein Item mit einen bereits
-        existierenden Namen hinzuzufügen das entsprechende Item geupdated.
+        Sie, dass die Namen der Bestanditems nicht einzigartig sind! Suchen Sie deshalb vorher mit
+        der Suchfunktion, ob ihr Bestandsitem bereits existiert bevor Sie ein neues Item anlegen!
     </string>
     <string name="instruction_r_text">Bitte legen Sie hier ihre Rezepte an, indem Sie auf den
         \"+ Neues Rezept\"-Button drücken und den Namen, sowie die anderen Attribute Ihres Rezeptes
-        angeben. Sie können durch ein Klick auf das entsprechende Rezept dessen Daten nachträglich
-        abändern. Nutzen Sie dafür die Suchfunktion, um ihr Rezept zu finden und zu ändern. Durch
-        Klick auf das \"x\" wird das Rezept gelöscht. Bitte beachten Sie, dass alle Einträge
-        einzigartig sind! Sie können nicht 2-mal denselben Namen verwenden. Nutzen Sie deshalb
-        die \"Durchsuchen\"-Funktion, um ihr entsprechendes Rezept zu finden und bei Bedarf zu
-        updaten. Alternativ wird bei dem Versuch ein Rezept mit einen bereits existierenden Namen
-        hinzuzufügen das entsprechende Rezept geupdated.
+        einzugeben. Sie können durch ein Klick auf das entsprechende Rezept dessen Daten
+        nachträglich abändern. Nutzen Sie dafür die Suchfunktion, um Ihr Rezept zu finden und zu
+        ändern. Durch Klick auf das \"x\" wird das Rezept gelöscht. Bitte beachten Sie, dass wenn
+        Sie ihren Bestand abändern, eventuell auch das Rezept geupdated werden muss! Sie können den
+        \"Aktualisieren\"-Button verwenden um alle nicht mehr existenten Bestanditems aus der
+        jeweiligen Liste zu filtern. Bitte beachten Sie außerdem, dass die Namen der Rezepte nicht
+        einzigartig sind! Suchen Sie deshalb vorher mit der Suchfunktion, ob ihr Rezept bereits
+        existiert bevor Sie ein neues Rezept anlegen!
     </string>
     <string name="unit_of_measurement_time">min</string>
     <string name="unit_of_measurement_temp">°C</string>
@@ -63,16 +62,18 @@
     <string name="stop_brew_timer">Stop</string>
     <string name="timer_dummy">Bitte Item anklicken!</string>
     <string name="main_brew_history_text">Brauhistorie</string>
-    <string name="rest_delete_button_text">Letzte Rast entfernen</string>
+    <string name="rest_delete_button_text">Letzte Rast entf.</string>
     <string name="open_text">Offen</string>
     <string name="done_text">Fertig</string>
-    <string name="delete_hopping_text">Letze Hopfengabe entfernen</string>
+    <string name="delete_item_text">Letztes Item entf.</string>
     <string name="make_recipe_text">Bitte Rezept erstellen!</string>
     <string name="date_dummy_text">TT/MM/JJJJ</string>
     <string name="recipe_inspect_name_text">Rezeptname</string>
     <string name="date_of_completion">Fertigstellungsdatum</string>
     <string name="end_of_fermentation">Ende der Gärung</string>
-    <string name="warning_text">!! Warnung !! \n Es ist zu wenig im Lager. Wenn Sie dieses Rezept durchführen, dann würden Bestände negativ werden!</string>
+    <string name="warning_text">!! Warnung !! \n Es ist zu wenig vorrätig im Lager. Wenn Sie dieses
+        Rezept jetzt durchführen, dann werden Bestände negativ!
+    </string>
     <string name="brew_without_subtracting_stock">Trotzdem Brauen und Bestand nicht abziehen</string>
     <string name="brew_with_subtracting_stock">Trotzdem Brauen und Bestand abziehen</string>
     <string name="delete_recipe_text">Wollen Sie dieses Rezept entfernen?</string>
@@ -80,4 +81,8 @@
     <string name="no_text">Nein</string>
     <string name="fill_all_fields_text">Bitte alle Felder ausfüllen!</string>
     <string name="fill_amount_text">Bitte Menge angeben!</string>
+    <string name="change_in_stock_text">Änderung im Bestand entdeckt.\n
+        Bitte aktualisieren Sie ihr Rezept!</string>
+    <string name="refresh_list_text">Liste wurde aktualisiert</string>
+    <string name="refresh_text">Aktualisieren</string>
 </resources>

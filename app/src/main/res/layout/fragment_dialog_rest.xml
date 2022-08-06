@@ -82,17 +82,17 @@
         android:textSize="15sp"
         app:backgroundTint="@color/button_color"
         app:cornerRadius="20dp"
-        app:layout_constraintEnd_toStartOf="@+id/rest_abort_button"
+        app:layout_constraintEnd_toStartOf="@+id/rest_delete_button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/rest_time"
         tools:ignore="SmallSp" />
 
     <Button
-        android:id="@+id/rest_abort_button"
+        android:id="@+id/rest_delete_button"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
         android:layout_marginTop="10dp"
-        android:text="@string/back_text"
+        android:text="@string/delete_item_text"
         android:textColor="@color/appBars_color"
         android:textSize="15sp"
         app:backgroundTint="@color/button_color"
@@ -102,20 +102,33 @@
         app:layout_constraintTop_toBottomOf="@+id/rest_time" />
 
     <Button
-        android:id="@+id/rest_delete_button"
+        android:id="@+id/rest_back_button"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
-        android:layout_marginTop="65dp"
+        android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
-        android:text="@string/rest_delete_button_text"
+        android:text="@string/back_text"
         android:textColor="@color/appBars_color"
         android:textSize="15sp"
         app:backgroundTint="@color/button_color"
         app:cornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rest_time" />
+        app:layout_constraintEnd_toEndOf="@+id/rest_delete_button"
+        app:layout_constraintTop_toBottomOf="@+id/rest_delete_button" />
+
+    <Button
+        android:id="@+id/rest_clear_button"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:text="@string/refresh_text"
+        android:textColor="@color/appBars_color"
+        android:textSize="15sp"
+        app:backgroundTint="@color/button_color"
+        app:cornerRadius="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/rest_confirm_button"
+        app:layout_constraintTop_toBottomOf="@+id/rest_confirm_button" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

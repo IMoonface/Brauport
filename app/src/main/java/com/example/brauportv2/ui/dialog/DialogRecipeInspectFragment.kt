@@ -45,7 +45,7 @@ class DialogRecipeInspectFragment(
         }
 
         recipe.bRestList.forEach {
-            restNameList.add(it.restTime + " " + it.restTemp + "min")
+            restNameList.add(it.restTemp + " " + it.restTime + "min")
         }
 
         recipe.bHoppingList.forEach { hopping ->

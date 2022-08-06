@@ -17,7 +17,7 @@ fun StockItem.toStockItemData(): StockItemData {
 }
 
 fun StockItem.toSNoAmount(): SNoAmount {
-    return SNoAmount(stockName, itemType)
+    return SNoAmount(id, stockName, itemType)
 }
 
 fun RecipeItemData.toRecipeItem(): RecipeItem {

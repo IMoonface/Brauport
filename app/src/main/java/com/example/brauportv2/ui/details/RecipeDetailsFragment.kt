@@ -87,6 +87,7 @@ class RecipeDetailsFragment : Fragment() {
                         recipeItem.yeast,
                         recipeItem.mainBrew
                     )
+                    Toast.makeText(context, "Rezept wurde geupdatet!", Toast.LENGTH_SHORT).show()
                 }
             } else {
                 recipeItem.rId = UUID.randomUUID().hashCode()

@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.brauportv2.BaseApplication
+import com.example.brauportv2.R
 import com.example.brauportv2.adapter.BrewAdapter
 import com.example.brauportv2.databinding.FragmentBrewBinding
 import com.example.brauportv2.mapper.toBrewHistoryItem
@@ -42,6 +43,7 @@ class BrewFragment : Fragment() {
     private var milliLeft: Long = 0
     private var milliFromItem: Long = 0
     private var withSubtract = true
+    private var changeInStock = false
 
     private val viewModel: StockViewModel by activityViewModels {
         StockViewModelFactory((activity?.application as BaseApplication).stockDatabase.stockDao())
@@ -72,12 +74,14 @@ class BrewFragment : Fragment() {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, pos: Int, id: Long) {
                 binding.brewTimerText.text = "Bitte Item anklicken!"
                 chosenRecipe = recipeItemList[pos]
-                if (proveForNegAmount(chosenRecipe)) {
+                if (proveForNonNegAmount(chosenRecipe)) {
                     adapter.submitList(createStringList(chosenRecipe))
-                } else {
+                } else if (!changeInStock) {
                     val dialog = DialogQuestionFragment(this@BrewFragment::onDialogQuestionDismiss)
                     dialog.show(childFragmentManager, "questionDialog")
                 }
+                else
+                    Toast.makeText(context, R.string.change_in_stock_text, Toast.LENGTH_LONG).show()
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -232,11 +236,15 @@ class BrewFragment : Fragment() {
     private fun calcForShortage(item: StockItem): Boolean {
         val recipeAmount = item.stockAmount.substringBefore("g").toInt()
         val index = stockStartList.map { it.toSNoAmount() }.indexOf(item.toSNoAmount())
+        if (index == -1) {
+            changeInStock = true
+            return false
+        }
         val databaseAmount = stockStartList[index].stockAmount.substringBefore("g").toInt()
-        return databaseAmount - recipeAmount <= 0
+        return databaseAmount - recipeAmount >= 0
     }
 
-    private fun proveForNegAmount(recipeItem: RecipeItem): Boolean {
+    private fun proveForNonNegAmount(recipeItem: RecipeItem): Boolean {
         var possible = true
         recipeItem.maltList.forEach { malt ->
             if (!calcForShortage(malt))

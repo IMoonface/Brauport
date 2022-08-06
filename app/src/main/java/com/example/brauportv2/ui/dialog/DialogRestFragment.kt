@@ -54,8 +54,12 @@ class DialogRestFragment : DialogFragment() {
             }
         }
 
-        binding.restAbortButton.setOnClickListener {
+        binding.restBackButton.setOnClickListener {
             dismiss()
+        }
+
+        binding.restClearButton.setOnClickListener {
+            recipeItem.restList = emptyList<Rest>().toMutableList()
         }
 
         return binding.root

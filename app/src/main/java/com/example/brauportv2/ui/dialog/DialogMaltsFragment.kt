@@ -10,6 +10,7 @@ import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.brauportv2.BaseApplication
+import com.example.brauportv2.R
 import com.example.brauportv2.adapter.RecipeStockAdapter
 import com.example.brauportv2.databinding.FragmentDialogMaltsBinding
 import com.example.brauportv2.mapper.toSNoAmount
@@ -27,6 +28,8 @@ class DialogMaltsFragment : DialogFragment() {
     private var _binding: FragmentDialogMaltsBinding? = null
     private val binding get() = _binding!!
     private lateinit var adapter: RecipeStockAdapter
+    private lateinit var stockList: List<StockItem>
+    private var newMaltList = mutableListOf<StockItem>()
     private val viewModel: StockViewModel by activityViewModels {
         StockViewModelFactory((activity?.application as BaseApplication).stockDatabase.stockDao())
     }
@@ -53,13 +56,23 @@ class DialogMaltsFragment : DialogFragment() {
 
         lifecycleScope.launch {
             viewModel.allStockItems.collect { it ->
-                adapter.submitList(it.map { it.toStockItem() }
-                    .filter { it.itemType == MALT.ordinal })
+                stockList = it.map { it.toStockItem() }
+                    .filter { it.itemType == MALT.ordinal }
+                adapter.submitList(stockList)
             }
         }
 
         binding.rMaltsBackButton.setOnClickListener {
             dismiss()
+        }
+
+        binding.rMaltsRefreshButton.setOnClickListener {
+            recipeItem.maltList.forEach { stockItem ->
+                if (stockList.map { it.toSNoAmount() }.contains(stockItem.toSNoAmount()))
+                    newMaltList.add(stockItem)
+            }
+            recipeItem.maltList = newMaltList
+            Toast.makeText(context, R.string.refresh_list_text, Toast.LENGTH_SHORT).show()
         }
 
         return binding.root
