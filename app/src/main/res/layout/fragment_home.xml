@@ -12,7 +12,7 @@
         android:id="@+id/main_recipe_button"
         android:layout_width="220dp"
         android:layout_height="60dp"
-        android:text="@string/main_recipe_button_text"
+        android:text="@string/main_recipes_button_text"
         android:textColor="@color/appBars_color"
         app:backgroundTint="@color/button_color"
         app:cornerRadius="20dp" />
@@ -22,7 +22,7 @@
         android:layout_width="220dp"
         android:layout_height="60dp"
         android:layout_marginTop="50dp"
-        android:text="@string/main_stock_button_text"
+        android:text="@string/stock_text"
         android:textColor="@color/appBars_color"
         app:backgroundTint="@color/button_color"
         app:cornerRadius="20dp" />
@@ -32,7 +32,7 @@
         android:layout_width="220dp"
         android:layout_height="60dp"
         android:layout_marginTop="50dp"
-        android:text="@string/main_brew_button_text"
+        android:text="@string/brew_text"
         android:textColor="@color/appBars_color"
         app:backgroundTint="@color/button_color"
         app:cornerRadius="20dp" />

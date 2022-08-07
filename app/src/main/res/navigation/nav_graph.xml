@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/home_fragment"
         android:name="com.example.brauportv2.ui.HomeFragment"
-        android:label="Brauport - Hauptmenü"
+        android:label="@string/brauport_main_menu_text"
         tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_homeFragment_to_recipe_fragment"
@@ -34,7 +34,7 @@
     <fragment
         android:id="@+id/malt_stock_fragment"
         android:name="com.example.brauportv2.ui.MaltStockFragment"
-        android:label="Brauport - Malzbestand"
+        android:label="@string/brauport_malt_text"
         tools:layout="@layout/fragment_malt_stock">
         <action
             android:id="@+id/action_malt_stock_fragment_to_hopStockFragment"
@@ -50,21 +50,25 @@
     <fragment
         android:id="@+id/brew_fragment"
         android:name="com.example.brauportv2.ui.BrewFragment"
-        android:label="Brauport - Brauen"
+        android:label="@string/brauport_brew_text"
         tools:layout="@layout/fragment_brew" />
     <fragment
         android:id="@+id/recipe_fragment"
         android:name="com.example.brauportv2.ui.RecipeFragment"
-        android:label="Brauport - Rezept"
+        android:label="@string/brauport_recipes_text"
         tools:layout="@layout/fragment_recipe">
         <action
             android:id="@+id/action_recipeFragment_to_recipeDetailsFragment"
-            app:destination="@id/recipe_details_fragment" />
+            app:destination="@id/recipe_details_fragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
     </fragment>
     <fragment
         android:id="@+id/recipe_details_fragment"
         android:name="com.example.brauportv2.ui.details.RecipeDetailsFragment"
-        android:label="Brauport - Rezeptdetails"
+        android:label="@string/brauport_recipe_details_text"
         tools:layout="@layout/fragment_recipe_details">
         <action
             android:id="@+id/action_recipe_details_fragment_to_dialogMaltsFragment"
@@ -79,7 +83,7 @@
     <fragment
         android:id="@+id/hop_stock_fragment"
         android:name="com.example.brauportv2.ui.HopStockFragment"
-        android:label="Brauport - Hopfenbestand"
+        android:label="@string/brauport_hop_text"
         tools:layout="@layout/fragment_hop_stock">
         <action
             android:id="@+id/action_hopStockFragment_to_yeastStockFragment"
@@ -95,7 +99,7 @@
     <fragment
         android:id="@+id/yeast_stock_fragment"
         android:name="com.example.brauportv2.ui.YeastStockFragment"
-        android:label="Brauport - Hefebestand"
+        android:label="@string/brauport_yeast_text"
         tools:layout="@layout/fragment_yeast_stock">
         <action
             android:id="@+id/action_yeast_stock_fragment_to_hop_stock_fragment"
@@ -111,21 +115,18 @@
     <dialog
         android:id="@+id/dialog_malts_fragment"
         android:name="com.example.brauportv2.ui.dialog.DialogMaltsFragment"
-        android:label="Brauport - Rezeptdetails Malz"
         tools:layout="@layout/fragment_dialog_malts" />
     <dialog
         android:id="@+id/dialog_hops_fragment"
         android:name="com.example.brauportv2.ui.dialog.DialogHoppingFragment"
-        android:label="Brauport - Rezeptdetails Hopfen"
         tools:layout="@layout/fragment_dialog_hopping" />
     <dialog
         android:id="@+id/dialog_yeasts_fragment"
         android:name="com.example.brauportv2.ui.dialog.DialogYeastFragment"
-        android:label="Brauport - Rezeptdetails Hefe"
         tools:layout="@layout/fragment_dialog_yeasts" />
     <fragment
         android:id="@+id/brewHistoryFragment"
         android:name="com.example.brauportv2.ui.BrewHistoryFragment"
-        android:label="Brauport - Brauhistorie"
+        android:label="@string/brauport_brew_history_text"
         tools:layout="@layout/fragment_brew_history" />
 </navigation>

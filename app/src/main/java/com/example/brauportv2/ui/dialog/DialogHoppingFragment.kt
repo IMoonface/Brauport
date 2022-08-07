@@ -2,6 +2,7 @@ package com.example.brauportv2.ui.dialog
 
 import android.app.Dialog
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -99,10 +100,9 @@ class DialogHoppingFragment : DialogFragment() {
         if (newTime == "")
             Toast.makeText(context, "Bitte Zeit angeben!", Toast.LENGTH_SHORT).show()
         else {
-            adapter.hopping.hoppingTime = newTime
-            recipeItem.hoppingList.add(adapter.hopping)
+            recipeItem.hoppingList.add(Hopping(adapter.hopsList, newTime))
             Toast.makeText(context, "Hopfengabe wurde hinzugefügt!", Toast.LENGTH_SHORT).show()
-            adapter.hopping = Hopping(emptyList<StockItem>().toMutableList(), "")
+            adapter.hopsList = emptyList<StockItem>().toMutableList()
         }
     }
 

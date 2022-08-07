@@ -25,68 +25,68 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
+            android:layout_marginStart="10dp"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/inspect_malt_list"
-                android:layout_width="360dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:maxWidth="360dp"
+                android:maxWidth="340dp"
                 android:text="@string/malts"
                 android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/inspect_rest_list"
-                android:layout_width="360dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:maxWidth="360dp"
+                android:maxWidth="340dp"
                 android:text="@string/rests"
                 android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/inspect_hopping_list"
-                android:layout_width="360dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:maxWidth="360dp"
+                android:maxWidth="340dp"
                 android:text="@string/hopping"
                 android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/inspect_yeast"
-                android:layout_width="360dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:maxWidth="360dp"
+                android:maxWidth="340dp"
                 android:text="@string/yeast"
                 android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/inspect_main_brew"
-                android:layout_width="360dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:maxWidth="360dp"
+                android:maxWidth="340dp"
                 android:text="@string/main_brew"
                 android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/inspect_date_of_comp"
-                android:layout_width="360dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:maxWidth="360dp"
+                android:maxWidth="340dp"
                 android:textSize="20sp"
                 tools:text="@string/date_of_completion" />
 
             <TextView
                 android:id="@+id/inspect_end_of_ferm"
-                android:layout_width="360dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:maxWidth="360dp"
+                android:maxWidth="340dp"
                 android:textSize="20sp"
                 tools:text="@string/end_of_fermentation" />
 

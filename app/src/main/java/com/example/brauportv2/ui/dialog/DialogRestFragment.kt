@@ -37,7 +37,7 @@ class DialogRestFragment : DialogFragment() {
             val restTemp = binding.restTemp.text.toString()
             val restTime = binding.restTime.text.toString()
 
-            if (restTemp == "" || restTemp == "")
+            if (restTemp == "" || restTime == "")
                 Toast.makeText(context, R.string.fill_all_fields_text, Toast.LENGTH_SHORT).show()
             else {
                 recipeItem.restList.add(Rest("$restTemp°C", restTime))
@@ -56,10 +56,6 @@ class DialogRestFragment : DialogFragment() {
 
         binding.restBackButton.setOnClickListener {
             dismiss()
-        }
-
-        binding.restClearButton.setOnClickListener {
-            recipeItem.restList = emptyList<Rest>().toMutableList()
         }
 
         return binding.root

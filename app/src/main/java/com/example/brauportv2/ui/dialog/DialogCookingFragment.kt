@@ -51,7 +51,7 @@ class DialogCookingFragment(
         _binding = FragmentDialogCookingBinding.inflate(inflater, container, false)
 
         binding.cookingConfirmButton.setOnClickListener {
-            val dateOfCompletion = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+            val dateOfCompletion = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
                 .format(Calendar.getInstance().time)
             val endOfFermentation = binding.cookingDate.text.toString()
 

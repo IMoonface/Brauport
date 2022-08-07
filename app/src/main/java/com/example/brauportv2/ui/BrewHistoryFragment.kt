@@ -42,17 +42,17 @@ class BrewHistoryFragment : Fragment() {
         adapter = BrewHistoryAdapter(this::onInspectItem, this::onItemClick)
         binding.brewHistoryRecyclerView.adapter = adapter
 
-        val dateNow = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+        val dateNow = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
             .format(Calendar.getInstance().time)
 
         lifecycleScope.launch {
             viewModel.allBrewHistoryItems.collect { it ->
                 brewHistoryList = it.map { it.toBrewHistoryItem() }
                 brewHistoryList.forEach {
-                    if (SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+                    if (SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
                             .parse(it.bEndOfFermentation)
                             .before(
-                                SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+                                SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
                                     .parse(dateNow)
                             )
                     )

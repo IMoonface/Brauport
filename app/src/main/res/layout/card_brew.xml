@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="5dp"
-            android:maxWidth="210dp"
+            android:maxWidth="280dp"
             android:text="@string/dummy_text"
             android:textColor="@color/appBars_color"
             android:textSize="20sp"
