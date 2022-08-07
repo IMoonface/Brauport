@@ -37,7 +37,6 @@ class RecipeFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var recipeStartList: List<RecipeItem>
     private lateinit var adapter: RecipeAdapter
-    private var deleteRecipe = false
     private val textWatcher = object : TextWatcher {
         override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
         override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
@@ -105,17 +104,16 @@ class RecipeFragment : Fragment() {
         findNavController().navigate(action)
     }
 
-    private fun onDeleteClick(recipe: RecipeItem) {
-        val dialog = DialogDeleteFragment(this::onDialogDeleteDismiss)
+    private fun onDeleteClick(item: RecipeItem) {
+        val dialog = DialogDeleteFragment(item, this::onDialogDeleteDismiss)
         dialog.isCancelable = false
         dialog.show(childFragmentManager, "recipeDeleteDialog")
-        if (deleteRecipe) {
-            viewModel.deleteRecipe(recipe)
-        }
     }
 
-    private fun onDialogDeleteDismiss(delete: Boolean) {
-        deleteRecipe = delete
+    private fun onDialogDeleteDismiss(delete: Boolean, item: RecipeItem) {
+        if (delete) {
+            viewModel.deleteRecipe(item)
+        }
     }
 
     override fun onDestroyView() {

@@ -39,7 +39,7 @@ class BrewFragment : Fragment() {
     private var spinnerOptions: MutableList<String> = mutableListOf()
     private var countDownTimer: CountDownTimer? = null
     private lateinit var chosenRecipe: RecipeItem
-    private lateinit var stockStartList: List<StockItem>
+    private var stockStartList = emptyList<StockItem>()
     private var milliLeft: Long = 0
     private var milliFromItem: Long = 0
     private var withSubtract = true

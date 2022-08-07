@@ -38,6 +38,7 @@ object StringCreator {
                 hoppingListString += hop.stockName + " " + hop.stockAmount + " "
             }
             newBrewList.add(BrewItem(hoppingListString, hopping.hoppingTime, false))
+            hoppingListString = ""
         }
 
         newBrewList.add(BrewItem("Schlauchen", "", false))

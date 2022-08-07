@@ -8,9 +8,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import com.example.brauportv2.databinding.FragmentDialogDeleteBinding
+import com.example.brauportv2.model.recipe.RecipeItem
 
 class DialogDeleteFragment(
-    private val onDialogDeleteDismiss: (Boolean) -> Unit
+    private val recipeItem: RecipeItem,
+    private val onDialogDeleteDismiss: (Boolean, RecipeItem) -> Unit
 ) : DialogFragment() {
 
     private var _binding: FragmentDialogDeleteBinding? = null
@@ -47,6 +49,6 @@ class DialogDeleteFragment(
 
     override fun onDismiss(dialog: DialogInterface) {
         super.onDismiss(dialog)
-        onDialogDeleteDismiss(delete)
+        onDialogDeleteDismiss(delete, recipeItem)
     }
 }

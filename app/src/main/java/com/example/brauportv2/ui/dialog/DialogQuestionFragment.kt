@@ -32,7 +32,6 @@ class DialogQuestionFragment(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
         _binding = FragmentDialogQuestionBinding.inflate(inflater, container, false)
 
         binding.questionWithButton.setOnClickListener {

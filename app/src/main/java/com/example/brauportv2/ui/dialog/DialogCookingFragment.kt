@@ -88,7 +88,6 @@ class DialogCookingFragment(
     }
 
     private fun onItemAdd(dateOfCompletion: String, endOfFermentation: String) {
-        //kann man eventuell weglassen
         brewHistoryItem.bId = UUID.randomUUID().hashCode()
         brewHistoryItem.bDateOfCompletion = dateOfCompletion
         brewHistoryItem.bEndOfFermentation = endOfFermentation

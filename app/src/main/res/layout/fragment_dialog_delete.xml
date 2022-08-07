@@ -33,7 +33,6 @@
         app:backgroundTint="@color/button_color"
         app:cornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/delete_no_button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/delete_title_text"
         tools:ignore="SmallSp" />
@@ -51,7 +50,6 @@
         app:cornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/delete_yes_button"
         app:layout_constraintTop_toBottomOf="@+id/delete_title_text" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
