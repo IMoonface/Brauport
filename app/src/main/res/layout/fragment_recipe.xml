@@ -37,7 +37,8 @@
         app:iconPadding="0dp"
         app:iconTint="@color/appBars_color"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/recipe_textInputLayout"

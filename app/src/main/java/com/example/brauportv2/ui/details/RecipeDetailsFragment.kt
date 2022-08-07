@@ -42,31 +42,37 @@ class RecipeDetailsFragment : Fragment() {
             val dialog = DialogRecipeInspectFragment(
                 recipeItem.toBrewHistoryItem(), false
             )
+            dialog.isCancelable = false
             dialog.show(childFragmentManager, "recipeDetailsInspectDialog")
         }
 
         binding.recipeDetailsMalts.setOnClickListener {
             val dialog = DialogMaltsFragment()
+            dialog.isCancelable = false
             dialog.show(childFragmentManager, "maltsDialog")
         }
 
         binding.recipeDetailsHops.setOnClickListener {
             val dialog = DialogHoppingFragment()
+            dialog.isCancelable = false
             dialog.show(childFragmentManager, "hopsDialog")
         }
 
         binding.recipeDetailsYeasts.setOnClickListener {
             val dialog = DialogYeastFragment()
+            dialog.isCancelable = false
             dialog.show(childFragmentManager, "yeastsDialog")
         }
 
         binding.recipeDetailsRest.setOnClickListener {
             val dialog = DialogRestFragment()
+            dialog.isCancelable = false
             dialog.show(childFragmentManager, "restDialog")
         }
 
         binding.recipeDetailsMainBrew.setOnClickListener {
             val dialog = DialogMainBrewFragment()
+            dialog.isCancelable = false
             dialog.show(childFragmentManager, "mainBrewDialog")
         }
 

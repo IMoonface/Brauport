@@ -78,6 +78,7 @@ class BrewFragment : Fragment() {
                     adapter.submitList(createStringList(chosenRecipe))
                 } else if (!changeInStock) {
                     val dialog = DialogQuestionFragment(this@BrewFragment::onDialogQuestionDismiss)
+                    dialog.isCancelable = false
                     dialog.show(childFragmentManager, "questionDialog")
                 }
                 else
@@ -102,6 +103,7 @@ class BrewFragment : Fragment() {
                         chosenRecipe.toBrewHistoryItem(),
                         this::onDialogCookingDismiss
                     )
+                dialog.isCancelable = false
                 dialog.show(childFragmentManager, "cookingDialog")
             } else
                 Toast.makeText(context, "Es sind noch Schritte offen", Toast.LENGTH_SHORT)

@@ -85,6 +85,7 @@ class MaltStockFragment : Fragment() {
 
         binding.maltInfoButton.setOnClickListener {
             val dialog = DialogInstructionStockFragment()
+            dialog.isCancelable = false
             dialog.show(childFragmentManager, "maltInfoDialog")
         }
 
@@ -98,11 +99,13 @@ class MaltStockFragment : Fragment() {
 
     private fun openAddDialog() {
         val dialog = DialogStockFragment(hashCode(), MALT.ordinal, false)
+        dialog.isCancelable = false
         dialog.show(childFragmentManager, "maltAddDialog")
     }
 
     private fun openUpdateDialog(stockItem: StockItem) {
         val dialog = DialogStockFragment(stockItem.id, MALT.ordinal, true)
+        dialog.isCancelable = false
         dialog.show(childFragmentManager, "maltUpdateDialog")
     }
 

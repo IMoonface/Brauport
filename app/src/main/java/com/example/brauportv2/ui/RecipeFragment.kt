@@ -93,6 +93,7 @@ class RecipeFragment : Fragment() {
 
     private fun onInspectClick(recipe: RecipeItem) {
         val dialog = DialogRecipeInspectFragment(recipe.toBrewHistoryItem(), false)
+        dialog.isCancelable = false
         dialog.show(childFragmentManager, "recipeInspectDialog")
     }
 
@@ -106,6 +107,7 @@ class RecipeFragment : Fragment() {
 
     private fun onDeleteClick(recipe: RecipeItem) {
         val dialog = DialogDeleteFragment(this::onDialogDeleteDismiss)
+        dialog.isCancelable = false
         dialog.show(childFragmentManager, "recipeDeleteDialog")
         if (deleteRecipe) {
             viewModel.deleteRecipe(recipe)

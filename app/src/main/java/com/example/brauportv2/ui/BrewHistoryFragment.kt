@@ -67,11 +67,13 @@ class BrewHistoryFragment : Fragment() {
 
     private fun onInspectItem(item: BrewHistoryItem) {
         val dialog = DialogRecipeInspectFragment(item, true)
+        dialog.isCancelable = false
         dialog.show(childFragmentManager, "cookingDialog")
     }
 
     private fun onItemClick(item: BrewHistoryItem) {
         val dialog = DialogCookingFragment(true, item, this::onDialogCookingDismiss)
+        dialog.isCancelable = false
         dialog.show(childFragmentManager, "cookingDialog")
     }
 

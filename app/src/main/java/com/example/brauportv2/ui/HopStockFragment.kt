@@ -84,6 +84,7 @@ class HopStockFragment : Fragment() {
 
         binding.hopInfoButton.setOnClickListener {
             val dialog = DialogInstructionStockFragment()
+            dialog.isCancelable = false
             dialog.show(childFragmentManager, "hopInfoDialog")
         }
 
@@ -97,11 +98,13 @@ class HopStockFragment : Fragment() {
 
     private fun openAddDialog() {
         val dialog = DialogStockFragment(hashCode(), HOP.ordinal, false)
+        dialog.isCancelable = false
         dialog.show(childFragmentManager, "hopAddDialog")
     }
 
     private fun openUpdateDialog(stockItem: StockItem) {
         val dialog = DialogStockFragment(stockItem.id, HOP.ordinal, true)
+        dialog.isCancelable = false
         dialog.show(childFragmentManager, "hopUpdateDialog")
     }
 

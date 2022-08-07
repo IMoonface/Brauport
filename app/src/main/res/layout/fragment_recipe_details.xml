@@ -39,6 +39,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/enter_recipe_name"
+            android:maxLength="20"
             android:inputType="text"
             android:textColorHint="#546E7A"
             tools:ignore="TextContrastCheck" />
