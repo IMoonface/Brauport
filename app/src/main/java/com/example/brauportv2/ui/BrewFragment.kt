@@ -198,9 +198,8 @@ class BrewFragment : Fragment() {
 
     private fun seconds(millis: Long): String {
         var millisSeconds: Long = millis
-        while (millisSeconds >= 60000) {
+        while (millisSeconds >= 60000)
             millisSeconds -= 60000
-        }
 
         return when (millisSeconds / 1000) {
             in 0..0 -> "00"

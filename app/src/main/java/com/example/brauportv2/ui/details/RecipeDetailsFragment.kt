@@ -99,8 +99,8 @@ class RecipeDetailsFragment : Fragment() {
                 recipeItem.rId = UUID.randomUUID().hashCode()
                 recipeItem.recipeName = recipeName
 
-                if (recipeItem.maltList == startMaltList || recipeItem.restList == startRestList ||
-                    recipeItem.mainBrew == startMainBrew ||
+                if (recipeItem.recipeName == "" || recipeItem.maltList == startMaltList ||
+                    recipeItem.restList == startRestList || recipeItem.mainBrew == startMainBrew ||
                     recipeItem.hoppingList == startHoppingList || recipeItem.yeast == startYeast
                 )
                     Toast.makeText(context, "Bitte alle Attribute setzen!", Toast.LENGTH_SHORT)
