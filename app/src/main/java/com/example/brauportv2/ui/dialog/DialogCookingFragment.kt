@@ -14,7 +14,9 @@ import com.example.brauportv2.databinding.FragmentDialogCookingBinding
 import com.example.brauportv2.model.brewHistory.BrewHistoryItem
 import com.example.brauportv2.ui.viewModel.BrewHistoryViewModel
 import com.example.brauportv2.ui.viewModel.BrewHistoryViewModelFactory
+import java.text.ParseException
 import java.text.SimpleDateFormat
+import java.time.format.DateTimeFormatter
 import java.util.*
 
 class DialogCookingFragment(
@@ -50,23 +52,31 @@ class DialogCookingFragment(
     ): View {
         _binding = FragmentDialogCookingBinding.inflate(inflater, container, false)
 
+        val formatter = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
+
         binding.cookingConfirmButton.setOnClickListener {
-            val dateOfCompletion = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
-                .format(Calendar.getInstance().time)
-            val endOfFermentation = binding.cookingDate.text.toString()
+            var dateIsValid = true
+            val dateOfCompletion = Calendar.getInstance().time.toString().format(formatter)
+            val endOfFermentation = formatter.format(Calendar.getInstance().time)
+
+            try {
+                formatter.parse(endOfFermentation)
+            } catch (e: ParseException) {
+                dateIsValid = false
+            }
 
             abort = false
 
-            if (endOfFermentation != "" && !update) {
+            if (dateIsValid && !update) {
                 onItemAdd(dateOfCompletion, endOfFermentation)
                 Toast.makeText(context, "Rezept abgeschlossen!", Toast.LENGTH_SHORT).show()
                 dismiss()
-            } else if (endOfFermentation != "" && update) {
+            } else if (dateIsValid && update) {
                 onItemUpdate(endOfFermentation)
                 Toast.makeText(context, "Datum aktualisiert!", Toast.LENGTH_SHORT).show()
                 dismiss()
             } else
-                Toast.makeText(context, "Bitte Datum angeben!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Datum nicht valid!", Toast.LENGTH_SHORT).show()
         }
 
         binding.cookingAbortButton.setOnClickListener {

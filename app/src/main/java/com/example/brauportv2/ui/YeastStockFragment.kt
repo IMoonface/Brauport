@@ -96,13 +96,13 @@ class YeastStockFragment : Fragment() {
     private fun openAddDialog() {
         val dialog = DialogStockFragment(hashCode(), YEAST.ordinal, false)
         dialog.isCancelable = false
-        dialog.show(childFragmentManager, "stockAddDialog")
+        dialog.show(childFragmentManager, "yeastAddDialog")
     }
 
     private fun openUpdateDialog(stockItem: StockItem) {
         val dialog = DialogStockFragment(stockItem.id, YEAST.ordinal, true)
         dialog.isCancelable = false
-        dialog.show(childFragmentManager, "stockUpdateDialog")
+        dialog.show(childFragmentManager, "yeastUpdateDialog")
     }
 
     private fun onItemClick(stockItem: StockItem) {

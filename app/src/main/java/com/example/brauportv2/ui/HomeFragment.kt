@@ -38,7 +38,6 @@ class HomeFragment : Fragment() {
             }
         }
 
-
         binding.mainRecipeButton.setOnClickListener {
             findNavController().navigate(
                 HomeFragmentDirections.actionHomeFragmentToRecipeFragment()

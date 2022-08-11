@@ -24,6 +24,7 @@ class BrewHistoryFragment : Fragment() {
 
     private var _binding: FragmentBrewHistoryBinding? = null
     private val binding get() = _binding!!
+
     private lateinit var adapter: BrewHistoryAdapter
     private lateinit var brewHistoryList: List<BrewHistoryItem>
 
@@ -42,19 +43,15 @@ class BrewHistoryFragment : Fragment() {
         adapter = BrewHistoryAdapter(this::onInspectItem, this::onItemClick)
         binding.brewHistoryRecyclerView.adapter = adapter
 
-        val dateNow = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
-            .format(Calendar.getInstance().time)
+        val formatter = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
+        val dateOfCompletion = formatter.format(Calendar.getInstance().time)
 
         lifecycleScope.launch {
             viewModel.allBrewHistoryItems.collect { it ->
                 brewHistoryList = it.map { it.toBrewHistoryItem() }
                 brewHistoryList.forEach {
-                    if (SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
-                            .parse(it.bEndOfFermentation)
-                            .before(
-                                SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
-                                    .parse(dateNow)
-                            )
+                    if (formatter.parse(it.bEndOfFermentation)
+                            .before(formatter.parse(dateOfCompletion))
                     )
                         viewModel.deleteRecipe(it)
                 }
