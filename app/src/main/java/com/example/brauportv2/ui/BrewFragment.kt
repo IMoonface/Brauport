@@ -17,7 +17,6 @@ import com.example.brauportv2.R
 import com.example.brauportv2.adapter.BrewAdapter
 import com.example.brauportv2.databinding.FragmentBrewBinding
 import com.example.brauportv2.mapper.toBrewHistoryItem
-import com.example.brauportv2.mapper.toSNoAmount
 import com.example.brauportv2.mapper.toStockItem
 import com.example.brauportv2.model.BrewItem
 import com.example.brauportv2.model.recipe.RecipeItem
@@ -25,10 +24,9 @@ import com.example.brauportv2.model.stock.StockItem
 import com.example.brauportv2.ui.dialog.DialogCookingFragment
 import com.example.brauportv2.ui.dialog.DialogQuestionFragment
 import com.example.brauportv2.ui.objects.RecipeDataSource.recipeItemList
-import com.example.brauportv2.ui.objects.StringCreator.createStringList
 import com.example.brauportv2.ui.objects.TextWatcherLogic.startTimer
-import com.example.brauportv2.ui.viewModel.StockViewModel
-import com.example.brauportv2.ui.viewModel.StockViewModelFactory
+import com.example.brauportv2.ui.viewModel.BrewViewModel
+import com.example.brauportv2.ui.viewModel.BrewViewModelFactory
 import kotlinx.coroutines.launch
 
 class BrewFragment : Fragment() {
@@ -39,14 +37,13 @@ class BrewFragment : Fragment() {
     private var spinnerOptions: MutableList<String> = mutableListOf()
     private var countDownTimer: CountDownTimer? = null
     private lateinit var chosenRecipe: RecipeItem
-    private var stockStartList = emptyList<StockItem>()
+    private var stockList = emptyList<StockItem>()
     private var milliLeft: Long = 0
     private var milliFromItem: Long = 0
     private var withSubtract = true
-    private var changeInStock = false
 
-    private val viewModel: StockViewModel by activityViewModels {
-        StockViewModelFactory((activity?.application as BaseApplication).stockDatabase.stockDao())
+    private val viewModel: BrewViewModel by activityViewModels {
+        BrewViewModelFactory((activity?.application as BaseApplication).stockDatabase.stockDao())
     }
 
     @SuppressLint("SetTextI18n")
@@ -60,7 +57,7 @@ class BrewFragment : Fragment() {
         binding.brewRecyclerView.adapter = adapter
 
         lifecycleScope.launch {
-            viewModel.allStockItems.collect { it -> stockStartList = it.map { it.toStockItem() } }
+            viewModel.allStockItems.collect { it -> stockList = it.map { it.toStockItem() } }
         }
 
         recipeItemList.forEach {
@@ -74,14 +71,13 @@ class BrewFragment : Fragment() {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, pos: Int, id: Long) {
                 binding.brewTimerText.text = "Bitte Item anklicken!"
                 chosenRecipe = recipeItemList[pos]
-                if (proveForNonNegAmount(chosenRecipe)) {
-                    adapter.submitList(createStringList(chosenRecipe))
-                } else if (!changeInStock) {
+                if (viewModel.proveForNonNegAmount(chosenRecipe, stockList)) {
+                    adapter.submitList(viewModel.createStringList(chosenRecipe))
+                } else if (!viewModel.changeInStock) {
                     val dialog = DialogQuestionFragment(this@BrewFragment::onDialogQuestionDismiss)
                     dialog.isCancelable = false
                     dialog.show(childFragmentManager, "questionDialog")
-                }
-                else
+                } else
                     Toast.makeText(context, R.string.change_in_stock_text, Toast.LENGTH_LONG).show()
             }
 
@@ -158,13 +154,13 @@ class BrewFragment : Fragment() {
     }
 
     @SuppressLint("SetTextI18n")
-    private fun onItemClick(brewItem: BrewItem) {
+    private fun onItemClick(item: BrewItem) {
         if (startTimer)
             Toast.makeText(context, "Es läuft schon ein Timer!", Toast.LENGTH_SHORT).show()
         else {
             binding.brewTimerStartButton.text = "Start"
-            if (brewItem.brewTime != "") {
-                milliFromItem = brewItem.brewTime.toLong() * 60000
+            if (item.brewTime != "") {
+                milliFromItem = item.brewTime.toLong() * 60000
                 timerStart(milliFromItem)
             }
         }
@@ -172,12 +168,13 @@ class BrewFragment : Fragment() {
 
     @SuppressLint("SetTextI18n")
     private fun timerStart(timeInMilli: Long) {
-        binding.brewTimerText.text = minutes(timeInMilli) + ":00"
+        binding.brewTimerText.text = viewModel.minutes(timeInMilli) + ":00"
         if (startTimer) {
             countDownTimer = object : CountDownTimer((timeInMilli), 1000) {
                 override fun onTick(untilFinish: Long) {
                     milliLeft = untilFinish
-                    binding.brewTimerText.text = minutes(untilFinish) + ":" + seconds(untilFinish)
+                    binding.brewTimerText.text =
+                        viewModel.minutes(untilFinish) + ":" + viewModel.seconds(untilFinish)
                 }
 
                 override fun onFinish() {
@@ -190,79 +187,33 @@ class BrewFragment : Fragment() {
         }
     }
 
-    private fun minutes(millis: Long): String {
-        if (millis / 60000 < 1) return "00"
-        if (millis / 60000 in 1..9) return "0" + (millis / 60000)
-        return "" + (millis / 60000)
-    }
-
-    private fun seconds(millis: Long): String {
-        var millisSeconds: Long = millis
-        while (millisSeconds >= 60000)
-            millisSeconds -= 60000
-
-        return when (millisSeconds / 1000) {
-            in 0..0 -> "00"
-            in 1..9 -> "0" + +(millisSeconds / 1000)
-            else -> "" + millisSeconds / 1000
-        }
-    }
-
-    private fun calcAmount(item: StockItem): String {
-        val recipeAmount = item.stockAmount.substringBefore("g").toInt()
-        val index = stockStartList.map { it.toSNoAmount() }.indexOf(item.toSNoAmount())
-        val databaseAmount = stockStartList[index].stockAmount.substringBefore("g").toInt()
-        return (databaseAmount - recipeAmount).toString() + "g"
-    }
-
-    private fun updateDatabase(recipeItem: RecipeItem) {
-        recipeItem.maltList.forEach { malt ->
-            viewModel.updateStock(malt.id, malt.itemType, malt.stockName, calcAmount(malt))
+    private fun updateDatabase(item: RecipeItem) {
+        item.maltList.forEach { malt ->
+            viewModel.updateStock(
+                malt.id,
+                malt.itemType,
+                malt.stockName,
+                viewModel.calcAmount(malt, stockList)
+            )
         }
 
-        recipeItem.hoppingList.forEach { hopping ->
+        item.hoppingList.forEach { hopping ->
             hopping.hopsList.forEach { hop ->
-                viewModel.updateStock(hop.id, hop.itemType, hop.stockName, calcAmount(hop))
+                viewModel.updateStock(
+                    hop.id,
+                    hop.itemType,
+                    hop.stockName,
+                    viewModel.calcAmount(hop, stockList)
+                )
             }
         }
 
         viewModel.updateStock(
-            recipeItem.yeast.id,
-            recipeItem.yeast.itemType,
-            recipeItem.yeast.stockName,
-            calcAmount(recipeItem.yeast)
+            item.yeast.id,
+            item.yeast.itemType,
+            item.yeast.stockName,
+            viewModel.calcAmount(item.yeast, stockList)
         )
-    }
-
-    private fun calcForShortage(item: StockItem): Boolean {
-        val recipeAmount = item.stockAmount.substringBefore("g").toInt()
-        val index = stockStartList.map { it.toSNoAmount() }.indexOf(item.toSNoAmount())
-        if (index == -1) {
-            changeInStock = true
-            return false
-        }
-        val databaseAmount = stockStartList[index].stockAmount.substringBefore("g").toInt()
-        return databaseAmount - recipeAmount >= 0
-    }
-
-    private fun proveForNonNegAmount(recipeItem: RecipeItem): Boolean {
-        var possible = true
-        recipeItem.maltList.forEach { malt ->
-            if (!calcForShortage(malt))
-                possible = false
-        }
-
-        recipeItem.hoppingList.forEach { hopping ->
-            hopping.hopsList.forEach { hop ->
-                if (!calcForShortage(hop))
-                    possible = false
-            }
-        }
-
-        if (!calcForShortage(recipeItem.yeast))
-            possible = false
-
-        return possible
     }
 
     private fun onDialogCookingDismiss(abort: Boolean) {
@@ -286,7 +237,7 @@ class BrewFragment : Fragment() {
             ).show()
         else {
             withSubtract = subtract
-            adapter.submitList(createStringList(chosenRecipe))
+            adapter.submitList(viewModel.createStringList(chosenRecipe))
         }
     }
 }

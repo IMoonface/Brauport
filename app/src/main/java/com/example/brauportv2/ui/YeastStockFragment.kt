@@ -29,6 +29,7 @@ class YeastStockFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var adapter: StockAdapter
     private lateinit var startList: List<StockItem>
+
     private val textWatcher = object : TextWatcher {
         override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
         override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
@@ -53,8 +54,7 @@ class YeastStockFragment : Fragment() {
 
         lifecycleScope.launch {
             viewModel.allStockItems.collect { it ->
-                startList = it.map { it.toStockItem() }
-                    .filter { it.itemType == YEAST.ordinal }
+                startList = it.map { it.toStockItem() }.filter { it.itemType == YEAST.ordinal }
                 adapter.submitList(startList)
             }
         }
@@ -99,17 +99,17 @@ class YeastStockFragment : Fragment() {
         dialog.show(childFragmentManager, "yeastAddDialog")
     }
 
-    private fun openUpdateDialog(stockItem: StockItem) {
-        val dialog = DialogStockFragment(stockItem.id, YEAST.ordinal, true)
+    private fun openUpdateDialog(item: StockItem) {
+        val dialog = DialogStockFragment(item.id, YEAST.ordinal, true)
         dialog.isCancelable = false
         dialog.show(childFragmentManager, "yeastUpdateDialog")
     }
 
-    private fun onItemClick(stockItem: StockItem) {
-        openUpdateDialog(stockItem)
+    private fun onItemClick(item: StockItem) {
+        openUpdateDialog(item)
     }
 
-    private fun onDeleteClick(stockItem: StockItem) {
-        viewModel.deleteStock(stockItem)
+    private fun onDeleteClick(item: StockItem) {
+        viewModel.deleteStock(item)
     }
 }

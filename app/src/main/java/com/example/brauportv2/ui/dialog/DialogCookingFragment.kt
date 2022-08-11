@@ -101,7 +101,6 @@ class DialogCookingFragment(
         brewHistoryItem.bId = UUID.randomUUID().hashCode()
         brewHistoryItem.bDateOfCompletion = dateOfCompletion
         brewHistoryItem.bEndOfFermentation = endOfFermentation
-
         viewModel.addBrewHistoryItem(brewHistoryItem)
     }
 

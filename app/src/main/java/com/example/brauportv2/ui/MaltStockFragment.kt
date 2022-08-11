@@ -46,8 +46,7 @@ class MaltStockFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentMaltStockBinding
-            .inflate(inflater, container, false)
+        _binding = FragmentMaltStockBinding.inflate(inflater, container, false)
 
         adapter = StockAdapter(this::onItemClick, this::onDeleteClick)
 
@@ -55,8 +54,7 @@ class MaltStockFragment : Fragment() {
 
         lifecycleScope.launch {
             viewModel.allStockItems.collect { it ->
-                startList = it.map { it.toStockItem() }
-                    .filter { it.itemType == MALT.ordinal }
+                startList = it.map { it.toStockItem() }.filter { it.itemType == MALT.ordinal }
                 adapter.submitList(startList)
             }
         }
@@ -103,17 +101,17 @@ class MaltStockFragment : Fragment() {
         dialog.show(childFragmentManager, "maltAddDialog")
     }
 
-    private fun openUpdateDialog(stockItem: StockItem) {
-        val dialog = DialogStockFragment(stockItem.id, MALT.ordinal, true)
+    private fun openUpdateDialog(item: StockItem) {
+        val dialog = DialogStockFragment(item.id, MALT.ordinal, true)
         dialog.isCancelable = false
         dialog.show(childFragmentManager, "maltUpdateDialog")
     }
 
-    private fun onItemClick(stockItem: StockItem) {
-        openUpdateDialog(stockItem)
+    private fun onItemClick(item: StockItem) {
+        openUpdateDialog(item)
     }
 
-    private fun onDeleteClick(stockItem: StockItem) {
-        viewModel.deleteStock(stockItem)
+    private fun onDeleteClick(item: StockItem) {
+        viewModel.deleteStock(item)
     }
 }
