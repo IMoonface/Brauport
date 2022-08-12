@@ -53,7 +53,7 @@ class DialogCookingFragment(
 
         binding.cookingConfirmButton.setOnClickListener {
             val dateOfCompletion = formatter.format(Calendar.getInstance().time)
-            val endOfFermentation = formatter.format(binding.cookingDate.text.toString())
+            val endOfFermentation = binding.cookingDate.text.toString()
 
             abort = false
 
