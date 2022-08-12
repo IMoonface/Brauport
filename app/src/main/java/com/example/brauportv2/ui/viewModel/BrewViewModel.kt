@@ -15,6 +15,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 
 class BrewViewModel(private val stockDao: StockDao) : ViewModel() {
+
     var changeInStock = false
 
     val allStockItems: Flow<List<StockItemData>> = stockDao.getAllStockItems()

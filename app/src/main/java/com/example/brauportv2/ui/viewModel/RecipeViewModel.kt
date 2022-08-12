@@ -12,6 +12,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 
 class RecipeViewModel(private val recipeDao: RecipeDao) : ViewModel() {
+
     val allRecipeItems: Flow<List<RecipeItemData>> = recipeDao.getAllRecipeItems()
 
     fun addRecipe(recipeItem: RecipeItem) {

@@ -46,8 +46,10 @@ class RecipeFragment : Fragment() {
     }
 
     private val viewModel: RecipeViewModel by activityViewModels {
-        RecipeViewModelFactory((activity?.application as BaseApplication)
-            .recipeDatabase.recipeDao())
+        RecipeViewModelFactory(
+            (activity?.application as BaseApplication)
+                .recipeDatabase.recipeDao()
+        )
     }
 
     override fun onCreateView(

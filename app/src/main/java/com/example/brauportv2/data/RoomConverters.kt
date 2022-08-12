@@ -11,10 +11,10 @@ import org.json.JSONObject
 
 class RoomConverters {
     @TypeConverter
-    fun fromStockList(stockItemList: List<StockItem>): String {
+    fun fromStockList(list: List<StockItem>): String {
         val gson = Gson()
         val type = object : TypeToken<List<StockItem>>() {}.type
-        return gson.toJson(stockItemList, type)
+        return gson.toJson(list, type)
     }
 
     @TypeConverter
@@ -25,10 +25,10 @@ class RoomConverters {
     }
 
     @TypeConverter
-    fun fromHoppingList(hoppingList: List<Hopping>): String {
+    fun fromHoppingList(list: List<Hopping>): String {
         val gson = Gson()
         val type = object : TypeToken<List<Hopping>>() {}.type
-        return gson.toJson(hoppingList, type)
+        return gson.toJson(list, type)
     }
 
     @TypeConverter
@@ -39,12 +39,12 @@ class RoomConverters {
     }
 
     @TypeConverter
-    fun fromStockItem(stockItem: StockItem): String {
+    fun fromStockItem(item: StockItem): String {
         return JSONObject().apply {
-            put("id", stockItem.id)
-            put("stockName", stockItem.stockName)
-            put("itemType", stockItem.itemType)
-            put("stockAmount", stockItem.stockAmount)
+            put("id", item.id)
+            put("itemType", item.itemType)
+            put("stockName", item.stockName)
+            put("stockAmount", item.stockAmount)
         }.toString()
     }
 
@@ -60,10 +60,10 @@ class RoomConverters {
     }
 
     @TypeConverter
-    fun fromRestList(restList: List<Rest>): String {
+    fun fromRestList(list: List<Rest>): String {
         val gson = Gson()
         val type = object : TypeToken<List<Rest>>() {}.type
-        return gson.toJson(restList, type)
+        return gson.toJson(list, type)
     }
 
     @TypeConverter
@@ -74,10 +74,10 @@ class RoomConverters {
     }
 
     @TypeConverter
-    fun fromMainBrew(mainBrew: MainBrew): String {
+    fun fromMainBrew(item: MainBrew): String {
         return JSONObject().apply {
-            put("first", mainBrew.firstBrew)
-            put("second", mainBrew.secondBrew)
+            put("first", item.firstBrew)
+            put("second", item.secondBrew)
         }.toString()
     }
 

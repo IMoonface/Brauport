@@ -14,8 +14,11 @@ import com.example.brauportv2.model.stock.StockItem
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
+import java.text.ParseException
+import java.text.SimpleDateFormat
 
 class BrewHistoryViewModel(private val brewHistoryDao: BrewHistoryDao) : ViewModel() {
+
     val allBrewHistoryItems: Flow<List<BrewHistoryItemData>> =
         brewHistoryDao.getAllBrewHistoryItems()
 
@@ -56,6 +59,15 @@ class BrewHistoryViewModel(private val brewHistoryDao: BrewHistoryDao) : ViewMod
         viewModelScope.launch(Dispatchers.IO) {
             brewHistoryDao.delete(brewHistoryItem.toBrewHistoryItemData())
         }
+    }
+
+    fun dateIsValid(endOfFermentation: String, formatter: SimpleDateFormat): Boolean {
+        try {
+            formatter.parse(endOfFermentation)
+        } catch (e: ParseException) {
+            return false
+        }
+        return true
     }
 }
 

@@ -24,7 +24,6 @@ import com.example.brauportv2.model.stock.StockItem
 import com.example.brauportv2.ui.dialog.DialogCookingFragment
 import com.example.brauportv2.ui.dialog.DialogQuestionFragment
 import com.example.brauportv2.ui.objects.RecipeDataSource.recipeItemList
-import com.example.brauportv2.ui.objects.TextWatcherLogic.startTimer
 import com.example.brauportv2.ui.viewModel.BrewViewModel
 import com.example.brauportv2.ui.viewModel.BrewViewModelFactory
 import kotlinx.coroutines.launch
@@ -41,7 +40,7 @@ class BrewFragment : Fragment() {
     private var milliLeft: Long = 0
     private var milliFromItem: Long = 0
     private var withSubtract = true
-
+    private var startTimer = false
     private val viewModel: BrewViewModel by activityViewModels {
         BrewViewModelFactory((activity?.application as BaseApplication).stockDatabase.stockDao())
     }
@@ -54,6 +53,7 @@ class BrewFragment : Fragment() {
         _binding = FragmentBrewBinding.inflate(inflater, container, false)
 
         adapter = BrewAdapter(this::onItemClick)
+
         binding.brewRecyclerView.adapter = adapter
 
         lifecycleScope.launch {
@@ -71,9 +71,9 @@ class BrewFragment : Fragment() {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, pos: Int, id: Long) {
                 binding.brewTimerText.text = "Bitte Item anklicken!"
                 chosenRecipe = recipeItemList[pos]
-                if (viewModel.proveForNonNegAmount(chosenRecipe, stockList)) {
+                if (viewModel.proveForNonNegAmount(chosenRecipe, stockList))
                     adapter.submitList(viewModel.createStringList(chosenRecipe))
-                } else if (!viewModel.changeInStock) {
+                else if (!viewModel.changeInStock) {
                     val dialog = DialogQuestionFragment(this@BrewFragment::onDialogQuestionDismiss)
                     dialog.isCancelable = false
                     dialog.show(childFragmentManager, "questionDialog")
@@ -88,17 +88,14 @@ class BrewFragment : Fragment() {
 
         binding.brewFinishButton.setOnClickListener {
             var finished = false
-            adapter.currentList.forEach {
-                finished = it.state
-            }
+            adapter.currentList.forEach { finished = it.state }
 
             if (finished) {
-                val dialog =
-                    DialogCookingFragment(
-                        false,
-                        chosenRecipe.toBrewHistoryItem(),
-                        this::onDialogCookingDismiss
-                    )
+                val dialog = DialogCookingFragment(
+                    false,
+                    chosenRecipe.toBrewHistoryItem(),
+                    this::onDialogCookingDismiss
+                )
                 dialog.isCancelable = false
                 dialog.show(childFragmentManager, "cookingDialog")
             } else
@@ -118,9 +115,8 @@ class BrewFragment : Fragment() {
                 binding.brewTimerStartButton.text = "Start"
                 binding.brewTimerStopButton.text = "Stop"
                 startTimer = true
-            } else if (binding.brewTimerStartButton.text.equals("Start") && startTimer) {
+            } else if (binding.brewTimerStartButton.text.equals("Start") && startTimer)
                 Toast.makeText(context, "Der Timer läuft bereits!", Toast.LENGTH_SHORT).show()
-            }
         }
 
         binding.brewTimerStopButton.setOnClickListener {
@@ -218,11 +214,8 @@ class BrewFragment : Fragment() {
 
     private fun onDialogCookingDismiss(abort: Boolean) {
         if (abort)
-            Toast.makeText(
-                context,
-                "Rezept wurde nicht abgeschlossen",
-                Toast.LENGTH_SHORT
-            ).show()
+            Toast.makeText(context, "Rezept wurde nicht abgeschlossen", Toast.LENGTH_SHORT)
+                .show()
         else
             if (withSubtract)
                 updateDatabase(chosenRecipe)
@@ -230,11 +223,8 @@ class BrewFragment : Fragment() {
 
     fun onDialogQuestionDismiss(abort: Boolean, subtract: Boolean) {
         if (abort)
-            Toast.makeText(
-                context,
-                "Bitte wählen Sie ein anderes Rezept!",
-                Toast.LENGTH_SHORT
-            ).show()
+            Toast.makeText(context, "Bitte wählen Sie ein anderes Rezept!", Toast.LENGTH_SHORT)
+                .show()
         else {
             withSubtract = subtract
             adapter.submitList(viewModel.createStringList(chosenRecipe))

@@ -2,7 +2,6 @@ package com.example.brauportv2.ui.dialog
 
 import android.app.Dialog
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -31,7 +30,6 @@ class DialogHoppingFragment : DialogFragment() {
     private lateinit var adapter: HoppingAdapter
     private lateinit var stockList: List<StockItem>
     private var newHopsList = mutableListOf<StockItem>()
-
     private val viewModel: StockViewModel by activityViewModels {
         StockViewModelFactory((activity?.application as BaseApplication).stockDatabase.stockDao())
     }

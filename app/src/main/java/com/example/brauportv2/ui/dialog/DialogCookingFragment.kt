@@ -14,9 +14,7 @@ import com.example.brauportv2.databinding.FragmentDialogCookingBinding
 import com.example.brauportv2.model.brewHistory.BrewHistoryItem
 import com.example.brauportv2.ui.viewModel.BrewHistoryViewModel
 import com.example.brauportv2.ui.viewModel.BrewHistoryViewModelFactory
-import java.text.ParseException
 import java.text.SimpleDateFormat
-import java.time.format.DateTimeFormatter
 import java.util.*
 
 class DialogCookingFragment(
@@ -28,7 +26,6 @@ class DialogCookingFragment(
     private var _binding: FragmentDialogCookingBinding? = null
     private val binding get() = _binding!!
     private var abort = false
-
     private val viewModel: BrewHistoryViewModel by activityViewModels {
         BrewHistoryViewModelFactory(
             (activity?.application as BaseApplication)
@@ -55,23 +52,16 @@ class DialogCookingFragment(
         val formatter = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
 
         binding.cookingConfirmButton.setOnClickListener {
-            var dateIsValid = true
-            val dateOfCompletion = Calendar.getInstance().time.toString().format(formatter)
-            val endOfFermentation = formatter.format(Calendar.getInstance().time)
-
-            try {
-                formatter.parse(endOfFermentation)
-            } catch (e: ParseException) {
-                dateIsValid = false
-            }
+            val dateOfCompletion = formatter.format(Calendar.getInstance().time)
+            val endOfFermentation = formatter.format(binding.cookingDate.text.toString())
 
             abort = false
 
-            if (dateIsValid && !update) {
+            if (viewModel.dateIsValid(endOfFermentation, formatter) && !update) {
                 onItemAdd(dateOfCompletion, endOfFermentation)
                 Toast.makeText(context, "Rezept abgeschlossen!", Toast.LENGTH_SHORT).show()
                 dismiss()
-            } else if (dateIsValid && update) {
+            } else if (viewModel.dateIsValid(endOfFermentation, formatter) && update) {
                 onItemUpdate(endOfFermentation)
                 Toast.makeText(context, "Datum aktualisiert!", Toast.LENGTH_SHORT).show()
                 dismiss()

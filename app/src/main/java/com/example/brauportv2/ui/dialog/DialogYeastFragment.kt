@@ -27,7 +27,6 @@ class DialogYeastFragment : DialogFragment() {
     private var _binding: FragmentDialogYeastsBinding? = null
     private val binding get() = _binding!!
     private lateinit var adapter: RecipeStockAdapter
-
     private val viewModel: StockViewModel by activityViewModels {
         StockViewModelFactory((activity?.application as BaseApplication).stockDatabase.stockDao())
     }
@@ -49,12 +48,14 @@ class DialogYeastFragment : DialogFragment() {
         _binding = FragmentDialogYeastsBinding.inflate(inflater, container, false)
 
         adapter = RecipeStockAdapter(this::onItemAdd, this::onItemDelete)
+
         binding.rYeastsRecyclerView.adapter = adapter
 
         lifecycleScope.launch {
             viewModel.allStockItems.collect { it ->
-                adapter.submitList(it.map { it.toStockItem() }
-                    .filter { it.itemType == YEAST.ordinal })
+                adapter.submitList(it.map { it.toStockItem() }.filter {
+                    it.itemType == YEAST.ordinal
+                })
             }
         }
 
