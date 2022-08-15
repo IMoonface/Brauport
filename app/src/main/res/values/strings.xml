@@ -42,7 +42,7 @@
     <string name="stop_brew_timer">Stop</string>
     <string name="date_dummy">DD-MM-YYYY</string>
     <string name="recipe_inspect_name">Recipename</string>
-    <string name="date_of_completion">Date of completion</string>
+    <string name="date_of_completion">Date of completion:</string>
     <string name="end_of_fermentation">Fermentation End:</string>
     <string name="yes_text">Yes</string>
     <string name="no_text">No</string>
@@ -105,10 +105,16 @@
     <string name="timer_already_running">Timer is already running!</string>
     <string name="aborted_recipe">Recipe not completed!</string>
     <string name="choose_another_recipe">Please choose another recipe!</string>
-    <string name="inspect_end_of_fermentation">End of fermentation</string>
+    <string name="inspect_end_of_fermentation">End of fermentation:</string>
     <string name="for_text">for</string>
     <string name="hop_exists">Hop exists!</string>
     <string name="added_hop">Hop got added!</string>
     <string name="hop_not_found">Hop not found!</string>
     <string name="deleted_hop">Hop got deleted!</string>
+    <string name="first_brew_with">"Main brew: First brew with</string>
+    <string name="second_brew_with">and second brew with</string>
+    <string name="enter_name">Please enter a name!</string>
+    <string name="updated_recipe">Recipe has been updated!</string>
+    <string name="set_all_attributes">Please set all attributes!</string>
+    <string name="created_recipe">Recipe has been created!</string>
 </resources>

@@ -30,11 +30,17 @@ class RecipeAdapter(
         val item = getItem(position)
         recipeItemTitle.text = item.recipeName
 
-        recipeInspectButton.setOnClickListener { onInspectClick(item) }
+        recipeInspectButton.setOnClickListener {
+            onInspectClick(item)
+        }
 
-        root.setOnClickListener { onItemClick(item) }
+        root.setOnClickListener {
+            onItemClick(item)
+        }
 
-        recipeDeleteButton.setOnClickListener { onDeleteClick(item) }
+        recipeDeleteButton.setOnClickListener {
+            onDeleteClick(item)
+        }
     }
 
     override fun getItemViewType(position: Int): Int {

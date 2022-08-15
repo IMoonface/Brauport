@@ -40,7 +40,7 @@ class DialogRestFragment : DialogFragment() {
             if (restTemp == "" || restTime == "")
                 Toast.makeText(context, R.string.fill_all_fields, Toast.LENGTH_SHORT).show()
             else {
-                recipeItem.restList.add(Rest("$restTemp°C", restTime))
+                recipeItem.restList.add(Rest(restTemp, restTime))
                 Toast.makeText(context, R.string.added_rest, Toast.LENGTH_SHORT).show()
             }
         }

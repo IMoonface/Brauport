@@ -25,9 +25,13 @@ class BrewAdapter(
         brewItemTitle.text = item.itemString
 
         brewToggleButton.isChecked = item.state
-        brewToggleButton.setOnCheckedChangeListener { _, checked -> item.state = checked }
+        brewToggleButton.setOnCheckedChangeListener { _, checked ->
+            item.state = checked
+        }
 
-        root.setOnClickListener { onItemClick(item) }
+        root.setOnClickListener {
+            onItemClick(item)
+        }
     }
 
     override fun getItemViewType(position: Int): Int {

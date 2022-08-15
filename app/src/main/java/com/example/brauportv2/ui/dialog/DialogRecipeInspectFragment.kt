@@ -47,7 +47,8 @@ class DialogRecipeInspectFragment(
 
         recipe.bRestList.forEach {
             restNameList.add(
-                it.restTemp + " " + getString(R.string.for_text) + " " + it.restTime + "min"
+                it.restTemp + getString(R.string.unit_of_measurement_temp) +
+                        " " + getString(R.string.for_text) + " " + it.restTime + "min"
             )
         }
 
@@ -70,14 +71,15 @@ class DialogRecipeInspectFragment(
         binding.inspectYeast.text = getString(R.string.yeasts) +
                 ": " + recipe.bYeast.stockName + " " + recipe.bYeast.stockAmount
 
-        binding.inspectMainBrew.text = "Guss: Hauptguss mit " + recipe.bMainBrew.firstBrew +
-                " und Nachguss mit " + recipe.bMainBrew.secondBrew
+        binding.inspectMainBrew.text = getString(R.string.first_brew_with) +
+                " " + recipe.bMainBrew.firstBrew + " " + getString(R.string.second_brew_with) +
+                " " + recipe.bMainBrew.secondBrew
 
         if (fromBrewHistory) {
             binding.inspectDateOfComp.text = getString(R.string.date_of_completion) +
-                    ": " + recipe.bDateOfCompletion
+                    " " + recipe.bDateOfCompletion
             binding.inspectEndOfFerm.text = getString(R.string.inspect_end_of_fermentation) +
-                    ": " + recipe.bEndOfFermentation
+                    " " + recipe.bEndOfFermentation
         }
 
         binding.inspectBackButton.setOnClickListener {

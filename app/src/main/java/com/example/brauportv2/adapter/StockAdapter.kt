@@ -26,9 +26,13 @@ class StockAdapter(
         stockItemTitle.text = item.stockName
         stockItemAmount.text = item.stockAmount
 
-        stockItemDelete.setOnClickListener { onDeleteClick(item) }
+        stockItemDelete.setOnClickListener {
+            onDeleteClick(item)
+        }
 
-        root.setOnClickListener { onItemClick(item) }
+        root.setOnClickListener {
+            onItemClick(item)
+        }
     }
 
     override fun getItemViewType(position: Int): Int {

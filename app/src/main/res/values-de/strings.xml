@@ -51,7 +51,7 @@
     <string name="make_recipe">Bitte Rezept erstellen!</string>
     <string name="date_dummy">TT-MM-JJJJ</string>
     <string name="recipe_inspect_name">Rezeptname</string>
-    <string name="date_of_completion">Fertigstellungsdatum</string>
+    <string name="date_of_completion">Fertigstellungsdatum:</string>
     <string name="end_of_fermentation">Gärungsende:</string>
     <string name="warning_text">!! Warnung !!\n Es ist zu wenig vorrätig im Lager. Wenn Sie diesesRezept jetzt durchführen, dann werden Bestände negativ!</string>
     <string name="brew_without_subtracting_stock">Trotzdem Brauen und Bestand nicht abziehen</string>
@@ -105,10 +105,16 @@
     <string name="timer_already_running">Timer läuft bereits!</string>
     <string name="aborted_recipe">Rezept wurde nicht abgeschlossen!</string>
     <string name="choose_another_recipe">Bitte wählen Sie ein anderes Rezept!</string>
-    <string name="inspect_end_of_fermentation">Ende der Gärung</string>
+    <string name="inspect_end_of_fermentation">Ende der Gärung:</string>
     <string name="for_text">für</string>
     <string name="hop_exists">Hopfen ist schon vorhanden!</string>
     <string name="added_hop">Hopfen wurde hinzugefügt!</string>
     <string name="hop_not_found">Kein Hopfen vorhanden!</string>
     <string name="deleted_hop">Hopfen wurde entfernt!</string>
+    <string name="first_brew_with">"Guss: Hauptguss mit</string>
+    <string name="second_brew_with">und Nachguss mit</string>
+    <string name="enter_name">Bitte Namen eingeben!</string>
+    <string name="updated_recipe">Rezept wurde geupdatet!</string>
+    <string name="set_all_attributes">Bitte alle Attribute setzen!</string>
+    <string name="created_recipe">Rezept wurde erstellt!</string>
 </resources>

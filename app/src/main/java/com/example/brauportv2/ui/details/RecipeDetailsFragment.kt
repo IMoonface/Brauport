@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.example.brauportv2.BaseApplication
+import com.example.brauportv2.R
 import com.example.brauportv2.databinding.FragmentRecipeDetailsBinding
 import com.example.brauportv2.mapper.toBrewHistoryItem
 import com.example.brauportv2.ui.dialog.*
@@ -81,7 +82,7 @@ class RecipeDetailsFragment : Fragment() {
 
             if (update) {
                 if (recipeName == "")
-                    Toast.makeText(context, "Bitte Namen eingeben!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, R.string.enter_name, Toast.LENGTH_SHORT).show()
                 else {
                     recipeItem.recipeName = recipeName
                     viewModel.updateRecipe(
@@ -93,7 +94,7 @@ class RecipeDetailsFragment : Fragment() {
                         recipeItem.yeast,
                         recipeItem.mainBrew
                     )
-                    Toast.makeText(context, "Rezept wurde geupdatet!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, R.string.updated_recipe, Toast.LENGTH_SHORT).show()
                 }
             } else {
                 recipeItem.rId = UUID.randomUUID().hashCode()
@@ -103,11 +104,11 @@ class RecipeDetailsFragment : Fragment() {
                     recipeItem.restList == startRestList || recipeItem.mainBrew == startMainBrew ||
                     recipeItem.hoppingList == startHoppingList || recipeItem.yeast == startYeast
                 )
-                    Toast.makeText(context, "Bitte alle Attribute setzen!", Toast.LENGTH_SHORT)
+                    Toast.makeText(context, R.string.set_all_attributes, Toast.LENGTH_SHORT)
                         .show()
                 else {
                     viewModel.addRecipe(recipeItem)
-                    Toast.makeText(context, "Rezept wurde erstellt!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, R.string.create_recipe, Toast.LENGTH_SHORT).show()
                 }
             }
         }
