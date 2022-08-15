@@ -72,7 +72,7 @@ class DialogMaltsFragment : DialogFragment() {
                     newMaltList.add(stockItem)
             }
             recipeItem.maltList = newMaltList
-            Toast.makeText(context, R.string.refresh_list_text, Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, R.string.refresh_list, Toast.LENGTH_SHORT).show()
         }
 
         return binding.root
@@ -85,11 +85,11 @@ class DialogMaltsFragment : DialogFragment() {
 
     private fun onItemAdd(item: StockItem, amount: String) {
         if (recipeItem.maltList.map { it.toSNoAmount() }.contains(item.toSNoAmount()))
-            Toast.makeText(context, "Malz schon vorhanden!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, R.string.malt_exists, Toast.LENGTH_SHORT).show()
         else {
             item.stockAmount = amount + "g"
             recipeItem.maltList.add(item)
-            Toast.makeText(context, "Malz hinzugefügt!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, R.string.added_malt, Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -97,9 +97,9 @@ class DialogMaltsFragment : DialogFragment() {
         val index = recipeItem.maltList.map { it.toSNoAmount() }.indexOf(item)
         if (index != -1) {
             recipeItem.maltList.removeAt(index)
-            Toast.makeText(context, "Malz gelöscht!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, R.string.deleted_malt, Toast.LENGTH_SHORT).show()
         } else {
-            Toast.makeText(context, "Malz nicht vorhanden!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, R.string.malt_not_found, Toast.LENGTH_SHORT).show()
         }
     }
 }

@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
 import com.example.brauportv2.BaseApplication
+import com.example.brauportv2.R
 import com.example.brauportv2.databinding.FragmentDialogCookingBinding
 import com.example.brauportv2.model.brewHistory.BrewHistoryItem
 import com.example.brauportv2.ui.viewModel.BrewHistoryViewModel
@@ -59,14 +60,14 @@ class DialogCookingFragment(
 
             if (viewModel.dateIsValid(endOfFermentation, formatter) && !update) {
                 onItemAdd(dateOfCompletion, endOfFermentation)
-                Toast.makeText(context, "Rezept abgeschlossen!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, R.string.finished_recipe, Toast.LENGTH_SHORT).show()
                 dismiss()
             } else if (viewModel.dateIsValid(endOfFermentation, formatter) && update) {
                 onItemUpdate(endOfFermentation)
-                Toast.makeText(context, "Datum aktualisiert!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, R.string.updated_date, Toast.LENGTH_SHORT).show()
                 dismiss()
             } else
-                Toast.makeText(context, "Datum nicht valid!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, R.string.invalid_date, Toast.LENGTH_SHORT).show()
         }
 
         binding.cookingAbortButton.setOnClickListener {

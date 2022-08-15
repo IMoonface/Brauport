@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
+import com.example.brauportv2.R
 import com.example.brauportv2.databinding.FragmentDialogRecipeInspectBinding
 import com.example.brauportv2.model.brewHistory.BrewHistoryItem
 
@@ -45,7 +46,9 @@ class DialogRecipeInspectFragment(
         }
 
         recipe.bRestList.forEach {
-            restNameList.add(it.restTemp + " für " + it.restTime + "min")
+            restNameList.add(
+                it.restTemp + " " + getString(R.string.for_text) + " " + it.restTime + "min"
+            )
         }
 
         recipe.bHoppingList.forEach { hopping ->
@@ -58,21 +61,23 @@ class DialogRecipeInspectFragment(
 
         binding.inspectRecipeName.text = recipe.bName
 
-        binding.inspectMaltList.text = "Malze: $maltNameList"
+        binding.inspectMaltList.text = getString(R.string.malts) + ": " + maltNameList
 
-        binding.inspectRestList.text = "Rasten: $restNameList"
+        binding.inspectRestList.text = getString(R.string.rest) + ": " + restNameList
 
-        binding.inspectHoppingList.text = "Hopfengaben: $hoppingNameList"
+        binding.inspectHoppingList.text = getString(R.string.hopping) + ": " + hoppingNameList
 
-        binding.inspectYeast.text = "Hefe: " + recipe.bYeast.stockName + " " +
-                recipe.bYeast.stockAmount
+        binding.inspectYeast.text = getString(R.string.yeasts) +
+                ": " + recipe.bYeast.stockName + " " + recipe.bYeast.stockAmount
 
         binding.inspectMainBrew.text = "Guss: Hauptguss mit " + recipe.bMainBrew.firstBrew +
                 " und Nachguss mit " + recipe.bMainBrew.secondBrew
 
         if (fromBrewHistory) {
-            binding.inspectDateOfComp.text = "Fertigstellungsdatum: " + recipe.bDateOfCompletion
-            binding.inspectEndOfFerm.text = "Ende der Gärung: " + recipe.bEndOfFermentation
+            binding.inspectDateOfComp.text = getString(R.string.date_of_completion) +
+                    ": " + recipe.bDateOfCompletion
+            binding.inspectEndOfFerm.text = getString(R.string.inspect_end_of_fermentation) +
+                    ": " + recipe.bEndOfFermentation
         }
 
         binding.inspectBackButton.setOnClickListener {

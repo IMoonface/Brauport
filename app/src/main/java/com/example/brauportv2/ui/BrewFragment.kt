@@ -69,10 +69,10 @@ class BrewFragment : Fragment() {
 
         binding.brewSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, pos: Int, id: Long) {
-                binding.brewTimerText.text = "Bitte Item anklicken!"
+                binding.brewTimerText.text = getString(R.string.click_item)
                 chosenRecipe = recipeItemList[pos]
                 if (viewModel.proveForNonNegAmount(chosenRecipe, stockList))
-                    adapter.submitList(viewModel.createStringList(chosenRecipe))
+                    adapter.submitList(createStringList(chosenRecipe))
                 else if (!viewModel.changeInStock) {
                     val dialog = DialogQuestionFragment(this@BrewFragment::onDialogQuestionDismiss)
                     dialog.isCancelable = false
@@ -82,7 +82,7 @@ class BrewFragment : Fragment() {
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
-                binding.brewTimerText.text = "Bitte Rezept erstellen!"
+                binding.brewTimerText.text = getString(R.string.create_recipe)
             }
         }
 
@@ -99,41 +99,41 @@ class BrewFragment : Fragment() {
                 dialog.isCancelable = false
                 dialog.show(childFragmentManager, "cookingDialog")
             } else
-                Toast.makeText(context, "Es sind noch Schritte offen", Toast.LENGTH_SHORT)
+                Toast.makeText(context, R.string.not_all_steps_completed, Toast.LENGTH_SHORT)
                     .show()
         }
 
         binding.brewTimerStartButton.setOnClickListener {
             if (binding.brewTimerStartButton.text.equals("Start") &&
-                binding.brewTimerText.text != "Bitte Item anklicken!" &&
-                binding.brewTimerText.text != "Bitte Rezept erstellen!" && !startTimer
+                binding.brewTimerText.text != getString(R.string.click_item) &&
+                binding.brewTimerText.text != getString(R.string.create_recipe) && !startTimer
             ) {
                 startTimer = true
                 timerStart(milliFromItem)
-            } else if (binding.brewTimerStartButton.text.equals("Weiter")) {
+            } else if (binding.brewTimerStartButton.text.equals(getString(R.string.along))) {
                 timerStart(milliLeft)
                 binding.brewTimerStartButton.text = "Start"
                 binding.brewTimerStopButton.text = "Stop"
                 startTimer = true
             } else if (binding.brewTimerStartButton.text.equals("Start") && startTimer)
-                Toast.makeText(context, "Der Timer läuft bereits!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, R.string.timer_already_running, Toast.LENGTH_SHORT).show()
         }
 
         binding.brewTimerStopButton.setOnClickListener {
             countDownTimer?.let {
                 if (binding.brewTimerStopButton.text.equals("Stop") &&
-                    binding.brewTimerText.text != "Bitte Item anklicken!"
+                    binding.brewTimerText.text != getString(R.string.click_item)
                 ) {
                     it.cancel()
-                    binding.brewTimerStartButton.text = "Weiter"
+                    binding.brewTimerStartButton.text = getString(R.string.along)
                     binding.brewTimerStopButton.text = "Cancel"
-                } else if (binding.brewTimerText.text == "Bitte Item anklicken!")
+                } else if (binding.brewTimerText.text == getString(R.string.click_item))
                     Toast.makeText(
-                        context, "Es wurde noch keine Zeit ausgewählt!", Toast.LENGTH_SHORT
+                        context, R.string.no_time_chosen, Toast.LENGTH_SHORT
                     ).show()
                 else {
                     it.cancel()
-                    binding.brewTimerText.text = "Ende"
+                    binding.brewTimerText.text = getString(R.string.end)
                     binding.brewTimerStartButton.text = "Start"
                     binding.brewTimerStopButton.text = "Stop"
                     startTimer = false
@@ -152,7 +152,7 @@ class BrewFragment : Fragment() {
     @SuppressLint("SetTextI18n")
     private fun onItemClick(item: BrewItem) {
         if (startTimer)
-            Toast.makeText(context, "Es läuft schon ein Timer!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, R.string.timer_already_running, Toast.LENGTH_SHORT).show()
         else {
             binding.brewTimerStartButton.text = "Start"
             if (item.brewTime != "") {
@@ -160,6 +160,81 @@ class BrewFragment : Fragment() {
                 timerStart(milliFromItem)
             }
         }
+    }
+
+    fun createStringList(item: RecipeItem): List<BrewItem> {
+        val newBrewList = mutableListOf<BrewItem>()
+
+        item.maltList.forEach {
+            newBrewList.add(
+                BrewItem(it.stockName + " " + it.stockAmount, "", false)
+            )
+        }
+
+        newBrewList.add(BrewItem(getString(R.string.grinding_malt), "", false))
+
+        newBrewList.add(
+            BrewItem(
+                getString(R.string.first_brew) + ": " + item.mainBrew.firstBrew,
+                "",
+                false
+            )
+        )
+
+        item.restList.forEach {
+            newBrewList.add(BrewItem(it.restTemp, it.restTime, false))
+        }
+
+        newBrewList.add(
+            BrewItem(
+                getString(R.string.second_brew) + ": " + item.mainBrew.secondBrew,
+                "",
+                false
+            )
+        )
+
+        newBrewList.add(
+            BrewItem(
+                getString(R.string.remove_malt),
+                "",
+                false
+            )
+        )
+        newBrewList.add(
+            BrewItem(getString(R.string.heat_to_about_temperature),
+                "",
+                false
+            )
+        )
+
+        var hoppingListString = ""
+        item.hoppingList.forEach { hopping ->
+            hopping.hopsList.forEach { hop ->
+                hoppingListString += hop.stockName + " " + hop.stockAmount + " "
+            }
+            newBrewList.add(BrewItem(hoppingListString, hopping.hoppingTime, false))
+            hoppingListString = ""
+        }
+
+        newBrewList.add(BrewItem(getString(R.string.pipeing), "", false))
+
+        newBrewList.add(
+            BrewItem(
+                getString(R.string.let_it_cool_down),
+                "",
+                false
+            )
+        )
+
+        newBrewList.add(
+            BrewItem(
+                item.yeast.stockName + " " + item.yeast.stockAmount,
+                "",
+                false
+            )
+        )
+
+        return newBrewList
     }
 
     @SuppressLint("SetTextI18n")
@@ -174,7 +249,7 @@ class BrewFragment : Fragment() {
                 }
 
                 override fun onFinish() {
-                    binding.brewTimerText.text = "Ende"
+                    binding.brewTimerText.text = getString(R.string.end)
                     binding.brewTimerStartButton.text = "Start"
                     milliFromItem = 0
                     startTimer = false
@@ -214,7 +289,7 @@ class BrewFragment : Fragment() {
 
     private fun onDialogCookingDismiss(abort: Boolean) {
         if (abort)
-            Toast.makeText(context, "Rezept wurde nicht abgeschlossen", Toast.LENGTH_SHORT)
+            Toast.makeText(context, R.string.aborted_recipe, Toast.LENGTH_SHORT)
                 .show()
         else
             if (withSubtract)
@@ -223,11 +298,11 @@ class BrewFragment : Fragment() {
 
     fun onDialogQuestionDismiss(abort: Boolean, subtract: Boolean) {
         if (abort)
-            Toast.makeText(context, "Bitte wählen Sie ein anderes Rezept!", Toast.LENGTH_SHORT)
+            Toast.makeText(context, R.string.choose_another_recipe, Toast.LENGTH_SHORT)
                 .show()
         else {
             withSubtract = subtract
-            adapter.submitList(viewModel.createStringList(chosenRecipe))
+            adapter.submitList(createStringList(chosenRecipe))
         }
     }
 }

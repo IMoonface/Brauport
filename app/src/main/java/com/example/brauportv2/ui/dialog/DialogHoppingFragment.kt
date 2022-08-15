@@ -81,7 +81,7 @@ class DialogHoppingFragment : DialogFragment() {
                 }
                 hopping.hopsList = newHopsList
             }
-            Toast.makeText(context, R.string.refresh_list_text, Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, R.string.refresh_list, Toast.LENGTH_SHORT).show()
         }
 
         return binding.root
@@ -96,10 +96,10 @@ class DialogHoppingFragment : DialogFragment() {
         val newTime = binding.rHoppingTimeInput.text.toString()
 
         if (newTime == "")
-            Toast.makeText(context, "Bitte Zeit angeben!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, R.string.enter_time, Toast.LENGTH_SHORT).show()
         else {
             recipeItem.hoppingList.add(Hopping(adapter.hopsList, newTime))
-            Toast.makeText(context, "Hopfengabe wurde hinzugefügt!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, R.string.added_hopping, Toast.LENGTH_SHORT).show()
             adapter.hopsList = emptyList<StockItem>().toMutableList()
         }
     }
@@ -108,8 +108,8 @@ class DialogHoppingFragment : DialogFragment() {
         val index = recipeItem.hoppingList.count() - 1
         if (index != -1) {
             recipeItem.hoppingList.removeAt(index)
-            Toast.makeText(context, "Hofengabe wurde entfernt!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, R.string.deleted_hopping, Toast.LENGTH_SHORT).show()
         } else
-            Toast.makeText(context, "Hofengabe nicht vorhanden!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, R.string.hopping_not_found, Toast.LENGTH_SHORT).show()
     }
 }

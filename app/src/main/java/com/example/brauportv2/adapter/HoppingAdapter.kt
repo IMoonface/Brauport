@@ -11,7 +11,6 @@ import com.example.brauportv2.R
 import com.example.brauportv2.databinding.CardRecipeStockBinding
 import com.example.brauportv2.mapper.toSNoAmount
 import com.example.brauportv2.model.stock.StockItem
-import com.example.brauportv2.model.recipe.Hopping
 
 class HoppingAdapter : ListAdapter<StockItem, HoppingAdapter.HoppingViewHolder>(DiffCallback) {
 
@@ -41,24 +40,24 @@ class HoppingAdapter : ListAdapter<StockItem, HoppingAdapter.HoppingViewHolder>(
             val itemAmount = rStockItemAmountInput.text.toString()
 
             if (itemAmount == "")
-                Toast.makeText(context, R.string.fill_amount_text, Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, R.string.fill_amount, Toast.LENGTH_SHORT).show()
             else if (hopsList.map { it.toSNoAmount() }.contains(item.toSNoAmount())) {
-                Toast.makeText(context, "Hopfen ist schon vorhanden!", Toast.LENGTH_SHORT)
+                Toast.makeText(context, R.string.hop_exists, Toast.LENGTH_SHORT)
                     .show()
             } else {
                 item.stockAmount = itemAmount + "g"
                 hopsList.add(item)
-                Toast.makeText(context, "Hopfen wurde hinzugefügt!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, R.string.added_hop, Toast.LENGTH_SHORT).show()
             }
         }
 
         rStockItemDelete.setOnClickListener {
-            if (hopsList == emptyList<StockItem>().toMutableList()) {
-                Toast.makeText(context, "Kein Hopfen vorhanden!", Toast.LENGTH_SHORT).show()
+            if (hopsList.map { it.toSNoAmount() }.indexOf(item.toSNoAmount()) == -1) {
+                Toast.makeText(context, R.string.hop_not_found, Toast.LENGTH_SHORT).show()
             } else {
                 val index = hopsList.map { it.toSNoAmount() }.indexOf(item.toSNoAmount())
                 hopsList.removeAt(index)
-                Toast.makeText(context, "Hopfen wurde entfernt!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, R.string.deleted_hop, Toast.LENGTH_SHORT).show()
             }
         }
     }

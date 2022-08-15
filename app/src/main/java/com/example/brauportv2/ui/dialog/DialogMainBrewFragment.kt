@@ -38,10 +38,10 @@ class DialogMainBrewFragment : DialogFragment() {
             val secondBrew = binding.mainBrewSecond.text.toString()
 
             if (firstBrew == "" || secondBrew == "")
-                Toast.makeText(context, R.string.fill_all_fields_text, Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, R.string.fill_all_fields, Toast.LENGTH_SHORT).show()
             else {
                 recipeItem.mainBrew = MainBrew(firstBrew + "ml", secondBrew + "ml")
-                Toast.makeText(context, "Guss wurde hinzugefügt!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, R.string.added_main_brew, Toast.LENGTH_SHORT).show()
                 dismiss()
             }
         }

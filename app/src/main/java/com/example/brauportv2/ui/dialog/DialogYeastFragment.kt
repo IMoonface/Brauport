@@ -10,6 +10,7 @@ import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.brauportv2.BaseApplication
+import com.example.brauportv2.R
 import com.example.brauportv2.adapter.RecipeStockAdapter
 import com.example.brauportv2.databinding.FragmentDialogYeastsBinding
 import com.example.brauportv2.mapper.toStockItem
@@ -73,21 +74,21 @@ class DialogYeastFragment : DialogFragment() {
 
     private fun onItemAdd(item: StockItem, amount: String) {
         if (recipeItem.yeast.stockName != "" && recipeItem.yeast.stockAmount != "")
-            Toast.makeText(context, "Nur eine Hefe pro Rezept möglich!", Toast.LENGTH_SHORT)
+            Toast.makeText(context, R.string.only_one_yeast_per_recipe, Toast.LENGTH_SHORT)
                 .show()
         else {
             item.stockAmount = amount + "g"
             recipeItem.yeast = item
-            Toast.makeText(context, "Hefe hinzugefügt!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, R.string.added_yeast, Toast.LENGTH_SHORT).show()
         }
     }
 
     private fun onItemDelete(item: SNoAmount) {
         if (recipeItem.yeast == startYeast) {
-            Toast.makeText(context, "Hefe nicht vorhanden!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, R.string.yeast_not_found, Toast.LENGTH_SHORT).show()
         } else {
             recipeItem.yeast = StockItem(1, YEAST.ordinal, "", "")
-            Toast.makeText(context, "Hefe gelöscht!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, R.string.deleted_yeast, Toast.LENGTH_SHORT).show()
         }
     }
 }

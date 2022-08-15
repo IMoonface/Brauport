@@ -50,7 +50,7 @@ class DialogStockFragment(
             val itemAmount = binding.stockItemAmount.text.toString()
 
             if (itemTitle == "" || itemAmount == "") {
-                Toast.makeText(context, R.string.fill_all_fields_text, Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, R.string.fill_all_fields, Toast.LENGTH_SHORT).show()
             } else {
                 if (update) {
                     viewModel.updateStock(stockId, itemType, itemTitle, itemAmount + "g")

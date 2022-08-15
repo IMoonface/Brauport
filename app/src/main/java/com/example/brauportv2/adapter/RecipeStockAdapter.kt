@@ -45,7 +45,7 @@ class RecipeStockAdapter(
                 val newAmount = rStockItemAmountInput.text.toString()
 
                 if (newAmount == "")
-                    Toast.makeText(context, R.string.fill_amount_text, Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, R.string.fill_amount, Toast.LENGTH_SHORT).show()
                 else
                     onItemClick(item, rStockItemAmountInput.text.toString())
             }

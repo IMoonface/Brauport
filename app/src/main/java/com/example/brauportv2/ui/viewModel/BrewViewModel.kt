@@ -3,6 +3,7 @@ package com.example.brauportv2.ui.viewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import com.example.brauportv2.R
 import com.example.brauportv2.data.stock.StockDao
 import com.example.brauportv2.mapper.toSNoAmount
 import com.example.brauportv2.mapper.toStockItemData
@@ -91,55 +92,6 @@ class BrewViewModel(private val stockDao: StockDao) : ViewModel() {
             possible = false
 
         return possible
-    }
-
-    fun createStringList(item: RecipeItem): List<BrewItem> {
-        val newBrewList = mutableListOf<BrewItem>()
-
-        item.maltList.forEach {
-            newBrewList.add(
-                BrewItem(it.stockName + " " + it.stockAmount, "", false)
-            )
-        }
-
-        newBrewList.add(BrewItem("Malz Schroten", "", false))
-
-        newBrewList.add(
-            BrewItem("Hauptguss: " + item.mainBrew.firstBrew, "", false)
-        )
-
-        item.restList.forEach {
-            newBrewList.add(BrewItem(it.restTemp, it.restTime, false))
-        }
-
-        newBrewList.add(
-            BrewItem("Nachguss: " + item.mainBrew.secondBrew, "", false)
-        )
-
-        newBrewList.add(BrewItem("Malz entnehmen", "", false))
-        newBrewList.add(BrewItem("Auf etwa Temperatur erhitzen", "", false))
-
-        var hoppingListString = ""
-        item.hoppingList.forEach { hopping ->
-            hopping.hopsList.forEach { hop ->
-                hoppingListString += hop.stockName + " " + hop.stockAmount + " "
-            }
-            newBrewList.add(BrewItem(hoppingListString, hopping.hoppingTime, false))
-            hoppingListString = ""
-        }
-
-        newBrewList.add(BrewItem("Schlauchen", "", false))
-        newBrewList.add(BrewItem("Abkühlen lassen", "", false))
-
-        newBrewList.add(
-            BrewItem(
-                item.yeast.stockName + " " + item.yeast.stockAmount,
-                "",
-                false
-            )
-        )
-
-        return newBrewList
     }
 }
 

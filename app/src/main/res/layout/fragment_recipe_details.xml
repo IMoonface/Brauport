@@ -30,7 +30,7 @@
             android:layout_width="220dp"
             android:layout_height="60dp"
             android:layout_marginTop="15dp"
-            android:text="@string/rests"
+            android:text="@string/rest"
             android:textColor="@color/appBars_color"
             app:backgroundTint="@color/button_color"
             app:cornerRadius="20dp" />

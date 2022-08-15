@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:text="@string/recipe_inspect_name_text"
+        android:text="@string/recipe_inspect_name"
         android:textColor="@color/appBars_color"
         android:textSize="30sp" />
 
@@ -42,7 +42,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="@string/rests"
+                android:text="@string/rest"
                 android:textColor="@color/appBars_color"
                 android:textSize="20sp" />
 

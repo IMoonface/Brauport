@@ -38,19 +38,19 @@ class DialogRestFragment : DialogFragment() {
             val restTime = binding.restTime.text.toString()
 
             if (restTemp == "" || restTime == "")
-                Toast.makeText(context, R.string.fill_all_fields_text, Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, R.string.fill_all_fields, Toast.LENGTH_SHORT).show()
             else {
                 recipeItem.restList.add(Rest("$restTemp°C", restTime))
-                Toast.makeText(context, "Rast wurde hinzugefügt!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, R.string.added_rest, Toast.LENGTH_SHORT).show()
             }
         }
 
         binding.restDeleteButton.setOnClickListener {
             if (recipeItem.restList.isEmpty()) {
-                Toast.makeText(context, "Keine Rast vorhanden!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, R.string.rest_not_found, Toast.LENGTH_SHORT).show()
             } else {
                 recipeItem.restList.removeAt(recipeItem.restList.count() - 1)
-                Toast.makeText(context, "Rast wurde gelöscht!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, R.string.deleted_yeast, Toast.LENGTH_SHORT).show()
             }
         }
 
