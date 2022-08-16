@@ -1,6 +1,6 @@
-package com.example.brauportv2.model
+package com.example.brauportv2.model.brew
 
-data class BrewItem(
+data class StepItem(
     var itemString: String,
     var brewTime: String,
     var state: Boolean

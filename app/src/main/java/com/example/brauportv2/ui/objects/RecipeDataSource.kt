@@ -1,5 +1,6 @@
 package com.example.brauportv2.ui.objects
 
+import com.example.brauportv2.model.brew.StepItem
 import com.example.brauportv2.model.recipe.Hopping
 import com.example.brauportv2.model.recipe.MainBrew
 import com.example.brauportv2.model.recipe.RecipeItem
@@ -25,5 +26,7 @@ object RecipeDataSource {
         MainBrew("", "")
     )
 
-    var recipeItemList = emptyList<RecipeItem>().toMutableList()
+    var itemList = emptyList<RecipeItem>().toMutableList()
+
+    var stepList = emptyList<StepItem>()
 }

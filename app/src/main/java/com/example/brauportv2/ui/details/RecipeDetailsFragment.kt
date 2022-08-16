@@ -108,7 +108,7 @@ class RecipeDetailsFragment : Fragment() {
                         .show()
                 else {
                     viewModel.addRecipe(recipeItem)
-                    Toast.makeText(context, R.string.create_recipe, Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, R.string.created_recipe, Toast.LENGTH_SHORT).show()
                 }
             }
         }

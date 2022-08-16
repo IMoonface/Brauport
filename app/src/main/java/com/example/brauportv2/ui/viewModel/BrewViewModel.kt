@@ -3,11 +3,9 @@ package com.example.brauportv2.ui.viewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import com.example.brauportv2.R
 import com.example.brauportv2.data.stock.StockDao
 import com.example.brauportv2.mapper.toSNoAmount
 import com.example.brauportv2.mapper.toStockItemData
-import com.example.brauportv2.model.BrewItem
 import com.example.brauportv2.model.recipe.RecipeItem
 import com.example.brauportv2.model.stock.StockItem
 import com.example.brauportv2.model.stock.StockItemData
@@ -38,42 +36,6 @@ class BrewViewModel(private val stockDao: StockDao) : ViewModel() {
         }
     }
 
-    fun minutes(millis: Long): String {
-        if (millis / 60000 < 1) return "00"
-        if (millis / 60000 in 1..9) return "0" + (millis / 60000)
-        return "" + (millis / 60000)
-    }
-
-    fun seconds(millis: Long): String {
-        var millisSeconds: Long = millis
-        while (millisSeconds >= 60000)
-            millisSeconds -= 60000
-
-        return when (millisSeconds / 1000) {
-            in 0..0 -> "00"
-            in 1..9 -> "0" + +(millisSeconds / 1000)
-            else -> "" + millisSeconds / 1000
-        }
-    }
-
-    fun calcAmount(item: StockItem, list: List<StockItem>): String {
-        val recipeAmount = item.stockAmount.substringBefore("g").toInt()
-        val index = list.map { it.toSNoAmount() }.indexOf(item.toSNoAmount())
-        val databaseAmount = list[index].stockAmount.substringBefore("g").toInt()
-        return (databaseAmount - recipeAmount).toString() + "g"
-    }
-
-    private fun calcForShortage(item: StockItem, list: List<StockItem>): Boolean {
-        val recipeAmount = item.stockAmount.substringBefore("g").toInt()
-        val index = list.map { it.toSNoAmount() }.indexOf(item.toSNoAmount())
-        if (index == -1) {
-            changeInStock = true
-            return false
-        }
-        val databaseAmount = list[index].stockAmount.substringBefore("g").toInt()
-        return databaseAmount - recipeAmount >= 0
-    }
-
     fun proveForNonNegAmount(item: RecipeItem, list: List<StockItem>): Boolean {
         var possible = true
         item.maltList.forEach { malt ->
@@ -92,6 +54,24 @@ class BrewViewModel(private val stockDao: StockDao) : ViewModel() {
             possible = false
 
         return possible
+    }
+
+    private fun calcForShortage(item: StockItem, list: List<StockItem>): Boolean {
+        val recipeAmount = item.stockAmount.substringBefore("g").toInt()
+        val index = list.map { it.toSNoAmount() }.indexOf(item.toSNoAmount())
+        if (index == -1) {
+            changeInStock = true
+            return false
+        }
+        val databaseAmount = list[index].stockAmount.substringBefore("g").toInt()
+        return databaseAmount - recipeAmount >= 0
+    }
+
+    fun calcAmount(item: StockItem, list: List<StockItem>): String {
+        val recipeAmount = item.stockAmount.substringBefore("g").toInt()
+        val index = list.map { it.toSNoAmount() }.indexOf(item.toSNoAmount())
+        val databaseAmount = list[index].stockAmount.substringBefore("g").toInt()
+        return (databaseAmount - recipeAmount).toString() + "g"
     }
 }
 

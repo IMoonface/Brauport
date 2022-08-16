@@ -12,12 +12,12 @@ interface BrewHistoryDao {
     @Query("SELECT * from brew_history_database WHERE bId = :id")
     fun getBrewHistoryItem(id: Int): Flow<BrewHistoryItemData>
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(brewHistoryItem: BrewHistoryItemData)
+    @Insert
+    suspend fun insert(item: BrewHistoryItemData)
 
     @Update
-    suspend fun update(brewHistoryItem: BrewHistoryItemData)
+    suspend fun update(item: BrewHistoryItemData)
 
     @Delete
-    suspend fun delete(brewHistoryItem: BrewHistoryItemData)
+    suspend fun delete(item: BrewHistoryItemData)
 }

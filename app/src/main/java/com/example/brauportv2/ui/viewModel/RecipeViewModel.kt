@@ -15,9 +15,9 @@ class RecipeViewModel(private val recipeDao: RecipeDao) : ViewModel() {
 
     val allRecipeItems: Flow<List<RecipeItemData>> = recipeDao.getAllRecipeItems()
 
-    fun addRecipe(recipeItem: RecipeItem) {
+    fun addRecipe(item: RecipeItem) {
         viewModelScope.launch {
-            recipeDao.insert(recipeItem.toRecipeItemData())
+            recipeDao.insert(item.toRecipeItemData())
         }
     }
 
@@ -30,7 +30,7 @@ class RecipeViewModel(private val recipeDao: RecipeDao) : ViewModel() {
         yeast: StockItem,
         mainBrew: MainBrew
     ) {
-        val recipeItem = RecipeItem(
+        val item = RecipeItem(
             rId = rId,
             recipeName = recipeName,
             maltList = maltList,
@@ -40,13 +40,13 @@ class RecipeViewModel(private val recipeDao: RecipeDao) : ViewModel() {
             mainBrew = mainBrew
         )
         viewModelScope.launch(Dispatchers.IO) {
-            recipeDao.update(recipeItem.toRecipeItemData())
+            recipeDao.update(item.toRecipeItemData())
         }
     }
 
-    fun deleteRecipe(recipeItem: RecipeItem) {
+    fun deleteRecipe(item: RecipeItem) {
         viewModelScope.launch(Dispatchers.IO) {
-            recipeDao.delete(recipeItem.toRecipeItemData())
+            recipeDao.delete(item.toRecipeItemData())
         }
     }
 }

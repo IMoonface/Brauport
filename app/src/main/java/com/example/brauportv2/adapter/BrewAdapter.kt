@@ -1,16 +1,18 @@
 package com.example.brauportv2.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.brauportv2.databinding.CardBrewBinding
-import com.example.brauportv2.model.BrewItem
+import com.example.brauportv2.model.brew.StepItem
 
 class BrewAdapter(
-    private val onItemClick: (BrewItem) -> Unit
-) : ListAdapter<BrewItem, BrewAdapter.BrewViewHolder>(DiffCallback) {
+    private val onToggle: (List<StepItem>) -> Unit,
+    private val onItemClick: (StepItem) -> Unit
+) : ListAdapter<StepItem, BrewAdapter.BrewViewHolder>(DiffCallback) {
 
     class BrewViewHolder(val binding: CardBrewBinding) : RecyclerView.ViewHolder(binding.root)
 
@@ -27,6 +29,9 @@ class BrewAdapter(
         brewToggleButton.isChecked = item.state
         brewToggleButton.setOnCheckedChangeListener { _, checked ->
             item.state = checked
+            submitList(currentList)
+            Log.i("stepListe", currentList.toString())
+            onToggle(currentList)
         }
 
         root.setOnClickListener {
@@ -46,11 +51,11 @@ class BrewAdapter(
         return currentList.size
     }
 
-    object DiffCallback : DiffUtil.ItemCallback<BrewItem>() {
-        override fun areItemsTheSame(oldItem: BrewItem, newItem: BrewItem)
+    object DiffCallback : DiffUtil.ItemCallback<StepItem>() {
+        override fun areItemsTheSame(oldItem: StepItem, newItem: StepItem)
                 : Boolean = oldItem == newItem
 
-        override fun areContentsTheSame(oldItem: BrewItem, newItem: BrewItem)
+        override fun areContentsTheSame(oldItem: StepItem, newItem: StepItem)
                 : Boolean = oldItem == newItem
     }
 }

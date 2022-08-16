@@ -6,30 +6,47 @@
     android:layout_height="match_parent"
     tools:context=".ui.BrewFragment">
 
-    <Button
-        android:id="@+id/brew_timer_start_button"
-        android:layout_width="100dp"
-        android:layout_height="50dp"
+    <Spinner
+        android:id="@+id/brew_spinner"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
-        android:layout_marginEnd="20dp"
-        android:text="@string/start_brew_timer"
-        android:textColor="@color/appBars_color"
-        app:backgroundTint="@color/button_color"
-        app:cornerRadius="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginEnd="10dp"
+        android:background="@android:drawable/btn_dropdown"
+        android:spinnerMode="dropdown"
+        app:layout_constraintEnd_toStartOf="@+id/malt_info_button"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <Button
-        android:id="@+id/brew_timer_stop_button"
-        android:layout_width="100dp"
-        android:layout_height="50dp"
-        android:layout_marginEnd="20dp"
-        android:text="@string/stop_brew_timer"
+        android:id="@+id/malt_info_button"
+        android:layout_width="50dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
         android:textColor="@color/appBars_color"
         app:backgroundTint="@color/button_color"
         app:cornerRadius="20dp"
+        app:icon="@drawable/ic_info"
+        app:iconGravity="textStart"
+        app:iconPadding="0dp"
+        app:iconTint="@color/appBars_color"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/brew_timer_start_button" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/brew_fragment_container"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="5dp"
+        app:layout_constraintBottom_toTopOf="@+id/brew_finish_button"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/brew_spinner" />
 
     <Button
         android:id="@+id/brew_finish_button"
@@ -43,41 +60,4 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
-    <Spinner
-        android:id="@+id/brew_spinner"
-        android:layout_width="0dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:background="@android:drawable/btn_dropdown"
-        android:spinnerMode="dropdown"
-        app:layout_constraintEnd_toStartOf="@+id/brew_timer_start_button"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="SpeakableTextPresentCheck" />
-
-    <TextView
-        android:id="@+id/brew_timer_text"
-        android:layout_width="wrap_content"
-        android:layout_height="30dp"
-        android:text="@string/make_recipe"
-        android:textSize="25sp"
-        app:layout_constraintEnd_toEndOf="@+id/brew_spinner"
-        app:layout_constraintStart_toStartOf="@+id/brew_spinner"
-        app:layout_constraintTop_toBottomOf="@+id/brew_spinner" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/brew_recycler_view"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        app:layoutManager="LinearLayoutManager"
-        app:layout_constraintBottom_toTopOf="@+id/brew_finish_button"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/brew_timer_stop_button" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

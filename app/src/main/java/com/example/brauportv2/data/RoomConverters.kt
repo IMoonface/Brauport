@@ -1,6 +1,8 @@
 package com.example.brauportv2.data
 
 import androidx.room.TypeConverter
+import com.example.brauportv2.model.brew.StepItem
+import com.example.brauportv2.model.brew.StepList
 import com.example.brauportv2.model.recipe.Hopping
 import com.example.brauportv2.model.recipe.MainBrew
 import com.example.brauportv2.model.recipe.Rest
@@ -85,5 +87,19 @@ class RoomConverters {
     fun toMainBrew(source: String): MainBrew {
         val json = JSONObject(source)
         return MainBrew(json.getString("first"), json.getString("second"))
+    }
+
+    @TypeConverter
+    fun fromStepItemList(list: List<StepItem>): String {
+        val gson = Gson()
+        val type = object : TypeToken<List<StepItem>>() {}.type
+        return gson.toJson(list, type)
+    }
+
+    @TypeConverter
+    fun toStepItemList(source: String): List<StepItem> {
+        val gson = Gson()
+        val type = object : TypeToken<List<StepItem>>() {}.type
+        return gson.fromJson(source, type)
     }
 }

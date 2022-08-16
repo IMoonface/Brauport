@@ -1,5 +1,7 @@
 package com.example.brauportv2.mapper
 
+import com.example.brauportv2.model.brew.StepList
+import com.example.brauportv2.model.brew.StepListData
 import com.example.brauportv2.model.brewHistory.BrewHistoryItem
 import com.example.brauportv2.model.brewHistory.BrewHistoryItemData
 import com.example.brauportv2.model.recipe.RecipeItem
@@ -84,4 +86,12 @@ fun BrewHistoryItem.toBrewHistoryItemData(): BrewHistoryItemData {
         bDateOfCompletion,
         bEndOfFermentation
     )
+}
+
+fun StepList.toStepListData(): StepListData {
+    return StepListData(sId, rId, steps)
+}
+
+fun StepListData.toStepList(): StepList {
+    return StepList(sId, rId, steps)
 }

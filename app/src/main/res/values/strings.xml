@@ -51,7 +51,6 @@
     <string name="fill_amount">Please specify quantity!</string>
     <string name="fill_all_fields">Please fill in all fields!</string>
     <string name="delete_recipe_text">Do you want to remove this recipe?</string>
-    <string name="timer_dummy">Please click item!</string>
     <string name="main_brew_history">Brewing history</string>
     <string name="rest_delete_button">Remove rest</string>
     <string name="open_text">Open</string>
@@ -96,8 +95,7 @@
     <string name="heat_to_about_temperature">Heat to about temperature</string>
     <string name="pipeing">Pipeing</string>
     <string name="let_it_cool_down">Let it cool down</string>
-    <string name="click_item">Please click a item!</string>
-    <string name="create_recipe">Please create a Recipe!</string>
+    <string name="time_dummy">00:00</string>
     <string name="along">Along</string>
     <string name="end">End</string>
     <string name="not_all_steps_completed">Not all steps completed!</string>

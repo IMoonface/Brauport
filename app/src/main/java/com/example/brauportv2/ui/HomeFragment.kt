@@ -11,7 +11,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.brauportv2.BaseApplication
 import com.example.brauportv2.databinding.FragmentHomeBinding
 import com.example.brauportv2.mapper.toRecipeItem
-import com.example.brauportv2.ui.objects.RecipeDataSource.recipeItemList
+import com.example.brauportv2.ui.objects.RecipeDataSource.itemList
 import com.example.brauportv2.ui.viewModel.RecipeViewModel
 import com.example.brauportv2.ui.viewModel.RecipeViewModelFactory
 import kotlinx.coroutines.launch
@@ -35,7 +35,7 @@ class HomeFragment : Fragment() {
 
         lifecycleScope.launch {
             viewModel.allRecipeItems.collect { it ->
-                recipeItemList = it.map { it.toRecipeItem() }.toMutableList()
+                itemList = it.map { it.toRecipeItem() }.toMutableList()
             }
         }
 

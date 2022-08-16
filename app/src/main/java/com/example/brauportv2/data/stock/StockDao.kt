@@ -12,12 +12,12 @@ interface StockDao {
     @Query("SELECT * from stock_database WHERE id = :id")
     fun getStockItem(id: Int): Flow<StockItemData>
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(stockItem: StockItemData)
+    @Insert
+    suspend fun insert(item: StockItemData)
 
     @Update
-    suspend fun update(stockItem: StockItemData)
+    suspend fun update(item: StockItemData)
 
     @Delete
-    suspend fun delete(stockItem: StockItemData)
+    suspend fun delete(item: StockItemData)
 }

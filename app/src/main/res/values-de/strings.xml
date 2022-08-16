@@ -42,7 +42,6 @@
     <string name="end_brewing">Brauvorgang Beenden</string>
     <string name="start_brew_timer">Start</string>
     <string name="stop_brew_timer">Stop</string>
-    <string name="timer_dummy">Bitte Item anklicken!</string>
     <string name="main_brew_history">Brauhistorie</string>
     <string name="rest_delete_button">Rast löschen</string>
     <string name="open_text">Offen</string>
@@ -96,8 +95,7 @@
     <string name="heat_to_about_temperature">Auf etwa Temperatur erhitzen</string>
     <string name="pipeing">Schlauchen</string>
     <string name="let_it_cool_down">Abkühlen lassen</string>
-    <string name="click_item">Bitte Item anklicken!</string>
-    <string name="create_recipe">Bitte Rezept erstellen!</string>
+    <string name="time_dummy">00:00</string>
     <string name="along">Weiter</string>
     <string name="end">Ende</string>
     <string name="not_all_steps_completed">Es sind noch Schritte offen</string>
