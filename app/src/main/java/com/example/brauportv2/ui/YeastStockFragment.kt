@@ -29,6 +29,7 @@ class YeastStockFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var adapter: StockAdapter
     private lateinit var startList: List<StockItem>
+
     private val textWatcher = object : TextWatcher {
         override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
         override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}

@@ -6,6 +6,7 @@ import com.example.brauportv2.model.recipe.RecipeItem
 import com.example.brauportv2.model.stock.StockItem
 
 object TextWatcherLogic {
+
     fun filterListForStock(text: String, adapter: StockAdapter, list: List<StockItem>) {
         if (text != "" && isNumeric(text.removeSuffix("g"))) {
             adapter.submitList(list.filter {

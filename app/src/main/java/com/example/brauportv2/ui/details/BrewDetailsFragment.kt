@@ -3,11 +3,11 @@ package com.example.brauportv2.ui.details
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.os.CountDownTimer
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.brauportv2.BaseApplication
@@ -19,11 +19,12 @@ import com.example.brauportv2.model.brew.StepItem
 import com.example.brauportv2.model.brew.StepList
 import com.example.brauportv2.model.recipe.RecipeItem
 import com.example.brauportv2.ui.objects.RecipeDataSource.stepList
-import com.example.brauportv2.ui.viewModel.*
+import com.example.brauportv2.ui.viewModel.BrewDetailsViewModel
+import com.example.brauportv2.ui.viewModel.BrewDetailsViewModelFactory
 import kotlinx.coroutines.launch
 import java.util.*
 
-class BrewDetailsFragment(private val recipe: RecipeItem) : Fragment() {
+class BrewDetailsFragment(private val item: RecipeItem) : Fragment() {
 
     private var _binding: FragmentBrewDetailsBinding? = null
     private val binding get() = _binding!!
@@ -32,7 +33,7 @@ class BrewDetailsFragment(private val recipe: RecipeItem) : Fragment() {
     private var milliFromItem: Long = 0
     private var milliLeft: Long = 0
     private var startTimer = false
-    private lateinit var startList: List<StepList>
+    private var startList: List<StepList> = emptyList()
     private val viewModel: BrewDetailsViewModel by activityViewModels {
         BrewDetailsViewModelFactory(
             (activity?.application as BaseApplication).stepDatabase.stepDao()
@@ -46,13 +47,13 @@ class BrewDetailsFragment(private val recipe: RecipeItem) : Fragment() {
     ): View {
         _binding = FragmentBrewDetailsBinding.inflate(inflater, container, false)
 
-        adapter = BrewAdapter(this::onToggle,this::onItemClick)
+        adapter = BrewAdapter(this::onToggle, this::onItemClick)
         binding.brewRecyclerView.adapter = adapter
 
         lifecycleScope.launch {
             viewModel.allStepLists.collect { list ->
-                startList = list.map { it.toStepList() }.filter { it.rId == recipe.rId }
-                adapter.submitList(createStringList(recipe))
+                startList = list.map { it.toStepList() }.filter { it.rId == item.rId }
+                adapter.submitList(createStringList(item))
             }
         }
 
@@ -110,7 +111,7 @@ class BrewDetailsFragment(private val recipe: RecipeItem) : Fragment() {
 
     private fun onToggle(steps: List<StepItem>) {
         if (startList.isNotEmpty()) {
-            viewModel.updateStepList(startList[0].sId, recipe.rId, steps)
+            viewModel.updateStepList(startList[0].sId, item.rId, steps)
             stepList = startList[0].steps
         }
     }
@@ -138,8 +139,6 @@ class BrewDetailsFragment(private val recipe: RecipeItem) : Fragment() {
 
     private fun createStringList(item: RecipeItem): List<StepItem> {
         if (startList.isEmpty()) {
-
-
             val newBrewList = mutableListOf<StepItem>()
 
             item.maltList.forEach {
@@ -212,7 +211,7 @@ class BrewDetailsFragment(private val recipe: RecipeItem) : Fragment() {
                 )
             )
 
-            viewModel.addStepList(StepList(UUID.randomUUID().hashCode(), recipe.rId, newBrewList))
+            viewModel.addStepList(StepList(UUID.randomUUID().hashCode(), item.rId, newBrewList))
 
             return newBrewList
         }

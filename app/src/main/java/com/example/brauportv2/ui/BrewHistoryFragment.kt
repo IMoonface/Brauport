@@ -26,6 +26,7 @@ class BrewHistoryFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var adapter: BrewHistoryAdapter
     private lateinit var brewHistoryList: List<BrewHistoryItem>
+
     private val viewModel: BrewHistoryViewModel by activityViewModels {
         BrewHistoryViewModelFactory(
             (activity?.application as BaseApplication).brewHistoryDatabase.brewHistoryDao()

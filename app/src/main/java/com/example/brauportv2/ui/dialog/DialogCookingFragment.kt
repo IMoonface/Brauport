@@ -20,13 +20,14 @@ import java.util.*
 
 class DialogCookingFragment(
     private val update: Boolean,
-    private val brewHistoryItem: BrewHistoryItem,
+    private val item: BrewHistoryItem,
     private val onDialogCookingDismiss: (Boolean) -> Unit
 ) : DialogFragment() {
 
     private var _binding: FragmentDialogCookingBinding? = null
     private val binding get() = _binding!!
     private var abort = false
+
     private val viewModel: BrewHistoryViewModel by activityViewModels {
         BrewHistoryViewModelFactory(
             (activity?.application as BaseApplication)
@@ -89,22 +90,22 @@ class DialogCookingFragment(
     }
 
     private fun onItemAdd(dateOfCompletion: String, endOfFermentation: String) {
-        brewHistoryItem.bId = UUID.randomUUID().hashCode()
-        brewHistoryItem.bDateOfCompletion = dateOfCompletion
-        brewHistoryItem.bEndOfFermentation = endOfFermentation
-        viewModel.addBrewHistoryItem(brewHistoryItem)
+        item.bId = UUID.randomUUID().hashCode()
+        item.bDateOfCompletion = dateOfCompletion
+        item.bEndOfFermentation = endOfFermentation
+        viewModel.addBrewHistoryItem(item)
     }
 
     private fun onItemUpdate(endOfFermentation: String) {
         viewModel.updateBrewHistoryItem(
-            brewHistoryItem.bId,
-            brewHistoryItem.bName,
-            brewHistoryItem.bMaltList,
-            brewHistoryItem.bRestList,
-            brewHistoryItem.bHoppingList,
-            brewHistoryItem.bYeast,
-            brewHistoryItem.bMainBrew,
-            brewHistoryItem.bDateOfCompletion,
+            item.bId,
+            item.bName,
+            item.bMaltList,
+            item.bRestList,
+            item.bHoppingList,
+            item.bYeast,
+            item.bMainBrew,
+            item.bDateOfCompletion,
             endOfFermentation
         )
     }

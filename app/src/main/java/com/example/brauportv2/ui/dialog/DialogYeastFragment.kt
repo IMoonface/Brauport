@@ -28,6 +28,7 @@ class DialogYeastFragment : DialogFragment() {
     private var _binding: FragmentDialogYeastsBinding? = null
     private val binding get() = _binding!!
     private lateinit var adapter: RecipeStockAdapter
+
     private val viewModel: StockViewModel by activityViewModels {
         StockViewModelFactory((activity?.application as BaseApplication).stockDatabase.stockDao())
     }

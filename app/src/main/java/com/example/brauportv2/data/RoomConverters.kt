@@ -2,7 +2,6 @@ package com.example.brauportv2.data
 
 import androidx.room.TypeConverter
 import com.example.brauportv2.model.brew.StepItem
-import com.example.brauportv2.model.brew.StepList
 import com.example.brauportv2.model.recipe.Hopping
 import com.example.brauportv2.model.recipe.MainBrew
 import com.example.brauportv2.model.recipe.Rest

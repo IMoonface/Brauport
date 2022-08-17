@@ -115,4 +115,5 @@
     <string name="updated_recipe">Recipe has been updated!</string>
     <string name="set_all_attributes">Please set all attributes!</string>
     <string name="created_recipe">Recipe has been created!</string>
+    <string name="instruction_brew">Instruction - Brew</string>
 </resources>

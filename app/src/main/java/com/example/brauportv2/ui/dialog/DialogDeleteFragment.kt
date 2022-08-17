@@ -7,17 +7,32 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
+import com.example.brauportv2.BaseApplication
 import com.example.brauportv2.databinding.FragmentDialogDeleteBinding
+import com.example.brauportv2.mapper.toStepList
+import com.example.brauportv2.model.brew.StepList
 import com.example.brauportv2.model.recipe.RecipeItem
+import com.example.brauportv2.ui.viewModel.BrewDetailsViewModel
+import com.example.brauportv2.ui.viewModel.BrewDetailsViewModelFactory
+import kotlinx.coroutines.launch
 
 class DialogDeleteFragment(
-    private val recipeItem: RecipeItem,
+    private val item: RecipeItem,
     private val onDialogDeleteDismiss: (Boolean, RecipeItem) -> Unit
 ) : DialogFragment() {
 
     private var _binding: FragmentDialogDeleteBinding? = null
     private val binding get() = _binding!!
     private var delete = false
+    private var startList: List<StepList> = emptyList()
+
+    private val viewModel: BrewDetailsViewModel by activityViewModels {
+        BrewDetailsViewModelFactory(
+            (activity?.application as BaseApplication).stepDatabase.stepDao()
+        )
+    }
 
     override fun onStart() {
         super.onStart()
@@ -35,7 +50,15 @@ class DialogDeleteFragment(
     ): View {
         _binding = FragmentDialogDeleteBinding.inflate(inflater, container, false)
 
+        lifecycleScope.launch {
+            viewModel.allStepLists.collect { list ->
+                startList = list.map { it.toStepList() }.filter { it.rId == item.rId }
+            }
+        }
+
         binding.deleteYesButton.setOnClickListener {
+            if (startList.isNotEmpty())
+                viewModel.deleteStepList(startList[0])
             delete = true
             dismiss()
         }
@@ -49,6 +72,6 @@ class DialogDeleteFragment(
 
     override fun onDismiss(dialog: DialogInterface) {
         super.onDismiss(dialog)
-        onDialogDeleteDismiss(delete, recipeItem)
+        onDialogDeleteDismiss(delete, item)
     }
 }

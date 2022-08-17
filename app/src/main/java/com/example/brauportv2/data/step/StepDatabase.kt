@@ -8,7 +8,7 @@ import androidx.room.TypeConverters
 import com.example.brauportv2.data.RoomConverters
 import com.example.brauportv2.model.brew.StepListData
 
-@Database(entities = [StepListData::class], version = 2, exportSchema = false)
+@Database(entities = [StepListData::class], version = 1, exportSchema = false)
 @TypeConverters(RoomConverters::class)
 abstract class StepDatabase : RoomDatabase() {
     abstract fun stepDao(): StepDao

@@ -9,7 +9,7 @@ interface StepDao {
     @Query("SELECT * from step_database ORDER BY sId ASC")
     fun getAllStepLists(): Flow<List<StepListData>>
 
-    @Query("SELECT * from step_database WHERE sId = :id")
+    @Query("SELECT * from step_database WHERE recipeId = :id")
     fun getStepList(id: Int): Flow<StepListData>
 
     @Insert

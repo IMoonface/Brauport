@@ -1,9 +1,9 @@
 package com.example.brauportv2
 
 import android.app.Application
-import com.example.brauportv2.data.step.StepDatabase
 import com.example.brauportv2.data.brewHistory.BrewHistoryDatabase
 import com.example.brauportv2.data.recipe.RecipeDatabase
+import com.example.brauportv2.data.step.StepDatabase
 import com.example.brauportv2.data.stock.StockDatabase
 
 class BaseApplication : Application() {

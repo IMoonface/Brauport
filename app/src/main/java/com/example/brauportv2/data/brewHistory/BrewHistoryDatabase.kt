@@ -8,7 +8,7 @@ import androidx.room.TypeConverters
 import com.example.brauportv2.data.RoomConverters
 import com.example.brauportv2.model.brewHistory.BrewHistoryItemData
 
-@Database(entities = [BrewHistoryItemData::class], version = 2, exportSchema = false)
+@Database(entities = [BrewHistoryItemData::class], version = 1, exportSchema = false)
 @TypeConverters(RoomConverters::class)
 abstract class BrewHistoryDatabase : RoomDatabase() {
     abstract fun brewHistoryDao(): BrewHistoryDao

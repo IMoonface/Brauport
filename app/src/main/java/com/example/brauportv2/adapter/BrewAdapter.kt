@@ -30,7 +30,6 @@ class BrewAdapter(
         brewToggleButton.setOnCheckedChangeListener { _, checked ->
             item.state = checked
             submitList(currentList)
-            Log.i("stepListe", currentList.toString())
             onToggle(currentList)
         }
 

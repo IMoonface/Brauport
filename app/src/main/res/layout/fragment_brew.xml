@@ -15,14 +15,14 @@
         android:layout_marginEnd="10dp"
         android:background="@android:drawable/btn_dropdown"
         android:spinnerMode="dropdown"
-        app:layout_constraintEnd_toStartOf="@+id/malt_info_button"
+        app:layout_constraintEnd_toStartOf="@+id/brew_info_button"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <Button
-        android:id="@+id/malt_info_button"
+        android:id="@+id/brew_info_button"
         android:layout_width="50dp"
         android:layout_height="60dp"
         android:layout_marginTop="10dp"
@@ -46,7 +46,8 @@
         app:layout_constraintBottom_toTopOf="@+id/brew_finish_button"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/brew_spinner" />
+        app:layout_constraintTop_toBottomOf="@+id/brew_spinner"
+        tools:layout="@layout/fragment_brew_details" />
 
     <Button
         android:id="@+id/brew_finish_button"

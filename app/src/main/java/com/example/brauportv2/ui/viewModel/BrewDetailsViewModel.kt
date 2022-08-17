@@ -4,16 +4,21 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.example.brauportv2.data.step.StepDao
+import com.example.brauportv2.mapper.toStepListData
 import com.example.brauportv2.model.brew.StepItem
 import com.example.brauportv2.model.brew.StepList
 import com.example.brauportv2.model.brew.StepListData
-import com.example.brauportv2.mapper.toStepListData
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 
 class BrewDetailsViewModel(private val stepDao: StepDao) : ViewModel() {
+
     val allStepLists: Flow<List<StepListData>> = stepDao.getAllStepLists()
+
+    fun getStepList(id: Int): Flow<StepListData> {
+        return stepDao.getStepList(id)
+    }
 
     fun addStepList(item: StepList) {
         viewModelScope.launch {

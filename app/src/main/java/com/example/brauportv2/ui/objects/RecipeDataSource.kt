@@ -9,6 +9,7 @@ import com.example.brauportv2.model.stock.StockItem
 import com.example.brauportv2.model.stock.StockItemType.YEAST
 
 object RecipeDataSource {
+
     var update = false
     val startMaltList = emptyList<StockItem>().toMutableList()
     val startRestList = emptyList<Rest>().toMutableList()

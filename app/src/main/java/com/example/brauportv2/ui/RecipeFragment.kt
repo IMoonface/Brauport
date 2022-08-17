@@ -37,6 +37,7 @@ class RecipeFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var recipeStartList: List<RecipeItem>
     private lateinit var adapter: RecipeAdapter
+
     private val textWatcher = object : TextWatcher {
         override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
         override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}

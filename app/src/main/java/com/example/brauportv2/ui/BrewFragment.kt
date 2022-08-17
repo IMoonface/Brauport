@@ -20,6 +20,7 @@ import com.example.brauportv2.model.recipe.RecipeItem
 import com.example.brauportv2.model.stock.StockItem
 import com.example.brauportv2.ui.details.BrewDetailsFragment
 import com.example.brauportv2.ui.dialog.DialogCookingFragment
+import com.example.brauportv2.ui.dialog.DialogInstructionBrewFragment
 import com.example.brauportv2.ui.dialog.DialogQuestionFragment
 import com.example.brauportv2.ui.objects.RecipeDataSource.itemList
 import com.example.brauportv2.ui.objects.RecipeDataSource.stepList
@@ -35,6 +36,7 @@ class BrewFragment : Fragment() {
     private lateinit var chosenRecipe: RecipeItem
     private var stockList = emptyList<StockItem>()
     private var withSubtract = true
+
     private val viewModel: BrewViewModel by activityViewModels {
         BrewViewModelFactory((activity?.application as BaseApplication).stockDatabase.stockDao())
     }
@@ -77,6 +79,12 @@ class BrewFragment : Fragment() {
             override fun onNothingSelected(parent: AdapterView<*>?) {
 
             }
+        }
+
+        binding.brewInfoButton.setOnClickListener {
+            val dialog = DialogInstructionBrewFragment()
+            dialog.isCancelable = false
+            dialog.show(childFragmentManager, "brewInfoDialog")
         }
 
         binding.brewFinishButton.setOnClickListener {

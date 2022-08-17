@@ -30,6 +30,7 @@ class DialogMaltsFragment : DialogFragment() {
     private lateinit var adapter: RecipeStockAdapter
     private lateinit var stockList: List<StockItem>
     private var newMaltList = mutableListOf<StockItem>()
+
     private val viewModel: StockViewModel by activityViewModels {
         StockViewModelFactory((activity?.application as BaseApplication).stockDatabase.stockDao())
     }
