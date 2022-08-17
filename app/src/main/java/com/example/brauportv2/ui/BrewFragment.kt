@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
@@ -62,13 +63,12 @@ class BrewFragment : Fragment() {
         binding.brewSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, pos: Int, id: Long) {
                 chosenRecipe = itemList[pos]
-                if (viewModel.proveForNonNegAmount(chosenRecipe, stockList)) {
-                    val brewDetailsFragment = BrewDetailsFragment(chosenRecipe)
-                    val transaction = childFragmentManager.beginTransaction()
-                    transaction.replace(R.id.brew_fragment_container, brewDetailsFragment)
-                    transaction.disallowAddToBackStack()
-                    transaction.commit()
-                } else if (!viewModel.changeInStock) {
+                if (viewModel.proveForNonNegAmount(chosenRecipe, stockList))
+                    childFragmentManager.beginTransaction()
+                        .replace(R.id.brew_fragment_container, BrewDetailsFragment(chosenRecipe))
+                        .disallowAddToBackStack()
+                        .commit()
+                else if (!viewModel.changeInStock) {
                     val dialog = DialogQuestionFragment(this@BrewFragment::onDialogQuestionDismiss)
                     dialog.isCancelable = false
                     dialog.show(childFragmentManager, "questionDialog")
@@ -88,15 +88,16 @@ class BrewFragment : Fragment() {
         }
 
         binding.brewFinishButton.setOnClickListener {
-            var finished = false
+            var finished = true
 
-            stepList.forEach { finished = it.state }
+            stepList.forEach {
+                if (!it.state)
+                    finished = false
+            }
 
-            if (finished) {
+            if (finished && stepList.isNotEmpty()) {
                 val dialog = DialogCookingFragment(
-                    false,
-                    chosenRecipe.toBrewHistoryItem(),
-                    this::onDialogCookingDismiss
+                    false, chosenRecipe.toBrewHistoryItem(), this::onDialogCookingDismiss
                 )
                 dialog.isCancelable = false
                 dialog.show(childFragmentManager, "cookingDialog")

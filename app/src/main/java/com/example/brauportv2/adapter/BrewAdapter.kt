@@ -9,7 +9,8 @@ import com.example.brauportv2.databinding.CardBrewBinding
 import com.example.brauportv2.model.brew.StepItem
 
 class BrewAdapter(
-    private val onItemClick: (StepItem) -> Unit
+    private val onItemClick: (StepItem) -> Unit,
+    private val onToggle: (List<StepItem>) -> Unit
 ) : ListAdapter<StepItem, BrewAdapter.BrewViewHolder>(DiffCallback) {
 
     class BrewViewHolder(val binding: CardBrewBinding) : RecyclerView.ViewHolder(binding.root)
@@ -27,6 +28,7 @@ class BrewAdapter(
         brewToggleButton.isChecked = item.state
         brewToggleButton.setOnCheckedChangeListener { _, checked ->
             item.state = checked
+            onToggle(currentList)
         }
 
         root.setOnClickListener {

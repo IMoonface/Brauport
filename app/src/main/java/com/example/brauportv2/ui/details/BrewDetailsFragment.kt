@@ -34,6 +34,7 @@ class BrewDetailsFragment(private val item: RecipeItem) : Fragment() {
     private var milliLeft: Long = 0
     private var startTimer = false
     private var startList: List<StepList> = emptyList()
+
     private val viewModel: BrewDetailsViewModel by activityViewModels {
         BrewDetailsViewModelFactory(
             (activity?.application as BaseApplication).stepDatabase.stepDao()
@@ -47,16 +48,19 @@ class BrewDetailsFragment(private val item: RecipeItem) : Fragment() {
     ): View {
         _binding = FragmentBrewDetailsBinding.inflate(inflater, container, false)
 
-        adapter = BrewAdapter(this::onItemClick)
+        adapter = BrewAdapter(this::onItemClick, this::onToggle)
         binding.brewRecyclerView.adapter = adapter
 
         lifecycleScope.launch {
             viewModel.allStepLists.collect { list ->
                 startList = list.map { it.toStepList() }.filter { it.rId == item.rId }
-                if (startList.isNotEmpty())
+                stepList = if (startList.isNotEmpty()) {
                     adapter.submitList(startList[0].steps)
-                else
+                    adapter.currentList
+                } else {
                     adapter.submitList(createStringList(item))
+                    adapter.currentList
+                }
             }
         }
 
@@ -94,10 +98,13 @@ class BrewDetailsFragment(private val item: RecipeItem) : Fragment() {
         return binding.root
     }
 
+    private fun onToggle(steps: List<StepItem>) {
+        stepList = steps
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         viewModel.updateStepList(startList[0].sId, item.rId, adapter.currentList)
-        stepList = adapter.currentList
         _binding = null
     }
 
@@ -144,9 +151,7 @@ class BrewDetailsFragment(private val item: RecipeItem) : Fragment() {
             )
         }
 
-        newBrewList.add(
-            StepItem(getString(R.string.grinding_malt), "", false)
-        )
+        newBrewList.add(StepItem(getString(R.string.grinding_malt), "", false))
 
         newBrewList.add(
             StepItem(
@@ -168,9 +173,7 @@ class BrewDetailsFragment(private val item: RecipeItem) : Fragment() {
             )
         )
 
-        newBrewList.add(
-            StepItem(getString(R.string.remove_malt), "", false)
-        )
+        newBrewList.add(StepItem(getString(R.string.remove_malt), "", false))
 
         newBrewList.add(
             StepItem(getString(R.string.heat_to_about_temperature), "", false)
@@ -183,20 +186,13 @@ class BrewDetailsFragment(private val item: RecipeItem) : Fragment() {
                 hoppingListString += hop.stockName + " " + hop.stockAmount + " "
             }
 
-            newBrewList.add(
-                StepItem(hoppingListString, hopping.hoppingTime, false)
-            )
-
+            newBrewList.add(StepItem(hoppingListString, hopping.hoppingTime, false))
             hoppingListString = ""
         }
 
-        newBrewList.add(
-            StepItem(getString(R.string.pipeing), "", false)
-        )
+        newBrewList.add(StepItem(getString(R.string.pipeing), "", false))
 
-        newBrewList.add(
-            StepItem(getString(R.string.let_it_cool_down), "", false)
-        )
+        newBrewList.add(StepItem(getString(R.string.let_it_cool_down), "", false))
 
         newBrewList.add(
             StepItem(

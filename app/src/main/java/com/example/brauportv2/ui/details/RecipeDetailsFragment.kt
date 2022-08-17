@@ -27,6 +27,7 @@ class RecipeDetailsFragment : Fragment() {
 
     private var _binding: FragmentRecipeDetailsBinding? = null
     private val binding get() = _binding!!
+
     private val viewModel: RecipeViewModel by activityViewModels {
         RecipeViewModelFactory(
             (activity?.application as BaseApplication).recipeDatabase.recipeDao()
