@@ -89,6 +89,7 @@ class BrewFragment : Fragment() {
 
         binding.brewFinishButton.setOnClickListener {
             var finished = false
+
             stepList.forEach { finished = it.state }
 
             if (finished) {
@@ -99,9 +100,8 @@ class BrewFragment : Fragment() {
                 )
                 dialog.isCancelable = false
                 dialog.show(childFragmentManager, "cookingDialog")
-            } else
-                Toast.makeText(context, R.string.not_all_steps_completed, Toast.LENGTH_SHORT)
-                    .show()
+            } else if (stepList.isNotEmpty())
+                Toast.makeText(context, R.string.not_all_steps_completed, Toast.LENGTH_SHORT).show()
         }
 
         return binding.root

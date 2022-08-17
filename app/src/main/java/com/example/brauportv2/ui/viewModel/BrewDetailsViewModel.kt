@@ -16,10 +16,6 @@ class BrewDetailsViewModel(private val stepDao: StepDao) : ViewModel() {
 
     val allStepLists: Flow<List<StepListData>> = stepDao.getAllStepLists()
 
-    fun getStepList(id: Int): Flow<StepListData> {
-        return stepDao.getStepList(id)
-    }
-
     fun addStepList(item: StepList) {
         viewModelScope.launch {
             stepDao.insert(item.toStepListData())

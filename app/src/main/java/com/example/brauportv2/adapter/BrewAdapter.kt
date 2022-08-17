@@ -1,6 +1,5 @@
 package com.example.brauportv2.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -10,7 +9,6 @@ import com.example.brauportv2.databinding.CardBrewBinding
 import com.example.brauportv2.model.brew.StepItem
 
 class BrewAdapter(
-    private val onToggle: (List<StepItem>) -> Unit,
     private val onItemClick: (StepItem) -> Unit
 ) : ListAdapter<StepItem, BrewAdapter.BrewViewHolder>(DiffCallback) {
 
@@ -29,8 +27,6 @@ class BrewAdapter(
         brewToggleButton.isChecked = item.state
         brewToggleButton.setOnCheckedChangeListener { _, checked ->
             item.state = checked
-            submitList(currentList)
-            onToggle(currentList)
         }
 
         root.setOnClickListener {
@@ -51,10 +47,13 @@ class BrewAdapter(
     }
 
     object DiffCallback : DiffUtil.ItemCallback<StepItem>() {
-        override fun areItemsTheSame(oldItem: StepItem, newItem: StepItem)
-                : Boolean = oldItem == newItem
+        override fun areItemsTheSame(oldItem: StepItem, newItem: StepItem): Boolean {
+            return false
+        }
 
-        override fun areContentsTheSame(oldItem: StepItem, newItem: StepItem)
-                : Boolean = oldItem == newItem
+
+        override fun areContentsTheSame(oldItem: StepItem, newItem: StepItem): Boolean {
+            return false
+        }
     }
 }

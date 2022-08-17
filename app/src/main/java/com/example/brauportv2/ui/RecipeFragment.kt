@@ -108,15 +108,13 @@ class RecipeFragment : Fragment() {
     }
 
     private fun onDeleteClick(item: RecipeItem) {
-        val dialog = DialogDeleteFragment(item, this::onDialogDeleteDismiss)
+        val dialog = DialogDeleteFragment(item, this::onDeleteConfirm)
         dialog.isCancelable = false
         dialog.show(childFragmentManager, "recipeDeleteDialog")
     }
 
-    private fun onDialogDeleteDismiss(delete: Boolean, item: RecipeItem) {
-        if (delete) {
-            viewModel.deleteRecipe(item)
-        }
+    private fun onDeleteConfirm(item: RecipeItem) {
+        viewModel.deleteRecipe(item)
     }
 
     override fun onDestroyView() {

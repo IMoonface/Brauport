@@ -47,13 +47,16 @@ class BrewDetailsFragment(private val item: RecipeItem) : Fragment() {
     ): View {
         _binding = FragmentBrewDetailsBinding.inflate(inflater, container, false)
 
-        adapter = BrewAdapter(this::onToggle, this::onItemClick)
+        adapter = BrewAdapter(this::onItemClick)
         binding.brewRecyclerView.adapter = adapter
 
         lifecycleScope.launch {
             viewModel.allStepLists.collect { list ->
                 startList = list.map { it.toStepList() }.filter { it.rId == item.rId }
-                adapter.submitList(createStringList(item))
+                if (startList.isNotEmpty())
+                    adapter.submitList(startList[0].steps)
+                else
+                    adapter.submitList(createStringList(item))
             }
         }
 
@@ -93,6 +96,8 @@ class BrewDetailsFragment(private val item: RecipeItem) : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
+        viewModel.updateStepList(startList[0].sId, item.rId, adapter.currentList)
+        stepList = adapter.currentList
         _binding = null
     }
 
@@ -106,13 +111,6 @@ class BrewDetailsFragment(private val item: RecipeItem) : Fragment() {
                 milliFromItem = brewItem.brewTime.toLong() * 60000
                 timerStart(milliFromItem)
             }
-        }
-    }
-
-    private fun onToggle(steps: List<StepItem>) {
-        if (startList.isNotEmpty()) {
-            viewModel.updateStepList(startList[0].sId, item.rId, steps)
-            stepList = startList[0].steps
         }
     }
 
@@ -138,83 +136,78 @@ class BrewDetailsFragment(private val item: RecipeItem) : Fragment() {
     }
 
     private fun createStringList(item: RecipeItem): List<StepItem> {
-        if (startList.isEmpty()) {
-            val newBrewList = mutableListOf<StepItem>()
+        val newBrewList = mutableListOf<StepItem>()
 
-            item.maltList.forEach {
-                newBrewList.add(
-                    StepItem(it.stockName + " " + it.stockAmount, "", false)
-                )
-            }
-
-            newBrewList.add(StepItem(getString(R.string.grinding_malt), "", false))
-
+        item.maltList.forEach {
             newBrewList.add(
-                StepItem(
-                    getString(R.string.first_brew) + ": " + item.mainBrew.firstBrew,
-                    "",
-                    false
-                )
+                StepItem(it.stockName + " " + it.stockAmount, "", false)
             )
-
-            item.restList.forEach {
-                newBrewList.add(StepItem(it.restTemp, it.restTime, false))
-            }
-
-            newBrewList.add(
-                StepItem(
-                    getString(R.string.second_brew) + ": " + item.mainBrew.secondBrew,
-                    "",
-                    false
-                )
-            )
-
-            newBrewList.add(
-                StepItem(
-                    getString(R.string.remove_malt),
-                    "",
-                    false
-                )
-            )
-            newBrewList.add(
-                StepItem(
-                    getString(R.string.heat_to_about_temperature),
-                    "",
-                    false
-                )
-            )
-
-            var hoppingListString = ""
-            item.hoppingList.forEach { hopping ->
-                hopping.hopsList.forEach { hop ->
-                    hoppingListString += hop.stockName + " " + hop.stockAmount + " "
-                }
-                newBrewList.add(StepItem(hoppingListString, hopping.hoppingTime, false))
-                hoppingListString = ""
-            }
-
-            newBrewList.add(StepItem(getString(R.string.pipeing), "", false))
-
-            newBrewList.add(
-                StepItem(
-                    getString(R.string.let_it_cool_down),
-                    "",
-                    false
-                )
-            )
-
-            newBrewList.add(
-                StepItem(
-                    item.yeast.stockName + " " + item.yeast.stockAmount,
-                    "",
-                    false
-                )
-            )
-
-            viewModel.addStepList(StepList(UUID.randomUUID().hashCode(), item.rId, newBrewList))
-
-            return newBrewList
         }
-        return startList[0].steps
+
+        newBrewList.add(
+            StepItem(getString(R.string.grinding_malt), "", false)
+        )
+
+        newBrewList.add(
+            StepItem(
+                getString(R.string.first_brew) + ": " + item.mainBrew.firstBrew,
+                "",
+                false
+            )
+        )
+
+        item.restList.forEach {
+            newBrewList.add(StepItem(it.restTemp, it.restTime, false))
+        }
+
+        newBrewList.add(
+            StepItem(
+                getString(R.string.second_brew) + ": " + item.mainBrew.secondBrew,
+                "",
+                false
+            )
+        )
+
+        newBrewList.add(
+            StepItem(getString(R.string.remove_malt), "", false)
+        )
+
+        newBrewList.add(
+            StepItem(getString(R.string.heat_to_about_temperature), "", false)
+        )
+
+        var hoppingListString = ""
+
+        item.hoppingList.forEach { hopping ->
+            hopping.hopsList.forEach { hop ->
+                hoppingListString += hop.stockName + " " + hop.stockAmount + " "
+            }
+
+            newBrewList.add(
+                StepItem(hoppingListString, hopping.hoppingTime, false)
+            )
+
+            hoppingListString = ""
+        }
+
+        newBrewList.add(
+            StepItem(getString(R.string.pipeing), "", false)
+        )
+
+        newBrewList.add(
+            StepItem(getString(R.string.let_it_cool_down), "", false)
+        )
+
+        newBrewList.add(
+            StepItem(
+                item.yeast.stockName + " " + item.yeast.stockAmount,
+                "",
+                false
+            )
+        )
+
+        viewModel.addStepList(StepList(UUID.randomUUID().hashCode(), item.rId, newBrewList))
+
+        return newBrewList
     }
 }

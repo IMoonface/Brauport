@@ -9,6 +9,9 @@ interface StepDao {
     @Query("SELECT * from step_database ORDER BY sId ASC")
     fun getAllStepLists(): Flow<List<StepListData>>
 
+    @Query("SELECT EXISTS(SELECT * FROM step_database WHERE recipeId = :id)")
+    fun exists(id: Int): Boolean
+
     @Query("SELECT * from step_database WHERE recipeId = :id")
     fun getStepList(id: Int): Flow<StepListData>
 

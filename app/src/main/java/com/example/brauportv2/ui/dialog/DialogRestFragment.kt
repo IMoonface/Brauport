@@ -50,7 +50,7 @@ class DialogRestFragment : DialogFragment() {
                 Toast.makeText(context, R.string.rest_not_found, Toast.LENGTH_SHORT).show()
             } else {
                 recipeItem.restList.removeAt(recipeItem.restList.count() - 1)
-                Toast.makeText(context, R.string.deleted_yeast, Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, R.string.deleted_rest, Toast.LENGTH_SHORT).show()
             }
         }
 

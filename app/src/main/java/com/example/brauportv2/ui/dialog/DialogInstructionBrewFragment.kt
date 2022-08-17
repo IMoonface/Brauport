@@ -26,9 +26,14 @@ class DialogInstructionBrewFragment : DialogFragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentDialogInstructionBrewBinding
             .inflate(inflater, container, false)
+
+        binding.instructionBBackButton.setOnClickListener {
+            dismiss()
+        }
+
         return binding.root
     }
 

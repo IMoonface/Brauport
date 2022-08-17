@@ -20,12 +20,11 @@ import kotlinx.coroutines.launch
 
 class DialogDeleteFragment(
     private val item: RecipeItem,
-    private val onDialogDeleteDismiss: (Boolean, RecipeItem) -> Unit
+    private val onDeleteConfirm: (RecipeItem) -> Unit
 ) : DialogFragment() {
 
     private var _binding: FragmentDialogDeleteBinding? = null
     private val binding get() = _binding!!
-    private var delete = false
     private var startList: List<StepList> = emptyList()
 
     private val viewModel: BrewDetailsViewModel by activityViewModels {
@@ -59,7 +58,7 @@ class DialogDeleteFragment(
         binding.deleteYesButton.setOnClickListener {
             if (startList.isNotEmpty())
                 viewModel.deleteStepList(startList[0])
-            delete = true
+            onDeleteConfirm(item)
             dismiss()
         }
 
@@ -68,10 +67,5 @@ class DialogDeleteFragment(
         }
 
         return binding.root
-    }
-
-    override fun onDismiss(dialog: DialogInterface) {
-        super.onDismiss(dialog)
-        onDialogDeleteDismiss(delete, item)
     }
 }
