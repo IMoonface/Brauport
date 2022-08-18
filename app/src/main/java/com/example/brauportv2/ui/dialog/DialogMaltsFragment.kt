@@ -52,13 +52,11 @@ class DialogMaltsFragment : DialogFragment() {
         _binding = FragmentDialogMaltsBinding.inflate(inflater, container, false)
 
         adapter = RecipeStockAdapter(this::onItemAdd, this::onItemDelete)
-
         binding.rMaltsRecyclerView.adapter = adapter
 
         lifecycleScope.launch {
             viewModel.allStockItems.collect { it ->
-                stockList = it.map { it.toStockItem() }
-                    .filter { it.itemType == MALT.ordinal }
+                stockList = it.map { it.toStockItem() }.filter { it.itemType == MALT.ordinal }
                 adapter.submitList(stockList)
             }
         }
@@ -99,8 +97,7 @@ class DialogMaltsFragment : DialogFragment() {
         if (index != -1) {
             recipeItem.maltList.removeAt(index)
             Toast.makeText(context, R.string.deleted_malt, Toast.LENGTH_SHORT).show()
-        } else {
+        } else
             Toast.makeText(context, R.string.malt_not_found, Toast.LENGTH_SHORT).show()
-        }
     }
 }

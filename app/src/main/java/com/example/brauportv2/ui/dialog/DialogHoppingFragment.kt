@@ -56,8 +56,7 @@ class DialogHoppingFragment : DialogFragment() {
 
         lifecycleScope.launch {
             viewModel.allStockItems.collect { it ->
-                stockList = it.map { it.toStockItem() }
-                    .filter { it.itemType == HOP.ordinal }
+                stockList = it.map { it.toStockItem() }.filter { it.itemType == HOP.ordinal }
                 adapter.submitList(stockList)
             }
         }

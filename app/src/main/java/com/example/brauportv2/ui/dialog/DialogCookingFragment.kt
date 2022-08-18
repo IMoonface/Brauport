@@ -30,8 +30,7 @@ class DialogCookingFragment(
 
     private val viewModel: BrewHistoryViewModel by activityViewModels {
         BrewHistoryViewModelFactory(
-            (activity?.application as BaseApplication)
-                .brewHistoryDatabase.brewHistoryDao()
+            (activity?.application as BaseApplication).brewHistoryDatabase.brewHistoryDao()
         )
     }
 

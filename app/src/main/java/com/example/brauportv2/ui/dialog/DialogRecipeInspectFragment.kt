@@ -34,7 +34,8 @@ class DialogRecipeInspectFragment(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentDialogRecipeInspectBinding.inflate(inflater, container, false)
+        _binding = FragmentDialogRecipeInspectBinding
+            .inflate(inflater, container, false)
 
         val maltNameList = mutableListOf<String>()
         val restNameList = mutableListOf<String>()
@@ -46,10 +47,7 @@ class DialogRecipeInspectFragment(
         }
 
         item.bRestList.forEach {
-            restNameList.add(
-                it.restTemp + getString(R.string.unit_of_measurement_temp) +
-                        " " + getString(R.string.for_text) + " " + it.restTime + "min"
-            )
+            restNameList.add(it.restTemp + getString(R.string.unit_of_measurement_temp) + " " + getString(R.string.for_text) + " " + it.restTime + "min")
         }
 
         item.bHoppingList.forEach { hopping ->
@@ -68,18 +66,18 @@ class DialogRecipeInspectFragment(
 
         binding.inspectHoppingList.text = getString(R.string.hopping) + ": " + hoppingNameList
 
-        binding.inspectYeast.text = getString(R.string.yeasts) +
-                ": " + item.bYeast.stockName + " " + item.bYeast.stockAmount
+        binding.inspectYeast.text = getString(R.string.yeasts) + ": " + item.bYeast.stockName +
+                    " " + item.bYeast.stockAmount
 
-        binding.inspectMainBrew.text = getString(R.string.first_brew_with) +
-                " " + item.bMainBrew.firstBrew + " " + getString(R.string.second_brew_with) +
-                " " + item.bMainBrew.secondBrew
+        binding.inspectMainBrew.text =
+            getString(R.string.first_brew_with) + " " + item.bMainBrew.firstBrew +
+                    " " + getString(R.string.second_brew_with) + " " + item.bMainBrew.secondBrew
 
         if (fromBrewHistory) {
-            binding.inspectDateOfComp.text = getString(R.string.date_of_completion) +
-                    " " + item.bDateOfCompletion
-            binding.inspectEndOfFerm.text = getString(R.string.inspect_end_of_fermentation) +
-                    " " + item.bEndOfFermentation
+            binding.inspectDateOfComp.text =
+                getString(R.string.date_of_completion) + " " + item.bDateOfCompletion
+            binding.inspectEndOfFerm.text =
+                getString(R.string.inspect_end_of_fermentation) + " " + item.bEndOfFermentation
         }
 
         binding.inspectBackButton.setOnClickListener {
