@@ -1,6 +1,5 @@
 package com.example.brauportv2.ui
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,7 +7,6 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
@@ -42,7 +40,6 @@ class BrewFragment : Fragment() {
         BrewViewModelFactory((activity?.application as BaseApplication).stockDatabase.stockDao())
     }
 
-    @SuppressLint("SetTextI18n")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -76,9 +73,7 @@ class BrewFragment : Fragment() {
                     Toast.makeText(context, R.string.change_in_stock_text, Toast.LENGTH_LONG).show()
             }
 
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-
-            }
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
         }
 
         binding.brewInfoButton.setOnClickListener {
@@ -116,10 +111,7 @@ class BrewFragment : Fragment() {
     private fun updateDatabase(item: RecipeItem) {
         item.maltList.forEach { malt ->
             viewModel.updateStock(
-                malt.id,
-                malt.itemType,
-                malt.stockName,
-                viewModel.calcAmount(malt, stockList)
+                malt.id, malt.itemType, malt.stockName, viewModel.calcAmount(malt, stockList)
             )
         }
 
@@ -144,8 +136,7 @@ class BrewFragment : Fragment() {
 
     private fun onDialogCookingDismiss(abort: Boolean) {
         if (abort)
-            Toast.makeText(context, R.string.aborted_recipe, Toast.LENGTH_SHORT)
-                .show()
+            Toast.makeText(context, R.string.aborted_recipe, Toast.LENGTH_SHORT).show()
         else
             if (withSubtract)
                 updateDatabase(chosenRecipe)
@@ -153,15 +144,13 @@ class BrewFragment : Fragment() {
 
     fun onDialogQuestionDismiss(abort: Boolean, subtract: Boolean) {
         if (abort)
-            Toast.makeText(context, R.string.choose_another_recipe, Toast.LENGTH_SHORT)
-                .show()
+            Toast.makeText(context, R.string.choose_another_recipe, Toast.LENGTH_SHORT).show()
         else {
             withSubtract = subtract
-            val brewDetailsFragment = BrewDetailsFragment(chosenRecipe)
-            val transaction = childFragmentManager.beginTransaction()
-            transaction.replace(R.id.brew_fragment_container, brewDetailsFragment)
-            transaction.disallowAddToBackStack()
-            transaction.commit()
+            childFragmentManager.beginTransaction()
+                .replace(R.id.brew_fragment_container, BrewDetailsFragment(chosenRecipe))
+                .disallowAddToBackStack()
+                .commit()
         }
     }
 }

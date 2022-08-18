@@ -53,7 +53,6 @@ class BrewAdapter(
             return false
         }
 
-
         override fun areContentsTheSame(oldItem: StepItem, newItem: StepItem): Boolean {
             return false
         }

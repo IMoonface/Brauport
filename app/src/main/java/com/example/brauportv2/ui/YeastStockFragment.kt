@@ -49,7 +49,6 @@ class YeastStockFragment : Fragment() {
         _binding = FragmentYeastStockBinding.inflate(inflater, container, false)
 
         adapter = StockAdapter(this::onItemClick, this::onDeleteClick)
-
         binding.yeastRecyclerView.adapter = adapter
 
         lifecycleScope.launch {
@@ -60,15 +59,17 @@ class YeastStockFragment : Fragment() {
         }
 
         binding.yeastNextButton.setOnClickListener {
-            val action = YeastStockFragmentDirections.actionYeastStockFragmentToMaltStockFragment()
-            findNavController().navigate(action)
+            findNavController().navigate(
+                YeastStockFragmentDirections.actionYeastStockFragmentToMaltStockFragment()
+            )
 
             binding.yeastTextInput.text?.clear()
         }
 
         binding.yeastBeforeButton.setOnClickListener {
-            val action = YeastStockFragmentDirections.actionYeastStockFragmentToHopStockFragment()
-            findNavController().navigate(action)
+            findNavController().navigate(
+                YeastStockFragmentDirections.actionYeastStockFragmentToHopStockFragment()
+            )
 
             binding.yeastTextInput.text?.clear()
         }

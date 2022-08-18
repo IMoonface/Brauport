@@ -49,7 +49,6 @@ class MaltStockFragment : Fragment() {
         _binding = FragmentMaltStockBinding.inflate(inflater, container, false)
 
         adapter = StockAdapter(this::onItemClick, this::onDeleteClick)
-
         binding.maltRecyclerView.adapter = adapter
 
         lifecycleScope.launch {
@@ -60,17 +59,17 @@ class MaltStockFragment : Fragment() {
         }
 
         binding.maltNextButton.setOnClickListener {
-            val action = MaltStockFragmentDirections
-                .actionMaltStockFragmentToHopStockFragment()
-            findNavController().navigate(action)
+            findNavController().navigate(
+                MaltStockFragmentDirections.actionMaltStockFragmentToHopStockFragment()
+            )
 
             binding.maltTextInput.text?.clear()
         }
 
         binding.maltBeforeButton.setOnClickListener {
-            val action = MaltStockFragmentDirections
-                .actionMaltStockFragmentToYeastStockFragment()
-            findNavController().navigate(action)
+            findNavController().navigate(
+                MaltStockFragmentDirections.actionMaltStockFragmentToYeastStockFragment()
+            )
 
             binding.maltTextInput.text?.clear()
         }

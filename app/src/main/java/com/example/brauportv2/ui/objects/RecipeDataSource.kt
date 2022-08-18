@@ -27,7 +27,7 @@ object RecipeDataSource {
         MainBrew("", "")
     )
 
-    var itemList = emptyList<RecipeItem>().toMutableList()
+    var itemList = emptyList<RecipeItem>()
 
     var stepList = emptyList<StepItem>()
 }

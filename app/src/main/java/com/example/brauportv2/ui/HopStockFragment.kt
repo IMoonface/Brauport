@@ -49,7 +49,6 @@ class HopStockFragment : Fragment() {
         _binding = FragmentHopStockBinding.inflate(inflater, container, false)
 
         adapter = StockAdapter(this::onItemClick, this::onDeleteClick)
-
         binding.hopRecyclerView.adapter = adapter
 
         lifecycleScope.launch {
@@ -60,17 +59,17 @@ class HopStockFragment : Fragment() {
         }
 
         binding.hopNextButton.setOnClickListener {
-            val action = HopStockFragmentDirections
-                .actionHopStockFragmentToYeastStockFragment()
-            findNavController().navigate(action)
+            findNavController().navigate(
+                HopStockFragmentDirections.actionHopStockFragmentToYeastStockFragment()
+            )
 
             binding.hopTextInput.text?.clear()
         }
 
         binding.hopBeforeButton.setOnClickListener {
-            val action = HopStockFragmentDirections
-                .actionHopStockFragmentToMaltStockFragment()
-            findNavController().navigate(action)
+            findNavController().navigate(
+                HopStockFragmentDirections.actionHopStockFragmentToMaltStockFragment()
+            )
 
             binding.hopTextInput.text?.clear()
         }

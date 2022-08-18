@@ -35,21 +35,20 @@ class RecipeFragment : Fragment() {
 
     private var _binding: FragmentRecipeBinding? = null
     private val binding get() = _binding!!
-    private lateinit var recipeStartList: List<RecipeItem>
+    private lateinit var startList: List<RecipeItem>
     private lateinit var adapter: RecipeAdapter
 
     private val textWatcher = object : TextWatcher {
         override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
         override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
         override fun afterTextChanged(p0: Editable?) {
-            filterListForRecipe(binding.recipeTextInput.text.toString(), adapter, recipeStartList)
+            filterListForRecipe(binding.recipeTextInput.text.toString(), adapter, startList)
         }
     }
 
     private val viewModel: RecipeViewModel by activityViewModels {
         RecipeViewModelFactory(
-            (activity?.application as BaseApplication)
-                .recipeDatabase.recipeDao()
+            (activity?.application as BaseApplication).recipeDatabase.recipeDao()
         )
     }
 
@@ -62,8 +61,8 @@ class RecipeFragment : Fragment() {
         binding.recipeRecyclerView.adapter = adapter
         lifecycleScope.launch {
             viewModel.allRecipeItems.collect { it ->
-                recipeStartList = it.map { it.toRecipeItem() }
-                adapter.submitList(recipeStartList)
+                startList = it.map { it.toRecipeItem() }
+                adapter.submitList(startList)
             }
         }
 
@@ -79,12 +78,14 @@ class RecipeFragment : Fragment() {
                 MainBrew("", "")
             )
 
-            val action = RecipeFragmentDirections.actionRecipeFragmentToRecipeDetailsFragment()
-            findNavController().navigate(action)
+            findNavController().navigate(
+                RecipeFragmentDirections.actionRecipeFragmentToRecipeDetailsFragment()
+            )
         }
 
         binding.recipeInfoButton.setOnClickListener {
             val dialog = DialogInstructionRecipeFragment()
+            dialog.isCancelable = false
             dialog.show(childFragmentManager, "recipeInfoDialog")
         }
 
@@ -103,8 +104,9 @@ class RecipeFragment : Fragment() {
         update = true
         recipeItem = recipe
 
-        val action = RecipeFragmentDirections.actionRecipeFragmentToRecipeDetailsFragment()
-        findNavController().navigate(action)
+        findNavController().navigate(
+            RecipeFragmentDirections.actionRecipeFragmentToRecipeDetailsFragment()
+        )
     }
 
     private fun onDeleteClick(item: RecipeItem) {

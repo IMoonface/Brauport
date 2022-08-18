@@ -103,10 +103,8 @@ class RecipeDetailsFragment : Fragment() {
 
                 if (recipeItem.recipeName == "" || recipeItem.maltList == startMaltList ||
                     recipeItem.restList == startRestList || recipeItem.mainBrew == startMainBrew ||
-                    recipeItem.hoppingList == startHoppingList || recipeItem.yeast == startYeast
-                )
-                    Toast.makeText(context, R.string.set_all_attributes, Toast.LENGTH_SHORT)
-                        .show()
+                    recipeItem.hoppingList == startHoppingList || recipeItem.yeast == startYeast)
+                    Toast.makeText(context, R.string.set_all_attributes, Toast.LENGTH_SHORT).show()
                 else {
                     viewModel.addRecipe(recipeItem)
                     Toast.makeText(context, R.string.created_recipe, Toast.LENGTH_SHORT).show()
