@@ -35,15 +35,7 @@ fun RecipeItemData.toRecipeItem(): RecipeItem {
 }
 
 fun RecipeItem.toRecipeItemData(): RecipeItemData {
-    return RecipeItemData(
-        rId,
-        recipeName,
-        maltList,
-        restList,
-        hoppingList,
-        yeast,
-        mainBrew
-    )
+    return RecipeItemData(rId, recipeName, maltList, restList, hoppingList, yeast, mainBrew)
 }
 
 fun RecipeItem.toBrewHistoryItem(): BrewHistoryItem {

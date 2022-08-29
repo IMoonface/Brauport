@@ -68,7 +68,7 @@ class YeastStockFragment : Fragment() {
 
         binding.yeastBeforeButton.setOnClickListener {
             findNavController().navigate(
-                YeastStockFragmentDirections.actionYeastStockFragmentToHopStockFragment()
+                YeastStockFragmentDirections.actionYeastStockFragmentToHopsStockFragment()
             )
 
             binding.yeastTextInput.text?.clear()

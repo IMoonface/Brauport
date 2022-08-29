@@ -62,11 +62,11 @@ class DialogRecipeInspectFragment(
 
         binding.inspectMaltList.text = getString(R.string.malts) + ": " + maltNameList
 
-        binding.inspectRestList.text = getString(R.string.rest) + ": " + restNameList
+        binding.inspectRestList.text = getString(R.string.rests) + ": " + restNameList
 
         binding.inspectHoppingList.text = getString(R.string.hopping) + ": " + hoppingNameList
 
-        binding.inspectYeast.text = getString(R.string.yeasts) + ": " + item.bYeast.stockName +
+        binding.inspectYeast.text = getString(R.string.yeast) + ": " + item.bYeast.stockName +
                     " " + item.bYeast.stockAmount
 
         binding.inspectMainBrew.text =

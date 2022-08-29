@@ -40,7 +40,8 @@
             app:iconPadding="0dp"
             app:iconTint="@color/appBars_color"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="SpeakableTextPresentCheck" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/yeast_textInputLayout"
@@ -66,9 +67,11 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/yeast_recyclerView"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="0dp"
+            android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
             android:layout_marginBottom="10dp"
             app:layoutManager="LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -88,7 +91,8 @@
         app:icon="@drawable/ic_navigate_next"
         app:iconGravity="textStart"
         app:iconPadding="0dp"
-        app:iconTint="@color/appBars_color" />
+        app:iconTint="@color/appBars_color"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <Button
         android:id="@+id/yeast_before_button"
@@ -100,6 +104,7 @@
         app:icon="@drawable/ic_navigate_before"
         app:iconGravity="textStart"
         app:iconPadding="0dp"
-        app:iconTint="@color/appBars_color" />
+        app:iconTint="@color/appBars_color"
+        tools:ignore="SpeakableTextPresentCheck" />
 
 </FrameLayout>

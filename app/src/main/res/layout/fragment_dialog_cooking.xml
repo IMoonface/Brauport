@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:padding="10dp"
     android:background="@color/appBars_color"
     tools:context=".ui.dialog.DialogRestFragment">
 
@@ -12,12 +13,11 @@
         android:id="@+id/cooking_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="17dp"
         android:text="@string/end_of_fermentation"
+        android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="25sp"
-        app:layout_constraintEnd_toStartOf="@+id/cooking_date"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -25,9 +25,7 @@
         android:id="@+id/cooking_date"
         android:layout_width="0dp"
         android:layout_height="48dp"
-        android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
-        android:layout_marginEnd="15dp"
         android:background="@color/white"
         android:hint="@string/date_dummy"
         android:importantForAutofill="no"
@@ -37,8 +35,8 @@
         android:textColorHint="#78909C"
         android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/cooking_title"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cooking_title">
 
     </EditText>
 
@@ -46,9 +44,7 @@
         android:id="@+id/cooking_confirm_button"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
-        android:layout_marginStart="15dp"
         android:layout_marginTop="10dp"
-        android:layout_marginBottom="5dp"
         android:text="@string/confirm"
         android:textColor="@color/appBars_color"
         android:textSize="15sp"
@@ -64,8 +60,6 @@
         android:layout_width="wrap_content"
         android:layout_height="48dp"
         android:layout_marginTop="10dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginBottom="5dp"
         android:text="@string/abort"
         android:textColor="@color/appBars_color"
         android:textSize="15sp"

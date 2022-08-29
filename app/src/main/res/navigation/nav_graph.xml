@@ -11,7 +11,7 @@
         android:label="@string/brauport_main_menu"
         tools:layout="@layout/fragment_home">
         <action
-            android:id="@+id/action_homeFragment_to_recipe_fragment"
+            android:id="@+id/action_home_fragment_to_recipe_fragment"
             app:destination="@id/recipe_fragment"
             app:popUpTo="@+id/nav_graph"
             app:popUpToInclusive="true" />
@@ -21,13 +21,13 @@
             app:popUpTo="@+id/nav_graph"
             app:popUpToInclusive="true" />
         <action
-            android:id="@+id/action_homeFragment_to_brew_fragment"
+            android:id="@+id/action_home_Fragment_to_brew_fragment"
             app:destination="@id/brew_fragment"
             app:popUpTo="@+id/nav_graph"
             app:popUpToInclusive="true" />
         <action
-            android:id="@+id/action_home_fragment_to_brewHistoryFragment"
-            app:destination="@id/brewHistoryFragment"
+            android:id="@+id/action_home_fragment_to_brew_history_fragment"
+            app:destination="@id/brew_history_fragment"
             app:popUpTo="@+id/nav_graph"
             app:popUpToInclusive="true" />
     </fragment>
@@ -37,7 +37,7 @@
         android:label="@string/brauport_malt"
         tools:layout="@layout/fragment_malt_stock">
         <action
-            android:id="@+id/action_malt_stock_fragment_to_hopStockFragment"
+            android:id="@+id/action_malt_stock_fragment_to_hops_stock_fragment"
             app:destination="@id/hop_stock_fragment"
             app:enterAnim="@anim/from_right"
             app:exitAnim="@anim/to_left" />
@@ -58,7 +58,7 @@
         android:label="@string/brauport_recipes"
         tools:layout="@layout/fragment_recipe">
         <action
-            android:id="@+id/action_recipeFragment_to_recipeDetailsFragment"
+            android:id="@+id/action_recipe_fragment_to_recipe_details_fragment"
             app:destination="@id/recipe_details_fragment"
             app:enterAnim="@anim/from_right"
             app:exitAnim="@anim/to_left"
@@ -71,27 +71,27 @@
         android:label="@string/brauport_recipe_details"
         tools:layout="@layout/fragment_recipe_details">
         <action
-            android:id="@+id/action_recipe_details_fragment_to_dialogMaltsFragment"
+            android:id="@+id/action_recipe_details_fragment_to_dialog_malts_fragment"
             app:destination="@id/dialog_malts_fragment" />
         <action
-            android:id="@+id/action_recipe_details_fragment_to_dialogHopsFragment"
+            android:id="@+id/action_recipe_details_fragment_to_dialog_hops_fragment"
             app:destination="@id/dialog_hops_fragment" />
         <action
-            android:id="@+id/action_recipe_details_fragment_to_dialogYeastsFragment"
-            app:destination="@id/dialog_yeasts_fragment" />
+            android:id="@+id/action_recipe_details_fragment_to_dialog_yeast_Fragment"
+            app:destination="@id/dialog_yeast_fragment" />
     </fragment>
     <fragment
         android:id="@+id/hop_stock_fragment"
-        android:name="com.example.brauportv2.ui.HopStockFragment"
+        android:name="com.example.brauportv2.ui.HopsStockFragment"
         android:label="@string/brauport_hop"
         tools:layout="@layout/fragment_hop_stock">
         <action
-            android:id="@+id/action_hopStockFragment_to_yeastStockFragment"
+            android:id="@+id/action_hops_stock_fragment_to_yeast_stock_fragment"
             app:destination="@id/yeast_stock_fragment"
             app:enterAnim="@anim/from_right"
             app:exitAnim="@anim/to_left" />
         <action
-            android:id="@+id/action_hop_stock_fragment_to_malt_stock_fragment"
+            android:id="@+id/action_hops_stock_fragment_to_malt_stock_fragment"
             app:destination="@id/malt_stock_fragment"
             app:enterAnim="@anim/from_left"
             app:exitAnim="@anim/to_right" />
@@ -102,7 +102,7 @@
         android:label="@string/brauport_yeast"
         tools:layout="@layout/fragment_yeast_stock">
         <action
-            android:id="@+id/action_yeast_stock_fragment_to_hop_stock_fragment"
+            android:id="@+id/action_yeast_stock_fragment_to_hops_stock_fragment"
             app:destination="@id/hop_stock_fragment"
             app:enterAnim="@anim/from_left"
             app:exitAnim="@anim/to_right" />
@@ -121,11 +121,11 @@
         android:name="com.example.brauportv2.ui.dialog.DialogHoppingFragment"
         tools:layout="@layout/fragment_dialog_hopping" />
     <dialog
-        android:id="@+id/dialog_yeasts_fragment"
+        android:id="@+id/dialog_yeast_fragment"
         android:name="com.example.brauportv2.ui.dialog.DialogYeastFragment"
-        tools:layout="@layout/fragment_dialog_yeasts" />
+        tools:layout="@layout/fragment_dialog_yeast" />
     <fragment
-        android:id="@+id/brewHistoryFragment"
+        android:id="@+id/brew_history_fragment"
         android:name="com.example.brauportv2.ui.BrewHistoryFragment"
         android:label="@string/brauport_brew_history"
         tools:layout="@layout/fragment_brew_history" />

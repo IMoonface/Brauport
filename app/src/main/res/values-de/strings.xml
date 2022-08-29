@@ -7,14 +7,11 @@
     <string name="recipe_add">Neues Rezept</string>
     <string name="brew_text">Brauen</string>
     <string name="stock_text">Bestand</string>
-    <string name="malt">Malz</string>
-    <string name="yeast">Hefe</string>
-    <string name="hop">Hopfen</string>
     <string name="dummy_text">Test</string>
     <string name="malts">Malze</string>
-    <string name="rest">Rasten</string>
+    <string name="rests">Rasten</string>
     <string name="hopping">Hopfengaben</string>
-    <string name="yeasts">Hefen</string>
+    <string name="yeast">Hefe</string>
     <string name="main_brew">Guss</string>
     <string name="name">Name</string>
     <string name="amount">Menge</string>
@@ -51,8 +48,8 @@
     <string name="date_dummy">TT-MM-JJJJ</string>
     <string name="recipe_inspect_name">Rezeptname</string>
     <string name="date_of_completion">Fertigstellungsdatum:</string>
-    <string name="end_of_fermentation">Gärungsende:</string>
-    <string name="warning_text">!! Warnung !!\n Es ist zu wenig vorrätig im Lager. Wenn Sie diesesRezept jetzt durchführen, dann werden Bestände negativ!</string>
+    <string name="end_of_fermentation">Bitte Ende der Gärung eingeben!</string>
+    <string name="warning_text">!! Warnung !!\n Es ist zu wenig vorrätig im Lager. Wenn Sie dieses Rezept jetzt durchführen, dann werden Bestände negativ!</string>
     <string name="brew_without_subtracting_stock">Trotzdem Brauen und Bestand nicht abziehen</string>
     <string name="brew_with_subtracting_stock">Trotzdem Brauen und Bestand abziehen</string>
     <string name="delete_recipe_text">Wollen Sie dieses Rezept entfernen?</string>
@@ -61,7 +58,7 @@
     <string name="fill_all_fields">Bitte alle Felder ausfüllen!</string>
     <string name="fill_amount">Bitte Menge angeben!</string>
     <string name="change_in_stock_text">Änderung im Bestand entdeckt.\nBitte aktualisieren Sie ihr Rezept!</string>
-    <string name="refresh_list">Liste wurde aktualisiert</string>
+    <string name="refresh_list">Liste wurde aktualisiert!</string>
     <string name="refresh_text">Aktualisieren</string>
     <string name="brauport_main_menu">Brauport - Hauptmenü</string>
     <string name="brauport_recipes">Brauport - Rezepte</string>

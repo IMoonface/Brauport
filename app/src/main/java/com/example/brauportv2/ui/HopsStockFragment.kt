@@ -23,7 +23,7 @@ import com.example.brauportv2.ui.viewModel.StockViewModel
 import com.example.brauportv2.ui.viewModel.StockViewModelFactory
 import kotlinx.coroutines.launch
 
-class HopStockFragment : Fragment() {
+class HopsStockFragment : Fragment() {
 
     private var _binding: FragmentHopStockBinding? = null
     private val binding get() = _binding!!
@@ -60,7 +60,7 @@ class HopStockFragment : Fragment() {
 
         binding.hopNextButton.setOnClickListener {
             findNavController().navigate(
-                HopStockFragmentDirections.actionHopStockFragmentToYeastStockFragment()
+                HopsStockFragmentDirections.actionHopsStockFragmentToYeastStockFragment()
             )
 
             binding.hopTextInput.text?.clear()
@@ -68,7 +68,7 @@ class HopStockFragment : Fragment() {
 
         binding.hopBeforeButton.setOnClickListener {
             findNavController().navigate(
-                HopStockFragmentDirections.actionHopStockFragmentToMaltStockFragment()
+                HopsStockFragmentDirections.actionHopsStockFragmentToMaltStockFragment()
             )
 
             binding.hopTextInput.text?.clear()

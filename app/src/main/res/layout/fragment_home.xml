@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
-    android:orientation="vertical"
     tools:context=".ui.HomeFragment">
 
     <Button
@@ -15,36 +13,49 @@
         android:text="@string/main_recipes_button"
         android:textColor="@color/appBars_color"
         app:backgroundTint="@color/button_color"
-        app:cornerRadius="20dp" />
+        app:cornerRadius="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/main_stock_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/main_stock_button"
         android:layout_width="220dp"
         android:layout_height="60dp"
-        android:layout_marginTop="50dp"
         android:text="@string/stock_text"
         android:textColor="@color/appBars_color"
         app:backgroundTint="@color/button_color"
-        app:cornerRadius="20dp" />
+        app:cornerRadius="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/main_brew_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/main_recipe_button" />
 
     <Button
         android:id="@+id/main_brew_button"
         android:layout_width="220dp"
         android:layout_height="60dp"
-        android:layout_marginTop="50dp"
         android:text="@string/brew_text"
         android:textColor="@color/appBars_color"
         app:backgroundTint="@color/button_color"
-        app:cornerRadius="20dp" />
+        app:cornerRadius="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/main_brew_history_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/main_stock_button" />
 
     <Button
         android:id="@+id/main_brew_history_button"
         android:layout_width="220dp"
         android:layout_height="60dp"
-        android:layout_marginTop="50dp"
         android:text="@string/main_brew_history"
         android:textColor="@color/appBars_color"
         app:backgroundTint="@color/button_color"
-        app:cornerRadius="20dp" />
+        app:cornerRadius="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/main_brew_button" />
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

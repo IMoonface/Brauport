@@ -60,7 +60,7 @@ class MaltStockFragment : Fragment() {
 
         binding.maltNextButton.setOnClickListener {
             findNavController().navigate(
-                MaltStockFragmentDirections.actionMaltStockFragmentToHopStockFragment()
+                MaltStockFragmentDirections.actionMaltStockFragmentToHopsStockFragment()
             )
 
             binding.maltTextInput.text?.clear()

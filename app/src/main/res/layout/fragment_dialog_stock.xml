@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:padding="10dp"
     android:background="@color/appBars_color"
     tools:context=".ui.dialog.DialogStockFragment">
 
@@ -11,9 +12,6 @@
         android:id="@+id/stock_item_name"
         android:layout_width="0dp"
         android:layout_height="48dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="40dp"
         android:background="@color/white"
         android:hint="@string/name"
         android:importantForAutofill="no"
@@ -22,7 +20,7 @@
         android:textColor="@color/appBars_color"
         android:textColorHint="#78909C"
         android:textSize="25sp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/stock_item_amount"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -32,7 +30,6 @@
         android:id="@+id/stock_item_amount"
         android:layout_width="0dp"
         android:layout_height="48dp"
-        android:layout_marginStart="15dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:background="@color/white"
@@ -53,21 +50,18 @@
         android:id="@+id/unit_gram"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="73dp"
-        android:layout_marginEnd="10dp"
         android:text="@string/unit_of_measurement_grams"
         android:textColor="@color/white"
         android:textSize="36sp"
+        app:layout_constraintBottom_toBottomOf="@+id/stock_item_amount"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/stock_item_amount" />
 
     <Button
         android:id="@+id/stock_confirm_button"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
-        android:layout_marginStart="15dp"
         android:layout_marginTop="10dp"
-        android:layout_marginBottom="5dp"
         android:text="@string/confirm"
         android:textColor="@color/appBars_color"
         android:textSize="15sp"
@@ -83,8 +77,6 @@
         android:layout_width="wrap_content"
         android:layout_height="48dp"
         android:layout_marginTop="10dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginBottom="5dp"
         android:text="@string/abort"
         android:textColor="@color/appBars_color"
         android:textSize="15sp"

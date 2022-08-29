@@ -12,7 +12,7 @@ import androidx.lifecycle.lifecycleScope
 import com.example.brauportv2.BaseApplication
 import com.example.brauportv2.R
 import com.example.brauportv2.adapter.RecipeStockAdapter
-import com.example.brauportv2.databinding.FragmentDialogYeastsBinding
+import com.example.brauportv2.databinding.FragmentDialogYeastBinding
 import com.example.brauportv2.mapper.toStockItem
 import com.example.brauportv2.model.recipe.SNoAmount
 import com.example.brauportv2.model.stock.StockItem
@@ -25,7 +25,7 @@ import kotlinx.coroutines.launch
 
 class DialogYeastFragment : DialogFragment() {
 
-    private var _binding: FragmentDialogYeastsBinding? = null
+    private var _binding: FragmentDialogYeastBinding? = null
     private val binding get() = _binding!!
     private lateinit var adapter: RecipeStockAdapter
 
@@ -47,7 +47,7 @@ class DialogYeastFragment : DialogFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentDialogYeastsBinding.inflate(inflater, container, false)
+        _binding = FragmentDialogYeastBinding.inflate(inflater, container, false)
 
         adapter = RecipeStockAdapter(this::onItemAdd, this::onItemDelete)
 
