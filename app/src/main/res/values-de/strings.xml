@@ -9,7 +9,7 @@
     <string name="stock_text">Bestand</string>
     <string name="dummy_text">Test</string>
     <string name="malts">Malze</string>
-    <string name="rests">Rasten</string>
+    <string name="rest">Rasten</string>
     <string name="hopping">Hopfengaben</string>
     <string name="yeast">Hefe</string>
     <string name="main_brew">Guss</string>

@@ -44,7 +44,7 @@ class BrewViewModel(private val stockDao: StockDao) : ViewModel() {
         }
 
         item.hoppingList.forEach { hopping ->
-            hopping.hopsList.forEach { hop ->
+            hopping.hopList.forEach { hop ->
                 if (!calcForShortage(hop, list))
                     possible = false
             }

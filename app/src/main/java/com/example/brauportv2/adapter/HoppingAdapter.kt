@@ -15,7 +15,7 @@ import com.example.brauportv2.model.stock.StockItem
 class HoppingAdapter : ListAdapter<StockItem, HoppingAdapter.HoppingViewHolder>(DiffCallback) {
 
     lateinit var context: Context
-    var hopsList = emptyList<StockItem>().toMutableList()
+    var hopList = emptyList<StockItem>().toMutableList()
 
     class HoppingViewHolder(val binding: CardRecipeStockBinding) :
         RecyclerView.ViewHolder(binding.root)
@@ -41,22 +41,22 @@ class HoppingAdapter : ListAdapter<StockItem, HoppingAdapter.HoppingViewHolder>(
 
             if (itemAmount == "")
                 Toast.makeText(context, R.string.fill_amount, Toast.LENGTH_SHORT).show()
-            else if (hopsList.map { it.toSNoAmount() }.contains(item.toSNoAmount())) {
+            else if (hopList.map { it.toSNoAmount() }.contains(item.toSNoAmount())) {
                 Toast.makeText(context, R.string.hop_exists, Toast.LENGTH_SHORT)
                     .show()
             } else {
                 item.stockAmount = itemAmount + "g"
-                hopsList.add(item)
+                hopList.add(item)
                 Toast.makeText(context, R.string.added_hop, Toast.LENGTH_SHORT).show()
             }
         }
 
         rStockItemDelete.setOnClickListener {
-            if (hopsList.map { it.toSNoAmount() }.indexOf(item.toSNoAmount()) == -1) {
+            if (hopList.map { it.toSNoAmount() }.indexOf(item.toSNoAmount()) == -1) {
                 Toast.makeText(context, R.string.hop_not_found, Toast.LENGTH_SHORT).show()
             } else {
-                val index = hopsList.map { it.toSNoAmount() }.indexOf(item.toSNoAmount())
-                hopsList.removeAt(index)
+                val index = hopList.map { it.toSNoAmount() }.indexOf(item.toSNoAmount())
+                hopList.removeAt(index)
                 Toast.makeText(context, R.string.deleted_hop, Toast.LENGTH_SHORT).show()
             }
         }

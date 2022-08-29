@@ -75,11 +75,11 @@ class DialogHoppingFragment : DialogFragment() {
 
         binding.rHoppingRefreshButton.setOnClickListener {
             recipeItem.hoppingList.forEach { hopping ->
-                hopping.hopsList.forEach { hop ->
+                hopping.hopList.forEach { hop ->
                     if (stockList.map { it.toSNoAmount() }.contains(hop.toSNoAmount()))
                         newHopsList.add(hop)
                 }
-                hopping.hopsList = newHopsList
+                hopping.hopList = newHopsList
             }
             Toast.makeText(context, R.string.refresh_list, Toast.LENGTH_SHORT).show()
         }
@@ -98,9 +98,9 @@ class DialogHoppingFragment : DialogFragment() {
         if (newTime == "")
             Toast.makeText(context, R.string.enter_time, Toast.LENGTH_SHORT).show()
         else {
-            recipeItem.hoppingList.add(Hopping(adapter.hopsList, newTime))
+            recipeItem.hoppingList.add(Hopping(adapter.hopList, newTime))
             Toast.makeText(context, R.string.added_hopping, Toast.LENGTH_SHORT).show()
-            adapter.hopsList = emptyList<StockItem>().toMutableList()
+            adapter.hopList = emptyList<StockItem>().toMutableList()
         }
     }
 

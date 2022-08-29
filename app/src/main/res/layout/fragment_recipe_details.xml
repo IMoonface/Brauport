@@ -31,30 +31,30 @@
             android:id="@+id/recipe_details_rest"
             android:layout_width="220dp"
             android:layout_height="60dp"
-            android:text="@string/rests"
+            android:text="@string/rest"
             android:textColor="@color/appBars_color"
             app:backgroundTint="@color/button_color"
             app:cornerRadius="20dp"
-            app:layout_constraintBottom_toTopOf="@+id/recipe_details_hops"
+            app:layout_constraintBottom_toTopOf="@+id/recipe_details_hop"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/recipe_details_malts" />
 
         <Button
-            android:id="@+id/recipe_details_hops"
+            android:id="@+id/recipe_details_hop"
             android:layout_width="220dp"
             android:layout_height="60dp"
             android:text="@string/hopping"
             android:textColor="@color/appBars_color"
             app:backgroundTint="@color/button_color"
             app:cornerRadius="20dp"
-            app:layout_constraintBottom_toTopOf="@+id/recipe_details_yeasts"
+            app:layout_constraintBottom_toTopOf="@+id/recipe_details_yeast"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/recipe_details_rest" />
 
         <Button
-            android:id="@+id/recipe_details_yeasts"
+            android:id="@+id/recipe_details_yeast"
             android:layout_width="220dp"
             android:layout_height="60dp"
             android:text="@string/yeast"
@@ -64,7 +64,7 @@
             app:layout_constraintBottom_toTopOf="@+id/recipe_details_main_brew"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/recipe_details_hops" />
+            app:layout_constraintTop_toBottomOf="@+id/recipe_details_hop" />
 
         <Button
             android:id="@+id/recipe_details_main_brew"
@@ -77,7 +77,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/recipe_details_yeasts" />
+            app:layout_constraintTop_toBottomOf="@+id/recipe_details_yeast" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <Button

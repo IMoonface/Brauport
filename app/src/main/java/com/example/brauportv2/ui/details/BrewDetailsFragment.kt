@@ -182,7 +182,7 @@ class BrewDetailsFragment(private val item: RecipeItem) : Fragment() {
         var hoppingListString = ""
 
         item.hoppingList.forEach { hopping ->
-            hopping.hopsList.forEach { hop ->
+            hopping.hopList.forEach { hop ->
                 hoppingListString += hop.stockName + " " + hop.stockAmount + " "
             }
 

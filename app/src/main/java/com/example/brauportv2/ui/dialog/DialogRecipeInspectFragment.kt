@@ -51,7 +51,7 @@ class DialogRecipeInspectFragment(
         }
 
         item.bHoppingList.forEach { hopping ->
-            hopping.hopsList.forEach {
+            hopping.hopList.forEach {
                 hopsNameList.add(it.stockName + " " + it.stockAmount)
             }
             hoppingNameList.add(hopsNameList.toString() + " " + hopping.hoppingTime + "min")
@@ -62,7 +62,7 @@ class DialogRecipeInspectFragment(
 
         binding.inspectMaltList.text = getString(R.string.malts) + ": " + maltNameList
 
-        binding.inspectRestList.text = getString(R.string.rests) + ": " + restNameList
+        binding.inspectRestList.text = getString(R.string.rest) + ": " + restNameList
 
         binding.inspectHoppingList.text = getString(R.string.hopping) + ": " + hoppingNameList
 

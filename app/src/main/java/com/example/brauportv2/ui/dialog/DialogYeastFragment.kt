@@ -51,7 +51,7 @@ class DialogYeastFragment : DialogFragment() {
 
         adapter = RecipeStockAdapter(this::onItemAdd, this::onItemDelete)
 
-        binding.rYeastsRecyclerView.adapter = adapter
+        binding.rYeastRecyclerView.adapter = adapter
 
         lifecycleScope.launch {
             viewModel.allStockItems.collect { it ->
@@ -61,7 +61,7 @@ class DialogYeastFragment : DialogFragment() {
             }
         }
 
-        binding.rYeastsBackButton.setOnClickListener {
+        binding.rYeastBackButton.setOnClickListener {
             dismiss()
         }
 

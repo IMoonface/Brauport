@@ -54,16 +54,16 @@ class RecipeDetailsFragment : Fragment() {
             dialog.show(childFragmentManager, "maltsDialog")
         }
 
-        binding.recipeDetailsHops.setOnClickListener {
+        binding.recipeDetailsHop.setOnClickListener {
             val dialog = DialogHoppingFragment()
             dialog.isCancelable = false
-            dialog.show(childFragmentManager, "hopsDialog")
+            dialog.show(childFragmentManager, "hopDialog")
         }
 
-        binding.recipeDetailsYeasts.setOnClickListener {
+        binding.recipeDetailsYeast.setOnClickListener {
             val dialog = DialogYeastFragment()
             dialog.isCancelable = false
-            dialog.show(childFragmentManager, "yeastsDialog")
+            dialog.show(childFragmentManager, "yeastDialog")
         }
 
         binding.recipeDetailsRest.setOnClickListener {

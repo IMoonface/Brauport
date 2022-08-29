@@ -116,7 +116,7 @@ class BrewFragment : Fragment() {
         }
 
         item.hoppingList.forEach { hopping ->
-            hopping.hopsList.forEach { hop ->
+            hopping.hopList.forEach { hop ->
                 viewModel.updateStock(
                     hop.id,
                     hop.itemType,
