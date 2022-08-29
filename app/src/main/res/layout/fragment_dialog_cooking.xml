@@ -8,7 +8,6 @@
     android:background="@color/appBars_color"
     tools:context=".ui.dialog.DialogRestFragment">
 
-
     <TextView
         android:id="@+id/cooking_title"
         android:layout_width="wrap_content"
