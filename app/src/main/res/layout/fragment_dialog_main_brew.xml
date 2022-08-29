@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:background="@color/appBars_color"
     android:padding="10dp"
-    tools:context=".ui.dialog.DialogRestFragment">
+    tools:context=".ui.dialog.DialogMainBrewFragment">
 
     <EditText
         android:id="@+id/main_brew_first"

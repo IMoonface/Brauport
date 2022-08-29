@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/card_color"
     android:padding="10dp"
-    tools:context=".ui.dialog.DialogInstructionStockFragment">
+    tools:context=".ui.dialog.DialogInstructionRecipeFragment">
 
     <TextView
         android:id="@+id/instruction_r_title"

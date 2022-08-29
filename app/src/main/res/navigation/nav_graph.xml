@@ -82,7 +82,7 @@
     </fragment>
     <fragment
         android:id="@+id/hop_stock_fragment"
-        android:name="com.example.brauportv2.ui.HopsStockFragment"
+        android:name="com.example.brauportv2.ui.HopStockFragment"
         android:label="@string/brauport_hop"
         tools:layout="@layout/fragment_hop_stock">
         <action
