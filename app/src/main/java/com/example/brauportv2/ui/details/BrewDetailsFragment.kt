@@ -162,7 +162,13 @@ class BrewDetailsFragment(private val item: RecipeItem) : Fragment() {
         )
 
         item.restList.forEach {
-            newBrewList.add(StepItem(it.restTemp, it.restTime, false))
+            newBrewList.add(
+                StepItem(
+                    it.restTemp + getString(R.string.unit_of_measurement_temp),
+                    it.restTime,
+                    false
+                )
+            )
         }
 
         newBrewList.add(

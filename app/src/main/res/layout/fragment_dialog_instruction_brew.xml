@@ -38,7 +38,7 @@
             android:textAlignment="center"
             android:textColor="@color/appBars_color"
             android:textSize="20sp"
-            tools:text="Text folgt" />
+            android:text="@string/instruction_b_text" />
 
     </ScrollView>
 

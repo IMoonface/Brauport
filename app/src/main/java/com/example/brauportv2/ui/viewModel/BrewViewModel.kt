@@ -63,6 +63,7 @@ class BrewViewModel(private val stockDao: StockDao) : ViewModel() {
             changeInStock = true
             return false
         }
+        changeInStock = false
         val databaseAmount = list[index].stockAmount.substringBefore("g").toInt()
         return databaseAmount - recipeAmount >= 0
     }
