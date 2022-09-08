@@ -23,6 +23,7 @@ import com.example.brauportv2.ui.viewModel.RecipeViewModel
 import com.example.brauportv2.ui.viewModel.RecipeViewModelFactory
 import java.util.*
 
+
 class RecipeDetailsFragment : Fragment() {
 
     private var _binding: FragmentRecipeDetailsBinding? = null
@@ -45,7 +46,7 @@ class RecipeDetailsFragment : Fragment() {
                 recipeItem.toBrewHistoryItem(), false
             )
             dialog.isCancelable = false
-            dialog.show(childFragmentManager, "recipeDetailsInspectDialog")
+            dialog.show(childFragmentManager, "recipeInspectDialog")
         }
 
         binding.recipeDetailsMalts.setOnClickListener {
@@ -103,7 +104,8 @@ class RecipeDetailsFragment : Fragment() {
 
                 if (recipeItem.recipeName == "" || recipeItem.maltList == startMaltList ||
                     recipeItem.restList == startRestList || recipeItem.mainBrew == startMainBrew ||
-                    recipeItem.hoppingList == startHoppingList || recipeItem.yeast == startYeast)
+                    recipeItem.hoppingList == startHoppingList || recipeItem.yeast == startYeast
+                )
                     Toast.makeText(context, R.string.set_all_attributes, Toast.LENGTH_SHORT).show()
                 else {
                     viewModel.addRecipe(recipeItem)

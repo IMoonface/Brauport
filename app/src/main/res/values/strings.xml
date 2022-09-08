@@ -29,7 +29,7 @@
     <string name="created_recipe">Recipe has been created!</string>
     <string name="date_dummy">DD-MM-YYYY</string>
     <string name="date_of_completion">Date of completion:</string>
-    <string name="delete_item">Remove Item</string>
+    <string name="delete_item">Remove</string>
     <string name="delete_recipe_text">Do you want to remove this recipe?</string>
     <string name="deleted_hop">Hops got deleted!</string>
     <string name="deleted_hopping">Hopping got deleted!</string>
@@ -90,7 +90,6 @@
     <string name="refresh_text">Refresh</string>
     <string name="remove_malt">Remove Malt</string>
     <string name="rest">Rests</string>
-    <string name="rest_delete_button">Remove Rest</string>
     <string name="rest_not_found">Rest not found!</string>
     <string name="save_string">Save</string>
     <string name="search_string">Search</string>

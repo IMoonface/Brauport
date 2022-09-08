@@ -21,6 +21,6 @@ class StartActivity : AppCompatActivity() {
             val intent = Intent(this@StartActivity, MainActivity::class.java)
             startActivity(intent)
             finish()
-        }, 3000)
+        }, 2000)
     }
 }

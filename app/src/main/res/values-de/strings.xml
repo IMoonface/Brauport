@@ -29,7 +29,7 @@
     <string name="created_recipe">Rezept wurde erstellt!</string>
     <string name="date_dummy">TT-MM-JJJJ</string>
     <string name="date_of_completion">Fertigstellungsdatum:</string>
-    <string name="delete_item">Item löschen</string>
+    <string name="delete_item">Löschen</string>
     <string name="delete_recipe_text">Wollen Sie dieses Rezept entfernen?</string>
     <string name="deleted_hop">Hopfen wurde entfernt!</string>
     <string name="deleted_hopping">Hofengabe wurde entfernt!</string>
@@ -90,7 +90,6 @@
     <string name="refresh_text">Aktualisieren</string>
     <string name="remove_malt">Malz entnehmen</string>
     <string name="rest">Rasten</string>
-    <string name="rest_delete_button">Rast löschen</string>
     <string name="rest_not_found">Keine Rast vorhanden!</string>
     <string name="save_string">Speichern</string>
     <string name="search_string">Durchsuchen</string>
