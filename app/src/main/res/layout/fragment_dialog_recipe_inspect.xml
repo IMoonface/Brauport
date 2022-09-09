@@ -10,10 +10,10 @@
 
     <TextView
         android:id="@+id/inspect_recipe_name"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
         android:layout_marginBottom="10dp"
+        android:gravity="center_horizontal"
         android:text="@string/recipe_inspect_name"
         android:textColor="@color/appBars_color"
         android:textSize="30sp"
@@ -41,7 +41,7 @@
 
             <TextView
                 android:id="@+id/inspect_malt_list"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/malts"
                 android:textColor="@color/appBars_color"
@@ -49,7 +49,7 @@
 
             <TextView
                 android:id="@+id/inspect_rest_list"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="@string/rest"
@@ -58,7 +58,7 @@
 
             <TextView
                 android:id="@+id/inspect_hopping_list"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="@string/hopping"
@@ -67,17 +67,16 @@
 
             <TextView
                 android:id="@+id/inspect_yeast"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:maxWidth="360dp"
                 android:text="@string/yeast"
                 android:textColor="@color/appBars_color"
                 android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/inspect_main_brew"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="@string/main_brew"
@@ -86,21 +85,21 @@
 
             <TextView
                 android:id="@+id/inspect_date_of_comp"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:text="@string/date_of_completion"
                 android:textColor="@color/appBars_color"
-                android:textSize="20sp"
-                tools:text="@string/date_of_completion" />
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/inspect_end_of_ferm"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:text="@string/inspect_end_of_fermentation"
                 android:textColor="@color/appBars_color"
-                android:textSize="20sp"
-                tools:text="@string/end_of_fermentation" />
+                android:textSize="20sp" />
 
         </LinearLayout>
 

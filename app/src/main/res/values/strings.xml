@@ -109,6 +109,8 @@
     <string name="unit_of_measurement_time">min</string>
     <string name="updated_date">Date got updated!</string>
     <string name="updated_recipe">Recipe has been updated!</string>
+    <string name="warning">!!! Warning !!!</string>
+    <string name="warning_dialog_text">Please note that elements may not be displayed correctly on devices with a lower resolution than 480x800px! You can still use this app, but a minimum resolution of 480x800 is recommended for all elements to display correctly.</string>
     <string name="warning_text">!! Warning !!\nThere is not enough ingredients in stock. If you do this carry out the recipe now, then stocks will become negative!</string>
     <string name="yeast">Yeast</string>
     <string name="yeast_not_found">Yeast not found!</string>

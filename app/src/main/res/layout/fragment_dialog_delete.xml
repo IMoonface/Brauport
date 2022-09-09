@@ -33,8 +33,7 @@
         app:cornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/delete_title_text"
-        tools:ignore="SmallSp" />
+        app:layout_constraintTop_toBottomOf="@+id/delete_title_text" />
 
     <Button
         android:id="@+id/delete_no_button"

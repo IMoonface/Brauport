@@ -79,8 +79,7 @@
         app:backgroundTint="@color/button_color"
         app:cornerRadius="20dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rest_time"
-        tools:ignore="SmallSp" />
+        app:layout_constraintTop_toBottomOf="@+id/rest_time" />
 
     <Button
         android:id="@+id/rest_delete_button"

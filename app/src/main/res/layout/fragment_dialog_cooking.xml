@@ -51,8 +51,7 @@
         app:cornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cooking_text"
-        tools:ignore="SmallSp" />
+        app:layout_constraintTop_toBottomOf="@+id/cooking_text" />
 
     <Button
         android:id="@+id/cooking_abort_button"

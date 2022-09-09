@@ -24,8 +24,7 @@ fun StockItem.toSNoAmount(): SNoAmount {
 
 fun RecipeItemData.toRecipeItem(): RecipeItem {
     return RecipeItem(
-        rId,
-        recipeName,
+        rId, recipeName,
         maltList.toMutableList(),
         restList.toMutableList(),
         hoppingList.toMutableList(),
@@ -42,9 +41,9 @@ fun RecipeItem.toBrewHistoryItem(): BrewHistoryItem {
     return BrewHistoryItem(
         rId,
         recipeName,
-        maltList.toMutableList(),
-        restList.toMutableList(),
-        hoppingList.toMutableList(),
+        maltList,
+        restList,
+        hoppingList,
         yeast,
         mainBrew,
         "",
@@ -56,9 +55,9 @@ fun BrewHistoryItemData.toBrewHistoryItem(): BrewHistoryItem {
     return BrewHistoryItem(
         bId,
         bName,
-        bMaltList.toMutableList(),
-        bRestList.toMutableList(),
-        bHoppingList.toMutableList(),
+        bMaltList,
+        bRestList,
+        bHoppingList,
         bYeast,
         bMainBrew,
         bDateOfCompletion,
@@ -70,9 +69,9 @@ fun BrewHistoryItem.toBrewHistoryItemData(): BrewHistoryItemData {
     return BrewHistoryItemData(
         bId,
         bName,
-        bMaltList.toMutableList(),
-        bRestList.toMutableList(),
-        bHoppingList.toMutableList(),
+        bMaltList,
+        bRestList,
+        bHoppingList,
         bYeast,
         bMainBrew,
         bDateOfCompletion,

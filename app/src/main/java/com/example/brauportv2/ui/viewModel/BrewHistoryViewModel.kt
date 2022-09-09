@@ -31,9 +31,9 @@ class BrewHistoryViewModel(private val brewHistoryDao: BrewHistoryDao) : ViewMod
     fun updateBrewHistoryItem(
         bId: Int,
         bName: String,
-        bMaltList: MutableList<StockItem>,
-        bRestList: MutableList<Rest>,
-        bHoppingList: MutableList<Hopping>,
+        bMaltList: List<StockItem>,
+        bRestList: List<Rest>,
+        bHoppingList: List<Hopping>,
         bYeast: StockItem,
         bMainBrew: MainBrew,
         bDateOfCompletion: String,

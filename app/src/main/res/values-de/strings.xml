@@ -109,6 +109,8 @@
     <string name="unit_of_measurement_time">min</string>
     <string name="updated_date">Datum aktualisiert!</string>
     <string name="updated_recipe">Rezept wurde geupdatet!</string>
+    <string name="warning">!!! Warnung !!!</string>
+    <string name="warning_dialog_text">Bitte nehmen Sie zur Kenntnis, dass auf Devices mit einer Auflösung niedriger als 480x800px, eventuell Elemente nicht richtig dargestellt werden! Sie können diese App weiterhin nutzen, aber es wird eine Auflösung von mindestens 480x800 empfohlen, damit alle Elemente korrekt dargestellt werden.</string>
     <string name="warning_text">!! Warnung !!\n Es ist zu wenig vorrätig im Lager. Wenn Sie dieses Rezept jetzt durchführen, dann werden Bestände negativ!</string>
     <string name="yeast">Hefe</string>
     <string name="yeast_not_found">Hefe nicht vorhanden!</string>

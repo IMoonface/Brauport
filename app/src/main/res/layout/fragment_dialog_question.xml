@@ -10,7 +10,7 @@
 
     <TextView
         android:id="@+id/question_text"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/warning_text"
         android:textAlignment="center"
@@ -34,8 +34,7 @@
         app:cornerRadius="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/question_text"
-        tools:ignore="SmallSp" />
+        app:layout_constraintTop_toBottomOf="@+id/question_text" />
 
     <Button
         android:id="@+id/question_without_button"

@@ -55,8 +55,7 @@
         app:backgroundTint="@color/button_color"
         app:cornerRadius="20dp"
         app:layout_constraintBottom_toTopOf="@+id/r_hopping_refresh_button"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="SmallSp" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/r_hopping_delete_button"

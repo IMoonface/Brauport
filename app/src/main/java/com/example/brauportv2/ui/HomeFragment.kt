@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.brauportv2.BaseApplication
 import com.example.brauportv2.databinding.FragmentHomeBinding
 import com.example.brauportv2.mapper.toRecipeItem
+import com.example.brauportv2.ui.dialog.DialogWarningFragment
 import com.example.brauportv2.ui.objects.RecipeDataSource.itemList
 import com.example.brauportv2.ui.viewModel.RecipeViewModel
 import com.example.brauportv2.ui.viewModel.RecipeViewModelFactory
@@ -33,6 +34,13 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
+
+        //hier muss überprüft werden, ob es sich um ein device kleiner als 480x800 handelt
+        if (true) {
+            val dialog = DialogWarningFragment()
+            dialog.isCancelable = false
+            dialog.show(childFragmentManager, "warningDialog")
+        }
 
         lifecycleScope.launch {
             viewModel.allRecipeItems.collect { it -> itemList = it.map { it.toRecipeItem() } }

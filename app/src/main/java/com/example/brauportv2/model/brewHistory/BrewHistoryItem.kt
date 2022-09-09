@@ -8,9 +8,9 @@ import com.example.brauportv2.model.stock.StockItem
 data class BrewHistoryItem(
     var bId: Int,
     var bName: String,
-    var bMaltList: MutableList<StockItem>,
-    var bRestList: MutableList<Rest>,
-    var bHoppingList: MutableList<Hopping>,
+    var bMaltList: List<StockItem>,
+    var bRestList: List<Rest>,
+    var bHoppingList: List<Hopping>,
     var bYeast: StockItem,
     var bMainBrew: MainBrew,
     var bDateOfCompletion: String,
