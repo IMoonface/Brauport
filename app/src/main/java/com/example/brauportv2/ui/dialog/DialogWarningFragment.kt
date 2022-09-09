@@ -2,13 +2,10 @@ package com.example.brauportv2.ui.dialog
 
 import android.app.Dialog
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
-import com.example.brauportv2.R
-import com.example.brauportv2.databinding.FragmentDialogStockBinding
 import com.example.brauportv2.databinding.FragmentDialogWarningBinding
 
 class DialogWarningFragment : DialogFragment() {
