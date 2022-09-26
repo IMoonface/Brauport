@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.brauportv2.BaseApplication
@@ -22,7 +21,7 @@ import com.example.brauportv2.ui.viewModel.StockViewModel
 import com.example.brauportv2.ui.viewModel.StockViewModelFactory
 import kotlinx.coroutines.launch
 
-class DialogMaltsFragment : DialogFragment() {
+class DialogMaltsFragment : BaseDialogFragment() {
 
     private var _binding: FragmentDialogMaltsBinding? = null
     private val binding get() = _binding!!

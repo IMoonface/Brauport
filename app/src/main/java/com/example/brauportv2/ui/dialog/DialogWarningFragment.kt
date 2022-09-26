@@ -4,10 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.DialogFragment
 import com.example.brauportv2.databinding.FragmentDialogWarningBinding
 
-class DialogWarningFragment : DialogFragment() {
+class DialogWarningFragment : BaseDialogFragment() {
 
     private var _binding: FragmentDialogWarningBinding? = null
     private val binding get() = _binding!!

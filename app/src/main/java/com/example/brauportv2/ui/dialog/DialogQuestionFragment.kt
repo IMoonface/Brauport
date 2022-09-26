@@ -5,12 +5,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.DialogFragment
 import com.example.brauportv2.databinding.FragmentDialogQuestionBinding
 
 class DialogQuestionFragment(
     private val onDialogQuestionDismiss: (Boolean, Boolean) -> Unit
-) : DialogFragment() {
+) : BaseDialogFragment() {
 
     private var _binding: FragmentDialogQuestionBinding? = null
     private val binding get() = _binding!!

@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
 import com.example.brauportv2.BaseApplication
 import com.example.brauportv2.R
@@ -19,7 +18,7 @@ class DialogStockFragment(
     private val stockId: Int,
     private val itemType: Int,
     private val update: Boolean
-) : DialogFragment() {
+) : BaseDialogFragment() {
 
     private var _binding: FragmentDialogStockBinding? = null
     private val binding get() = _binding!!

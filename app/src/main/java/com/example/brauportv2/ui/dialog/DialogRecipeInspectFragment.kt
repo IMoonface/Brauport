@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.DialogFragment
 import com.example.brauportv2.R
 import com.example.brauportv2.databinding.FragmentDialogRecipeInspectBinding
 import com.example.brauportv2.model.brewHistory.BrewHistoryItem
@@ -13,7 +12,7 @@ import com.example.brauportv2.model.brewHistory.BrewHistoryItem
 class DialogRecipeInspectFragment(
     private val item: BrewHistoryItem,
     private val fromBrewHistory: Boolean
-) : DialogFragment() {
+) : BaseDialogFragment() {
 
     private var _binding: FragmentDialogRecipeInspectBinding? = null
     private val binding get() = _binding!!
