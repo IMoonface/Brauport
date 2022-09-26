@@ -1,12 +1,10 @@
 package com.example.brauportv2.ui.dialog
 
-import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.brauportv2.BaseApplication
@@ -23,7 +21,7 @@ import com.example.brauportv2.ui.viewModel.StockViewModel
 import com.example.brauportv2.ui.viewModel.StockViewModelFactory
 import kotlinx.coroutines.launch
 
-class DialogHoppingFragment : DialogFragment() {
+class DialogHoppingFragment : BaseDialogFragment() {
 
     private var _binding: FragmentDialogHoppingBinding? = null
     private val binding get() = _binding!!
@@ -33,16 +31,6 @@ class DialogHoppingFragment : DialogFragment() {
 
     private val viewModel: StockViewModel by activityViewModels {
         StockViewModelFactory((activity?.application as BaseApplication).stockDatabase.stockDao())
-    }
-
-    override fun onStart() {
-        super.onStart()
-        val dialog: Dialog? = dialog
-        dialog?.let {
-            val width = ViewGroup.LayoutParams.MATCH_PARENT
-            val height = ViewGroup.LayoutParams.WRAP_CONTENT
-            it.window?.setLayout(width, height)
-        }
     }
 
     override fun onCreateView(
@@ -97,6 +85,8 @@ class DialogHoppingFragment : DialogFragment() {
 
         if (newTime == "")
             Toast.makeText(context, R.string.enter_time, Toast.LENGTH_SHORT).show()
+        else if (adapter.hopList == emptyList<StockItem>().toMutableList())
+            Toast.makeText(context, R.string.choose_hop, Toast.LENGTH_SHORT).show()
         else {
             recipeItem.hoppingList.add(Hopping(adapter.hopList, newTime))
             Toast.makeText(context, R.string.added_hopping, Toast.LENGTH_SHORT).show()

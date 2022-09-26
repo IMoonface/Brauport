@@ -25,6 +25,7 @@
     <string name="brew_without_subtracting_stock">Trotzdem Brauen und Bestand nicht abziehen</string>
     <string name="change_in_stock_text">Änderung im Bestand entdeckt.\nBitte aktualisieren Sie ihr Rezept!</string>
     <string name="choose_another_recipe">Bitte wählen Sie ein anderes Rezept!</string>
+    <string name="choose_hop">"Bitte zuerst Hopfen auswählen!"</string>
     <string name="confirm">Bestätigen</string>
     <string name="created_recipe">Rezept wurde erstellt!</string>
     <string name="date_dummy">TT-MM-JJJJ</string>
@@ -38,7 +39,6 @@
     <string name="deleted_yeast">Hefe gelöscht!</string>
     <string name="done_text">Fertig</string>
     <string name="dummy_text">Test</string>
-    <string name="end">Ende</string>
     <string name="end_brewing">Brauvorgang Beenden</string>
     <string name="end_of_fermentation">Bitte Ende der Gärung eingeben!</string>
     <string name="enter_name">Bitte Namen eingeben!</string>

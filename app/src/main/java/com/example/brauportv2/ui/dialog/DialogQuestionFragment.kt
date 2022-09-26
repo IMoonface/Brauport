@@ -1,6 +1,5 @@
 package com.example.brauportv2.ui.dialog
 
-import android.app.Dialog
 import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -17,16 +16,6 @@ class DialogQuestionFragment(
     private val binding get() = _binding!!
     private var abort = false
     private var subtract = true
-
-    override fun onStart() {
-        super.onStart()
-        val dialog: Dialog? = dialog
-        dialog?.let {
-            val width = ViewGroup.LayoutParams.MATCH_PARENT
-            val height = ViewGroup.LayoutParams.WRAP_CONTENT
-            it.window?.setLayout(width, height)
-        }
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

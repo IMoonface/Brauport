@@ -1,7 +1,6 @@
 package com.example.brauportv2.ui.dialog
 
 import android.annotation.SuppressLint
-import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -18,16 +17,6 @@ class DialogRecipeInspectFragment(
 
     private var _binding: FragmentDialogRecipeInspectBinding? = null
     private val binding get() = _binding!!
-
-    override fun onStart() {
-        super.onStart()
-        val dialog: Dialog? = dialog
-        dialog?.let {
-            val width = ViewGroup.LayoutParams.MATCH_PARENT
-            val height = ViewGroup.LayoutParams.WRAP_CONTENT
-            it.window?.setLayout(width, height)
-        }
-    }
 
     @SuppressLint("SetTextI18n")
     override fun onCreateView(

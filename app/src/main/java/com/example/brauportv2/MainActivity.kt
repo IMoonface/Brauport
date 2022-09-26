@@ -1,8 +1,12 @@
 package com.example.brauportv2
 
 import android.app.Activity
+import android.graphics.Rect
 import android.os.Bundle
+import android.view.MotionEvent
+import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -41,10 +45,20 @@ class MainActivity : AppCompatActivity() {
         return navController.navigateUp() || super.onSupportNavigateUp()
     }
 
-    override fun onUserInteraction() {
-        if (currentFocus != null) {
-            val imm: InputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
-            imm.hideSoftInputFromWindow(currentFocus!!.windowToken, 0)
+    override fun dispatchTouchEvent(event: MotionEvent): Boolean {
+        if (event.action == MotionEvent.ACTION_DOWN) {
+            val currentFocus: View? = currentFocus
+            if (currentFocus is EditText) {
+                val outRect = Rect()
+                currentFocus.getGlobalVisibleRect(outRect)
+                if (!outRect.contains(event.rawX.toInt(), event.rawY.toInt())) {
+                    currentFocus.clearFocus()
+                    val imm: InputMethodManager =
+                        getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+                    imm.hideSoftInputFromWindow(currentFocus.windowToken, 0)
+                }
+            }
         }
+        return super.dispatchTouchEvent(event)
     }
 }

@@ -35,13 +35,6 @@ class HomeFragment : Fragment() {
     ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
 
-        //hier muss überprüft werden, ob es sich um ein device kleiner als 480x800 handelt
-        if (true) {
-            val dialog = DialogWarningFragment()
-            dialog.isCancelable = false
-            dialog.show(childFragmentManager, "warningDialog")
-        }
-
         lifecycleScope.launch {
             viewModel.allRecipeItems.collect { it -> itemList = it.map { it.toRecipeItem() } }
         }

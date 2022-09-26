@@ -25,6 +25,7 @@
     <string name="brew_without_subtracting_stock">Brew wort, brew and don\'t subtract off stock</string>
     <string name="change_in_stock_text">Change in inventory detected. Please update your recipe!</string>
     <string name="choose_another_recipe">Please choose another recipe!</string>
+    <string name="choose_hop">"Please choose hop first!"</string>
     <string name="confirm">Confirm</string>
     <string name="created_recipe">Recipe has been created!</string>
     <string name="date_dummy">DD-MM-YYYY</string>
@@ -38,7 +39,6 @@
     <string name="deleted_yeast">Yeast got deleted!</string>
     <string name="done_text">Done</string>
     <string name="dummy_text">Test</string>
-    <string name="end">End</string>
     <string name="end_brewing">Finish Brewing</string>
     <string name="end_of_fermentation">Please enter the end of fermentation!</string>
     <string name="enter_name">Please enter a name!</string>

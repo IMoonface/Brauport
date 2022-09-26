@@ -1,13 +1,11 @@
 package com.example.brauportv2.ui.dialog
 
-import android.app.Dialog
 import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
 import com.example.brauportv2.BaseApplication
 import com.example.brauportv2.R
@@ -22,7 +20,7 @@ class DialogCookingFragment(
     private val update: Boolean,
     private val item: BrewHistoryItem,
     private val onDialogCookingDismiss: (Boolean) -> Unit
-) : DialogFragment() {
+) : BaseDialogFragment() {
 
     private var _binding: FragmentDialogCookingBinding? = null
     private val binding get() = _binding!!
@@ -32,16 +30,6 @@ class DialogCookingFragment(
         BrewHistoryViewModelFactory(
             (activity?.application as BaseApplication).brewHistoryDatabase.brewHistoryDao()
         )
-    }
-
-    override fun onStart() {
-        super.onStart()
-        val dialog: Dialog? = dialog
-        dialog?.let {
-            val width = ViewGroup.LayoutParams.MATCH_PARENT
-            val height = ViewGroup.LayoutParams.WRAP_CONTENT
-            it.window?.setLayout(width, height)
-        }
     }
 
     override fun onCreateView(

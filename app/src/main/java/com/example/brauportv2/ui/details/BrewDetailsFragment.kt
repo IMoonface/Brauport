@@ -65,7 +65,9 @@ class BrewDetailsFragment(private val item: RecipeItem) : Fragment() {
         }
 
         binding.brewTimerStartButton.setOnClickListener {
-            if (binding.brewTimerStartButton.text.equals("Start") && !startTimer) {
+            if (binding.brewTimerStartButton.text.equals("Start") && startTimer)
+                Toast.makeText(context, R.string.timer_already_running, Toast.LENGTH_SHORT).show()
+            else if (binding.brewTimerStartButton.text.equals("Start") && !startTimer) {
                 startTimer = true
                 timerStart(milliFromItem)
             } else if (binding.brewTimerStartButton.text.equals(getString(R.string.along))) {
@@ -73,23 +75,21 @@ class BrewDetailsFragment(private val item: RecipeItem) : Fragment() {
                 binding.brewTimerStartButton.text = "Start"
                 binding.brewTimerStopButton.text = "Stop"
                 startTimer = true
-            } else if (binding.brewTimerStartButton.text.equals("Start") && startTimer)
-                Toast.makeText(context, R.string.timer_already_running, Toast.LENGTH_SHORT).show()
+            }
         }
 
         binding.brewTimerStopButton.setOnClickListener {
             countDownTimer?.let {
-                if (binding.brewTimerStopButton.text.equals("Stop") &&
-                    binding.brewTimerText.text != getString(R.string.time_dummy)
-                ) {
+                if (binding.brewTimerStopButton.text.equals("Stop") && startTimer) {
                     it.cancel()
                     binding.brewTimerStartButton.text = getString(R.string.along)
                     binding.brewTimerStopButton.text = "Cancel"
-                } else {
+                } else if (binding.brewTimerStopButton.text.equals("Cancel")) {
                     it.cancel()
-                    binding.brewTimerText.text = getString(R.string.end)
+                    binding.brewTimerText.text = getString(R.string.time_dummy)
                     binding.brewTimerStartButton.text = "Start"
                     binding.brewTimerStopButton.text = "Stop"
+                    milliFromItem = 0
                     startTimer = false
                 }
             }
@@ -111,7 +111,7 @@ class BrewDetailsFragment(private val item: RecipeItem) : Fragment() {
     @SuppressLint("SetTextI18n")
     private fun onItemClick(brewItem: StepItem) {
         if (startTimer)
-            Toast.makeText(context, "Es läuft schon ein Timer!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, R.string.timer_already_running, Toast.LENGTH_SHORT).show()
         else {
             binding.brewTimerStartButton.text = "Start"
             if (brewItem.brewTime != "") {
@@ -133,7 +133,7 @@ class BrewDetailsFragment(private val item: RecipeItem) : Fragment() {
                 }
 
                 override fun onFinish() {
-                    binding.brewTimerText.text = getString(R.string.end)
+                    binding.brewTimerText.text = getString(R.string.time_dummy)
                     binding.brewTimerStartButton.text = "Start"
                     milliFromItem = 0
                     startTimer = false

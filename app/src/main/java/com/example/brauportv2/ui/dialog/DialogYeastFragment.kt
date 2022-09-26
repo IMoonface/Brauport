@@ -1,6 +1,5 @@
 package com.example.brauportv2.ui.dialog
 
-import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -31,16 +30,6 @@ class DialogYeastFragment : DialogFragment() {
 
     private val viewModel: StockViewModel by activityViewModels {
         StockViewModelFactory((activity?.application as BaseApplication).stockDatabase.stockDao())
-    }
-
-    override fun onStart() {
-        super.onStart()
-        val dialog: Dialog? = dialog
-        dialog?.let {
-            val width = ViewGroup.LayoutParams.MATCH_PARENT
-            val height = ViewGroup.LayoutParams.WRAP_CONTENT
-            it.window?.setLayout(width, height)
-        }
     }
 
     override fun onCreateView(
