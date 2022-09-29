@@ -51,7 +51,11 @@
         android:id="@+id/brew_fragment"
         android:name="com.example.brauportv2.ui.BrewFragment"
         android:label="@string/brauport_brew"
-        tools:layout="@layout/fragment_brew" />
+        tools:layout="@layout/fragment_brew" >
+        <action
+            android:id="@+id/action_brew_fragment_to_home_fragment"
+            app:destination="@id/home_fragment" />
+    </fragment>
     <fragment
         android:id="@+id/recipe_fragment"
         android:name="com.example.brauportv2.ui.RecipeFragment"

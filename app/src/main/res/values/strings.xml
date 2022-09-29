@@ -12,6 +12,7 @@
     <string name="amount">Amount</string>
     <string name="app_name">Brauport</string>
     <string name="back_text">Back</string>
+    <string name="back_to_main_menu_text">Back to Main Menu</string>
     <string name="brauport_brew">Brauport - Brew</string>
     <string name="brauport_brew_history">Brauport - Brew History</string>
     <string name="brauport_hop">Brauport - Hops Stock</string>

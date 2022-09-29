@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.example.brauportv2.BaseApplication
 import com.example.brauportv2.R
 import com.example.brauportv2.databinding.FragmentBrewBinding
@@ -144,7 +145,7 @@ class BrewFragment : Fragment() {
 
     fun onDialogQuestionDismiss(abort: Boolean, subtract: Boolean) {
         if (abort)
-            Toast.makeText(context, R.string.choose_another_recipe, Toast.LENGTH_SHORT).show()
+            findNavController().navigate(BrewFragmentDirections.actionBrewFragmentToHomeFragment())
         else {
             withSubtract = subtract
             childFragmentManager.beginTransaction()
