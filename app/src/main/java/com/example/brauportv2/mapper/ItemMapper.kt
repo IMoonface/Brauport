@@ -79,6 +79,18 @@ fun BrewHistoryItem.toBrewHistoryItemData(): BrewHistoryItemData {
     )
 }
 
+fun BrewHistoryItem.toRecipeItem(): RecipeItem {
+    return RecipeItem(
+        bId,
+        bName,
+        bMaltList.toMutableList(),
+        bRestList.toMutableList(),
+        bHoppingList.toMutableList(),
+        bYeast,
+        bMainBrew,
+    )
+}
+
 fun StepList.toStepListData(): StepListData {
     return StepListData(sId, rId, steps)
 }

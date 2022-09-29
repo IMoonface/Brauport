@@ -1,6 +1,5 @@
 package com.example.brauportv2.ui.dialog
 
-import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -24,7 +23,6 @@ class DialogCookingFragment(
 
     private var _binding: FragmentDialogCookingBinding? = null
     private val binding get() = _binding!!
-    private var abort = false
 
     private val viewModel: BrewHistoryViewModel by activityViewModels {
         BrewHistoryViewModelFactory(
@@ -44,8 +42,6 @@ class DialogCookingFragment(
             val dateOfCompletion = formatter.format(Calendar.getInstance().time)
             val endOfFermentation = binding.cookingText.text.toString()
 
-            abort = false
-
             if (viewModel.dateIsValid(endOfFermentation, formatter) && !update) {
                 onItemAdd(dateOfCompletion, endOfFermentation)
                 Toast.makeText(context, R.string.finished_recipe, Toast.LENGTH_SHORT).show()
@@ -59,16 +55,11 @@ class DialogCookingFragment(
         }
 
         binding.cookingAbortButton.setOnClickListener {
-            abort = true
+            onDialogCookingDismiss(true)
             dismiss()
         }
 
         return binding.root
-    }
-
-    override fun onDismiss(dialog: DialogInterface) {
-        super.onDismiss(dialog)
-        onDialogCookingDismiss(abort)
     }
 
     override fun onDestroyView() {

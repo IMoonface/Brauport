@@ -3,17 +3,20 @@ package com.example.brauportv2
 import android.app.Activity
 import android.graphics.Rect
 import android.os.Bundle
+import android.view.Display
 import android.view.MotionEvent
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.hardware.display.DisplayManagerCompat
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.brauportv2.databinding.ActivityMainBinding
+import com.example.brauportv2.ui.dialog.DialogWarningFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -39,6 +42,19 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(binding.mainAppBar)
         setupActionBarWithNavController(navController, appBarConfiguration)
         binding.mainBottomNav.setupWithNavController(navController)
+
+        val defaultDisplay =
+            DisplayManagerCompat.getInstance(this).getDisplay(Display.DEFAULT_DISPLAY)
+        val displayContext = createDisplayContext(defaultDisplay!!)
+
+        val width = displayContext.resources.displayMetrics.widthPixels
+        val height = displayContext.resources.displayMetrics.heightPixels
+
+        if (width < 480 || height < 800) {
+            val dialog = DialogWarningFragment()
+            dialog.isCancelable = false
+            dialog.show(supportFragmentManager, "warningDialog")
+        }
     }
 
     override fun onSupportNavigateUp(): Boolean {

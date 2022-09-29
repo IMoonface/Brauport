@@ -12,7 +12,7 @@
         android:id="@+id/cooking_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/end_of_fermentation"
+        android:text="@string/enter_end_of_fermentation"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="25sp"

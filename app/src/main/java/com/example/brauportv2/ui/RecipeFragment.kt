@@ -15,6 +15,7 @@ import com.example.brauportv2.adapter.RecipeAdapter
 import com.example.brauportv2.databinding.FragmentRecipeBinding
 import com.example.brauportv2.mapper.toBrewHistoryItem
 import com.example.brauportv2.mapper.toRecipeItem
+import com.example.brauportv2.model.brewHistory.BrewHistoryItem
 import com.example.brauportv2.model.recipe.Hopping
 import com.example.brauportv2.model.recipe.MainBrew
 import com.example.brauportv2.model.recipe.RecipeItem
@@ -110,13 +111,13 @@ class RecipeFragment : Fragment() {
     }
 
     private fun onDeleteClick(item: RecipeItem) {
-        val dialog = DialogDeleteFragment(item, this::onDeleteConfirm)
+        val dialog = DialogDeleteFragment(item.toBrewHistoryItem(), this::onDeleteConfirm)
         dialog.isCancelable = false
         dialog.show(childFragmentManager, "recipeDeleteDialog")
     }
 
-    private fun onDeleteConfirm(item: RecipeItem) {
-        viewModel.deleteRecipe(item)
+    private fun onDeleteConfirm(item: BrewHistoryItem) {
+        viewModel.deleteRecipe(item.toRecipeItem())
     }
 
     override fun onDestroyView() {

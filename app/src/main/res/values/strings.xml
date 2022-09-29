@@ -31,7 +31,7 @@
     <string name="date_dummy">DD-MM-YYYY</string>
     <string name="date_of_completion">Date of completion:</string>
     <string name="delete_item">Remove</string>
-    <string name="delete_recipe_text">Do you want to remove this recipe?</string>
+    <string name="delete_item_text">Do you want to remove?</string>
     <string name="deleted_hop">Hops got deleted!</string>
     <string name="deleted_hopping">Hopping got deleted!</string>
     <string name="deleted_malt">Malt got deleted!</string>
@@ -40,7 +40,7 @@
     <string name="done_text">Done</string>
     <string name="dummy_text">Test</string>
     <string name="end_brewing">Finish Brewing</string>
-    <string name="end_of_fermentation">Please enter the end of fermentation!</string>
+    <string name="enter_end_of_fermentation">Please enter the end of fermentation!</string>
     <string name="enter_name">Please enter a name!</string>
     <string name="enter_recipe_name">Please enter a recipe name!</string>
     <string name="enter_time">Please enter a time!</string>

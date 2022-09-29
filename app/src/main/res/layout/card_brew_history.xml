@@ -25,7 +25,7 @@
             android:text="@string/dummy_text"
             android:textColor="@color/appBars_color"
             android:textSize="20sp"
-            app:layout_constraintEnd_toStartOf="@+id/brew_history_inspect"
+            app:layout_constraintEnd_toStartOf="@+id/brew_history_delete_button"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -40,7 +40,7 @@
             android:text="@string/dummy_text"
             android:textColor="@color/appBars_color"
             android:textSize="20sp"
-            app:layout_constraintEnd_toStartOf="@+id/brew_history_inspect"
+            app:layout_constraintEnd_toStartOf="@+id/brew_history_delete_button"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/brew_history_title" />
 
@@ -55,7 +55,24 @@
             app:iconGravity="textStart"
             app:iconPadding="0dp"
             app:iconTint="@color/appBars_color"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <Button
+            android:id="@+id/brew_history_delete_button"
+            android:layout_width="50dp"
+            android:layout_height="60dp"
+            android:layout_marginEnd="10dp"
+            app:backgroundTint="@color/button_color"
+            app:cornerRadius="20dp"
+            app:icon="@drawable/ic_close"
+            app:iconGravity="textStart"
+            app:iconPadding="0dp"
+            app:iconTint="@color/appBars_color"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/brew_history_inspect"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="SpeakableTextPresentCheck" />
 

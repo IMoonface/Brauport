@@ -55,7 +55,7 @@ class BrewHistoryViewModel(private val brewHistoryDao: BrewHistoryDao) : ViewMod
         }
     }
 
-    fun deleteRecipe(brewHistoryItem: BrewHistoryItem) {
+    fun deleteBrewHistoryItem(brewHistoryItem: BrewHistoryItem) {
         viewModelScope.launch(Dispatchers.IO) {
             brewHistoryDao.delete(brewHistoryItem.toBrewHistoryItemData())
         }

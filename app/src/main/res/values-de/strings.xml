@@ -31,7 +31,7 @@
     <string name="date_dummy">TT-MM-JJJJ</string>
     <string name="date_of_completion">Fertigstellungsdatum:</string>
     <string name="delete_item">Löschen</string>
-    <string name="delete_recipe_text">Wollen Sie dieses Rezept entfernen?</string>
+    <string name="delete_item_text">Wollen Sie wirklich löschen?</string>
     <string name="deleted_hop">Hopfen wurde entfernt!</string>
     <string name="deleted_hopping">Hofengabe wurde entfernt!</string>
     <string name="deleted_malt">Malz gelöscht!</string>
@@ -40,7 +40,7 @@
     <string name="done_text">Fertig</string>
     <string name="dummy_text">Test</string>
     <string name="end_brewing">Brauvorgang Beenden</string>
-    <string name="end_of_fermentation">Bitte Ende der Gärung eingeben!</string>
+    <string name="enter_end_of_fermentation">Bitte Ende der Gärung eingeben!</string>
     <string name="enter_name">Bitte Namen eingeben!</string>
     <string name="enter_recipe_name">Bitte Rezeptnamen eingeben!</string>
     <string name="enter_time">Bitte Zeit angeben!</string>

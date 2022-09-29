@@ -13,19 +13,17 @@ import com.example.brauportv2.databinding.FragmentBrewHistoryBinding
 import com.example.brauportv2.mapper.toBrewHistoryItem
 import com.example.brauportv2.model.brewHistory.BrewHistoryItem
 import com.example.brauportv2.ui.dialog.DialogCookingFragment
+import com.example.brauportv2.ui.dialog.DialogDeleteFragment
 import com.example.brauportv2.ui.dialog.DialogRecipeInspectFragment
 import com.example.brauportv2.ui.viewModel.BrewHistoryViewModel
 import com.example.brauportv2.ui.viewModel.BrewHistoryViewModelFactory
 import kotlinx.coroutines.launch
-import java.text.SimpleDateFormat
-import java.util.*
 
 class BrewHistoryFragment : Fragment() {
 
     private var _binding: FragmentBrewHistoryBinding? = null
     private val binding get() = _binding!!
     private lateinit var adapter: BrewHistoryAdapter
-    private lateinit var brewHistoryList: List<BrewHistoryItem>
 
     private val viewModel: BrewHistoryViewModel by activityViewModels {
         BrewHistoryViewModelFactory(
@@ -39,22 +37,12 @@ class BrewHistoryFragment : Fragment() {
     ): View {
         _binding = FragmentBrewHistoryBinding.inflate(inflater, container, false)
 
-        adapter = BrewHistoryAdapter(this::onInspectItem, this::onItemClick)
+        adapter = BrewHistoryAdapter(this::onInspectItem, this::onItemClick, this::onDeleteClick)
         binding.brewHistoryRecyclerView.adapter = adapter
-
-        val formatter = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
-        val dateOfCompletion = formatter.format(Calendar.getInstance().time)
 
         lifecycleScope.launch {
             viewModel.allBrewHistoryItems.collect { it ->
-                brewHistoryList = it.map { it.toBrewHistoryItem() }
-                brewHistoryList.forEach {
-                    if (formatter.parse(it.bEndOfFermentation)
-                            .before(formatter.parse(dateOfCompletion))
-                    )
-                        viewModel.deleteRecipe(it)
-                }
-                adapter.submitList(brewHistoryList)
+                adapter.submitList(it.map { it.toBrewHistoryItem() })
             }
         }
 
@@ -71,6 +59,16 @@ class BrewHistoryFragment : Fragment() {
         val dialog = DialogCookingFragment(true, item, this::onDialogCookingDismiss)
         dialog.isCancelable = false
         dialog.show(childFragmentManager, "cookingDialog")
+    }
+
+    private fun onDeleteClick(item: BrewHistoryItem) {
+        val dialog = DialogDeleteFragment(item, this::onDeleteConfirm)
+        dialog.isCancelable = false
+        dialog.show(childFragmentManager, "recipeDeleteDialog")
+    }
+
+    private fun onDeleteConfirm(item: BrewHistoryItem) {
+        viewModel.deleteBrewHistoryItem(item)
     }
 
     private fun onDialogCookingDismiss(abort: Boolean) {}

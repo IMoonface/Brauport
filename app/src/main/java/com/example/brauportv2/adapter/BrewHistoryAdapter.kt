@@ -13,7 +13,8 @@ import com.example.brauportv2.model.brewHistory.BrewHistoryItem
 
 class BrewHistoryAdapter(
     private val onInspectClick: (BrewHistoryItem) -> Unit,
-    private val onItemClick: (BrewHistoryItem) -> Unit
+    private val onItemClick: (BrewHistoryItem) -> Unit,
+    private val onDeleteClick: (BrewHistoryItem) -> Unit
 ) : ListAdapter<BrewHistoryItem, BrewHistoryAdapter.BrewHistoryViewHolder>(DiffCallback) {
 
     lateinit var context: Context
@@ -38,10 +39,14 @@ class BrewHistoryAdapter(
             val item = getItem(position)
             brewHistoryTitle.text = item.bName
             brewHistoryEndDate.text =
-                context.getString(R.string.inspect_end_of_fermentation) + item.bEndOfFermentation
+                context.getString(R.string.inspect_end_of_fermentation) + " " + item.bEndOfFermentation
 
             brewHistoryInspect.setOnClickListener {
                 onInspectClick(item)
+            }
+
+            brewHistoryDeleteButton.setOnClickListener {
+                onDeleteClick(item)
             }
 
             root.setOnClickListener {

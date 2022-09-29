@@ -10,15 +10,14 @@ import com.example.brauportv2.BaseApplication
 import com.example.brauportv2.databinding.FragmentDialogDeleteBinding
 import com.example.brauportv2.mapper.toStepList
 import com.example.brauportv2.model.brew.StepList
-import com.example.brauportv2.model.recipe.RecipeItem
-import com.example.brauportv2.ui.objects.RecipeDataSource.stepList
+import com.example.brauportv2.model.brewHistory.BrewHistoryItem
 import com.example.brauportv2.ui.viewModel.BrewDetailsViewModel
 import com.example.brauportv2.ui.viewModel.BrewDetailsViewModelFactory
 import kotlinx.coroutines.launch
 
 class DialogDeleteFragment(
-    private val item: RecipeItem,
-    private val onDeleteConfirm: (RecipeItem) -> Unit
+    private val item: BrewHistoryItem,
+    private val onDeleteConfirm: (BrewHistoryItem) -> Unit
 ) : BaseDialogFragment() {
 
     private var _binding: FragmentDialogDeleteBinding? = null
@@ -39,15 +38,16 @@ class DialogDeleteFragment(
 
         lifecycleScope.launch {
             viewModel.allStepLists.collect { list ->
-                startList = list.map { it.toStepList() }.filter { it.rId == item.rId }
+                if (item.bEndOfFermentation == "")
+                    startList = list.map { it.toStepList() }.filter { it.rId == item.bId }
             }
         }
 
         binding.deleteYesButton.setOnClickListener {
             if (startList.isNotEmpty()) {
                 viewModel.deleteStepList(startList[0])
-                stepList = emptyList()
             }
+
             onDeleteConfirm(item)
             dismiss()
         }

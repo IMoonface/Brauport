@@ -1,6 +1,5 @@
 package com.example.brauportv2.ui.dialog
 
-import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,8 +12,6 @@ class DialogQuestionFragment(
 
     private var _binding: FragmentDialogQuestionBinding? = null
     private val binding get() = _binding!!
-    private var abort = false
-    private var subtract = true
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -23,25 +20,21 @@ class DialogQuestionFragment(
         _binding = FragmentDialogQuestionBinding.inflate(inflater, container, false)
 
         binding.questionWithButton.setOnClickListener {
+            onDialogQuestionDismiss(false, true)
             dismiss()
         }
 
         binding.questionWithoutButton.setOnClickListener {
-            subtract = false
+            onDialogQuestionDismiss(false, false)
             dismiss()
         }
 
         binding.questionBackButton.setOnClickListener {
-            abort = true
+            onDialogQuestionDismiss(true, true)
             dismiss()
         }
 
         return binding.root
-    }
-
-    override fun onDismiss(dialog: DialogInterface) {
-        super.onDismiss(dialog)
-        onDialogQuestionDismiss(abort, subtract)
     }
 
     override fun onDestroyView() {
