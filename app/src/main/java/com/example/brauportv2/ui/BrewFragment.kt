@@ -138,9 +138,12 @@ class BrewFragment : Fragment() {
     private fun onDialogCookingDismiss(abort: Boolean) {
         if (abort)
             Toast.makeText(context, R.string.aborted_recipe, Toast.LENGTH_SHORT).show()
-        else
+        else {
             if (withSubtract)
                 updateDatabase(chosenRecipe)
+            findNavController().navigate(BrewFragmentDirections.actionBrewFragmentToHomeFragment())
+        }
+
     }
 
     fun onDialogQuestionDismiss(abort: Boolean, subtract: Boolean) {

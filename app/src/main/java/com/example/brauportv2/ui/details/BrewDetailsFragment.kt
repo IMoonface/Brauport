@@ -1,6 +1,7 @@
 package com.example.brauportv2.ui.details
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.view.LayoutInflater
@@ -48,18 +49,36 @@ class BrewDetailsFragment(private val item: RecipeItem) : Fragment() {
     ): View {
         _binding = FragmentBrewDetailsBinding.inflate(inflater, container, false)
 
+        val sharedPref = activity?.getSharedPreferences("myPref", Context.MODE_PRIVATE)
+
         adapter = BrewAdapter(this::onItemClick, this::onToggle)
         binding.brewRecyclerView.adapter = adapter
 
         lifecycleScope.launch {
             viewModel.allStepLists.collect { list ->
                 startList = list.map { it.toStepList() }.filter { it.rId == item.rId }
-                stepList = if (startList.isNotEmpty()) {
-                    adapter.submitList(startList[0].steps)
-                    adapter.currentList
-                } else {
-                    adapter.submitList(createStringList(item))
-                    adapter.currentList
+
+                sharedPref?.let {
+                    if (sharedPref.getInt("lastRecipeId", 0) == item.rId
+                        && startList.isNotEmpty()
+                    ) {
+                        viewModel.deleteStepList(startList[0])
+
+                        sharedPref.edit().apply {
+                            putInt("lastRecipeId", 0)
+                            apply()
+                        }
+                    }
+
+                    stepList = if (startList.isNotEmpty() &&
+                        sharedPref.getInt("lastRecipeId", 0) != item.rId
+                    ) {
+                        adapter.submitList(startList[0].steps)
+                        adapter.currentList
+                    } else {
+                        adapter.submitList(createStringList(item))
+                        adapter.currentList
+                    }
                 }
             }
         }

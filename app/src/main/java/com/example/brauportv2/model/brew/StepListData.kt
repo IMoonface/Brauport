@@ -5,10 +5,7 @@ import androidx.room.Entity
 import androidx.room.Index
 import androidx.room.PrimaryKey
 
-@Entity(
-    tableName = "step_database",
-    indices = [Index(value = ["recipeId"], unique = true)]
-)
+@Entity(tableName = "step_database")
 data class StepListData(
     @PrimaryKey
     val sId: Int,
