@@ -10,16 +10,13 @@
 
     <EditText
         android:id="@+id/rest_temp"
+        style="@style/EditTextTheme"
         android:layout_width="0dp"
         android:layout_height="48dp"
-        android:background="@color/white"
         android:hint="@string/temp"
         android:importantForAutofill="no"
         android:inputType="number"
         android:maxLength="20"
-        android:textColor="@color/appBars_color"
-        android:textColorHint="#78909C"
-        android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="@+id/rest_time"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -28,18 +25,15 @@
 
     <EditText
         android:id="@+id/rest_time"
+        style="@style/EditTextTheme"
         android:layout_width="0dp"
         android:layout_height="48dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
-        android:background="@color/white"
         android:hint="@string/time"
         android:importantForAutofill="no"
         android:inputType="number"
-        android:maxLength="20"
-        android:textColor="@color/appBars_color"
-        android:textColorHint="#78909C"
-        android:textSize="25sp"
+        android:maxLength="4"
         app:layout_constraintEnd_toStartOf="@+id/unit_time"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/rest_temp">

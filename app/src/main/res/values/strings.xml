@@ -79,6 +79,7 @@
     <string name="new_hop">New Hops</string>
     <string name="new_malt">New Malt</string>
     <string name="new_yeast">New Yeast</string>
+    <string name="no_ingredients_added">No ingredients have been added yet!</string>
     <string name="no_text">No</string>
     <string name="no_time_chosen">No time was chosen!</string>
     <string name="not_all_steps_completed">Not all steps completed!</string>

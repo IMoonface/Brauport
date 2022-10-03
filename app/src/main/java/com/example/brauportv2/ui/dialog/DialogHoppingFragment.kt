@@ -62,14 +62,18 @@ class DialogHoppingFragment : BaseDialogFragment() {
         }
 
         binding.rHoppingRefreshButton.setOnClickListener {
-            recipeItem.hoppingList.forEach { hopping ->
-                hopping.hopList.forEach { hop ->
-                    if (stockList.map { it.toSNoAmount() }.contains(hop.toSNoAmount()))
-                        newHopsList.add(hop)
+            if (recipeItem.hoppingList.isEmpty())
+                Toast.makeText(context, R.string.no_ingredients_added, Toast.LENGTH_SHORT).show()
+            else {
+                recipeItem.hoppingList.forEach { hopping ->
+                    hopping.hopList.forEach { hop ->
+                        if (stockList.map { it.toSNoAmount() }.contains(hop.toSNoAmount()))
+                            newHopsList.add(hop)
+                    }
+                    hopping.hopList = newHopsList
                 }
-                hopping.hopList = newHopsList
+                Toast.makeText(context, R.string.refresh_list, Toast.LENGTH_SHORT).show()
             }
-            Toast.makeText(context, R.string.refresh_list, Toast.LENGTH_SHORT).show()
         }
 
         return binding.root

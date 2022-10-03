@@ -79,6 +79,7 @@
     <string name="new_hop">Neuer Hopfen</string>
     <string name="new_malt">Neues Malz</string>
     <string name="new_yeast">Neue Hefe</string>
+    <string name="no_ingredients_added">Es wurden noch keine Zutaten hinzugefügt!</string>
     <string name="no_text">Nein</string>
     <string name="no_time_chosen">Es wurde noch keine Zeit ausgewählt!</string>
     <string name="not_all_steps_completed">Es sind noch Schritte offen</string>

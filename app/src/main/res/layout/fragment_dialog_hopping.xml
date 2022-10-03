@@ -22,7 +22,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/r_hopping_time_input_layout"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        style="@style/TextInputTheme"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
@@ -38,7 +38,8 @@
             android:layout_height="wrap_content"
             android:hint="@string/time"
             android:inputType="number"
-            android:textColorHint="#546E7A"
+            android:maxLength="4"
+            android:textColorHint="#78909C"
             tools:ignore="TextContrastCheck" />
 
     </com.google.android.material.textfield.TextInputLayout>

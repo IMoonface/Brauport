@@ -54,12 +54,16 @@ class DialogMaltsFragment : BaseDialogFragment() {
         }
 
         binding.rMaltsRefreshButton.setOnClickListener {
-            recipeItem.maltList.forEach { stockItem ->
-                if (stockList.map { it.toSNoAmount() }.contains(stockItem.toSNoAmount()))
-                    newMaltList.add(stockItem)
+            if (recipeItem.maltList.isEmpty())
+                Toast.makeText(context, R.string.no_ingredients_added, Toast.LENGTH_SHORT).show()
+            else {
+                recipeItem.maltList.forEach { stockItem ->
+                    if (stockList.map { it.toSNoAmount() }.contains(stockItem.toSNoAmount()))
+                        newMaltList.add(stockItem)
+                }
+                recipeItem.maltList = newMaltList
+                Toast.makeText(context, R.string.refresh_list, Toast.LENGTH_SHORT).show()
             }
-            recipeItem.maltList = newMaltList
-            Toast.makeText(context, R.string.refresh_list, Toast.LENGTH_SHORT).show()
         }
 
         return binding.root
