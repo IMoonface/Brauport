@@ -57,6 +57,8 @@ class DialogCookingFragment(
                     }
                 }
 
+                onDialogCookingDismiss(false)
+
                 dismiss()
             } else if (viewModel.dateIsValid(endOfFermentation, formatter) && update) {
                 onItemUpdate(endOfFermentation)

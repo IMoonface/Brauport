@@ -141,9 +141,9 @@ class BrewFragment : Fragment() {
         else {
             if (withSubtract)
                 updateDatabase(chosenRecipe)
-            findNavController().navigate(BrewFragmentDirections.actionBrewFragmentToHomeFragment())
+            findNavController()
+                .navigate(BrewFragmentDirections.actionBrewFragmentToBrewHistoryFragment())
         }
-
     }
 
     fun onDialogQuestionDismiss(abort: Boolean, subtract: Boolean) {
