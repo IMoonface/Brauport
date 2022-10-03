@@ -8,12 +8,10 @@
 
     <Button
         android:id="@+id/main_recipe_button"
+        style="@style/ButtonTheme"
         android:layout_width="220dp"
         android:layout_height="60dp"
         android:text="@string/main_recipes_button"
-        android:textColor="@color/appBars_color"
-        app:backgroundTint="@color/button_color"
-        app:cornerRadius="20dp"
         app:layout_constraintBottom_toTopOf="@+id/main_stock_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,12 +19,10 @@
 
     <Button
         android:id="@+id/main_stock_button"
+        style="@style/ButtonTheme"
         android:layout_width="220dp"
         android:layout_height="60dp"
         android:text="@string/stock_text"
-        android:textColor="@color/appBars_color"
-        app:backgroundTint="@color/button_color"
-        app:cornerRadius="20dp"
         app:layout_constraintBottom_toTopOf="@+id/main_brew_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -34,12 +30,10 @@
 
     <Button
         android:id="@+id/main_brew_button"
+        style="@style/ButtonTheme"
         android:layout_width="220dp"
         android:layout_height="60dp"
         android:text="@string/brew_text"
-        android:textColor="@color/appBars_color"
-        app:backgroundTint="@color/button_color"
-        app:cornerRadius="20dp"
         app:layout_constraintBottom_toTopOf="@+id/main_brew_history_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -47,12 +41,10 @@
 
     <Button
         android:id="@+id/main_brew_history_button"
+        style="@style/ButtonTheme"
         android:layout_width="220dp"
         android:layout_height="60dp"
         android:text="@string/main_brew_history"
-        android:textColor="@color/appBars_color"
-        app:backgroundTint="@color/button_color"
-        app:cornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

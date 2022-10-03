@@ -30,11 +30,10 @@
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/main_bottom_nav"
+        style="@style/ButtomNavTheme"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/appBars_color"
-        app:itemIconTint="@color/button_color"
-        app:itemTextColor="@color/button_color"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

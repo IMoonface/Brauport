@@ -45,7 +45,6 @@
             android:layout_marginTop="5dp"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="5dp"
-            app:boxBackgroundColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/r_stock_item_delete"
             app:layout_constraintStart_toStartOf="parent"
@@ -64,31 +63,23 @@
 
         <Button
             android:id="@+id/r_stock_item_add"
+            style="@style/IconButtonTheme"
             android:layout_width="50dp"
             android:layout_height="60dp"
             android:layout_marginEnd="5dp"
-            app:backgroundTint="@color/button_color"
-            app:cornerRadius="20dp"
             app:icon="@drawable/ic_add"
-            app:iconGravity="textStart"
-            app:iconPadding="0dp"
-            app:iconTint="@color/appBars_color"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="SpeakableTextPresentCheck" />
 
         <Button
             android:id="@+id/r_stock_item_delete"
+            style="@style/IconButtonTheme"
             android:layout_width="50dp"
             android:layout_height="60dp"
             android:layout_marginTop="7dp"
             android:layout_marginEnd="5dp"
-            app:backgroundTint="@color/button_color"
-            app:cornerRadius="20dp"
             app:icon="@drawable/ic_close"
-            app:iconGravity="textStart"
-            app:iconPadding="0dp"
-            app:iconTint="@color/appBars_color"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/r_stock_item_add"
             tools:ignore="SpeakableTextPresentCheck" />

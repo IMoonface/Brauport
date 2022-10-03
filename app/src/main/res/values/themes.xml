@@ -1,6 +1,8 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
+
     <style name="Theme.BrauportV2" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="colorPrimary">@color/appBars_color</item>
+        <item name="colorPrimaryDark">@color/button_color</item>
         <item name="colorPrimaryVariant">@color/appBars_color</item>
         <item name="colorOnPrimary">@color/black</item>
         <item name="colorSecondary">@color/teal_200</item>
@@ -21,6 +23,11 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="ButtomNavTheme" parent="Widget.AppCompat.Toolbar.Button.Navigation">
+        <item name="itemIconTint">@color/button_color</item>
+        <item name="itemTextColor">@color/button_color</item>
+    </style>
+
     <style name="CardViewTheme" parent="CardView">
         <item name="cardBackgroundColor">@color/card_color</item>
         <item name="android:layout_width">match_parent</item>
@@ -30,6 +37,38 @@
         <item name="android:layout_marginRight">2dp</item>
         <item name="android:layout_marginBottom">5dp</item>
         <item name="cardCornerRadius">20dp</item>
+    </style>
+
+    <style name="ButtonTheme" parent="ThemeOverlay.Material3.Button">
+        <item name="android:textColor">@color/appBars_color</item>
+        <item name="backgroundTint">@color/button_color</item>
+        <item name="android:textSize">15sp</item>
+        <item name="iconTint">@color/appBars_color</item>
+        <item name="cornerRadius">20dp</item>
+    </style>
+
+    <style name="IconButtonTheme" parent="ThemeOverlay.Material3.Button">
+        <item name="android:textColor">@color/appBars_color</item>
+        <item name="backgroundTint">@color/button_color</item>
+        <item name="cornerRadius">20dp</item>
+        <item name="iconGravity">textStart</item>
+        <item name="iconPadding">0dp</item>
+        <item name="iconTint">@color/appBars_color</item>
+    </style>
+
+    <style name="InstructionTheme">
+        <item name="android:background">@color/card_color</item>
+        <item name="android:padding">10dp</item>
+    </style>
+
+    <style name="TextViewTheme" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/appBars_color</item>
+    </style>
+
+    <style name="ActivityStartTheme">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@drawable/ic_brauport_day</item>
     </style>
 
     <style name="Theme.BrauportV2.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />

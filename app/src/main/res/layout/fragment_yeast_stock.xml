@@ -13,32 +13,24 @@
 
         <Button
             android:id="@+id/yeast_add_button"
+            style="@style/ButtonTheme"
             android:layout_width="wrap_content"
             android:layout_height="60dp"
             android:layout_marginStart="10dp"
             android:layout_marginTop="5dp"
             android:text="@string/new_yeast"
-            android:textColor="@color/appBars_color"
-            app:backgroundTint="@color/button_color"
-            app:cornerRadius="20dp"
             app:icon="@drawable/ic_add"
-            app:iconTint="@color/appBars_color"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/yeast_info_button"
+            style="@style/IconButtonTheme"
             android:layout_width="50dp"
             android:layout_height="60dp"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="10dp"
-            android:textColor="@color/appBars_color"
-            app:backgroundTint="@color/button_color"
-            app:cornerRadius="20dp"
             app:icon="@drawable/ic_info"
-            app:iconGravity="textStart"
-            app:iconPadding="0dp"
-            app:iconTint="@color/appBars_color"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="SpeakableTextPresentCheck" />
@@ -83,28 +75,20 @@
 
     <Button
         android:id="@+id/yeast_next_button"
+        style="@style/IconButtonTheme"
         android:layout_width="40dp"
         android:layout_height="200dp"
         android:layout_gravity="center_vertical|end"
-        app:backgroundTint="@color/button_color"
-        app:cornerRadius="20dp"
         app:icon="@drawable/ic_navigate_next"
-        app:iconGravity="textStart"
-        app:iconPadding="0dp"
-        app:iconTint="@color/appBars_color"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <Button
         android:id="@+id/yeast_before_button"
+        style="@style/IconButtonTheme"
         android:layout_width="40dp"
         android:layout_height="200dp"
         android:layout_gravity="center_vertical|start"
-        app:backgroundTint="@color/button_color"
-        app:cornerRadius="20dp"
         app:icon="@drawable/ic_navigate_before"
-        app:iconGravity="textStart"
-        app:iconPadding="0dp"
-        app:iconTint="@color/appBars_color"
         tools:ignore="SpeakableTextPresentCheck" />
 
 </FrameLayout>

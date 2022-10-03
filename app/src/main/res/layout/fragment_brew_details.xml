@@ -8,25 +8,21 @@
 
     <Button
         android:id="@+id/brew_timer_start_button"
+        style="@style/ButtonTheme"
         android:layout_width="100dp"
         android:layout_height="50dp"
         android:layout_marginStart="10dp"
         android:text="@string/start_brew_timer"
-        android:textColor="@color/appBars_color"
-        app:backgroundTint="@color/button_color"
-        app:cornerRadius="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/brew_timer_stop_button"
+        style="@style/ButtonTheme"
         android:layout_width="100dp"
         android:layout_height="50dp"
         android:layout_marginEnd="10dp"
         android:text="@string/stop_brew_timer"
-        android:textColor="@color/appBars_color"
-        app:backgroundTint="@color/button_color"
-        app:cornerRadius="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

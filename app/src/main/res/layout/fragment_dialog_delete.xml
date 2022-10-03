@@ -23,28 +23,22 @@
 
     <Button
         android:id="@+id/delete_yes_button"
+        style="@style/ButtonTheme"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
         android:layout_marginTop="10dp"
         android:text="@string/yes_text"
-        android:textColor="@color/appBars_color"
-        android:textSize="15sp"
-        app:backgroundTint="@color/button_color"
-        app:cornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/delete_title_text" />
 
     <Button
         android:id="@+id/delete_no_button"
+        style="@style/ButtonTheme"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
         android:layout_marginTop="10dp"
         android:text="@string/no_text"
-        android:textColor="@color/appBars_color"
-        android:textSize="15sp"
-        app:backgroundTint="@color/button_color"
-        app:cornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/delete_title_text" />

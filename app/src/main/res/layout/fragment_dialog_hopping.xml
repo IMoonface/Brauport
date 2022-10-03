@@ -45,57 +45,45 @@
 
     <Button
         android:id="@+id/r_hopping_confirm_button"
+        style="@style/ButtonTheme"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
         android:layout_marginStart="10dp"
         android:layout_marginBottom="5dp"
         android:text="@string/confirm"
-        android:textColor="@color/appBars_color"
-        android:textSize="15sp"
-        app:backgroundTint="@color/button_color"
-        app:cornerRadius="20dp"
         app:layout_constraintBottom_toTopOf="@+id/r_hopping_refresh_button"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/r_hopping_delete_button"
+        style="@style/ButtonTheme"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="5dp"
         android:text="@string/delete_item"
-        android:textColor="@color/appBars_color"
-        android:textSize="15sp"
-        app:backgroundTint="@color/button_color"
-        app:cornerRadius="20dp"
         app:layout_constraintBottom_toTopOf="@+id/r_hopping_back_button"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
         android:id="@+id/r_hopping_back_button"
+        style="@style/ButtonTheme"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
         android:text="@string/back_text"
-        android:textColor="@color/appBars_color"
-        android:textSize="15sp"
-        app:backgroundTint="@color/button_color"
-        app:cornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
         android:id="@+id/r_hopping_refresh_button"
+        style="@style/ButtonTheme"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
         android:layout_marginStart="10dp"
         android:layout_marginBottom="10dp"
         android:text="@string/refresh_text"
-        android:textColor="@color/appBars_color"
-        android:textSize="15sp"
-        app:backgroundTint="@color/button_color"
-        app:cornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 

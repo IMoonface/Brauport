@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="10dp"
     android:background="@color/appBars_color"
+    android:padding="10dp"
     tools:context=".ui.dialog.DialogRestFragment">
 
     <TextView
@@ -41,28 +41,22 @@
 
     <Button
         android:id="@+id/cooking_confirm_button"
+        style="@style/ButtonTheme"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
         android:layout_marginTop="10dp"
         android:text="@string/confirm"
-        android:textColor="@color/appBars_color"
-        android:textSize="15sp"
-        app:backgroundTint="@color/button_color"
-        app:cornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cooking_text" />
 
     <Button
         android:id="@+id/cooking_abort_button"
+        style="@style/ButtonTheme"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
         android:layout_marginTop="10dp"
         android:text="@string/abort"
-        android:textColor="@color/appBars_color"
-        android:textSize="15sp"
-        app:backgroundTint="@color/button_color"
-        app:cornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cooking_text" />

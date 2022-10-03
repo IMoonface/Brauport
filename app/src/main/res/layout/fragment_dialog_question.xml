@@ -24,42 +24,33 @@
 
     <Button
         android:id="@+id/question_with_button"
+        style="@style/ButtonTheme"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="@string/brew_with_subtracting_stock"
-        android:textColor="@color/appBars_color"
-        android:textSize="15sp"
-        app:backgroundTint="@color/button_color"
-        app:cornerRadius="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/question_text" />
 
     <Button
         android:id="@+id/question_without_button"
+        style="@style/ButtonTheme"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="@string/brew_without_subtracting_stock"
-        android:textColor="@color/appBars_color"
-        android:textSize="15sp"
-        app:backgroundTint="@color/button_color"
-        app:cornerRadius="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/question_with_button" />
 
     <Button
         android:id="@+id/question_back_button"
+        style="@style/ButtonTheme"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
         android:layout_marginTop="10dp"
         android:text="@string/back_to_main_menu_text"
-        android:textColor="@color/appBars_color"
-        android:textSize="15sp"
-        app:backgroundTint="@color/button_color"
-        app:cornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -2,20 +2,19 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    style="@style/InstructionTheme"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/card_color"
-    android:padding="10dp"
     tools:context=".ui.dialog.DialogRecipeInspectFragment">
 
     <TextView
         android:id="@+id/inspect_recipe_name"
+        style="@style/TextViewTheme"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
         android:gravity="center_horizontal"
         android:text="@string/recipe_inspect_name"
-        android:textColor="@color/appBars_color"
         android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/inspect_scroll_view"
         app:layout_constraintEnd_toEndOf="parent"
@@ -41,64 +40,64 @@
 
             <TextView
                 android:id="@+id/inspect_malt_list"
+                style="@style/TextViewTheme"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/malts"
-                android:textColor="@color/appBars_color"
                 android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/inspect_rest_list"
+                style="@style/TextViewTheme"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="@string/rest"
-                android:textColor="@color/appBars_color"
                 android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/inspect_hopping_list"
+                style="@style/TextViewTheme"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="@string/hopping"
-                android:textColor="@color/appBars_color"
                 android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/inspect_yeast"
+                style="@style/TextViewTheme"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="@string/yeast"
-                android:textColor="@color/appBars_color"
                 android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/inspect_main_brew"
+                style="@style/TextViewTheme"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="@string/main_brew"
-                android:textColor="@color/appBars_color"
                 android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/inspect_date_of_comp"
+                style="@style/TextViewTheme"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="@string/date_of_completion"
-                android:textColor="@color/appBars_color"
                 android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/inspect_end_of_ferm"
+                style="@style/TextViewTheme"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="@string/inspect_end_of_fermentation"
-                android:textColor="@color/appBars_color"
                 android:textSize="20sp" />
 
         </LinearLayout>
@@ -107,13 +106,11 @@
 
     <Button
         android:id="@+id/inspect_back_button"
+        style="@style/ButtonTheme"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/inspect_scroll_view"
         android:text="@string/back_text"
-        android:textColor="@color/appBars_color"
-        app:backgroundTint="@color/button_color"
-        app:cornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

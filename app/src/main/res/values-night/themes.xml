@@ -1,6 +1,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <style name="Theme.BrauportV2" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <item name="colorPrimary">@color/button_color</item>
+        <item name="colorPrimary">@color/card_color</item>
+        <item name="colorPrimaryDark">@color/purple_500</item>
         <item name="colorPrimaryVariant">@color/appBars_color</item>
         <item name="colorOnPrimary">@color/black</item>
         <item name="colorSecondary">@color/teal_200</item>
@@ -11,14 +12,36 @@
 
     <style name="ToolbarTheme" parent="@style/ThemeOverlay.AppCompat.ActionBar">
         <item name="android:background">@color/appBars_color</item>
-        <item name="android:textColorPrimary">@color/button_color</item>
-        <item name="android:textColorSecondary">@color/button_color</item>
-        <item name="actionMenuTextColor">@color/button_color</item>
+        <item name="android:textColorPrimary">@color/purple_200</item>
+        <item name="android:textColorSecondary">@color/purple_200</item>
+        <item name="actionMenuTextColor">@color/purple_200</item>
     </style>
 
     <style name="Theme.BrauportV2.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="ButtomNavTheme" parent="Widget.AppCompat.Toolbar.Button.Navigation">
+        <item name="itemIconTint">@color/purple_200</item>
+        <item name="itemTextColor">@color/purple_200</item>
+    </style>
+
+    <style name="ButtonTheme" parent="ThemeOverlay.Material3.Button">
+        <item name="android:textColor">@color/card_color</item>
+        <item name="backgroundTint">@color/purple_500</item>
+        <item name="android:textSize">15sp</item>
+        <item name="iconTint">@color/card_color</item>
+        <item name="cornerRadius">20dp</item>
+    </style>
+
+    <style name="IconButtonTheme" parent="ThemeOverlay.Material3.Button">
+        <item name="android:textColor">@color/card_color</item>
+        <item name="backgroundTint">@color/purple_500</item>
+        <item name="cornerRadius">20dp</item>
+        <item name="iconGravity">textStart</item>
+        <item name="iconPadding">0dp</item>
+        <item name="iconTint">@color/card_color</item>
     </style>
 
     <style name="CardViewTheme" parent="CardView">
@@ -30,6 +53,21 @@
         <item name="android:layout_marginRight">2dp</item>
         <item name="android:layout_marginBottom">5dp</item>
         <item name="cardCornerRadius">20dp</item>
+    </style>
+
+    <style name="InstructionTheme">
+        <item name="android:background">@color/background_night_mode</item>
+        <item name="android:padding">10dp</item>
+    </style>
+
+    <style name="TextViewTheme" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/card_color</item>
+    </style>
+
+    <style name="ActivityStartTheme">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@drawable/ic_brauport_night</item>
     </style>
 
     <style name="Theme.BrauportV2.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />

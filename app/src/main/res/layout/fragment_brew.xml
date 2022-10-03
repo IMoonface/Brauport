@@ -22,17 +22,12 @@
 
     <Button
         android:id="@+id/brew_info_button"
+        style="@style/IconButtonTheme"
         android:layout_width="50dp"
         android:layout_height="60dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
-        android:textColor="@color/appBars_color"
-        app:backgroundTint="@color/button_color"
-        app:cornerRadius="20dp"
         app:icon="@drawable/ic_info"
-        app:iconGravity="textStart"
-        app:iconPadding="0dp"
-        app:iconTint="@color/appBars_color"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="SpeakableTextPresentCheck" />
@@ -49,14 +44,12 @@
 
     <Button
         android:id="@+id/brew_finish_button"
+        style="@style/ButtonTheme"
         android:layout_width="wrap_content"
         android:layout_height="60dp"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="10dp"
         android:text="@string/end_brewing"
-        android:textColor="@color/appBars_color"
-        app:backgroundTint="@color/button_color"
-        app:cornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

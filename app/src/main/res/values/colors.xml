@@ -10,4 +10,5 @@
     <color name="button_color">#D7E7CD</color>
     <color name="appBars_color">#1A1C19</color>
     <color name="card_color">#F0FAF9</color>
+    <color name="background_night_mode">#424242</color>
 </resources>

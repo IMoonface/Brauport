@@ -2,18 +2,17 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    style="@style/InstructionTheme"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/card_color"
-    android:padding="10dp"
     tools:context=".ui.dialog.DialogInstructionStockFragment">
 
     <TextView
         android:id="@+id/instruction_s_title"
+        style="@style/TextViewTheme"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/instruction_stock"
-        android:textColor="@color/appBars_color"
         android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/instruction_s_scroll_view"
         app:layout_constraintEnd_toEndOf="parent"
@@ -33,23 +32,21 @@
 
         <TextView
             android:id="@+id/instruction_s_description"
+            style="@style/TextViewTheme"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/instruction_s_text"
             android:textAlignment="center"
-            android:textColor="@color/appBars_color"
             android:textSize="20sp" />
 
     </ScrollView>
 
     <Button
         android:id="@+id/instruction_s_back_button"
+        style="@style/ButtonTheme"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/back_text"
-        android:textColor="@color/appBars_color"
-        app:backgroundTint="@color/button_color"
-        app:cornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

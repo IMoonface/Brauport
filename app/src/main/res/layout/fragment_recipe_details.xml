@@ -25,68 +25,62 @@
 
             <Button
                 android:id="@+id/recipe_details_malts"
+                style="@style/ButtonTheme"
                 android:layout_width="220dp"
                 android:layout_height="60dp"
                 android:layout_marginBottom="10dp"
-                android:text="@string/malts"
-                android:textColor="@color/appBars_color"
-                app:backgroundTint="@color/button_color"
-                app:cornerRadius="20dp" />
+                android:text="@string/malts" />
 
             <Button
                 android:id="@+id/recipe_details_rest"
+                style="@style/ButtonTheme"
                 android:layout_width="220dp"
                 android:layout_height="60dp"
                 android:layout_marginBottom="10dp"
-                android:text="@string/rest"
-                android:textColor="@color/appBars_color"
-                app:backgroundTint="@color/button_color"
-                app:cornerRadius="20dp" />
+                android:text="@string/rest" />
 
             <Button
                 android:id="@+id/recipe_details_hop"
+                style="@style/ButtonTheme"
                 android:layout_width="220dp"
                 android:layout_height="60dp"
                 android:layout_marginBottom="10dp"
-                android:text="@string/hopping"
-                android:textColor="@color/appBars_color"
-                app:backgroundTint="@color/button_color"
-                app:cornerRadius="20dp" />
+                android:text="@string/hopping" />
 
             <Button
                 android:id="@+id/recipe_details_yeast"
+                style="@style/ButtonTheme"
                 android:layout_width="220dp"
                 android:layout_height="60dp"
                 android:layout_marginBottom="10dp"
-                android:text="@string/yeast"
-                android:textColor="@color/appBars_color"
-                app:backgroundTint="@color/button_color"
-                app:cornerRadius="20dp" />
+                android:text="@string/yeast" />
 
             <Button
                 android:id="@+id/recipe_details_main_brew"
+                style="@style/ButtonTheme"
                 android:layout_width="220dp"
                 android:layout_height="60dp"
-                android:text="@string/main_brew"
-                android:textColor="@color/appBars_color"
-                app:backgroundTint="@color/button_color"
-                app:cornerRadius="20dp" />
+                android:layout_marginBottom="10dp"
+                android:text="@string/main_brew" />
+
+            <Button
+                android:id="@+id/recipe_details_save"
+                style="@style/ButtonTheme"
+                android:layout_width="220dp"
+                android:layout_height="60dp"
+                android:text="@string/save_string" />
 
         </LinearLayout>
     </ScrollView>
 
     <Button
         android:id="@+id/recipe_details_inspect_button"
+        style="@style/IconButtonTheme"
         android:layout_width="50dp"
         android:layout_height="60dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
-        app:backgroundTint="@color/button_color"
-        app:cornerRadius="20dp"
         app:icon="@drawable/ic_search"
-        app:iconGravity="textStart"
-        app:iconPadding="0dp"
-        app:iconTint="@color/appBars_color"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="SpeakableTextPresentCheck" />
@@ -114,18 +108,5 @@
             tools:ignore="TextContrastCheck" />
 
     </com.google.android.material.textfield.TextInputLayout>
-
-    <Button
-        android:id="@+id/recipe_details_save"
-        android:layout_width="220dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:text="@string/save_string"
-        android:textColor="@color/appBars_color"
-        app:backgroundTint="@color/button_color"
-        app:cornerRadius="20dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
