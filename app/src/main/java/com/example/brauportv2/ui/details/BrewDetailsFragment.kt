@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -59,24 +60,42 @@ class BrewDetailsFragment(private val item: RecipeItem) : Fragment() {
                 startList = list.map { it.toStepList() }.filter { it.rId == item.rId }
 
                 sharedPref?.let {
-                    if (sharedPref.getInt("lastRecipeId", 0) == item.rId
-                        && startList.isNotEmpty()
-                    ) {
+                    val lastRecipeId = sharedPref.getInt("lastRecipeId", 0)
+                    val lastUpdatedRId = sharedPref.getInt("lastUpdatedRId", 0)
+
+                    //Hier nochmal nachschauen
+                    if (startList.size >= 2) {
+                        viewModel.deleteStepList(startList[1])
+                    }
+
+                    if (lastRecipeId == item.rId && startList.isNotEmpty()) {
                         viewModel.deleteStepList(startList[0])
 
                         sharedPref.edit().apply {
                             putInt("lastRecipeId", 0)
                             apply()
                         }
+
+                        startList = emptyList()
                     }
 
-                    stepList = if (startList.isNotEmpty() &&
-                        sharedPref.getInt("lastRecipeId", 0) != item.rId
-                    ) {
-                        adapter.submitList(startList[0].steps)
+                    if (lastUpdatedRId == item.rId && startList.isNotEmpty()) {
+                        Log.i("bin drin", startList[0].toString())
+                        viewModel.deleteStepList(startList[0])
+
+                        sharedPref.edit().apply {
+                            putInt("lastUpdatedRId", 0)
+                            apply()
+                        }
+
+                        startList = emptyList()
+                    }
+
+                    stepList = if (startList.isEmpty()) {
+                        adapter.submitList(createStringList(item))
                         adapter.currentList
                     } else {
-                        adapter.submitList(createStringList(item))
+                        adapter.submitList(startList[0].steps)
                         adapter.currentList
                     }
                 }
@@ -227,7 +246,9 @@ class BrewDetailsFragment(private val item: RecipeItem) : Fragment() {
             )
         )
 
-        viewModel.addStepList(StepList(UUID.randomUUID().hashCode(), item.rId, newBrewList))
+        viewModel.addStepList(
+            StepList(UUID.randomUUID().hashCode(), item.rId, newBrewList)
+        )
 
         return newBrewList
     }

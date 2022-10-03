@@ -33,23 +33,6 @@
         <item name="itemTextColor">@color/purple_200</item>
     </style>
 
-    <style name="ButtonTheme" parent="ThemeOverlay.Material3.Button">
-        <item name="android:textColor">@color/card_color</item>
-        <item name="backgroundTint">@color/purple_500</item>
-        <item name="android:textSize">15sp</item>
-        <item name="iconTint">@color/card_color</item>
-        <item name="cornerRadius">20dp</item>
-    </style>
-
-    <style name="IconButtonTheme" parent="ThemeOverlay.Material3.Button">
-        <item name="android:textColor">@color/card_color</item>
-        <item name="backgroundTint">@color/purple_500</item>
-        <item name="cornerRadius">20dp</item>
-        <item name="iconGravity">textStart</item>
-        <item name="iconPadding">0dp</item>
-        <item name="iconTint">@color/card_color</item>
-    </style>
-
     <style name="CardViewTheme" parent="CardView">
         <item name="cardBackgroundColor">@color/purple_200</item>
         <item name="android:layout_width">match_parent</item>
@@ -61,13 +44,12 @@
         <item name="cardCornerRadius">20dp</item>
     </style>
 
-    <style name="InstructionTheme">
-        <item name="android:background">@color/background_night_mode</item>
-        <item name="android:padding">10dp</item>
-    </style>
-
-    <style name="TextViewTheme" parent="Widget.AppCompat.TextView">
+    <style name="ButtonTheme" parent="ThemeOverlay.Material3.Button">
         <item name="android:textColor">@color/card_color</item>
+        <item name="backgroundTint">@color/purple_500</item>
+        <item name="android:textSize">15sp</item>
+        <item name="iconTint">@color/card_color</item>
+        <item name="cornerRadius">20dp</item>
     </style>
 
     <style name="EditTextTheme" parent="Widget.AppCompat.EditText">
@@ -75,6 +57,32 @@
         <item name="android:textColor">@color/card_color</item>
         <item name="android:textColorHint">#78909C</item>
         <item name="android:textSize">25sp</item>
+    </style>
+
+    <style name="IconButtonTheme" parent="ThemeOverlay.Material3.Button">
+        <item name="android:textColor">@color/card_color</item>
+        <item name="backgroundTint">@color/purple_500</item>
+        <item name="cornerRadius">20dp</item>
+        <item name="iconGravity">textStart</item>
+        <item name="iconPadding">0dp</item>
+        <item name="iconTint">@color/card_color</item>
+    </style>
+
+    <style name="InstructionTheme">
+        <item name="android:background">@color/background_night_mode</item>
+        <item name="android:padding">10dp</item>
+    </style>
+
+    <style name="TextInputTheme" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxBackgroundColor">@color/background_night_mode</item>
+    </style>
+
+    <style name="TextViewTheme" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/card_color</item>
+    </style>
+
+    <style name="ToogleButtonTheme" parent="">
+        <item name="boxBackgroundColor">@color/purple_200</item>
     </style>
 
 </resources>
