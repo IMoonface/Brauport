@@ -23,6 +23,7 @@ import com.example.brauportv2.ui.dialog.DialogCookingFragment
 import com.example.brauportv2.ui.dialog.DialogInstructionBrewFragment
 import com.example.brauportv2.ui.dialog.DialogQuestionFragment
 import com.example.brauportv2.ui.objects.RecipeDataSource.itemList
+import com.example.brauportv2.ui.objects.RecipeDataSource.stepList
 import com.example.brauportv2.ui.viewModel.BrewViewModel
 import com.example.brauportv2.ui.viewModel.BrewViewModelFactory
 import kotlinx.coroutines.launch
@@ -54,8 +55,11 @@ class BrewFragment : Fragment() {
             spinnerOptions.add(it.recipeName)
         }
 
-        binding.brewSpinner.adapter =
-            ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1, spinnerOptions)
+        val arrayAdapter = ArrayAdapter(requireContext(), R.layout.spinner_item, spinnerOptions)
+        arrayAdapter.setDropDownViewResource(R.layout.spinner_dropdown_item)
+
+        binding.brewSpinner.adapter = arrayAdapter
+
 
         binding.brewSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, pos: Int, id: Long) {
@@ -83,11 +87,13 @@ class BrewFragment : Fragment() {
         }
 
         binding.brewFinishButton.setOnClickListener {
-            val dialog = DialogCookingFragment(
-                false, chosenRecipe.toBrewHistoryItem(), this::onDialogCookingDismiss
-            )
-            dialog.isCancelable = false
-            dialog.show(childFragmentManager, "cookingDialog")
+            if (stepList.isNotEmpty()) {
+                val dialog = DialogCookingFragment(
+                    false, chosenRecipe.toBrewHistoryItem(), this::onDialogCookingDismiss
+                )
+                dialog.isCancelable = false
+                dialog.show(childFragmentManager, "cookingDialog")
+            }
         }
 
         return binding.root

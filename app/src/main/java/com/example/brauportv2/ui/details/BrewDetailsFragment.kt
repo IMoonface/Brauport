@@ -13,6 +13,7 @@ import com.example.brauportv2.adapter.BrewAdapter
 import com.example.brauportv2.databinding.FragmentBrewDetailsBinding
 import com.example.brauportv2.model.brew.StepItem
 import com.example.brauportv2.model.recipe.RecipeItem
+import com.example.brauportv2.ui.objects.RecipeDataSource.stepList
 
 class BrewDetailsFragment(private val item: RecipeItem) : Fragment() {
 
@@ -33,7 +34,8 @@ class BrewDetailsFragment(private val item: RecipeItem) : Fragment() {
 
         adapter = BrewAdapter(this::onItemClick)
         binding.brewRecyclerView.adapter = adapter
-        adapter.submitList(createStringList(item))
+        stepList = createStringList(item)
+        adapter.submitList(stepList)
 
         binding.brewTimerStartButton.setOnClickListener {
             if (binding.brewTimerStartButton.text.equals("Start") && startTimer)
@@ -71,6 +73,7 @@ class BrewDetailsFragment(private val item: RecipeItem) : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
+        stepList = emptyList()
         _binding = null
     }
 

@@ -26,7 +26,7 @@
     <string name="brew_without_subtracting_stock">Brew wort, brew and don\'t subtract off stock</string>
     <string name="change_in_stock_text">Change in inventory detected. Please update your recipe!</string>
     <string name="choose_another_recipe">Please choose another recipe!</string>
-    <string name="choose_hop">"Please choose hop first!"</string>
+    <string name="choose_hop">Please choose hop first!</string>
     <string name="confirm">Confirm</string>
     <string name="counter_dummy_text">1</string>
     <string name="created_recipe">Recipe has been created!</string>
@@ -113,7 +113,7 @@
     <string name="updated_recipe">Recipe has been updated!</string>
     <string name="warning">!!! Warning !!!</string>
     <string name="warning_dialog_text">Please note that elements may not be displayed correctly on devices with a lower resolution than 480x800px! You can still use this app, but a minimum resolution of 480x800 is recommended for all elements to display correctly.</string>
-    <string name="warning_text">!! Warning !!\nThere is not enough ingredients in stock. If you do this carry out the recipe now, then stocks will become negative!</string>
+    <string name="warning_text">!!! Warning !!!\nThere is not enough ingredients in stock. If you do carry out this recipe now, then stocks will become negative!</string>
     <string name="yeast">Yeast</string>
     <string name="yeast_not_found">Yeast not found!</string>
     <string name="yes_text">Yes</string>

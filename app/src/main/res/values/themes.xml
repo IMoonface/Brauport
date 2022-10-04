@@ -81,8 +81,17 @@
         <item name="android:textColor">@color/appBars_color</item>
     </style>
 
-    <style name="ToogleButtonTheme" parent="">
-        <item name="boxBackgroundColor">@color/white</item>
+    <style name="CheckedTextViewTheme" parent="Widget.Material3.CheckedTextView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">?android:attr/listPreferredItemHeight</item>
+        <item name="android:ellipsize">marquee</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:paddingStart">8dp</item>
+        <item name="android:paddingEnd">8dp</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Widget.DropDownItem</item>
+        <item name="android:textColor">@color/appBars_color</item>
     </style>
 
 </resources>
