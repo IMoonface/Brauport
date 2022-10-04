@@ -3,7 +3,6 @@ package com.example.brauportv2
 import android.app.Application
 import com.example.brauportv2.data.brewHistory.BrewHistoryDatabase
 import com.example.brauportv2.data.recipe.RecipeDatabase
-import com.example.brauportv2.data.step.StepDatabase
 import com.example.brauportv2.data.stock.StockDatabase
 
 class BaseApplication : Application() {
@@ -12,5 +11,4 @@ class BaseApplication : Application() {
     val brewHistoryDatabase: BrewHistoryDatabase by lazy {
         BrewHistoryDatabase.getDatabase(this)
     }
-    val stepDatabase: StepDatabase by lazy { StepDatabase.getDatabase(this) }
 }

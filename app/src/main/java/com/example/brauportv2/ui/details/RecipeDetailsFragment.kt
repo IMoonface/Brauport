@@ -1,6 +1,5 @@
 package com.example.brauportv2.ui.details
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -24,7 +23,6 @@ import com.example.brauportv2.ui.viewModel.RecipeViewModel
 import com.example.brauportv2.ui.viewModel.RecipeViewModelFactory
 import java.util.*
 
-
 class RecipeDetailsFragment : Fragment() {
 
     private var _binding: FragmentRecipeDetailsBinding? = null
@@ -41,8 +39,6 @@ class RecipeDetailsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentRecipeDetailsBinding.inflate(inflater, container, false)
-
-        val sharedPref = activity?.getSharedPreferences("myPref", Context.MODE_PRIVATE)
 
         binding.recipeDetailsInspectButton.setOnClickListener {
             val dialog = DialogRecipeInspectFragment(
@@ -90,14 +86,6 @@ class RecipeDetailsFragment : Fragment() {
                     Toast.makeText(context, R.string.enter_name, Toast.LENGTH_SHORT).show()
                 else {
                     recipeItem.recipeName = recipeName
-
-                    sharedPref?.let {
-                        sharedPref.edit().apply {
-                            putInt("lastUpdatedRId", recipeItem.rId)
-                            apply()
-                        }
-                    }
-
                     viewModel.updateRecipe(
                         recipeItem.rId,
                         recipeItem.recipeName,

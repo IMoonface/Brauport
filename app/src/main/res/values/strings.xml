@@ -28,6 +28,7 @@
     <string name="choose_another_recipe">Please choose another recipe!</string>
     <string name="choose_hop">"Please choose hop first!"</string>
     <string name="confirm">Confirm</string>
+    <string name="counter_dummy_text">1</string>
     <string name="created_recipe">Recipe has been created!</string>
     <string name="date_dummy">DD-MM-YYYY</string>
     <string name="date_of_completion">Date of completion:</string>
@@ -82,13 +83,12 @@
     <string name="no_ingredients_added">No ingredients have been added yet!</string>
     <string name="no_text">No</string>
     <string name="no_time_chosen">No time was chosen!</string>
-    <string name="not_all_steps_completed">Not all steps completed!</string>
     <string name="only_one_yeast_per_recipe">Only one yeast per recipe possible!</string>
     <string name="open_text">Open</string>
     <string name="pipeing">Piping</string>
     <string name="recipe_add">New Recipe</string>
     <string name="recipe_inspect_name">Recipe Name</string>
-    <string name="refresh_list">List got refreshed</string>
+    <string name="refresh_list">Ingredients list got refreshed</string>
     <string name="refresh_text">Refresh</string>
     <string name="remove_malt">Remove Malt</string>
     <string name="rest">Rests</string>

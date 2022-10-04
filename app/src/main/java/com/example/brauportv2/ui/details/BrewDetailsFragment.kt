@@ -1,30 +1,18 @@
 package com.example.brauportv2.ui.details
 
 import android.annotation.SuppressLint
-import android.content.Context
 import android.os.Bundle
 import android.os.CountDownTimer
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.lifecycleScope
-import com.example.brauportv2.BaseApplication
 import com.example.brauportv2.R
 import com.example.brauportv2.adapter.BrewAdapter
 import com.example.brauportv2.databinding.FragmentBrewDetailsBinding
-import com.example.brauportv2.mapper.toStepList
 import com.example.brauportv2.model.brew.StepItem
-import com.example.brauportv2.model.brew.StepList
 import com.example.brauportv2.model.recipe.RecipeItem
-import com.example.brauportv2.ui.objects.RecipeDataSource.stepList
-import com.example.brauportv2.ui.viewModel.BrewDetailsViewModel
-import com.example.brauportv2.ui.viewModel.BrewDetailsViewModelFactory
-import kotlinx.coroutines.launch
-import java.util.*
 
 class BrewDetailsFragment(private val item: RecipeItem) : Fragment() {
 
@@ -35,13 +23,6 @@ class BrewDetailsFragment(private val item: RecipeItem) : Fragment() {
     private var milliFromItem: Long = 0
     private var milliLeft: Long = 0
     private var startTimer = false
-    private var startList: List<StepList> = emptyList()
-
-    private val viewModel: BrewDetailsViewModel by activityViewModels {
-        BrewDetailsViewModelFactory(
-            (activity?.application as BaseApplication).stepDatabase.stepDao()
-        )
-    }
 
     @SuppressLint("SetTextI18n")
     override fun onCreateView(
@@ -50,57 +31,9 @@ class BrewDetailsFragment(private val item: RecipeItem) : Fragment() {
     ): View {
         _binding = FragmentBrewDetailsBinding.inflate(inflater, container, false)
 
-        val sharedPref = activity?.getSharedPreferences("myPref", Context.MODE_PRIVATE)
-
-        adapter = BrewAdapter(this::onItemClick, this::onToggle)
+        adapter = BrewAdapter(this::onItemClick)
         binding.brewRecyclerView.adapter = adapter
-
-        lifecycleScope.launch {
-            viewModel.allStepLists.collect { list ->
-                startList = list.map { it.toStepList() }.filter { it.rId == item.rId }
-
-                sharedPref?.let {
-                    val lastRecipeId = sharedPref.getInt("lastRecipeId", 0)
-                    val lastUpdatedRId = sharedPref.getInt("lastUpdatedRId", 0)
-
-                    //Hier nochmal nachschauen
-                    if (startList.size >= 2) {
-                        viewModel.deleteStepList(startList[1])
-                    }
-
-                    if (lastRecipeId == item.rId && startList.isNotEmpty()) {
-                        viewModel.deleteStepList(startList[0])
-
-                        sharedPref.edit().apply {
-                            putInt("lastRecipeId", 0)
-                            apply()
-                        }
-
-                        startList = emptyList()
-                    }
-
-                    if (lastUpdatedRId == item.rId && startList.isNotEmpty()) {
-                        Log.i("bin drin", startList[0].toString())
-                        viewModel.deleteStepList(startList[0])
-
-                        sharedPref.edit().apply {
-                            putInt("lastUpdatedRId", 0)
-                            apply()
-                        }
-
-                        startList = emptyList()
-                    }
-
-                    stepList = if (startList.isEmpty()) {
-                        adapter.submitList(createStringList(item))
-                        adapter.currentList
-                    } else {
-                        adapter.submitList(startList[0].steps)
-                        adapter.currentList
-                    }
-                }
-            }
-        }
+        adapter.submitList(createStringList(item))
 
         binding.brewTimerStartButton.setOnClickListener {
             if (binding.brewTimerStartButton.text.equals("Start") && startTimer)
@@ -136,13 +69,8 @@ class BrewDetailsFragment(private val item: RecipeItem) : Fragment() {
         return binding.root
     }
 
-    private fun onToggle(steps: List<StepItem>) {
-        stepList = steps
-    }
-
     override fun onDestroyView() {
         super.onDestroyView()
-        viewModel.updateStepList(startList[0].sId, item.rId, adapter.currentList)
         _binding = null
     }
 
@@ -161,13 +89,13 @@ class BrewDetailsFragment(private val item: RecipeItem) : Fragment() {
 
     @SuppressLint("SetTextI18n")
     private fun timerStart(timeInMilli: Long) {
-        binding.brewTimerText.text = viewModel.minutes(timeInMilli) + ":00"
+        binding.brewTimerText.text = minutes(timeInMilli) + ":00"
         if (startTimer) {
             countDownTimer = object : CountDownTimer((timeInMilli), 1000) {
                 override fun onTick(untilFinish: Long) {
                     milliLeft = untilFinish
                     binding.brewTimerText.text =
-                        viewModel.minutes(untilFinish) + ":" + viewModel.seconds(untilFinish)
+                        minutes(untilFinish) + ":" + seconds(untilFinish)
                 }
 
                 override fun onFinish() {
@@ -180,48 +108,74 @@ class BrewDetailsFragment(private val item: RecipeItem) : Fragment() {
         }
     }
 
+    fun minutes(millis: Long): String {
+        if (millis / 60000 < 1) return "00"
+        if (millis / 60000 in 1..9) return "0" + (millis / 60000)
+        return "" + (millis / 60000)
+    }
+
+    fun seconds(millis: Long): String {
+        var millisSeconds: Long = millis
+        while (millisSeconds >= 60000)
+            millisSeconds -= 60000
+
+        return when (millisSeconds / 1000) {
+            in 0..0 -> "00"
+            in 1..9 -> "0" + +(millisSeconds / 1000)
+            else -> "" + millisSeconds / 1000
+        }
+    }
+
     private fun createStringList(item: RecipeItem): List<StepItem> {
         val newBrewList = mutableListOf<StepItem>()
+        var counter = 1
 
         item.maltList.forEach {
             newBrewList.add(
-                StepItem(it.stockName + " " + it.stockAmount, "", false)
+                StepItem(counter, it.stockName + " " + it.stockAmount, "")
             )
+            counter++
         }
 
-        newBrewList.add(StepItem(getString(R.string.grinding_malt), "", false))
+        newBrewList.add(StepItem(counter, getString(R.string.grinding_malt), ""))
+        counter++
 
         newBrewList.add(
             StepItem(
+                counter,
                 getString(R.string.first_brew) + ": " + item.mainBrew.firstBrew,
-                "",
-                false
+                ""
             )
         )
+        counter++
 
         item.restList.forEach {
             newBrewList.add(
                 StepItem(
+                    counter,
                     it.restTemp + getString(R.string.unit_of_measurement_temp),
                     it.restTime,
-                    false
                 )
             )
+            counter++
         }
 
         newBrewList.add(
             StepItem(
+                counter,
                 getString(R.string.second_brew) + ": " + item.mainBrew.secondBrew,
                 "",
-                false
             )
         )
+        counter++
 
-        newBrewList.add(StepItem(getString(R.string.remove_malt), "", false))
+        newBrewList.add(StepItem(counter, getString(R.string.remove_malt), ""))
+        counter++
 
         newBrewList.add(
-            StepItem(getString(R.string.heat_to_about_temperature), "", false)
+            StepItem(counter, getString(R.string.heat_to_about_temperature), "")
         )
+        counter++
 
         var hoppingListString = ""
 
@@ -230,25 +184,23 @@ class BrewDetailsFragment(private val item: RecipeItem) : Fragment() {
                 hoppingListString += hop.stockName + " " + hop.stockAmount + " "
             }
 
-            newBrewList.add(StepItem(hoppingListString, hopping.hoppingTime, false))
+            newBrewList.add(StepItem(counter, hoppingListString, hopping.hoppingTime))
             hoppingListString = ""
+            counter++
         }
 
-        newBrewList.add(StepItem(getString(R.string.pipeing), "", false))
+        newBrewList.add(StepItem(counter, getString(R.string.pipeing), ""))
+        counter++
 
-        newBrewList.add(StepItem(getString(R.string.let_it_cool_down), "", false))
+        newBrewList.add(StepItem(counter, getString(R.string.let_it_cool_down), ""))
+        counter++
 
         newBrewList.add(
             StepItem(
-                item.yeast.stockName + " " + item.yeast.stockAmount,
-                "",
-                false
+                counter, item.yeast.stockName + " " + item.yeast.stockAmount, ""
             )
         )
-
-        viewModel.addStepList(
-            StepList(UUID.randomUUID().hashCode(), item.rId, newBrewList)
-        )
+        counter++
 
         return newBrewList
     }

@@ -87,18 +87,4 @@ class RoomConverters {
         val json = JSONObject(source)
         return MainBrew(json.getString("first"), json.getString("second"))
     }
-
-    @TypeConverter
-    fun fromStepItemList(list: List<StepItem>): String {
-        val gson = Gson()
-        val type = object : TypeToken<List<StepItem>>() {}.type
-        return gson.toJson(list, type)
-    }
-
-    @TypeConverter
-    fun toStepItemList(source: String): List<StepItem> {
-        val gson = Gson()
-        val type = object : TypeToken<List<StepItem>>() {}.type
-        return gson.fromJson(source, type)
-    }
 }

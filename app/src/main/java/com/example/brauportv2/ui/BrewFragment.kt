@@ -23,7 +23,6 @@ import com.example.brauportv2.ui.dialog.DialogCookingFragment
 import com.example.brauportv2.ui.dialog.DialogInstructionBrewFragment
 import com.example.brauportv2.ui.dialog.DialogQuestionFragment
 import com.example.brauportv2.ui.objects.RecipeDataSource.itemList
-import com.example.brauportv2.ui.objects.RecipeDataSource.stepList
 import com.example.brauportv2.ui.viewModel.BrewViewModel
 import com.example.brauportv2.ui.viewModel.BrewViewModelFactory
 import kotlinx.coroutines.launch
@@ -84,21 +83,11 @@ class BrewFragment : Fragment() {
         }
 
         binding.brewFinishButton.setOnClickListener {
-            var finished = true
-
-            stepList.forEach {
-                if (!it.state)
-                    finished = false
-            }
-
-            if (finished && stepList.isNotEmpty()) {
-                val dialog = DialogCookingFragment(
-                    false, chosenRecipe.toBrewHistoryItem(), this::onDialogCookingDismiss
-                )
-                dialog.isCancelable = false
-                dialog.show(childFragmentManager, "cookingDialog")
-            } else if (stepList.isNotEmpty())
-                Toast.makeText(context, R.string.not_all_steps_completed, Toast.LENGTH_SHORT).show()
+            val dialog = DialogCookingFragment(
+                false, chosenRecipe.toBrewHistoryItem(), this::onDialogCookingDismiss
+            )
+            dialog.isCancelable = false
+            dialog.show(childFragmentManager, "cookingDialog")
         }
 
         return binding.root

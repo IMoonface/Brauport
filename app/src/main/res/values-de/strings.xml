@@ -28,6 +28,7 @@
     <string name="choose_another_recipe">Bitte wählen Sie ein anderes Rezept!</string>
     <string name="choose_hop">"Bitte zuerst Hopfen auswählen!"</string>
     <string name="confirm">Bestätigen</string>
+    <string name="counter_dummy_text">1</string>
     <string name="created_recipe">Rezept wurde erstellt!</string>
     <string name="date_dummy">TT-MM-JJJJ</string>
     <string name="date_of_completion">Fertigstellungsdatum:</string>
@@ -64,7 +65,7 @@
     <string name="instruction_recipe">Anleitung - Rezepte:</string>
     <string name="instruction_s_text">Bitte tragen Sie hier Ihren gesamten Bestand ein, indem Sie auf den \"+ Neu\"-Button drücken und den Namen, sowie die Menge Ihres Bestanditems angeben. Sie können durch einen Klick auf das entsprechende Bestandsitem dessen Daten nachträglich abändern. Nutzen Sie dafür die Suchfunktion, um Ihr Bestandsitem zu finden und zu ändern. Durch Klick auf das \"x\" wird das Bestandsitem aus ihren Bestand gelöscht. Bitte beachten Sie, dass die Namen der Bestanditems nicht einzigartig sind! Suchen Sie deshalb vorher mit der Suchfunktion, ob ihr Bestandsitem bereits existiert bevor Sie ein neues Item anlegen!</string>
     <string name="instruction_stock">Anleitung - Bestand:</string>
-    <string name="invalid_date">Datum nicht valid!</string>
+    <string name="invalid_date">Datum nicht gültig!</string>
     <string name="item_close">Beenden</string>
     <string name="item_main_screen">Hauptmenü</string>
     <string name="let_it_cool_down">Abkühlen lassen</string>
@@ -82,13 +83,12 @@
     <string name="no_ingredients_added">Es wurden noch keine Zutaten hinzugefügt!</string>
     <string name="no_text">Nein</string>
     <string name="no_time_chosen">Es wurde noch keine Zeit ausgewählt!</string>
-    <string name="not_all_steps_completed">Es sind noch Schritte offen</string>
     <string name="only_one_yeast_per_recipe">Nur eine Hefe pro Rezept möglich!</string>
     <string name="open_text">Offen</string>
     <string name="pipeing">Schlauchen</string>
     <string name="recipe_add">Neues Rezept</string>
     <string name="recipe_inspect_name">Rezeptname</string>
-    <string name="refresh_list">Liste wurde aktualisiert!</string>
+    <string name="refresh_list">Zutatenliste wurden aktualisiert!</string>
     <string name="refresh_text">Aktualisieren</string>
     <string name="remove_malt">Malz entnehmen</string>
     <string name="rest">Rasten</string>
