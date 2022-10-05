@@ -21,17 +21,9 @@ class StockViewModel(private val stockDao: StockDao) : ViewModel() {
         }
     }
 
-    fun updateStock(
-        id: Int,
-        itemType: Int,
-        stockName: String,
-        stockAmount: String
-    ) {
+    fun updateStock(id: Int, itemType: Int, stockName: String, stockAmount: String) {
         val stockItem = StockItem(
-            id = id,
-            itemType = itemType,
-            stockName = stockName,
-            stockAmount = stockAmount
+            id = id, itemType = itemType, stockName = stockName, stockAmount = stockAmount
         )
         viewModelScope.launch(Dispatchers.IO) {
             stockDao.update(stockItem.toStockItemData())

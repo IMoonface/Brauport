@@ -1,6 +1,7 @@
 package com.example.brauportv2.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -36,6 +37,7 @@ class BrewFragment : Fragment() {
     private lateinit var chosenRecipe: RecipeItem
     private var stockList = emptyList<StockItem>()
     private var withSubtract = true
+    private var changeDetected = false
 
     private val viewModel: BrewViewModel by activityViewModels {
         BrewViewModelFactory((activity?.application as BaseApplication).stockDatabase.stockDao())
@@ -60,21 +62,20 @@ class BrewFragment : Fragment() {
 
         binding.brewSpinner.adapter = arrayAdapter
 
-
         binding.brewSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, pos: Int, id: Long) {
+                changeDetected = false
                 chosenRecipe = itemList[pos]
                 if (viewModel.proveForNonNegAmount(chosenRecipe, stockList))
-                    childFragmentManager.beginTransaction()
-                        .replace(R.id.brew_fragment_container, BrewDetailsFragment(chosenRecipe))
-                        .disallowAddToBackStack()
-                        .commit()
+                    navigateToBrewDetailsFragment()
                 else if (!viewModel.changeInStock) {
                     val dialog = DialogQuestionFragment(this@BrewFragment::onDialogQuestionDismiss)
                     dialog.isCancelable = false
                     dialog.show(childFragmentManager, "questionDialog")
-                } else
-                    Toast.makeText(context, R.string.change_in_stock_text, Toast.LENGTH_LONG).show()
+                } else {
+                    changeDetected = true
+                    navigateToBrewDetailsFragment()
+                }
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {}
@@ -87,12 +88,17 @@ class BrewFragment : Fragment() {
         }
 
         binding.brewFinishButton.setOnClickListener {
-            if (stepList.isNotEmpty()) {
+            Log.i("change", changeDetected.toString())
+            Log.i("step", stepList.toString())
+
+            if (stepList.isNotEmpty() && !changeDetected) {
                 val dialog = DialogCookingFragment(
                     false, chosenRecipe.toBrewHistoryItem(), this::onDialogCookingDismiss
                 )
                 dialog.isCancelable = false
                 dialog.show(childFragmentManager, "cookingDialog")
+            } else if (changeDetected) {
+                Toast.makeText(context, R.string.change_in_stock_text, Toast.LENGTH_LONG).show()
             }
         }
 
@@ -146,10 +152,14 @@ class BrewFragment : Fragment() {
             findNavController().navigate(BrewFragmentDirections.actionBrewFragmentToHomeFragment())
         else {
             withSubtract = subtract
-            childFragmentManager.beginTransaction()
-                .replace(R.id.brew_fragment_container, BrewDetailsFragment(chosenRecipe))
-                .disallowAddToBackStack()
-                .commit()
+            navigateToBrewDetailsFragment()
         }
+    }
+
+    fun navigateToBrewDetailsFragment() {
+        childFragmentManager.beginTransaction()
+            .replace(R.id.brew_fragment_container, BrewDetailsFragment(chosenRecipe))
+            .disallowAddToBackStack()
+            .commit()
     }
 }

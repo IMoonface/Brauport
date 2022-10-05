@@ -1,6 +1,5 @@
 package com.example.brauportv2.ui.dialog
 
-import android.content.Context.MODE_PRIVATE
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -24,7 +23,6 @@ class DialogCookingFragment(
 
     private var _binding: FragmentDialogCookingBinding? = null
     private val binding get() = _binding!!
-    private val itemId = item.bId
 
     private val viewModel: BrewHistoryViewModel by activityViewModels {
         BrewHistoryViewModelFactory(
@@ -38,8 +36,6 @@ class DialogCookingFragment(
     ): View {
         _binding = FragmentDialogCookingBinding.inflate(inflater, container, false)
 
-        val sharedPref = activity?.getSharedPreferences("myPref", MODE_PRIVATE)
-
         val formatter = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
 
         binding.cookingConfirmButton.setOnClickListener {
@@ -49,16 +45,7 @@ class DialogCookingFragment(
             if (viewModel.dateIsValid(endOfFermentation, formatter) && !update) {
                 onItemAdd(dateOfCompletion, endOfFermentation)
                 Toast.makeText(context, R.string.finished_recipe, Toast.LENGTH_SHORT).show()
-
-                sharedPref?.let {
-                    it.edit().apply {
-                        putInt("lastRecipeId", itemId)
-                        apply()
-                    }
-                }
-
                 onDialogCookingDismiss(false)
-
                 dismiss()
             } else if (viewModel.dateIsValid(endOfFermentation, formatter) && update) {
                 onItemUpdate(endOfFermentation)

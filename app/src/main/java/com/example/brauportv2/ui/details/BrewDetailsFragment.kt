@@ -73,7 +73,6 @@ class BrewDetailsFragment(private val item: RecipeItem) : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        stepList = emptyList()
         _binding = null
     }
 
