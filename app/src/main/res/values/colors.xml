@@ -9,7 +9,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="button_color">#96FF96</color>
     <color name="appBars_color">#121212</color>
-    <color name="appBars_alternate_color">#1A1C19</color>
     <color name="card_color">#D2FFD2</color>
     <color name="background_night_mode">#424242</color>
     <color name="finished_brew_history_item">#D2D2D2</color>
