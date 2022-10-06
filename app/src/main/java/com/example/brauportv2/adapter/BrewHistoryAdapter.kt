@@ -2,8 +2,10 @@ package com.example.brauportv2.adapter
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -41,7 +43,22 @@ class BrewHistoryAdapter(
             brewHistoryEndDate.text =
                 context.getString(R.string.inspect_end_of_fermentation) + " " + item.bEndOfFermentation
 
-            brewHistoryInspect.setOnClickListener {
+            if (item.cardColor == Color.RED) {
+
+                brewHistoryCardView.setCardBackgroundColor(
+                    ContextCompat.getColor(context, R.color.finished_brew_history_item)
+                )
+
+                brewHistoryDeleteButton.setBackgroundColor(
+                    ContextCompat.getColor(context, R.color.finished_brew_history_item_button)
+                )
+
+                brewHistoryInspectButton.setBackgroundColor(
+                    ContextCompat.getColor(context, R.color.finished_brew_history_item_button)
+                )
+            }
+
+            brewHistoryInspectButton.setOnClickListener {
                 onInspectClick(item)
             }
 

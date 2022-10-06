@@ -2,6 +2,7 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/brew_history_card_view"
     style="@style/CardViewTheme">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -39,7 +40,7 @@
             app:layout_constraintTop_toBottomOf="@+id/brew_history_title" />
 
         <Button
-            android:id="@+id/brew_history_inspect"
+            android:id="@+id/brew_history_inspect_button"
             style="@style/IconButtonTheme"
             android:layout_width="50dp"
             android:layout_height="60dp"
@@ -58,7 +59,7 @@
             android:layout_marginEnd="10dp"
             app:icon="@drawable/ic_close"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/brew_history_inspect"
+            app:layout_constraintEnd_toStartOf="@+id/brew_history_inspect_button"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="SpeakableTextPresentCheck" />
 

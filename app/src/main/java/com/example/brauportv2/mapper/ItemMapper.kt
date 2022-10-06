@@ -1,5 +1,6 @@
 package com.example.brauportv2.mapper
 
+import com.example.brauportv2.R
 import com.example.brauportv2.model.brewHistory.BrewHistoryItem
 import com.example.brauportv2.model.brewHistory.BrewHistoryItemData
 import com.example.brauportv2.model.recipe.RecipeItem
@@ -45,7 +46,8 @@ fun RecipeItem.toBrewHistoryItem(): BrewHistoryItem {
         yeast,
         mainBrew,
         "",
-        ""
+        "",
+        1
     )
 }
 
@@ -59,7 +61,8 @@ fun BrewHistoryItemData.toBrewHistoryItem(): BrewHistoryItem {
         bYeast,
         bMainBrew,
         bDateOfCompletion,
-        bEndOfFermentation
+        bEndOfFermentation,
+        cardColor
     )
 }
 
@@ -73,7 +76,8 @@ fun BrewHistoryItem.toBrewHistoryItemData(): BrewHistoryItemData {
         bYeast,
         bMainBrew,
         bDateOfCompletion,
-        bEndOfFermentation
+        bEndOfFermentation,
+        cardColor
     )
 }
 

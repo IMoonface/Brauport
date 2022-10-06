@@ -27,5 +27,7 @@ data class BrewHistoryItemData(
     @ColumnInfo(name = "dateOfCompletion")
     val bDateOfCompletion: String,
     @ColumnInfo(name = "endOfFermentation")
-    val bEndOfFermentation: String
+    val bEndOfFermentation: String,
+    @ColumnInfo(name = "cardColor")
+    var cardColor: Int
 )

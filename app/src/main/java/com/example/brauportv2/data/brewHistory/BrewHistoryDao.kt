@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface BrewHistoryDao {
-    @Query("SELECT * from brew_history_database ORDER BY brewHistoryItemName ASC")
+    @Query("SELECT * from brew_history_database ORDER BY endOfFermentation DESC")
     fun getAllBrewHistoryItems(): Flow<List<BrewHistoryItemData>>
 
     @Query("SELECT * from brew_history_database WHERE bId = :id")

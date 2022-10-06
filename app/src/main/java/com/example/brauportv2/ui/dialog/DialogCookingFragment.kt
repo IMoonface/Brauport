@@ -85,7 +85,8 @@ class DialogCookingFragment(
             item.bYeast,
             item.bMainBrew,
             item.bDateOfCompletion,
-            endOfFermentation
+            endOfFermentation,
+            item.cardColor
         )
     }
 }

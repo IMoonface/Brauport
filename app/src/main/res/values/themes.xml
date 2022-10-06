@@ -12,9 +12,9 @@
 
     <style name="ToolbarTheme" parent="@style/ThemeOverlay.AppCompat.ActionBar">
         <item name="android:background">@color/appBars_color</item>
-        <item name="android:textColorPrimary">@color/button_color</item>
-        <item name="android:textColorSecondary">@color/button_color</item>
-        <item name="actionMenuTextColor">@color/button_color</item>
+        <item name="android:textColorPrimary">@color/card_color</item>
+        <item name="android:textColorSecondary">@color/card_color</item>
+        <item name="actionMenuTextColor">@color/card_color</item>
     </style>
 
     <style name="Theme.BrauportV2.NoActionBar">
@@ -29,8 +29,9 @@
     </style>
 
     <style name="ButtomNavTheme" parent="Widget.AppCompat.Toolbar.Button.Navigation">
-        <item name="itemIconTint">@color/button_color</item>
-        <item name="itemTextColor">@color/button_color</item>
+        <item name="android:background">@color/appBars_color</item>
+        <item name="itemIconTint">@color/card_color</item>
+        <item name="itemTextColor">@color/card_color</item>
     </style>
 
     <style name="CardViewTheme" parent="CardView">

@@ -1,5 +1,6 @@
 package com.example.brauportv2.ui
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -18,12 +19,15 @@ import com.example.brauportv2.ui.dialog.DialogRecipeInspectFragment
 import com.example.brauportv2.ui.viewModel.BrewHistoryViewModel
 import com.example.brauportv2.ui.viewModel.BrewHistoryViewModelFactory
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
+import java.util.*
 
 class BrewHistoryFragment : Fragment() {
 
     private var _binding: FragmentBrewHistoryBinding? = null
     private val binding get() = _binding!!
     private lateinit var adapter: BrewHistoryAdapter
+    private var startList = emptyList<BrewHistoryItem>()
 
     private val viewModel: BrewHistoryViewModel by activityViewModels {
         BrewHistoryViewModelFactory(
@@ -40,9 +44,23 @@ class BrewHistoryFragment : Fragment() {
         adapter = BrewHistoryAdapter(this::onInspectItem, this::onItemClick, this::onDeleteClick)
         binding.brewHistoryRecyclerView.adapter = adapter
 
+        val formatter = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
+
+        val actualDate = formatter.format(Calendar.getInstance().time)
+
         lifecycleScope.launch {
             viewModel.allBrewHistoryItems.collect { it ->
-                adapter.submitList(it.map { it.toBrewHistoryItem() })
+                startList = it.map { it.toBrewHistoryItem() }
+                startList.forEach { brewHistoryItem ->
+                    val endOfFermentation = formatter.parse(brewHistoryItem.bEndOfFermentation)
+                    endOfFermentation?.let {
+                        if (endOfFermentation.before(formatter.parse(actualDate)))
+                            brewHistoryItem.cardColor = Color.RED
+                        else
+                            brewHistoryItem.cardColor = 1
+                    }
+                }
+                adapter.submitList(startList)
             }
         }
 

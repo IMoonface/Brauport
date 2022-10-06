@@ -14,5 +14,6 @@ data class BrewHistoryItem(
     var bYeast: StockItem,
     var bMainBrew: MainBrew,
     var bDateOfCompletion: String,
-    var bEndOfFermentation: String
+    var bEndOfFermentation: String,
+    var cardColor: Int
 )
