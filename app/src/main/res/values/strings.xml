@@ -24,6 +24,8 @@
     <string name="brew_text">Pour</string>
     <string name="brew_with_subtracting_stock">Brew wort, subtract off stock</string>
     <string name="brew_without_subtracting_stock">Brew wort, brew and don\'t subtract off stock</string>
+    <string name="channel_name">Brew history notification channel</string>
+    <string name="channel_description">Informs whenever a fermentation has finished</string>
     <string name="change_in_stock_text">Change in inventory detected. Please update your recipe!</string>
     <string name="choose_another_recipe">Please choose another recipe!</string>
     <string name="choose_hop">Please choose hop first!</string>
@@ -83,6 +85,8 @@
     <string name="no_ingredients_added">No ingredients have been added yet!</string>
     <string name="no_text">No</string>
     <string name="no_time_chosen">No time was chosen!</string>
+    <string name="notification_text">The fermentation of %1$s is finished</string>
+    <string name="notification_title">Fermentation completed</string>
     <string name="only_one_yeast_per_recipe">Only one yeast per recipe possible!</string>
     <string name="open_text">Open</string>
     <string name="pipeing">Piping</string>

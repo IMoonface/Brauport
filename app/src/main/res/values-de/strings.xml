@@ -24,6 +24,8 @@
     <string name="brew_text">Brauen</string>
     <string name="brew_with_subtracting_stock">Trotzdem Brauen und Bestand abziehen</string>
     <string name="brew_without_subtracting_stock">Trotzdem Brauen und Bestand nicht abziehen</string>
+    <string name="channel_name">Brauhistorien Benachrichtigungskanal</string>
+    <string name="channel_description">Informiert, wenn eine Gärung beendet ist</string>
     <string name="change_in_stock_text">Änderung im Bestand entdeckt.\nBitte aktualisieren Sie ihr Rezept!</string>
     <string name="choose_another_recipe">Bitte wählen Sie ein anderes Rezept!</string>
     <string name="choose_hop">"Bitte zuerst Hopfen auswählen!"</string>
@@ -83,6 +85,8 @@
     <string name="no_ingredients_added">Es wurden noch keine Zutaten hinzugefügt!</string>
     <string name="no_text">Nein</string>
     <string name="no_time_chosen">Es wurde noch keine Zeit ausgewählt!</string>
+    <string name="notification_text">Die Gärung von %1$s wurde vollendet</string>
+    <string name="notification_title">Gärung abgeschlossen</string>
     <string name="only_one_yeast_per_recipe">Nur eine Hefe pro Rezept möglich!</string>
     <string name="open_text">Offen</string>
     <string name="pipeing">Schlauchen</string>

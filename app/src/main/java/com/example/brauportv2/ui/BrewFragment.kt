@@ -25,8 +25,8 @@ import com.example.brauportv2.ui.dialog.DialogInstructionBrewFragment
 import com.example.brauportv2.ui.dialog.DialogQuestionFragment
 import com.example.brauportv2.ui.objects.RecipeDataSource.itemList
 import com.example.brauportv2.ui.objects.RecipeDataSource.stepList
-import com.example.brauportv2.ui.viewModel.BrewViewModel
-import com.example.brauportv2.ui.viewModel.BrewViewModelFactory
+import com.example.brauportv2.ui.viewModel.StockViewModel
+import com.example.brauportv2.ui.viewModel.StockViewModelFactory
 import kotlinx.coroutines.launch
 
 class BrewFragment : Fragment() {
@@ -39,8 +39,8 @@ class BrewFragment : Fragment() {
     private var withSubtract = true
     private var changeDetected = false
 
-    private val viewModel: BrewViewModel by activityViewModels {
-        BrewViewModelFactory((activity?.application as BaseApplication).stockDatabase.stockDao())
+    private val viewModel: StockViewModel by activityViewModels {
+        StockViewModelFactory((activity?.application as BaseApplication).stockDatabase.stockDao())
     }
 
     override fun onCreateView(

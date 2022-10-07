@@ -95,6 +95,11 @@ class RecipeFragment : Fragment() {
         return binding.root
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
     private fun onInspectClick(recipe: RecipeItem) {
         val dialog = DialogRecipeInspectFragment(recipe.toBrewHistoryItem(), false)
         dialog.isCancelable = false
@@ -118,10 +123,5 @@ class RecipeFragment : Fragment() {
 
     private fun onDeleteConfirm(item: BrewHistoryItem) {
         viewModel.deleteRecipe(item.toRecipeItem())
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 }

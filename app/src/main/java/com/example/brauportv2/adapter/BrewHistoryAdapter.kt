@@ -43,7 +43,7 @@ class BrewHistoryAdapter(
             brewHistoryEndDate.text =
                 context.getString(R.string.inspect_end_of_fermentation) + " " + item.bEndOfFermentation
 
-            if (item.cardColor == Color.RED) {
+            if (item.cardColor == Color.GRAY) {
 
                 brewHistoryCardView.setCardBackgroundColor(
                     ContextCompat.getColor(context, R.color.finished_brew_history_item)

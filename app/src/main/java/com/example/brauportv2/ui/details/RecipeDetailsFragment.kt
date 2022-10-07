@@ -11,6 +11,7 @@ import com.example.brauportv2.BaseApplication
 import com.example.brauportv2.R
 import com.example.brauportv2.databinding.FragmentRecipeDetailsBinding
 import com.example.brauportv2.mapper.toBrewHistoryItem
+import com.example.brauportv2.model.recipe.RecipeItem
 import com.example.brauportv2.ui.dialog.*
 import com.example.brauportv2.ui.objects.RecipeDataSource.recipeItem
 import com.example.brauportv2.ui.objects.RecipeDataSource.startHoppingList
@@ -79,32 +80,17 @@ class RecipeDetailsFragment : Fragment() {
         }
 
         binding.recipeDetailsSave.setOnClickListener {
-            val recipeName = binding.recipeDetailsTextInput.text.toString()
+            recipeItem.recipeName = binding.recipeDetailsTextInput.text.toString()
 
-            if (update) {
-                if (recipeName == "")
-                    Toast.makeText(context, R.string.enter_name, Toast.LENGTH_SHORT).show()
-                else {
-                    recipeItem.recipeName = recipeName
-                    viewModel.updateRecipe(
-                        recipeItem.rId,
-                        recipeItem.recipeName,
-                        recipeItem.maltList,
-                        recipeItem.restList,
-                        recipeItem.hoppingList,
-                        recipeItem.yeast,
-                        recipeItem.mainBrew
-                    )
-                    Toast.makeText(context, R.string.updated_recipe, Toast.LENGTH_SHORT).show()
-                }
+            if (recipeItem.recipeName == "")
+                Toast.makeText(context, R.string.enter_name, Toast.LENGTH_SHORT).show()
+            else if (update) {
+                onItemUpdate(recipeItem)
+                Toast.makeText(context, R.string.updated_recipe, Toast.LENGTH_SHORT).show()
             } else {
                 recipeItem.rId = UUID.randomUUID().hashCode()
-                recipeItem.recipeName = recipeName
 
-                if (recipeItem.recipeName == "" || recipeItem.maltList == startMaltList ||
-                    recipeItem.restList == startRestList || recipeItem.mainBrew == startMainBrew ||
-                    recipeItem.hoppingList == startHoppingList || recipeItem.yeast == startYeast
-                )
+                if (recipeValid())
                     Toast.makeText(context, R.string.set_all_attributes, Toast.LENGTH_SHORT).show()
                 else {
                     viewModel.addRecipe(recipeItem)
@@ -119,5 +105,23 @@ class RecipeDetailsFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun onItemUpdate(item: RecipeItem) {
+        viewModel.updateRecipe(
+            item.rId,
+            item.recipeName,
+            item.maltList,
+            item.restList,
+            item.hoppingList,
+            item.yeast,
+            item.mainBrew
+        )
+    }
+
+    private fun recipeValid(): Boolean {
+        return (recipeItem.recipeName == "" || recipeItem.maltList == startMaltList ||
+                recipeItem.restList == startRestList || recipeItem.mainBrew == startMainBrew ||
+                recipeItem.hoppingList == startHoppingList || recipeItem.yeast == startYeast)
     }
 }

@@ -86,7 +86,8 @@ class DialogCookingFragment(
             item.bMainBrew,
             item.bDateOfCompletion,
             endOfFermentation,
-            item.cardColor
+            item.cardColor,
+            item.brewFinished
         )
     }
 }

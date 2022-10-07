@@ -75,7 +75,9 @@ class YeastStockFragment : Fragment() {
         }
 
         binding.yeastAddButton.setOnClickListener {
-            openAddDialog()
+            val dialog = DialogStockFragment(hashCode(), YEAST.ordinal, false)
+            dialog.isCancelable = false
+            dialog.show(childFragmentManager, "yeastAddDialog")
         }
 
         binding.yeastTextInput.addTextChangedListener(textWatcher)
@@ -94,20 +96,10 @@ class YeastStockFragment : Fragment() {
         _binding = null
     }
 
-    private fun openAddDialog() {
-        val dialog = DialogStockFragment(hashCode(), YEAST.ordinal, false)
-        dialog.isCancelable = false
-        dialog.show(childFragmentManager, "yeastAddDialog")
-    }
-
-    private fun openUpdateDialog(item: StockItem) {
+    private fun onItemClick(item: StockItem) {
         val dialog = DialogStockFragment(item.id, YEAST.ordinal, true)
         dialog.isCancelable = false
         dialog.show(childFragmentManager, "yeastUpdateDialog")
-    }
-
-    private fun onItemClick(item: StockItem) {
-        openUpdateDialog(item)
     }
 
     private fun onDeleteClick(item: StockItem) {

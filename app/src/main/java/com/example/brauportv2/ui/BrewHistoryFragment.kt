@@ -45,7 +45,6 @@ class BrewHistoryFragment : Fragment() {
         binding.brewHistoryRecyclerView.adapter = adapter
 
         val formatter = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
-
         val actualDate = formatter.format(Calendar.getInstance().time)
 
         lifecycleScope.launch {
@@ -55,9 +54,7 @@ class BrewHistoryFragment : Fragment() {
                     val endOfFermentation = formatter.parse(brewHistoryItem.bEndOfFermentation)
                     endOfFermentation?.let {
                         if (endOfFermentation.before(formatter.parse(actualDate)))
-                            brewHistoryItem.cardColor = Color.RED
-                        else
-                            brewHistoryItem.cardColor = 1
+                            brewHistoryItem.cardColor = Color.GRAY
                     }
                 }
                 adapter.submitList(startList)

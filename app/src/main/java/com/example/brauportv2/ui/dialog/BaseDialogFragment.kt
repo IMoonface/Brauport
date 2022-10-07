@@ -34,7 +34,8 @@ abstract class BaseDialogFragment : DialogFragment() {
                         if (!outRect.contains(event.rawX.toInt(), event.rawY.toInt())) {
                             currentFocus.clearFocus()
                             val imm: InputMethodManager =
-                                context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                                context.getSystemService(Context.INPUT_METHOD_SERVICE)
+                                        as InputMethodManager
                             imm.hideSoftInputFromWindow(currentFocus.windowToken, 0)
                         }
                     }

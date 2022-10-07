@@ -75,7 +75,9 @@ class HopStockFragment : Fragment() {
         }
 
         binding.hopAddButton.setOnClickListener {
-            openAddDialog()
+            val dialog = DialogStockFragment(hashCode(), HOP.ordinal, false)
+            dialog.isCancelable = false
+            dialog.show(childFragmentManager, "hopAddDialog")
         }
 
         binding.hopTextInput.addTextChangedListener(textWatcher)
@@ -94,20 +96,10 @@ class HopStockFragment : Fragment() {
         _binding = null
     }
 
-    private fun openAddDialog() {
-        val dialog = DialogStockFragment(hashCode(), HOP.ordinal, false)
-        dialog.isCancelable = false
-        dialog.show(childFragmentManager, "hopAddDialog")
-    }
-
-    private fun openUpdateDialog(item: StockItem) {
+    private fun onItemClick(item: StockItem) {
         val dialog = DialogStockFragment(item.id, HOP.ordinal, true)
         dialog.isCancelable = false
         dialog.show(childFragmentManager, "hopUpdateDialog")
-    }
-
-    private fun onItemClick(item: StockItem) {
-        openUpdateDialog(item)
     }
 
     private fun onDeleteClick(item: StockItem) {

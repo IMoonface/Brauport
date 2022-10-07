@@ -8,28 +8,78 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.hardware.display.DisplayManagerCompat
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.brauportv2.databinding.ActivityMainBinding
+import com.example.brauportv2.mapper.toBrewHistoryItem
+import com.example.brauportv2.model.brewHistory.BrewHistoryItem
 import com.example.brauportv2.ui.dialog.DialogWarningFragment
+import com.example.brauportv2.ui.viewModel.BrewHistoryViewModel
+import com.example.brauportv2.ui.viewModel.BrewHistoryViewModelFactory
+import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var navController: NavController
     private lateinit var binding: ActivityMainBinding
+    private lateinit var startList: List<BrewHistoryItem>
+
+    private val viewModel: BrewHistoryViewModel by viewModels {
+        BrewHistoryViewModelFactory(
+            (application as BaseApplication).brewHistoryDatabase.brewHistoryDao()
+        )
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment)
-                as NavHostFragment
+        val service = NotificationService(applicationContext)
+
+        service.createNotificationChannel(
+            getString(R.string.channel_name),
+            getString(R.string.channel_description)
+        )
+
+        val formatter = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
+        val actualDate = formatter.format(Calendar.getInstance().time)
+
+        lifecycleScope.launch {
+            viewModel.allBrewHistoryItems.collect { it ->
+                startList = it.map { it.toBrewHistoryItem() }
+                startList.forEach { brewHistoryItem ->
+                    val endOfFermentation = formatter.parse(brewHistoryItem.bEndOfFermentation)
+                    endOfFermentation?.let {
+                        val dateIsOver = endOfFermentation.before(formatter.parse(actualDate))
+
+                        if (dateIsOver && !brewHistoryItem.brewFinished) {
+                            brewHistoryItem.brewFinished = true
+
+                            service.showNotification(
+                                getString(R.string.notification_title),
+                                String.format(
+                                    getString(R.string.notification_text), brewHistoryItem.bName
+                                )
+                            )
+                        }
+                    }
+                    onItemUpdate(brewHistoryItem)
+                }
+            }
+        }
+
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = navHostFragment.navController
 
         val appBarConfiguration = AppBarConfiguration(
@@ -76,5 +126,21 @@ class MainActivity : AppCompatActivity() {
             }
         }
         return super.dispatchTouchEvent(event)
+    }
+
+    private fun onItemUpdate(item: BrewHistoryItem) {
+        viewModel.updateBrewHistoryItem(
+            item.bId,
+            item.bName,
+            item.bMaltList,
+            item.bRestList,
+            item.bHoppingList,
+            item.bYeast,
+            item.bMainBrew,
+            item.bDateOfCompletion,
+            item.bEndOfFermentation,
+            item.cardColor,
+            item.brewFinished
+        )
     }
 }
