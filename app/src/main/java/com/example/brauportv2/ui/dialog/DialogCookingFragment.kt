@@ -1,5 +1,6 @@
 package com.example.brauportv2.ui.dialog
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,7 +11,6 @@ import com.example.brauportv2.BaseApplication
 import com.example.brauportv2.R
 import com.example.brauportv2.databinding.FragmentDialogCookingBinding
 import com.example.brauportv2.model.brewHistory.BrewHistoryItem
-import com.example.brauportv2.ui.objects.RecipeDataSource.updateEndOfFermentation
 import com.example.brauportv2.ui.viewModel.BrewHistoryViewModel
 import com.example.brauportv2.ui.viewModel.BrewHistoryViewModelFactory
 import java.text.SimpleDateFormat
@@ -38,10 +38,21 @@ class DialogCookingFragment(
         _binding = FragmentDialogCookingBinding.inflate(inflater, container, false)
 
         val formatter = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
+        val actualDate = formatter.format(Calendar.getInstance().time)
 
         binding.cookingConfirmButton.setOnClickListener {
             val dateOfCompletion = formatter.format(Calendar.getInstance().time)
             val endOfFermentation = binding.cookingText.text.toString()
+
+            val date = formatter.parse(endOfFermentation)
+            date?.let {
+                if (date.before(formatter.parse(actualDate))) {
+                    item.cardColor = Color.GRAY
+                } else {
+                    item.cardColor = 1
+                    item.brewFinished = false
+                }
+            }
 
             if (viewModel.dateIsValid(endOfFermentation, formatter) && !update) {
                 onItemAdd(dateOfCompletion, endOfFermentation)
@@ -77,7 +88,6 @@ class DialogCookingFragment(
     }
 
     private fun onItemUpdate(endOfFermentation: String) {
-        updateEndOfFermentation = true
         viewModel.updateBrewHistoryItem(
             item.bId,
             item.bName,

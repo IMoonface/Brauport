@@ -28,6 +28,12 @@ class BrewHistoryViewModel(private val brewHistoryDao: BrewHistoryDao) : ViewMod
         }
     }
 
+    fun updateBrewFinished(id: Int, brewFinished: Boolean) {
+        viewModelScope.launch {
+            brewHistoryDao.updateBrewFinished(id, brewFinished)
+        }
+    }
+
     fun updateBrewHistoryItem(
         bId: Int,
         bName: String,
