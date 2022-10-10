@@ -29,4 +29,5 @@ object RecipeDataSource {
 
     var itemList = emptyList<RecipeItem>()
     var stepList = emptyList<StepItem>()
+    var updateEndOfFermentation = false
 }

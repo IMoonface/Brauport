@@ -10,6 +10,7 @@ import com.example.brauportv2.BaseApplication
 import com.example.brauportv2.R
 import com.example.brauportv2.databinding.FragmentDialogCookingBinding
 import com.example.brauportv2.model.brewHistory.BrewHistoryItem
+import com.example.brauportv2.ui.objects.RecipeDataSource.updateEndOfFermentation
 import com.example.brauportv2.ui.viewModel.BrewHistoryViewModel
 import com.example.brauportv2.ui.viewModel.BrewHistoryViewModelFactory
 import java.text.SimpleDateFormat
@@ -76,6 +77,7 @@ class DialogCookingFragment(
     }
 
     private fun onItemUpdate(endOfFermentation: String) {
+        updateEndOfFermentation = true
         viewModel.updateBrewHistoryItem(
             item.bId,
             item.bName,

@@ -9,6 +9,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.brauportv2.BaseApplication
+import com.example.brauportv2.NotificationService
+import com.example.brauportv2.R
 import com.example.brauportv2.adapter.BrewHistoryAdapter
 import com.example.brauportv2.databinding.FragmentBrewHistoryBinding
 import com.example.brauportv2.mapper.toBrewHistoryItem
@@ -16,6 +18,7 @@ import com.example.brauportv2.model.brewHistory.BrewHistoryItem
 import com.example.brauportv2.ui.dialog.DialogCookingFragment
 import com.example.brauportv2.ui.dialog.DialogDeleteFragment
 import com.example.brauportv2.ui.dialog.DialogRecipeInspectFragment
+import com.example.brauportv2.ui.objects.RecipeDataSource.updateEndOfFermentation
 import com.example.brauportv2.ui.viewModel.BrewHistoryViewModel
 import com.example.brauportv2.ui.viewModel.BrewHistoryViewModelFactory
 import kotlinx.coroutines.launch
@@ -41,6 +44,13 @@ class BrewHistoryFragment : Fragment() {
     ): View {
         _binding = FragmentBrewHistoryBinding.inflate(inflater, container, false)
 
+        val service = NotificationService(requireContext())
+
+        service.createNotificationChannel(
+            getString(R.string.channel_name),
+            getString(R.string.channel_description)
+        )
+
         adapter = BrewHistoryAdapter(this::onInspectItem, this::onItemClick, this::onDeleteClick)
         binding.brewHistoryRecyclerView.adapter = adapter
 
@@ -53,15 +63,27 @@ class BrewHistoryFragment : Fragment() {
                 startList.forEach { brewHistoryItem ->
                     val endOfFermentation = formatter.parse(brewHistoryItem.bEndOfFermentation)
                     endOfFermentation?.let {
-                        if (endOfFermentation.before(formatter.parse(actualDate)))
+                        val dateIsOver = endOfFermentation.before(formatter.parse(actualDate))
+                        if (dateIsOver) {
                             brewHistoryItem.cardColor = Color.GRAY
+                        } else {
+                            brewHistoryItem.cardColor = Color.GREEN
+                        }
                     }
+                    if (!updateEndOfFermentation)
+                        onItemUpdate(brewHistoryItem)
+                    updateEndOfFermentation = false
                 }
                 adapter.submitList(startList)
             }
         }
 
         return binding.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     private fun onInspectItem(item: BrewHistoryItem) {
@@ -84,6 +106,22 @@ class BrewHistoryFragment : Fragment() {
 
     private fun onDeleteConfirm(item: BrewHistoryItem) {
         viewModel.deleteBrewHistoryItem(item)
+    }
+
+    private fun onItemUpdate(item: BrewHistoryItem) {
+        viewModel.updateBrewHistoryItem(
+            item.bId,
+            item.bName,
+            item.bMaltList,
+            item.bRestList,
+            item.bHoppingList,
+            item.bYeast,
+            item.bMainBrew,
+            item.bDateOfCompletion,
+            item.bEndOfFermentation,
+            item.cardColor,
+            item.brewFinished
+        )
     }
 
     private fun onDialogCookingDismiss(abort: Boolean) {}
