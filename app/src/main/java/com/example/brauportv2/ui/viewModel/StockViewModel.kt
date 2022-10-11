@@ -9,7 +9,6 @@ import com.example.brauportv2.mapper.toStockItemData
 import com.example.brauportv2.model.recipe.RecipeItem
 import com.example.brauportv2.model.stock.StockItem
 import com.example.brauportv2.model.stock.StockItemData
-import com.example.brauportv2.model.stock.StockItemType
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
@@ -45,18 +44,18 @@ class StockViewModel(private val stockDao: StockDao) : ViewModel() {
         changeInStock = false
 
         item.maltList.forEach { malt ->
-            if (!calcForShortage(malt, list, StockItemType.MALT))
+            if (!calcForShortage(malt, list))
                 return false
         }
 
         item.hoppingList.forEach { hopping ->
             hopping.hopList.forEach { hop ->
-                if (!calcForShortage(hop, list, StockItemType.HOP))
+                if (!calcForShortage(hop, list))
                     return false
             }
         }
 
-        if (!calcForShortage(item.yeast, list, StockItemType.YEAST))
+        if (!calcForShortage(item.yeast, list))
             return false
 
         return true
@@ -65,12 +64,8 @@ class StockViewModel(private val stockDao: StockDao) : ViewModel() {
     private fun calcForShortage(
         item: StockItem,
         list: List<StockItem>,
-        itemType: StockItemType
     ): Boolean {
-        val index = list
-            .filter { it.itemType == itemType.ordinal }
-            .map { it.toSNoAmount() }
-            .indexOf(item.toSNoAmount())
+        val index = list.map { it.toSNoAmount() }.indexOf(item.toSNoAmount())
         if (index == -1) {
             changeInStock = true
             return false

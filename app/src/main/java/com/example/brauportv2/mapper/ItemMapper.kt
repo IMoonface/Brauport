@@ -4,7 +4,7 @@ import com.example.brauportv2.model.brewHistory.BrewHistoryItem
 import com.example.brauportv2.model.brewHistory.BrewHistoryItemData
 import com.example.brauportv2.model.recipe.RecipeItem
 import com.example.brauportv2.model.recipe.RecipeItemData
-import com.example.brauportv2.model.recipe.SNoAmount
+import com.example.brauportv2.model.stock.SNoAmount
 import com.example.brauportv2.model.stock.StockItem
 import com.example.brauportv2.model.stock.StockItemData
 

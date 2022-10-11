@@ -13,7 +13,7 @@ import com.example.brauportv2.adapter.RecipeStockAdapter
 import com.example.brauportv2.databinding.FragmentDialogMaltsBinding
 import com.example.brauportv2.mapper.toSNoAmount
 import com.example.brauportv2.mapper.toStockItem
-import com.example.brauportv2.model.recipe.SNoAmount
+import com.example.brauportv2.model.stock.SNoAmount
 import com.example.brauportv2.model.stock.StockItem
 import com.example.brauportv2.model.stock.StockItemType.MALT
 import com.example.brauportv2.ui.objects.RecipeDataSource.recipeItem

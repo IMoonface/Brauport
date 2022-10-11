@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.brauportv2.R
 import com.example.brauportv2.databinding.CardRecipeStockBinding
 import com.example.brauportv2.mapper.toSNoAmount
-import com.example.brauportv2.model.recipe.SNoAmount
+import com.example.brauportv2.model.stock.SNoAmount
 import com.example.brauportv2.model.stock.StockItem
 
 class RecipeStockAdapter(

@@ -12,7 +12,7 @@ import com.example.brauportv2.R
 import com.example.brauportv2.adapter.RecipeStockAdapter
 import com.example.brauportv2.databinding.FragmentDialogYeastBinding
 import com.example.brauportv2.mapper.toStockItem
-import com.example.brauportv2.model.recipe.SNoAmount
+import com.example.brauportv2.model.stock.SNoAmount
 import com.example.brauportv2.model.stock.StockItem
 import com.example.brauportv2.model.stock.StockItemType.YEAST
 import com.example.brauportv2.ui.objects.RecipeDataSource.recipeItem

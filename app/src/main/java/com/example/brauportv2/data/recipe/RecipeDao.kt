@@ -9,9 +9,6 @@ interface RecipeDao {
     @Query("SELECT * from recipe_database ORDER BY recipeName ASC")
     fun getAllRecipeItems(): Flow<List<RecipeItemData>>
 
-    @Query("SELECT * from recipe_database WHERE rId = :id")
-    fun getRecipeItem(id: Int): Flow<RecipeItemData>
-
     @Insert
     suspend fun insert(item: RecipeItemData)
 

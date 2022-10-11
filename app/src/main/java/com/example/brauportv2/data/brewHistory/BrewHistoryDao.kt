@@ -9,9 +9,6 @@ interface BrewHistoryDao {
     @Query("SELECT * from brew_history_database ORDER BY endOfFermentation DESC")
     fun getAllBrewHistoryItems(): Flow<List<BrewHistoryItemData>>
 
-    @Query("SELECT * from brew_history_database WHERE bId = :id")
-    fun getBrewHistoryItem(id: Int): Flow<BrewHistoryItemData>
-
     @Query("UPDATE brew_history_database SET brewFinished = :brewFinished WHERE bId = :id")
     suspend fun updateBrewFinished(id: Int, brewFinished: Boolean)
 

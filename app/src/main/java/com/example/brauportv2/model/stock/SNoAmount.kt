@@ -1,4 +1,4 @@
-package com.example.brauportv2.model.recipe
+package com.example.brauportv2.model.stock
 
 data class SNoAmount(
     val id: Int,
