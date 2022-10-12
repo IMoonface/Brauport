@@ -34,7 +34,8 @@ class DialogMaltsFragment : BaseDialogFragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentDialogMaltsBinding.inflate(inflater, container, false)

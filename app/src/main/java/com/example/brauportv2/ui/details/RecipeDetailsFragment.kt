@@ -35,7 +35,8 @@ class RecipeDetailsFragment : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentRecipeDetailsBinding.inflate(inflater, container, false)
@@ -89,8 +90,10 @@ class RecipeDetailsFragment : Fragment() {
                 onItemUpdate(recipeItem)
                 Toast.makeText(context, R.string.updated_recipe, Toast.LENGTH_SHORT).show()
                 findNavController()
-                    .navigate(RecipeDetailsFragmentDirections
-                        .actionRecipeDetailsFragmentToRecipeFragment())
+                    .navigate(
+                        RecipeDetailsFragmentDirections
+                            .actionRecipeDetailsFragmentToRecipeFragment()
+                    )
             } else {
                 recipeItem.rId = UUID.randomUUID().hashCode()
 
@@ -100,8 +103,10 @@ class RecipeDetailsFragment : Fragment() {
                     viewModel.addRecipe(recipeItem)
                     Toast.makeText(context, R.string.created_recipe, Toast.LENGTH_SHORT).show()
                     findNavController()
-                        .navigate(RecipeDetailsFragmentDirections
-                            .actionRecipeDetailsFragmentToRecipeFragment())
+                        .navigate(
+                            RecipeDetailsFragmentDirections
+                                .actionRecipeDetailsFragmentToRecipeFragment()
+                        )
                 }
             }
         }

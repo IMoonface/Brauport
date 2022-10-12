@@ -26,7 +26,8 @@ class BrewDetailsFragment(private val item: RecipeItem) : Fragment() {
 
     @SuppressLint("SetTextI18n")
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentBrewDetailsBinding.inflate(inflater, container, false)
@@ -109,8 +110,8 @@ class BrewDetailsFragment(private val item: RecipeItem) : Fragment() {
     }
 
     fun minutes(millis: Long): String {
-        if (millis / 60000 < 1) return "00"
-        if (millis / 60000 in 1..9) return "0" + (millis / 60000)
+        if (millis / 60000 < 1) return "00:"
+        if (millis / 60000 in 1..9) return "0" + (millis / 60000) + ":"
         return "" + (millis / 60000) + ":"
     }
 

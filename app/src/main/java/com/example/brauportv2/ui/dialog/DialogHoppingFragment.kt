@@ -34,7 +34,8 @@ class DialogHoppingFragment : BaseDialogFragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentDialogHoppingBinding.inflate(inflater, container, false)
