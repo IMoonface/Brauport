@@ -7,19 +7,17 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import com.example.brauportv2.BaseApplication
 import com.example.brauportv2.R
 import com.example.brauportv2.databinding.FragmentRecipeDetailsBinding
 import com.example.brauportv2.mapper.toBrewHistoryItem
+import com.example.brauportv2.model.recipe.MainBrew
 import com.example.brauportv2.model.recipe.RecipeItem
+import com.example.brauportv2.model.stock.StockItem
+import com.example.brauportv2.model.stock.StockItemType
 import com.example.brauportv2.ui.dialog.*
 import com.example.brauportv2.ui.objects.RecipeDataSource.recipeItem
-import com.example.brauportv2.ui.objects.RecipeDataSource.startHoppingList
-import com.example.brauportv2.ui.objects.RecipeDataSource.startMainBrew
-import com.example.brauportv2.ui.objects.RecipeDataSource.startMaltList
-import com.example.brauportv2.ui.objects.RecipeDataSource.startRestList
-import com.example.brauportv2.ui.objects.RecipeDataSource.startYeast
-import com.example.brauportv2.ui.objects.RecipeDataSource.update
 import com.example.brauportv2.ui.viewModel.RecipeViewModel
 import com.example.brauportv2.ui.viewModel.RecipeViewModelFactory
 import java.util.*
@@ -28,6 +26,7 @@ class RecipeDetailsFragment : Fragment() {
 
     private var _binding: FragmentRecipeDetailsBinding? = null
     private val binding get() = _binding!!
+    private var update = false
 
     private val viewModel: RecipeViewModel by activityViewModels {
         RecipeViewModelFactory(
@@ -40,6 +39,8 @@ class RecipeDetailsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentRecipeDetailsBinding.inflate(inflater, container, false)
+
+        update = arguments?.getBoolean("recipeUpdate") ?: false
 
         binding.recipeDetailsInspectButton.setOnClickListener {
             val dialog = DialogRecipeInspectFragment(
@@ -87,6 +88,9 @@ class RecipeDetailsFragment : Fragment() {
             else if (update) {
                 onItemUpdate(recipeItem)
                 Toast.makeText(context, R.string.updated_recipe, Toast.LENGTH_SHORT).show()
+                findNavController()
+                    .navigate(RecipeDetailsFragmentDirections
+                        .actionRecipeDetailsFragmentToRecipeFragment())
             } else {
                 recipeItem.rId = UUID.randomUUID().hashCode()
 
@@ -95,6 +99,9 @@ class RecipeDetailsFragment : Fragment() {
                 else {
                     viewModel.addRecipe(recipeItem)
                     Toast.makeText(context, R.string.created_recipe, Toast.LENGTH_SHORT).show()
+                    findNavController()
+                        .navigate(RecipeDetailsFragmentDirections
+                            .actionRecipeDetailsFragmentToRecipeFragment())
                 }
             }
         }
@@ -120,8 +127,10 @@ class RecipeDetailsFragment : Fragment() {
     }
 
     private fun recipeValid(): Boolean {
-        return (recipeItem.recipeName == "" || recipeItem.maltList == startMaltList ||
-                recipeItem.restList == startRestList || recipeItem.mainBrew == startMainBrew ||
-                recipeItem.hoppingList == startHoppingList || recipeItem.yeast == startYeast)
+        val startYeast = StockItem(0, StockItemType.YEAST.ordinal, "", "")
+        val startMainBrew = MainBrew("", "")
+        return (recipeItem.recipeName == "" || recipeItem.maltList.isEmpty() ||
+                recipeItem.restList.isEmpty() || recipeItem.mainBrew == startMainBrew ||
+                recipeItem.hoppingList.isEmpty() || recipeItem.yeast == startYeast)
     }
 }

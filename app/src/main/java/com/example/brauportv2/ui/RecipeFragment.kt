@@ -16,17 +16,14 @@ import com.example.brauportv2.databinding.FragmentRecipeBinding
 import com.example.brauportv2.mapper.toBrewHistoryItem
 import com.example.brauportv2.mapper.toRecipeItem
 import com.example.brauportv2.model.brewHistory.BrewHistoryItem
-import com.example.brauportv2.model.recipe.Hopping
 import com.example.brauportv2.model.recipe.MainBrew
 import com.example.brauportv2.model.recipe.RecipeItem
-import com.example.brauportv2.model.recipe.Rest
 import com.example.brauportv2.model.stock.StockItem
 import com.example.brauportv2.model.stock.StockItemType
 import com.example.brauportv2.ui.dialog.DialogDeleteFragment
 import com.example.brauportv2.ui.dialog.DialogInstructionRecipeFragment
 import com.example.brauportv2.ui.dialog.DialogRecipeInspectFragment
 import com.example.brauportv2.ui.objects.RecipeDataSource.recipeItem
-import com.example.brauportv2.ui.objects.RecipeDataSource.update
 import com.example.brauportv2.ui.objects.TextWatcherLogic.filterListForRecipe
 import com.example.brauportv2.ui.viewModel.RecipeViewModel
 import com.example.brauportv2.ui.viewModel.RecipeViewModelFactory
@@ -68,14 +65,13 @@ class RecipeFragment : Fragment() {
         }
 
         binding.recipeAddButton.setOnClickListener {
-            update = false
             recipeItem = RecipeItem(
-                1,
+                0,
                 "",
-                emptyList<StockItem>().toMutableList(),
-                emptyList<Rest>().toMutableList(),
-                emptyList<Hopping>().toMutableList(),
-                StockItem(1, StockItemType.YEAST.ordinal, "", ""),
+                mutableListOf(),
+                mutableListOf(),
+                mutableListOf(),
+                StockItem(0, StockItemType.YEAST.ordinal, "", ""),
                 MainBrew("", "")
             )
 
@@ -107,11 +103,10 @@ class RecipeFragment : Fragment() {
     }
 
     private fun onItemClick(recipe: RecipeItem) {
-        update = true
         recipeItem = recipe
 
         findNavController().navigate(
-            RecipeFragmentDirections.actionRecipeFragmentToRecipeDetailsFragment()
+            RecipeFragmentDirections.actionRecipeFragmentToRecipeDetailsFragment(true)
         )
     }
 

@@ -70,7 +70,8 @@
             app:enterAnim="@anim/from_right"
             app:exitAnim="@anim/to_left"
             app:popEnterAnim="@anim/from_left"
-            app:popExitAnim="@anim/to_right" />
+            app:popExitAnim="@anim/to_right">
+        </action>
     </fragment>
     <fragment
         android:id="@+id/recipe_details_fragment"
@@ -86,6 +87,13 @@
         <action
             android:id="@+id/action_recipe_details_fragment_to_dialog_yeast_Fragment"
             app:destination="@id/dialog_yeast_fragment" />
+        <argument
+            android:name="recipeUpdate"
+            app:argType="boolean"
+            android:defaultValue="false" />
+        <action
+            android:id="@+id/action_recipe_details_fragment_to_recipe_fragment"
+            app:destination="@id/recipe_fragment" />
     </fragment>
     <fragment
         android:id="@+id/hop_stock_fragment"

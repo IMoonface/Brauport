@@ -16,7 +16,6 @@ import com.example.brauportv2.model.stock.SNoAmount
 import com.example.brauportv2.model.stock.StockItem
 import com.example.brauportv2.model.stock.StockItemType.YEAST
 import com.example.brauportv2.ui.objects.RecipeDataSource.recipeItem
-import com.example.brauportv2.ui.objects.RecipeDataSource.startYeast
 import com.example.brauportv2.ui.viewModel.StockViewModel
 import com.example.brauportv2.ui.viewModel.StockViewModelFactory
 import kotlinx.coroutines.launch
@@ -66,17 +65,18 @@ class DialogYeastFragment : BaseDialogFragment() {
             Toast.makeText(context, R.string.only_one_yeast_per_recipe, Toast.LENGTH_SHORT)
                 .show()
         else {
-            item.stockAmount = amount + "g"
+            item.stockAmount = amount
             recipeItem.yeast = item
             Toast.makeText(context, R.string.added_yeast, Toast.LENGTH_SHORT).show()
         }
     }
 
     private fun onItemDelete(item: SNoAmount) {
+        val startYeast = StockItem(1, YEAST.ordinal, "", "")
         if (recipeItem.yeast == startYeast) {
             Toast.makeText(context, R.string.yeast_not_found, Toast.LENGTH_SHORT).show()
         } else {
-            recipeItem.yeast = StockItem(1, YEAST.ordinal, "", "")
+            recipeItem.yeast = startYeast
             Toast.makeText(context, R.string.deleted_yeast, Toast.LENGTH_SHORT).show()
         }
     }

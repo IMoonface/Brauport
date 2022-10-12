@@ -31,16 +31,19 @@ class DialogRecipeInspectFragment(
         val hoppingNameList = mutableListOf<String>()
 
         item.bMaltList.forEach {
-            maltNameList.add(it.stockName + " " + it.stockAmount)
+            maltNameList.add(it.stockName + " " + it.stockAmount + "g")
         }
 
         item.bRestList.forEach {
-            restNameList.add(it.restTemp + getString(R.string.unit_of_measurement_temp) + " " + getString(R.string.for_text) + " " + it.restTime + "min")
+            restNameList.add(
+                it.restTemp + getString(R.string.unit_of_measurement_temp) + " " +
+                        getString(R.string.for_text) + " " + it.restTime + "min"
+            )
         }
 
         item.bHoppingList.forEach { hopping ->
             hopping.hopList.forEach {
-                hopsNameList.add(it.stockName + " " + it.stockAmount)
+                hopsNameList.add(it.stockName + " " + it.stockAmount + "g")
             }
             hoppingNameList.add(hopsNameList.toString() + " " + hopping.hoppingTime + "min")
             hopsNameList = mutableListOf()
@@ -58,8 +61,8 @@ class DialogRecipeInspectFragment(
                     " " + item.bYeast.stockAmount
 
         binding.inspectMainBrew.text =
-            getString(R.string.first_brew_with) + " " + item.bMainBrew.firstBrew +
-                    " " + getString(R.string.second_brew_with) + " " + item.bMainBrew.secondBrew
+            getString(R.string.first_brew_with) + " " + item.bMainBrew.firstBrew + " " +
+                    getString(R.string.second_brew_with) + " " + item.bMainBrew.secondBrew
 
         if (fromBrewHistory) {
             binding.inspectDateOfComp.text =

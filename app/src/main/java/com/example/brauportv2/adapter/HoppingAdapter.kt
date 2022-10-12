@@ -1,5 +1,6 @@
 package com.example.brauportv2.adapter
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -15,7 +16,7 @@ import com.example.brauportv2.model.stock.StockItem
 class HoppingAdapter : ListAdapter<StockItem, HoppingAdapter.HoppingViewHolder>(DiffCallback) {
 
     lateinit var context: Context
-    var hopList = emptyList<StockItem>().toMutableList()
+    var hopList = mutableListOf<StockItem>()
 
     class HoppingViewHolder(val binding: CardRecipeStockBinding) :
         RecyclerView.ViewHolder(binding.root)
@@ -31,10 +32,12 @@ class HoppingAdapter : ListAdapter<StockItem, HoppingAdapter.HoppingViewHolder>(
         )
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: HoppingViewHolder, position: Int) = with(holder.binding) {
         val item = getItem(position)
+
         rStockItemTitle.text = item.stockName
-        rStockItemAmount.text = item.stockAmount
+        rStockItemAmount.text = item.stockAmount + "g"
 
         rStockItemAdd.setOnClickListener {
             val itemAmount = rStockItemAmountInput.text.toString()
@@ -42,10 +45,9 @@ class HoppingAdapter : ListAdapter<StockItem, HoppingAdapter.HoppingViewHolder>(
             if (itemAmount == "")
                 Toast.makeText(context, R.string.fill_amount, Toast.LENGTH_SHORT).show()
             else if (hopList.map { it.toSNoAmount() }.contains(item.toSNoAmount())) {
-                Toast.makeText(context, R.string.hop_exists, Toast.LENGTH_SHORT)
-                    .show()
+                Toast.makeText(context, R.string.hop_exists, Toast.LENGTH_SHORT).show()
             } else {
-                item.stockAmount = itemAmount + "g"
+                item.stockAmount = itemAmount
                 hopList.add(item)
                 Toast.makeText(context, R.string.added_hop, Toast.LENGTH_SHORT).show()
             }
@@ -55,8 +57,7 @@ class HoppingAdapter : ListAdapter<StockItem, HoppingAdapter.HoppingViewHolder>(
             if (hopList.map { it.toSNoAmount() }.indexOf(item.toSNoAmount()) == -1) {
                 Toast.makeText(context, R.string.hop_not_found, Toast.LENGTH_SHORT).show()
             } else {
-                val index = hopList.map { it.toSNoAmount() }.indexOf(item.toSNoAmount())
-                hopList.removeAt(index)
+                hopList.removeAt(hopList.map { it.toSNoAmount() }.indexOf(item.toSNoAmount()))
                 Toast.makeText(context, R.string.deleted_hop, Toast.LENGTH_SHORT).show()
             }
         }

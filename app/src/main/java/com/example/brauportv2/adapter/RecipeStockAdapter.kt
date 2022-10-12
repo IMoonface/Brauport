@@ -1,5 +1,6 @@
 package com.example.brauportv2.adapter
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -34,12 +35,13 @@ class RecipeStockAdapter(
         )
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: RecipeStockViewHolder, position: Int) =
         with(holder.binding) {
             val item = getItem(position)
 
             rStockItemTitle.text = item.stockName
-            rStockItemAmount.text = item.stockAmount
+            rStockItemAmount.text = item.stockAmount + "g"
 
             rStockItemAdd.setOnClickListener {
                 val newAmount = rStockItemAmountInput.text.toString()

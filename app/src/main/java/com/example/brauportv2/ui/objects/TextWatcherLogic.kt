@@ -8,11 +8,8 @@ import com.example.brauportv2.model.stock.StockItem
 object TextWatcherLogic {
 
     fun filterListForStock(text: String, adapter: StockAdapter, list: List<StockItem>) {
-        if (text != "" && isNumeric(text.removeSuffix("g"))) {
-            adapter.submitList(list.filter {
-                it.stockAmount.removeSuffix("g").toInt() <=
-                        text.removeSuffix("g").toInt()
-            })
+        if (text != "" && isNumeric(text)) {
+            adapter.submitList(list.filter { it.stockAmount.toInt() <= text.toInt() })
         } else if (text != "")
             adapter.submitList(list.filter { it.stockName.lowercase().contains(text.lowercase()) })
         else

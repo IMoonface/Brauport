@@ -46,9 +46,9 @@ class DialogCookingFragment(
 
             val date = formatter.parse(endOfFermentation)
             date?.let {
-                if (date.before(formatter.parse(actualDate))) {
+                if (date.before(formatter.parse(actualDate)))
                     item.cardColor = Color.GRAY
-                } else {
+                else {
                     item.cardColor = 1
                     item.brewFinished = false
                 }

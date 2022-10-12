@@ -27,7 +27,7 @@ class DialogHoppingFragment : BaseDialogFragment() {
     private val binding get() = _binding!!
     private lateinit var adapter: HoppingAdapter
     private lateinit var stockList: List<StockItem>
-    private var newHopsList = mutableListOf<StockItem>()
+    private var newHopList = mutableListOf<StockItem>()
 
     private val viewModel: StockViewModel by activityViewModels {
         StockViewModelFactory((activity?.application as BaseApplication).stockDatabase.stockDao())
@@ -68,9 +68,9 @@ class DialogHoppingFragment : BaseDialogFragment() {
                 recipeItem.hoppingList.forEach { hopping ->
                     hopping.hopList.forEach { hop ->
                         if (stockList.map { it.toSNoAmount() }.contains(hop.toSNoAmount()))
-                            newHopsList.add(hop)
+                            newHopList.add(hop)
                     }
-                    hopping.hopList = newHopsList
+                    hopping.hopList = newHopList
                 }
                 Toast.makeText(context, R.string.refresh_list, Toast.LENGTH_SHORT).show()
             }
@@ -89,12 +89,12 @@ class DialogHoppingFragment : BaseDialogFragment() {
 
         if (newTime == "")
             Toast.makeText(context, R.string.enter_time, Toast.LENGTH_SHORT).show()
-        else if (adapter.hopList == emptyList<StockItem>().toMutableList())
+        else if (adapter.hopList.isEmpty())
             Toast.makeText(context, R.string.choose_hop, Toast.LENGTH_SHORT).show()
         else {
             recipeItem.hoppingList.add(Hopping(adapter.hopList, newTime))
             Toast.makeText(context, R.string.added_hopping, Toast.LENGTH_SHORT).show()
-            adapter.hopList = emptyList<StockItem>().toMutableList()
+            adapter.hopList = mutableListOf()
         }
     }
 

@@ -23,7 +23,7 @@ import com.example.brauportv2.ui.details.BrewDetailsFragment
 import com.example.brauportv2.ui.dialog.DialogCookingFragment
 import com.example.brauportv2.ui.dialog.DialogInstructionBrewFragment
 import com.example.brauportv2.ui.dialog.DialogQuestionFragment
-import com.example.brauportv2.ui.objects.RecipeDataSource.itemList
+import com.example.brauportv2.ui.objects.RecipeDataSource.spinnerItemsList
 import com.example.brauportv2.ui.objects.RecipeDataSource.stepList
 import com.example.brauportv2.ui.viewModel.StockViewModel
 import com.example.brauportv2.ui.viewModel.StockViewModelFactory
@@ -53,7 +53,7 @@ class BrewFragment : Fragment() {
             viewModel.allStockItems.collect { it -> stockList = it.map { it.toStockItem() } }
         }
 
-        itemList.forEach {
+        spinnerItemsList.forEach {
             spinnerOptions.add(it.recipeName)
         }
 
@@ -65,7 +65,7 @@ class BrewFragment : Fragment() {
         binding.brewSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, pos: Int, id: Long) {
                 changeDetected = false
-                chosenRecipe = itemList[pos]
+                chosenRecipe = spinnerItemsList[pos]
                 if (viewModel.proveForNonNegAmount(chosenRecipe, stockList))
                     navigateToBrewDetailsFragment()
                 else if (!viewModel.changeInStock) {

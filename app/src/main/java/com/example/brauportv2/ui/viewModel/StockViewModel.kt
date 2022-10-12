@@ -61,26 +61,23 @@ class StockViewModel(private val stockDao: StockDao) : ViewModel() {
         return true
     }
 
-    private fun calcForShortage(
-        item: StockItem,
-        list: List<StockItem>,
-    ): Boolean {
+    private fun calcForShortage(item: StockItem, list: List<StockItem>): Boolean {
         val index = list.map { it.toSNoAmount() }.indexOf(item.toSNoAmount())
         if (index == -1) {
             changeInStock = true
             return false
         }
 
-        val recipeAmount = item.stockAmount.substringBefore("g").toInt()
-        val databaseAmount = list[index].stockAmount.substringBefore("g").toInt()
+        val recipeAmount = item.stockAmount.toInt()
+        val databaseAmount = list[index].stockAmount.toInt()
         return databaseAmount - recipeAmount >= 0
     }
 
     fun calcAmount(item: StockItem, list: List<StockItem>): String {
         val index = list.map { it.toSNoAmount() }.indexOf(item.toSNoAmount())
-        val recipeAmount = item.stockAmount.substringBefore("g").toInt()
-        val databaseAmount = list[index].stockAmount.substringBefore("g").toInt()
-        return (databaseAmount - recipeAmount).toString() + "g"
+        val recipeAmount = item.stockAmount.toInt()
+        val databaseAmount = list[index].stockAmount.toInt()
+        return (databaseAmount - recipeAmount).toString()
     }
 }
 

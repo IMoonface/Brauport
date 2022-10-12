@@ -39,9 +39,10 @@ class BrewHistoryAdapter(
     override fun onBindViewHolder(holder: BrewHistoryViewHolder, position: Int) =
         with(holder.binding) {
             val item = getItem(position)
+
             brewHistoryTitle.text = item.bName
-            brewHistoryEndDate.text =
-                context.getString(R.string.inspect_end_of_fermentation) + " " + item.bEndOfFermentation
+            brewHistoryEndDate.text = context
+                .getString(R.string.inspect_end_of_fermentation) + " " + item.bEndOfFermentation
 
             if (item.cardColor == Color.GRAY) {
 

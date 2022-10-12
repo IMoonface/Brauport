@@ -1,5 +1,6 @@
 package com.example.brauportv2.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -21,10 +22,11 @@ class StockAdapter(
         )
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: StockViewHolder, position: Int) = with(holder.binding) {
         val item = getItem(position)
         stockItemTitle.text = item.stockName
-        stockItemAmount.text = item.stockAmount
+        stockItemAmount.text = item.stockAmount + "g"
 
         stockItemDelete.setOnClickListener {
             onDeleteClick(item)
