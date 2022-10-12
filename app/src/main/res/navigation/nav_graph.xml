@@ -93,7 +93,9 @@
             android:defaultValue="false" />
         <action
             android:id="@+id/action_recipe_details_fragment_to_recipe_fragment"
-            app:destination="@id/recipe_fragment" />
+            app:destination="@id/recipe_fragment"
+            app:enterAnim="@anim/from_left"
+            app:exitAnim="@anim/to_right" />
     </fragment>
     <fragment
         android:id="@+id/hop_stock_fragment"
