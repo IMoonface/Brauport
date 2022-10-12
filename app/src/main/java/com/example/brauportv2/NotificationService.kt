@@ -3,7 +3,6 @@ package com.example.brauportv2
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
-import android.media.AudioAttributes
 import android.media.RingtoneManager
 import android.os.Build
 import androidx.core.app.NotificationCompat
@@ -37,6 +36,7 @@ class NotificationService(private val context: Context) {
                 channelName,
                 NotificationManager.IMPORTANCE_DEFAULT
             )
+
             channel.description = channelDescription
             channel.enableVibration(true)
             channel.enableLights(true)
