@@ -51,7 +51,17 @@ class DialogHoppingFragment : BaseDialogFragment() {
         }
 
         binding.rHoppingConfirmButton.setOnClickListener {
-            onItemAdd()
+            val newTime = binding.rHoppingTimeInput.text.toString()
+
+            if (newTime == "")
+                Toast.makeText(context, R.string.enter_time, Toast.LENGTH_SHORT).show()
+            else if (adapter.hopList.isEmpty())
+                Toast.makeText(context, R.string.choose_hop, Toast.LENGTH_SHORT).show()
+            else {
+                recipeItem.hoppingList.add(Hopping(adapter.hopList, newTime))
+                Toast.makeText(context, R.string.added_hopping, Toast.LENGTH_SHORT).show()
+                adapter.hopList = mutableListOf()
+            }
         }
 
         binding.rHoppingBackButton.setOnClickListener {
@@ -59,7 +69,12 @@ class DialogHoppingFragment : BaseDialogFragment() {
         }
 
         binding.rHoppingDeleteButton.setOnClickListener {
-            onItemDelete()
+            val index = recipeItem.hoppingList.count() - 1
+            if (index != -1) {
+                recipeItem.hoppingList.removeAt(index)
+                Toast.makeText(context, R.string.deleted_hopping, Toast.LENGTH_SHORT).show()
+            } else
+                Toast.makeText(context, R.string.hopping_not_found, Toast.LENGTH_SHORT).show()
         }
 
         binding.rHoppingRefreshButton.setOnClickListener {
@@ -83,28 +98,5 @@ class DialogHoppingFragment : BaseDialogFragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-    }
-
-    private fun onItemAdd() {
-        val newTime = binding.rHoppingTimeInput.text.toString()
-
-        if (newTime == "")
-            Toast.makeText(context, R.string.enter_time, Toast.LENGTH_SHORT).show()
-        else if (adapter.hopList.isEmpty())
-            Toast.makeText(context, R.string.choose_hop, Toast.LENGTH_SHORT).show()
-        else {
-            recipeItem.hoppingList.add(Hopping(adapter.hopList, newTime))
-            Toast.makeText(context, R.string.added_hopping, Toast.LENGTH_SHORT).show()
-            adapter.hopList = mutableListOf()
-        }
-    }
-
-    private fun onItemDelete() {
-        val index = recipeItem.hoppingList.count() - 1
-        if (index != -1) {
-            recipeItem.hoppingList.removeAt(index)
-            Toast.makeText(context, R.string.deleted_hopping, Toast.LENGTH_SHORT).show()
-        } else
-            Toast.makeText(context, R.string.hopping_not_found, Toast.LENGTH_SHORT).show()
     }
 }

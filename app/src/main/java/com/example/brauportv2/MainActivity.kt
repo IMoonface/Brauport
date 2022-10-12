@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.brew_history_fragment
             )
         )
-        setSupportActionBar(binding.mainAppBar)
+        setSupportActionBar(binding.mainToolBar)
         setupActionBarWithNavController(navController, appBarConfiguration)
         binding.mainBottomNav.setupWithNavController(navController)
 

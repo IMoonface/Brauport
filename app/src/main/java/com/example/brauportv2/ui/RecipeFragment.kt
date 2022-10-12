@@ -66,13 +66,13 @@ class RecipeFragment : Fragment() {
 
         binding.recipeAddButton.setOnClickListener {
             recipeItem = RecipeItem(
-                0,
-                "",
-                mutableListOf(),
-                mutableListOf(),
-                mutableListOf(),
-                StockItem(0, StockItemType.YEAST.ordinal, "", ""),
-                MainBrew("", "")
+                rId = 0,
+                recipeName = "",
+                maltList = mutableListOf(),
+                restList = mutableListOf(),
+                hoppingList = mutableListOf(),
+                yeast = StockItem(0, StockItemType.YEAST.ordinal, "", ""),
+                mainBrew = MainBrew("", "")
             )
 
             findNavController().navigate(

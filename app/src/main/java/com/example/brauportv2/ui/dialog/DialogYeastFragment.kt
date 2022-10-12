@@ -73,7 +73,13 @@ class DialogYeastFragment : BaseDialogFragment() {
     }
 
     private fun onItemDelete(item: SNoAmount) {
-        val startYeast = StockItem(1, YEAST.ordinal, "", "")
+        val startYeast = StockItem(
+            id = 0,
+            itemType = YEAST.ordinal,
+            stockName = "",
+            stockAmount = ""
+        )
+
         if (recipeItem.yeast == startYeast) {
             Toast.makeText(context, R.string.yeast_not_found, Toast.LENGTH_SHORT).show()
         } else {

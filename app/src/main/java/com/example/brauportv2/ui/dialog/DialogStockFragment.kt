@@ -42,14 +42,19 @@ class DialogStockFragment(
                 Toast.makeText(context, R.string.fill_all_fields, Toast.LENGTH_SHORT).show()
             } else {
                 if (update) {
-                    viewModel.updateStock(stockId, itemType, itemTitle, itemAmount)
+                    viewModel.updateStock(
+                        id = stockId,
+                        itemType = itemType,
+                        stockName = itemTitle,
+                        stockAmount = itemAmount
+                    )
                 } else
                     viewModel.addStock(
                         StockItem(
-                            UUID.randomUUID().hashCode(),
-                            itemType,
-                            itemTitle,
-                            itemAmount
+                            id = UUID.randomUUID().hashCode(),
+                            itemType = itemType,
+                            stockName = itemTitle,
+                            stockAmount = itemAmount
                         )
                     )
                 dismiss()

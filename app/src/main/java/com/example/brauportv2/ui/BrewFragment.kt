@@ -110,26 +110,29 @@ class BrewFragment : Fragment() {
     private fun updateDatabase(item: RecipeItem) {
         item.maltList.forEach { malt ->
             viewModel.updateStock(
-                malt.id, malt.itemType, malt.stockName, viewModel.calcAmount(malt, stockList)
+                id = malt.id,
+                itemType = malt.itemType,
+                stockName = malt.stockName,
+                stockAmount = viewModel.calcAmount(malt, stockList)
             )
         }
 
         item.hoppingList.forEach { hopping ->
             hopping.hopList.forEach { hop ->
                 viewModel.updateStock(
-                    hop.id,
-                    hop.itemType,
-                    hop.stockName,
-                    viewModel.calcAmount(hop, stockList)
+                    id = hop.id,
+                    itemType = hop.itemType,
+                    stockName = hop.stockName,
+                    stockAmount = viewModel.calcAmount(hop, stockList)
                 )
             }
         }
 
         viewModel.updateStock(
-            item.yeast.id,
-            item.yeast.itemType,
-            item.yeast.stockName,
-            viewModel.calcAmount(item.yeast, stockList)
+            id = item.yeast.id,
+            itemType = item.yeast.itemType,
+            stockName = item.yeast.stockName,
+            stockAmount = viewModel.calcAmount(item.yeast, stockList)
         )
     }
 

@@ -90,17 +90,17 @@ class DialogCookingFragment(
 
     private fun onItemUpdate(endOfFermentation: String) {
         viewModel.updateBrewHistoryItem(
-            item.bId,
-            item.bName,
-            item.bMaltList,
-            item.bRestList,
-            item.bHoppingList,
-            item.bYeast,
-            item.bMainBrew,
-            item.bDateOfCompletion,
-            endOfFermentation,
-            item.cardColor,
-            item.brewFinished
+            bId = item.bId,
+            bName = item.bName,
+            bMaltList = item.bMaltList,
+            bRestList = item.bRestList,
+            bHoppingList = item.bHoppingList,
+            bYeast = item.bYeast,
+            bMainBrew = item.bMainBrew,
+            bDateOfCompletion = item.bDateOfCompletion,
+            bEndOfFermentation = endOfFermentation,
+            cardColor = item.cardColor,
+            brewFinished = item.brewFinished
         )
     }
 }

@@ -9,88 +9,111 @@ import com.example.brauportv2.model.stock.StockItem
 import com.example.brauportv2.model.stock.StockItemData
 
 fun StockItemData.toStockItem(): StockItem {
-    return StockItem(id, itemType, stockName, stockAmount)
+    return StockItem(
+        id = id,
+        itemType = itemType,
+        stockName = stockName,
+        stockAmount = stockAmount
+    )
 }
 
 fun StockItem.toStockItemData(): StockItemData {
-    return StockItemData(id, itemType, stockName, stockAmount)
+    return StockItemData(
+        id = id,
+        itemType = itemType,
+        stockName = stockName,
+        stockAmount = stockAmount
+    )
 }
 
 fun StockItem.toSNoAmount(): SNoAmount {
-    return SNoAmount(id, stockName, itemType)
+    return SNoAmount(
+        id = id,
+        itemType = itemType,
+        stockName = stockName
+    )
 }
 
 fun RecipeItemData.toRecipeItem(): RecipeItem {
     return RecipeItem(
-        rId, recipeName,
-        maltList.toMutableList(),
-        restList.toMutableList(),
-        hoppingList.toMutableList(),
-        yeast,
-        mainBrew
+        rId = rId,
+        recipeName = recipeName,
+        maltList = maltList.toMutableList(),
+        restList = restList.toMutableList(),
+        hoppingList = hoppingList.toMutableList(),
+        yeast = yeast,
+        mainBrew = mainBrew
     )
 }
 
 fun RecipeItem.toRecipeItemData(): RecipeItemData {
-    return RecipeItemData(rId, recipeName, maltList, restList, hoppingList, yeast, mainBrew)
+    return RecipeItemData(
+        rId = rId,
+        recipeName = recipeName,
+        maltList = maltList,
+        restList = restList,
+        hoppingList = hoppingList,
+        yeast = yeast,
+        mainBrew = mainBrew
+    )
 }
 
 fun RecipeItem.toBrewHistoryItem(): BrewHistoryItem {
     return BrewHistoryItem(
-        rId,
-        recipeName,
-        maltList,
-        restList,
-        hoppingList,
-        yeast,
-        mainBrew,
-        "",
-        "",
-        1,
-        false
+        bId = rId,
+        bName = recipeName,
+        bMaltList = maltList,
+        bRestList = restList,
+        bHoppingList = hoppingList,
+        bYeast = yeast,
+        bMainBrew = mainBrew,
+        bDateOfCompletion = "",
+        bEndOfFermentation = "",
+        cardColor = 1,
+        brewFinished = false
     )
 }
 
 fun BrewHistoryItemData.toBrewHistoryItem(): BrewHistoryItem {
     return BrewHistoryItem(
-        bId,
-        bName,
-        bMaltList,
-        bRestList,
-        bHoppingList,
-        bYeast,
-        bMainBrew,
-        bDateOfCompletion,
-        bEndOfFermentation,
-        cardColor,
-        brewFinished
+        bId = bId,
+        bName = bName,
+        bMaltList = bMaltList,
+        bRestList = bRestList,
+        bHoppingList = bHoppingList,
+        bYeast = bYeast,
+        bMainBrew = bMainBrew,
+        bDateOfCompletion = bDateOfCompletion,
+        bEndOfFermentation = bEndOfFermentation,
+        cardColor = cardColor,
+        brewFinished = brewFinished
     )
 }
 
 fun BrewHistoryItem.toBrewHistoryItemData(): BrewHistoryItemData {
     return BrewHistoryItemData(
-        bId,
-        bName,
-        bMaltList,
-        bRestList,
-        bHoppingList,
-        bYeast,
-        bMainBrew,
-        bDateOfCompletion,
-        bEndOfFermentation,
-        cardColor,
-        brewFinished
+        bId = bId,
+        bName = bName,
+        bMaltList = bMaltList,
+        bRestList = bRestList,
+        bHoppingList = bHoppingList,
+        bYeast = bYeast,
+        bMainBrew = bMainBrew,
+        bDateOfCompletion = bDateOfCompletion,
+        bEndOfFermentation = bEndOfFermentation,
+        cardColor = cardColor,
+        brewFinished = brewFinished
     )
 }
 
 fun BrewHistoryItem.toRecipeItem(): RecipeItem {
     return RecipeItem(
-        bId,
-        bName,
-        bMaltList.toMutableList(),
-        bRestList.toMutableList(),
-        bHoppingList.toMutableList(),
-        bYeast,
-        bMainBrew,
+        rId = bId,
+        recipeName = bName,
+        maltList = bMaltList.toMutableList(),
+        restList = bRestList.toMutableList(),
+        hoppingList = bHoppingList.toMutableList(),
+        yeast = bYeast,
+        mainBrew = bMainBrew,
     )
 }
