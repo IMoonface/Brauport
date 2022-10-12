@@ -16,7 +16,7 @@ import com.example.brauportv2.mapper.toStockItem
 import com.example.brauportv2.model.recipe.Hopping
 import com.example.brauportv2.model.stock.StockItem
 import com.example.brauportv2.model.stock.StockItemType.HOP
-import com.example.brauportv2.ui.objects.RecipeDataSource.recipeItem
+import com.example.brauportv2.ui.RecipeFragment.Companion.recipeItem
 import com.example.brauportv2.ui.viewModel.StockViewModel
 import com.example.brauportv2.ui.viewModel.StockViewModelFactory
 import kotlinx.coroutines.launch

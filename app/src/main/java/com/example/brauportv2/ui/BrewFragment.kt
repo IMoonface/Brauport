@@ -1,7 +1,6 @@
 package com.example.brauportv2.ui
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,12 +18,12 @@ import com.example.brauportv2.mapper.toBrewHistoryItem
 import com.example.brauportv2.mapper.toStockItem
 import com.example.brauportv2.model.recipe.RecipeItem
 import com.example.brauportv2.model.stock.StockItem
+import com.example.brauportv2.ui.HomeFragment.Companion.spinnerItemsList
 import com.example.brauportv2.ui.details.BrewDetailsFragment
+import com.example.brauportv2.ui.details.BrewDetailsFragment.Companion.stepList
 import com.example.brauportv2.ui.dialog.DialogCookingFragment
 import com.example.brauportv2.ui.dialog.DialogInstructionBrewFragment
 import com.example.brauportv2.ui.dialog.DialogQuestionFragment
-import com.example.brauportv2.ui.objects.RecipeDataSource.spinnerItemsList
-import com.example.brauportv2.ui.objects.RecipeDataSource.stepList
 import com.example.brauportv2.ui.viewModel.StockViewModel
 import com.example.brauportv2.ui.viewModel.StockViewModelFactory
 import kotlinx.coroutines.launch
@@ -88,9 +87,6 @@ class BrewFragment : Fragment() {
         }
 
         binding.brewFinishButton.setOnClickListener {
-            Log.i("change", changeDetected.toString())
-            Log.i("step", stepList.toString())
-
             if (stepList.isNotEmpty() && !changeDetected) {
                 val dialog = DialogCookingFragment(
                     false, chosenRecipe.toBrewHistoryItem(), this::onDialogCookingDismiss

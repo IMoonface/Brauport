@@ -8,7 +8,7 @@ import android.widget.Toast
 import com.example.brauportv2.R
 import com.example.brauportv2.databinding.FragmentDialogRestBinding
 import com.example.brauportv2.model.recipe.Rest
-import com.example.brauportv2.ui.objects.RecipeDataSource.recipeItem
+import com.example.brauportv2.ui.RecipeFragment.Companion.recipeItem
 
 class DialogRestFragment : BaseDialogFragment() {
 

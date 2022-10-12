@@ -23,7 +23,6 @@ import com.example.brauportv2.model.stock.StockItemType
 import com.example.brauportv2.ui.dialog.DialogDeleteFragment
 import com.example.brauportv2.ui.dialog.DialogInstructionRecipeFragment
 import com.example.brauportv2.ui.dialog.DialogRecipeInspectFragment
-import com.example.brauportv2.ui.objects.RecipeDataSource.recipeItem
 import com.example.brauportv2.ui.objects.TextWatcherLogic.filterListForRecipe
 import com.example.brauportv2.ui.viewModel.RecipeViewModel
 import com.example.brauportv2.ui.viewModel.RecipeViewModelFactory
@@ -118,5 +117,9 @@ class RecipeFragment : Fragment() {
 
     private fun onDeleteConfirm(item: BrewHistoryItem) {
         viewModel.deleteRecipe(item.toRecipeItem())
+    }
+
+    companion object {
+        lateinit var recipeItem : RecipeItem
     }
 }

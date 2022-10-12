@@ -11,7 +11,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.brauportv2.BaseApplication
 import com.example.brauportv2.databinding.FragmentHomeBinding
 import com.example.brauportv2.mapper.toRecipeItem
-import com.example.brauportv2.ui.objects.RecipeDataSource.spinnerItemsList
+import com.example.brauportv2.model.recipe.RecipeItem
 import com.example.brauportv2.ui.viewModel.RecipeViewModel
 import com.example.brauportv2.ui.viewModel.RecipeViewModelFactory
 import kotlinx.coroutines.launch
@@ -68,5 +68,9 @@ class HomeFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    companion object {
+        lateinit var spinnerItemsList: List<RecipeItem>
     }
 }

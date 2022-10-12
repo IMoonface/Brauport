@@ -9,7 +9,7 @@ import android.widget.Toast
 import com.example.brauportv2.R
 import com.example.brauportv2.databinding.FragmentDialogMainBrewBinding
 import com.example.brauportv2.model.recipe.MainBrew
-import com.example.brauportv2.ui.objects.RecipeDataSource.recipeItem
+import com.example.brauportv2.ui.RecipeFragment.Companion.recipeItem
 
 class DialogMainBrewFragment : BaseDialogFragment() {
 

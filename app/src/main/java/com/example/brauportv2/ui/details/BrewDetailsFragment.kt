@@ -13,7 +13,6 @@ import com.example.brauportv2.adapter.BrewAdapter
 import com.example.brauportv2.databinding.FragmentBrewDetailsBinding
 import com.example.brauportv2.model.brew.StepItem
 import com.example.brauportv2.model.recipe.RecipeItem
-import com.example.brauportv2.ui.objects.RecipeDataSource.stepList
 
 class BrewDetailsFragment(private val item: RecipeItem) : Fragment() {
 
@@ -91,13 +90,12 @@ class BrewDetailsFragment(private val item: RecipeItem) : Fragment() {
 
     @SuppressLint("SetTextI18n")
     private fun timerStart(timeInMilli: Long) {
-        binding.brewTimerText.text = minutes(timeInMilli) + ":00"
+        binding.brewTimerText.text = minutes(timeInMilli) + "00"
         if (startTimer) {
             countDownTimer = object : CountDownTimer((timeInMilli), 1000) {
                 override fun onTick(untilFinish: Long) {
                     milliLeft = untilFinish
-                    binding.brewTimerText.text =
-                        minutes(untilFinish) + ":" + seconds(untilFinish)
+                    binding.brewTimerText.text = minutes(untilFinish) + seconds(untilFinish)
                 }
 
                 override fun onFinish() {
@@ -113,7 +111,7 @@ class BrewDetailsFragment(private val item: RecipeItem) : Fragment() {
     fun minutes(millis: Long): String {
         if (millis / 60000 < 1) return "00"
         if (millis / 60000 in 1..9) return "0" + (millis / 60000)
-        return "" + (millis / 60000)
+        return "" + (millis / 60000) + ":"
     }
 
     fun seconds(millis: Long): String {
@@ -134,29 +132,10 @@ class BrewDetailsFragment(private val item: RecipeItem) : Fragment() {
 
         item.maltList.forEach {
             newBrewList.add(
-                StepItem(counter, it.stockName + " " + it.stockAmount, "")
-            )
-            counter++
-        }
-
-        newBrewList.add(StepItem(counter, getString(R.string.grinding_malt), ""))
-        counter++
-
-        newBrewList.add(
-            StepItem(
-                counter,
-                getString(R.string.first_brew) + ": " + item.mainBrew.firstBrew,
-                ""
-            )
-        )
-        counter++
-
-        item.restList.forEach {
-            newBrewList.add(
                 StepItem(
-                    counter,
-                    it.restTemp + getString(R.string.unit_of_measurement_temp),
-                    it.restTime,
+                    counter = counter,
+                    itemString = it.stockName + " " + it.stockAmount,
+                    brewTime = ""
                 )
             )
             counter++
@@ -164,18 +143,57 @@ class BrewDetailsFragment(private val item: RecipeItem) : Fragment() {
 
         newBrewList.add(
             StepItem(
-                counter,
-                getString(R.string.second_brew) + ": " + item.mainBrew.secondBrew,
-                "",
+                counter = counter,
+                itemString = getString(R.string.grinding_malt),
+                brewTime = ""
             )
         )
         counter++
 
-        newBrewList.add(StepItem(counter, getString(R.string.remove_malt), ""))
+        newBrewList.add(
+            StepItem(
+                counter = counter,
+                itemString = getString(R.string.first_brew) + ": " + item.mainBrew.firstBrew,
+                brewTime = ""
+            )
+        )
+        counter++
+
+        item.restList.forEach {
+            newBrewList.add(
+                StepItem(
+                    counter = counter,
+                    itemString = it.restTemp + getString(R.string.unit_of_measurement_temp),
+                    brewTime = it.restTime
+                )
+            )
+            counter++
+        }
+
+        newBrewList.add(
+            StepItem(
+                counter = counter,
+                itemString = getString(R.string.second_brew) + ": " + item.mainBrew.secondBrew,
+                brewTime = ""
+            )
+        )
         counter++
 
         newBrewList.add(
-            StepItem(counter, getString(R.string.heat_to_about_temperature), "")
+            StepItem(
+                counter = counter,
+                itemString = getString(R.string.remove_malt),
+                brewTime = ""
+            )
+        )
+        counter++
+
+        newBrewList.add(
+            StepItem(
+                counter = counter,
+                itemString = getString(R.string.heat_to_about_temperature),
+                brewTime = ""
+            )
         )
         counter++
 
@@ -186,24 +204,48 @@ class BrewDetailsFragment(private val item: RecipeItem) : Fragment() {
                 hoppingListString += hop.stockName + " " + hop.stockAmount + " "
             }
 
-            newBrewList.add(StepItem(counter, hoppingListString, hopping.hoppingTime))
+            newBrewList.add(
+                StepItem(
+                    counter = counter,
+                    itemString = hoppingListString,
+                    brewTime = hopping.hoppingTime
+                )
+            )
             hoppingListString = ""
             counter++
         }
 
-        newBrewList.add(StepItem(counter, getString(R.string.pipeing), ""))
-        counter++
-
-        newBrewList.add(StepItem(counter, getString(R.string.let_it_cool_down), ""))
+        newBrewList.add(
+            StepItem(
+                counter = counter,
+                itemString = getString(R.string.pipeing),
+                brewTime = ""
+            )
+        )
         counter++
 
         newBrewList.add(
             StepItem(
-                counter, item.yeast.stockName + " " + item.yeast.stockAmount, ""
+                counter = counter,
+                itemString = getString(R.string.let_it_cool_down),
+                brewTime = ""
+            )
+        )
+        counter++
+
+        newBrewList.add(
+            StepItem(
+                counter = counter,
+                itemString = item.yeast.stockName + " " + item.yeast.stockAmount,
+                brewTime = ""
             )
         )
         counter++
 
         return newBrewList
+    }
+
+    companion object {
+        lateinit var stepList: List<StepItem>
     }
 }

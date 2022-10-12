@@ -15,7 +15,7 @@ import com.example.brauportv2.model.stock.SNoAmount
 import com.example.brauportv2.model.stock.StockItem
 
 class RecipeStockAdapter(
-    private val onItemClick: (StockItem, String) -> Unit,
+    private val onItemAdd: (StockItem, String) -> Unit,
     private val onDeleteClick: (SNoAmount) -> Unit
 ) : ListAdapter<StockItem, RecipeStockAdapter.RecipeStockViewHolder>(DiffCallback) {
 
@@ -49,7 +49,7 @@ class RecipeStockAdapter(
                 if (newAmount == "")
                     Toast.makeText(context, R.string.fill_amount, Toast.LENGTH_SHORT).show()
                 else
-                    onItemClick(item, rStockItemAmountInput.text.toString())
+                    onItemAdd(item, rStockItemAmountInput.text.toString())
             }
 
             rStockItemDelete.setOnClickListener { onDeleteClick(item.toSNoAmount()) }

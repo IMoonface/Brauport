@@ -17,7 +17,7 @@ import com.example.brauportv2.model.recipe.RecipeItem
 import com.example.brauportv2.model.stock.StockItem
 import com.example.brauportv2.model.stock.StockItemType
 import com.example.brauportv2.ui.dialog.*
-import com.example.brauportv2.ui.objects.RecipeDataSource.recipeItem
+import com.example.brauportv2.ui.RecipeFragment.Companion.recipeItem
 import com.example.brauportv2.ui.viewModel.RecipeViewModel
 import com.example.brauportv2.ui.viewModel.RecipeViewModelFactory
 import java.util.*
@@ -116,19 +116,23 @@ class RecipeDetailsFragment : Fragment() {
 
     private fun onItemUpdate(item: RecipeItem) {
         viewModel.updateRecipe(
-            item.rId,
-            item.recipeName,
-            item.maltList,
-            item.restList,
-            item.hoppingList,
-            item.yeast,
-            item.mainBrew
+            rId = item.rId,
+            recipeName = item.recipeName,
+            maltList = item.maltList,
+            restList = item.restList,
+            hoppingList = item.hoppingList,
+            yeast = item.yeast,
+            mainBrew = item.mainBrew
         )
     }
 
     private fun recipeValid(): Boolean {
-        val startYeast = StockItem(0, StockItemType.YEAST.ordinal, "", "")
-        val startMainBrew = MainBrew("", "")
+        val startYeast = StockItem(
+            id = 0, itemType = StockItemType.YEAST.ordinal, stockName = "", stockAmount = ""
+        )
+
+        val startMainBrew = MainBrew(firstBrew = "", secondBrew = "")
+
         return (recipeItem.recipeName == "" || recipeItem.maltList.isEmpty() ||
                 recipeItem.restList.isEmpty() || recipeItem.mainBrew == startMainBrew ||
                 recipeItem.hoppingList.isEmpty() || recipeItem.yeast == startYeast)
