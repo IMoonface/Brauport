@@ -22,6 +22,7 @@ import com.example.brauportv2.ui.objects.TextWatcherLogic.filterListForStock
 import com.example.brauportv2.ui.viewModel.StockViewModel
 import com.example.brauportv2.ui.viewModel.StockViewModelFactory
 import kotlinx.coroutines.launch
+import java.util.*
 
 class YeastStockFragment : Fragment() {
 
@@ -76,7 +77,20 @@ class YeastStockFragment : Fragment() {
         }
 
         binding.yeastAddButton.setOnClickListener {
-            val dialog = DialogStockFragment(hashCode(), YEAST.ordinal, false)
+            val item = StockItem(
+                id = UUID.randomUUID().hashCode(),
+                itemType = YEAST.ordinal,
+                stockName = "",
+                stockAmount = ""
+            )
+
+            val dialog = DialogStockFragment(
+                item,
+                this::onItemAdd,
+                this::onItemUpdate,
+                false
+            )
+
             dialog.isCancelable = false
             dialog.show(childFragmentManager, "yeastAddDialog")
         }
@@ -98,9 +112,26 @@ class YeastStockFragment : Fragment() {
     }
 
     private fun onItemClick(item: StockItem) {
-        val dialog = DialogStockFragment(item.id, YEAST.ordinal, true)
+        val dialog = DialogStockFragment(item, this::onItemAdd, this::onItemUpdate, true)
         dialog.isCancelable = false
         dialog.show(childFragmentManager, "yeastUpdateDialog")
+    }
+
+    private fun onItemAdd(item: StockItem) {
+        viewModel.addStock(item)
+    }
+
+    private fun onItemUpdate(item: StockItem) {
+        viewModel.updateStock(
+            id = item.id,
+            itemType = item.itemType,
+            stockName = item.stockName,
+            stockAmount = item.stockAmount
+        )
+
+        findNavController().navigate(
+            YeastStockFragmentDirections.actionYeastStockFragmentSelf()
+        )
     }
 
     private fun onDeleteClick(item: StockItem) {

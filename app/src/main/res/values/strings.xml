@@ -26,7 +26,6 @@
     <string name="brew_without_subtracting_stock">Brew wort, brew and don\'t subtract off stock</string>
     <string name="channel_name">Brew history notification channel</string>
     <string name="channel_description">Informs whenever a fermentation has finished</string>
-    <string name="change_in_stock_text">Change in inventory detected. Please update your recipe!</string>
     <string name="choose_another_recipe">Please choose another recipe!</string>
     <string name="choose_hop">Please choose hop first!</string>
     <string name="confirm">Confirm</string>
@@ -92,8 +91,6 @@
     <string name="pipeing">Piping</string>
     <string name="recipe_add">New Recipe</string>
     <string name="recipe_inspect_name">Recipe Name</string>
-    <string name="refresh_list">Ingredients list got refreshed</string>
-    <string name="refresh_text">Refresh</string>
     <string name="remove_malt">Remove Malt</string>
     <string name="rest">Rests</string>
     <string name="rest_not_found">Rest not found!</string>

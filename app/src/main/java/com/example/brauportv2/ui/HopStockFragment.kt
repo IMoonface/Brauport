@@ -22,6 +22,7 @@ import com.example.brauportv2.ui.objects.TextWatcherLogic.filterListForStock
 import com.example.brauportv2.ui.viewModel.StockViewModel
 import com.example.brauportv2.ui.viewModel.StockViewModelFactory
 import kotlinx.coroutines.launch
+import java.util.*
 
 class HopStockFragment : Fragment() {
 
@@ -43,9 +44,7 @@ class HopStockFragment : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         _binding = FragmentHopStockBinding.inflate(inflater, container, false)
 
@@ -76,7 +75,17 @@ class HopStockFragment : Fragment() {
         }
 
         binding.hopAddButton.setOnClickListener {
-            val dialog = DialogStockFragment(hashCode(), HOP.ordinal, false)
+            val item = StockItem(
+                id = UUID.randomUUID().hashCode(),
+                itemType = HOP.ordinal,
+                stockName = "",
+                stockAmount = ""
+            )
+
+            val dialog = DialogStockFragment(
+                item, this::onItemAdd, this::onItemUpdate, false
+            )
+
             dialog.isCancelable = false
             dialog.show(childFragmentManager, "hopAddDialog")
         }
@@ -98,9 +107,26 @@ class HopStockFragment : Fragment() {
     }
 
     private fun onItemClick(item: StockItem) {
-        val dialog = DialogStockFragment(item.id, HOP.ordinal, true)
+        val dialog = DialogStockFragment(item, this::onItemAdd, this::onItemUpdate, true)
         dialog.isCancelable = false
         dialog.show(childFragmentManager, "hopUpdateDialog")
+    }
+
+    private fun onItemAdd(item: StockItem) {
+        viewModel.addStock(item)
+    }
+
+    private fun onItemUpdate(item: StockItem) {
+        viewModel.updateStock(
+            id = item.id,
+            itemType = item.itemType,
+            stockName = item.stockName,
+            stockAmount = item.stockAmount
+        )
+
+        findNavController().navigate(
+            HopStockFragmentDirections.actionHopStockFragmentSelf()
+        )
     }
 
     private fun onDeleteClick(item: StockItem) {

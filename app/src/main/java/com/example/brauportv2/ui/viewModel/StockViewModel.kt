@@ -41,8 +41,6 @@ class StockViewModel(private val stockDao: StockDao) : ViewModel() {
     }
 
     fun proveForNonNegAmount(item: RecipeItem, list: List<StockItem>): Boolean {
-        changeInStock = false
-
         item.maltList.forEach { malt ->
             if (!calcForShortage(malt, list))
                 return false
@@ -63,11 +61,6 @@ class StockViewModel(private val stockDao: StockDao) : ViewModel() {
 
     private fun calcForShortage(item: StockItem, list: List<StockItem>): Boolean {
         val index = list.map { it.toSNoAmount() }.indexOf(item.toSNoAmount())
-        if (index == -1) {
-            changeInStock = true
-            return false
-        }
-
         val recipeAmount = item.stockAmount.toInt()
         val databaseAmount = list[index].stockAmount.toInt()
         return databaseAmount - recipeAmount >= 0

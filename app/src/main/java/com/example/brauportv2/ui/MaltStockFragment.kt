@@ -22,6 +22,7 @@ import com.example.brauportv2.ui.objects.TextWatcherLogic.filterListForStock
 import com.example.brauportv2.ui.viewModel.StockViewModel
 import com.example.brauportv2.ui.viewModel.StockViewModelFactory
 import kotlinx.coroutines.launch
+import java.util.*
 
 class MaltStockFragment : Fragment() {
 
@@ -43,9 +44,7 @@ class MaltStockFragment : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         _binding = FragmentMaltStockBinding.inflate(inflater, container, false)
 
@@ -76,7 +75,17 @@ class MaltStockFragment : Fragment() {
         }
 
         binding.maltAddButton.setOnClickListener {
-            val dialog = DialogStockFragment(hashCode(), MALT.ordinal, false)
+            val item = StockItem(
+                id = UUID.randomUUID().hashCode(),
+                itemType = MALT.ordinal,
+                stockName = "",
+                stockAmount = ""
+            )
+
+            val dialog = DialogStockFragment(
+                item, this::onItemAdd, this::onItemUpdate, false
+            )
+
             dialog.isCancelable = false
             dialog.show(childFragmentManager, "maltAddDialog")
         }
@@ -98,9 +107,26 @@ class MaltStockFragment : Fragment() {
     }
 
     private fun onItemClick(item: StockItem) {
-        val dialog = DialogStockFragment(item.id, MALT.ordinal, true)
+        val dialog = DialogStockFragment(item, this::onItemAdd, this::onItemUpdate, true)
         dialog.isCancelable = false
         dialog.show(childFragmentManager, "maltUpdateDialog")
+    }
+
+    private fun onItemAdd(item: StockItem) {
+        viewModel.addStock(item)
+    }
+
+    private fun onItemUpdate(item: StockItem) {
+        viewModel.updateStock(
+            id = item.id,
+            itemType = item.itemType,
+            stockName = item.stockName,
+            stockAmount = item.stockAmount
+        )
+
+        findNavController().navigate(
+            MaltStockFragmentDirections.actionMaltStockFragmentSelf()
+        )
     }
 
     private fun onDeleteClick(item: StockItem) {

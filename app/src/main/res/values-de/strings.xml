@@ -26,7 +26,6 @@
     <string name="brew_without_subtracting_stock">Trotzdem Brauen und Bestand nicht abziehen</string>
     <string name="channel_name">Brauhistorien Benachrichtigungskanal</string>
     <string name="channel_description">Informiert, wenn eine Gärung beendet ist</string>
-    <string name="change_in_stock_text">Änderung im Bestand entdeckt.\nBitte aktualisieren Sie ihr Rezept!</string>
     <string name="choose_another_recipe">Bitte wählen Sie ein anderes Rezept!</string>
     <string name="choose_hop">"Bitte zuerst Hopfen auswählen!"</string>
     <string name="confirm">Bestätigen</string>
@@ -92,8 +91,6 @@
     <string name="pipeing">Schlauchen</string>
     <string name="recipe_add">Neues Rezept</string>
     <string name="recipe_inspect_name">Rezeptname</string>
-    <string name="refresh_list">Zutatenliste wurden aktualisiert!</string>
-    <string name="refresh_text">Aktualisieren</string>
     <string name="remove_malt">Malz entnehmen</string>
     <string name="rest">Rasten</string>
     <string name="rest_not_found">Keine Rast vorhanden!</string>

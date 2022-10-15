@@ -27,7 +27,6 @@ class DialogMaltsFragment : BaseDialogFragment() {
     private val binding get() = _binding!!
     private lateinit var adapter: RecipeStockAdapter
     private lateinit var stockList: List<StockItem>
-    private var newMaltList = mutableListOf<StockItem>()
 
     private val viewModel: StockViewModel by activityViewModels {
         StockViewModelFactory((activity?.application as BaseApplication).stockDatabase.stockDao())
@@ -52,19 +51,6 @@ class DialogMaltsFragment : BaseDialogFragment() {
 
         binding.rMaltsBackButton.setOnClickListener {
             dismiss()
-        }
-
-        binding.rMaltsRefreshButton.setOnClickListener {
-            if (recipeItem.maltList.isEmpty())
-                Toast.makeText(context, R.string.no_ingredients_added, Toast.LENGTH_SHORT).show()
-            else {
-                recipeItem.maltList.forEach { stockItem ->
-                    if (stockList.map { it.toSNoAmount() }.contains(stockItem.toSNoAmount()))
-                        newMaltList.add(stockItem)
-                }
-                recipeItem.maltList = newMaltList
-                Toast.makeText(context, R.string.refresh_list, Toast.LENGTH_SHORT).show()
-            }
         }
 
         return binding.root

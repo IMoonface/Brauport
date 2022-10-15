@@ -247,6 +247,6 @@ class BrewDetailsFragment(private val item: RecipeItem) : Fragment() {
     }
 
     companion object {
-        lateinit var stepList: List<StepItem>
+        var stepList = emptyList<StepItem>()
     }
 }

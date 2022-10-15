@@ -11,7 +11,6 @@ import com.example.brauportv2.BaseApplication
 import com.example.brauportv2.R
 import com.example.brauportv2.adapter.HoppingAdapter
 import com.example.brauportv2.databinding.FragmentDialogHoppingBinding
-import com.example.brauportv2.mapper.toSNoAmount
 import com.example.brauportv2.mapper.toStockItem
 import com.example.brauportv2.model.recipe.Hopping
 import com.example.brauportv2.model.stock.StockItem
@@ -27,7 +26,6 @@ class DialogHoppingFragment : BaseDialogFragment() {
     private val binding get() = _binding!!
     private lateinit var adapter: HoppingAdapter
     private lateinit var stockList: List<StockItem>
-    private var newHopList = mutableListOf<StockItem>()
 
     private val viewModel: StockViewModel by activityViewModels {
         StockViewModelFactory((activity?.application as BaseApplication).stockDatabase.stockDao())
@@ -75,21 +73,6 @@ class DialogHoppingFragment : BaseDialogFragment() {
                 Toast.makeText(context, R.string.deleted_hopping, Toast.LENGTH_SHORT).show()
             } else
                 Toast.makeText(context, R.string.hopping_not_found, Toast.LENGTH_SHORT).show()
-        }
-
-        binding.rHoppingRefreshButton.setOnClickListener {
-            if (recipeItem.hoppingList.isEmpty())
-                Toast.makeText(context, R.string.no_ingredients_added, Toast.LENGTH_SHORT).show()
-            else {
-                recipeItem.hoppingList.forEach { hopping ->
-                    hopping.hopList.forEach { hop ->
-                        if (stockList.map { it.toSNoAmount() }.contains(hop.toSNoAmount()))
-                            newHopList.add(hop)
-                    }
-                    hopping.hopList = newHopList
-                }
-                Toast.makeText(context, R.string.refresh_list, Toast.LENGTH_SHORT).show()
-            }
         }
 
         return binding.root

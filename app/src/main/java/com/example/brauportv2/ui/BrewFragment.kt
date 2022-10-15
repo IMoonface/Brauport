@@ -36,7 +36,6 @@ class BrewFragment : Fragment() {
     private lateinit var chosenRecipe: RecipeItem
     private var stockList = emptyList<StockItem>()
     private var withSubtract = true
-    private var changeDetected = false
 
     private val viewModel: StockViewModel by activityViewModels {
         StockViewModelFactory((activity?.application as BaseApplication).stockDatabase.stockDao())
@@ -64,7 +63,6 @@ class BrewFragment : Fragment() {
 
         binding.brewSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, pos: Int, id: Long) {
-                changeDetected = false
                 chosenRecipe = spinnerItemsList[pos]
                 if (viewModel.proveForNonNegAmount(chosenRecipe, stockList))
                     navigateToBrewDetailsFragment()
@@ -72,10 +70,8 @@ class BrewFragment : Fragment() {
                     val dialog = DialogQuestionFragment(this@BrewFragment::onDialogQuestionDismiss)
                     dialog.isCancelable = false
                     dialog.show(childFragmentManager, "questionDialog")
-                } else {
-                    changeDetected = true
+                } else
                     navigateToBrewDetailsFragment()
-                }
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {}
@@ -88,15 +84,14 @@ class BrewFragment : Fragment() {
         }
 
         binding.brewFinishButton.setOnClickListener {
-            if (stepList.isNotEmpty() && !changeDetected) {
+            if (stepList.isNotEmpty()) {
                 val dialog = DialogCookingFragment(
                     false, chosenRecipe.toBrewHistoryItem(), this::onDialogCookingDismiss
                 )
                 dialog.isCancelable = false
                 dialog.show(childFragmentManager, "cookingDialog")
-            } else if (changeDetected) {
-                Toast.makeText(context, R.string.change_in_stock_text, Toast.LENGTH_LONG).show()
-            }
+            } else
+                Toast.makeText(context, R.string.make_recipe, Toast.LENGTH_LONG).show()
         }
 
         return binding.root
