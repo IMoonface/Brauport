@@ -73,7 +73,7 @@ class DialogStockFragment(
                     }
                 }
 
-            if (item.itemType == StockItemType.MALT.ordinal)
+            if (item.itemType == StockItemType.HOP.ordinal)
                 recipeItem.hoppingList.forEach { hopping ->
                     hopping.hopList.forEach { stockItem ->
                         if (differentFromRecipeStock(stockItem, item)) {
@@ -83,7 +83,7 @@ class DialogStockFragment(
                     }
                 }
 
-            if (item.itemType == StockItemType.MALT.ordinal)
+            if (item.itemType == StockItemType.YEAST.ordinal)
                 if (differentFromRecipeStock(recipeItem.yeast, item)) {
                     recipeItem.yeast.stockName = item.stockName
                     recipeItem.yeast.stockAmount = item.stockAmount
