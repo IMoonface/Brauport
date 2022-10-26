@@ -124,9 +124,7 @@ class MaltStockFragment : Fragment() {
             stockAmount = item.stockAmount
         )
 
-        findNavController().navigate(
-            MaltStockFragmentDirections.actionMaltStockFragmentSelf()
-        )
+        findNavController().navigate(MaltStockFragmentDirections.actionMaltStockFragmentSelf())
     }
 
     private fun onDeleteClick(item: StockItem) {

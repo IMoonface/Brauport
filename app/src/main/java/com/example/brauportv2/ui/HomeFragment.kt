@@ -36,7 +36,9 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
 
         lifecycleScope.launch {
-            viewModel.allRecipeItems.collect { it -> spinnerItemsList = it.map { it.toRecipeItem() } }
+            viewModel.allRecipeItems.collect {
+                    it -> spinnerItemsList = it.map { it.toRecipeItem() }
+            }
         }
 
         binding.mainRecipeButton.setOnClickListener {

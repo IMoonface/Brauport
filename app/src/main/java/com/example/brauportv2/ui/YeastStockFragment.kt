@@ -85,10 +85,7 @@ class YeastStockFragment : Fragment() {
             )
 
             val dialog = DialogStockFragment(
-                item,
-                this::onItemAdd,
-                this::onItemUpdate,
-                false
+                item, this::onItemAdd, this::onItemUpdate, false
             )
 
             dialog.isCancelable = false
@@ -129,9 +126,7 @@ class YeastStockFragment : Fragment() {
             stockAmount = item.stockAmount
         )
 
-        findNavController().navigate(
-            YeastStockFragmentDirections.actionYeastStockFragmentSelf()
-        )
+        findNavController().navigate(YeastStockFragmentDirections.actionYeastStockFragmentSelf())
     }
 
     private fun onDeleteClick(item: StockItem) {

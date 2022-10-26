@@ -38,7 +38,6 @@ class DialogYeastFragment : BaseDialogFragment() {
         _binding = FragmentDialogYeastBinding.inflate(inflater, container, false)
 
         adapter = RecipeStockAdapter(this::onItemAdd, this::onItemDelete)
-
         binding.rYeastRecyclerView.adapter = adapter
 
         lifecycleScope.launch {
@@ -74,15 +73,12 @@ class DialogYeastFragment : BaseDialogFragment() {
 
     private fun onItemDelete(item: SNoAmount) {
         val startYeast = StockItem(
-            id = 0,
-            itemType = YEAST.ordinal,
-            stockName = "",
-            stockAmount = ""
+            id = 0, itemType = YEAST.ordinal, stockName = "", stockAmount = ""
         )
 
-        if (recipeItem.yeast == startYeast) {
+        if (recipeItem.yeast == startYeast)
             Toast.makeText(context, R.string.yeast_not_found, Toast.LENGTH_SHORT).show()
-        } else {
+        else {
             recipeItem.yeast = startYeast
             Toast.makeText(context, R.string.deleted_yeast, Toast.LENGTH_SHORT).show()
         }

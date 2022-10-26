@@ -58,7 +58,6 @@ class BrewFragment : Fragment() {
 
         val arrayAdapter = ArrayAdapter(requireContext(), R.layout.spinner_item, spinnerOptions)
         arrayAdapter.setDropDownViewResource(R.layout.spinner_dropdown_item)
-
         binding.brewSpinner.adapter = arrayAdapter
 
         binding.brewSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
@@ -66,12 +65,11 @@ class BrewFragment : Fragment() {
                 chosenRecipe = spinnerItemsList[pos]
                 if (viewModel.proveForNonNegAmount(chosenRecipe, stockList))
                     navigateToBrewDetailsFragment()
-                else if (!viewModel.changeInStock) {
+                else {
                     val dialog = DialogQuestionFragment(this@BrewFragment::onDialogQuestionDismiss)
                     dialog.isCancelable = false
                     dialog.show(childFragmentManager, "questionDialog")
-                } else
-                    navigateToBrewDetailsFragment()
+                }
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {}

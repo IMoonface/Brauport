@@ -15,8 +15,6 @@ import kotlinx.coroutines.launch
 
 class StockViewModel(private val stockDao: StockDao) : ViewModel() {
 
-    var changeInStock = false
-
     val allStockItems: Flow<List<StockItemData>> = stockDao.getAllStockItems()
 
     fun addStock(stockItem: StockItem) {

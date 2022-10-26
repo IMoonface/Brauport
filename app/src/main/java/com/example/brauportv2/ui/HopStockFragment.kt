@@ -124,9 +124,7 @@ class HopStockFragment : Fragment() {
             stockAmount = item.stockAmount
         )
 
-        findNavController().navigate(
-            HopStockFragmentDirections.actionHopStockFragmentSelf()
-        )
+        findNavController().navigate(HopStockFragmentDirections.actionHopStockFragmentSelf())
     }
 
     private fun onDeleteClick(item: StockItem) {

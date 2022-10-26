@@ -45,11 +45,11 @@ class BrewHistoryFragment : Fragment() {
         val service = NotificationService(requireContext())
 
         service.createNotificationChannel(
-            getString(R.string.channel_name),
-            getString(R.string.channel_description)
+            getString(R.string.channel_name), getString(R.string.channel_description)
         )
 
         adapter = BrewHistoryAdapter(this::onInspectItem, this::onItemClick, this::onDeleteClick)
+
         binding.brewHistoryRecyclerView.adapter = adapter
 
         lifecycleScope.launch {
@@ -100,10 +100,7 @@ class BrewHistoryFragment : Fragment() {
     }
 
     private fun onItemUpdate(item: BrewHistoryItem) {
-        viewModel.updateBrewFinished(
-            item.bId,
-            item.brewFinished,
-        )
+        viewModel.updateBrewFinished(item.bId, item.brewFinished)
     }
 
     private fun onDialogCookingDismiss(abort: Boolean) {}

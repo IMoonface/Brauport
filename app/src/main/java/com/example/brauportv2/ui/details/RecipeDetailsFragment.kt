@@ -26,7 +26,6 @@ class RecipeDetailsFragment : Fragment() {
 
     private var _binding: FragmentRecipeDetailsBinding? = null
     private val binding get() = _binding!!
-    private var update = false
 
     private val viewModel: RecipeViewModel by activityViewModels {
         RecipeViewModelFactory(
@@ -41,7 +40,7 @@ class RecipeDetailsFragment : Fragment() {
     ): View {
         _binding = FragmentRecipeDetailsBinding.inflate(inflater, container, false)
 
-        update = arguments?.getBoolean("recipeUpdate") ?: false
+        val update = arguments?.getBoolean("recipeUpdate") ?: false
 
         binding.recipeDetailsInspectButton.setOnClickListener {
             val dialog = DialogRecipeInspectFragment(
@@ -95,11 +94,10 @@ class RecipeDetailsFragment : Fragment() {
                             .actionRecipeDetailsFragmentToRecipeFragment()
                     )
             } else {
-                recipeItem.rId = UUID.randomUUID().hashCode()
-
                 if (recipeValid())
                     Toast.makeText(context, R.string.set_all_attributes, Toast.LENGTH_SHORT).show()
                 else {
+                    recipeItem.rId = UUID.randomUUID().hashCode()
                     viewModel.addRecipe(recipeItem)
                     Toast.makeText(context, R.string.created_recipe, Toast.LENGTH_SHORT).show()
                     findNavController()
