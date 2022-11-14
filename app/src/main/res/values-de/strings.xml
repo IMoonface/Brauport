@@ -54,7 +54,7 @@
     <string name="first_brew_with">"Guss: Hauptguss mit</string>
     <string name="for_text">für</string>
     <string name="grinding_malt">Malz Schroten</string>
-    <string name="heat_to_about_temperature">Auf etwa Temperatur erhitzen</string>
+    <string name="heat_to_about_temperature">Auf Hopfenkochtemperatur bringen (ca. 100°C)</string>
     <string name="hop_exists">Hopfen ist schon vorhanden!</string>
     <string name="hop_not_found">Kein Hopfen vorhanden!</string>
     <string name="hopping">Hopfengaben</string>

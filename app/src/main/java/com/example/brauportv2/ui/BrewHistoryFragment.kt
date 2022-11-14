@@ -59,11 +59,13 @@ class BrewHistoryFragment : Fragment() {
                     if (brewHistoryItem.cardColor == Color.GRAY && !brewHistoryItem.brewFinished) {
                         service.showNotification(
                             getString(R.string.notification_title),
-                            getString(R.string.notification_text)
+                            String.format(
+                                getString(R.string.notification_text), brewHistoryItem.bName
+                            )
                         )
                         brewHistoryItem.brewFinished = true
+                        onItemUpdate(brewHistoryItem)
                     }
-                    onItemUpdate(brewHistoryItem)
                 }
                 adapter.submitList(startList)
             }
