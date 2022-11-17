@@ -69,8 +69,7 @@ fun RecipeItem.toBrewHistoryItem(): BrewHistoryItem {
         bMainBrew = mainBrew,
         bDateOfCompletion = "",
         bEndOfFermentation = "",
-        cardColor = 1,
-        brewFinished = false
+        cardColor = 1
     )
 }
 
@@ -85,8 +84,7 @@ fun BrewHistoryItemData.toBrewHistoryItem(): BrewHistoryItem {
         bMainBrew = bMainBrew,
         bDateOfCompletion = bDateOfCompletion,
         bEndOfFermentation = bEndOfFermentation,
-        cardColor = cardColor,
-        brewFinished = brewFinished
+        cardColor = cardColor
     )
 }
 
@@ -101,8 +99,7 @@ fun BrewHistoryItem.toBrewHistoryItemData(): BrewHistoryItemData {
         bMainBrew = bMainBrew,
         bDateOfCompletion = bDateOfCompletion,
         bEndOfFermentation = bEndOfFermentation,
-        cardColor = cardColor,
-        brewFinished = brewFinished
+        cardColor = cardColor
     )
 }
 

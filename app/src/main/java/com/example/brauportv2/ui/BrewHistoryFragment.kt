@@ -1,6 +1,5 @@
 package com.example.brauportv2.ui
 
-import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,8 +8,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.brauportv2.BaseApplication
-import com.example.brauportv2.NotificationService
-import com.example.brauportv2.R
 import com.example.brauportv2.adapter.BrewHistoryAdapter
 import com.example.brauportv2.databinding.FragmentBrewHistoryBinding
 import com.example.brauportv2.mapper.toBrewHistoryItem
@@ -27,7 +24,6 @@ class BrewHistoryFragment : Fragment() {
     private var _binding: FragmentBrewHistoryBinding? = null
     private val binding get() = _binding!!
     private lateinit var adapter: BrewHistoryAdapter
-    private var startList = emptyList<BrewHistoryItem>()
 
     private val viewModel: BrewHistoryViewModel by activityViewModels {
         BrewHistoryViewModelFactory(
@@ -42,32 +38,12 @@ class BrewHistoryFragment : Fragment() {
     ): View {
         _binding = FragmentBrewHistoryBinding.inflate(inflater, container, false)
 
-        val service = NotificationService(requireContext())
-
-        service.createNotificationChannel(
-            getString(R.string.channel_name), getString(R.string.channel_description)
-        )
-
         adapter = BrewHistoryAdapter(this::onInspectItem, this::onItemClick, this::onDeleteClick)
-
         binding.brewHistoryRecyclerView.adapter = adapter
 
         lifecycleScope.launch {
-            viewModel.allBrewHistoryItems.collect { it ->
-                startList = it.map { it.toBrewHistoryItem() }
-                startList.forEach { brewHistoryItem ->
-                    if (brewHistoryItem.cardColor == Color.GRAY && !brewHistoryItem.brewFinished) {
-                        service.showNotification(
-                            getString(R.string.notification_title),
-                            String.format(
-                                getString(R.string.notification_text), brewHistoryItem.bName
-                            )
-                        )
-                        brewHistoryItem.brewFinished = true
-                        onItemUpdate(brewHistoryItem)
-                    }
-                }
-                adapter.submitList(startList)
+            viewModel.allBrewHistoryItems.collect { brewHistoryItemDataList ->
+                adapter.submitList(brewHistoryItemDataList.map { it.toBrewHistoryItem() })
             }
         }
 
@@ -101,9 +77,5 @@ class BrewHistoryFragment : Fragment() {
         viewModel.deleteBrewHistoryItem(item)
     }
 
-    private fun onItemUpdate(item: BrewHistoryItem) {
-        viewModel.updateBrewFinished(item.bId, item.brewFinished)
-    }
-
-    private fun onDialogCookingDismiss(abort: Boolean) {}
+    private fun onDialogCookingDismiss() {}
 }

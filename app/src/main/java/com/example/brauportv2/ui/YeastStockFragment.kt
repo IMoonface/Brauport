@@ -54,8 +54,10 @@ class YeastStockFragment : Fragment() {
         binding.yeastRecyclerView.adapter = adapter
 
         lifecycleScope.launch {
-            viewModel.allStockItems.collect { it ->
-                startList = it.map { it.toStockItem() }.filter { it.itemType == YEAST.ordinal }
+            viewModel.allStockItems.collect { stockItemDataList ->
+                startList = stockItemDataList.map { it.toStockItem() }.filter {
+                    it.itemType == YEAST.ordinal
+                }
                 adapter.submitList(startList)
             }
         }

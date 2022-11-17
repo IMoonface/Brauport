@@ -19,7 +19,7 @@ import java.util.*
 class DialogCookingFragment(
     private val update: Boolean,
     private val item: BrewHistoryItem,
-    private val onDialogCookingDismiss: (Boolean) -> Unit
+    private val onDialogCookingConfirm: () -> Unit
 ) : BaseDialogFragment() {
 
     private var _binding: FragmentDialogCookingBinding? = null
@@ -45,31 +45,31 @@ class DialogCookingFragment(
             val dateOfCompletion = formatter.format(Calendar.getInstance().time)
             val endOfFermentation = binding.cookingText.text.toString()
 
-            val date = formatter.parse(endOfFermentation)
-            date?.let {
-                if (date.before(formatter.parse(actualDate)))
-                    item.cardColor = Color.GRAY
-                else {
-                    item.cardColor = 1
-                    item.brewFinished = false
+            if (viewModel.dateIsValid(endOfFermentation, formatter)) {
+                val date = formatter.parse(endOfFermentation)
+                date?.let {
+                    if (date.before(formatter.parse(actualDate)))
+                        item.cardColor = Color.GRAY
+                    else
+                        item.cardColor = 1
                 }
-            }
 
-            if (viewModel.dateIsValid(endOfFermentation, formatter) && !update) {
-                onItemAdd(dateOfCompletion, endOfFermentation)
-                Toast.makeText(context, R.string.finished_recipe, Toast.LENGTH_SHORT).show()
-                onDialogCookingDismiss(false)
-                dismiss()
-            } else if (viewModel.dateIsValid(endOfFermentation, formatter) && update) {
-                onItemUpdate(endOfFermentation)
-                Toast.makeText(context, R.string.updated_date, Toast.LENGTH_SHORT).show()
-                dismiss()
+                if (!update) {
+                    onItemAdd(dateOfCompletion, endOfFermentation)
+                    Toast.makeText(context, R.string.finished_recipe, Toast.LENGTH_SHORT).show()
+                    onDialogCookingConfirm()
+                    dismiss()
+                } else {
+                    onItemUpdate(endOfFermentation)
+                    Toast.makeText(context, R.string.updated_date, Toast.LENGTH_SHORT).show()
+                    dismiss()
+                }
             } else
                 Toast.makeText(context, R.string.invalid_date, Toast.LENGTH_SHORT).show()
         }
 
         binding.cookingAbortButton.setOnClickListener {
-            onDialogCookingDismiss(true)
+            Toast.makeText(context, R.string.aborted_recipe, Toast.LENGTH_SHORT).show()
             dismiss()
         }
 
@@ -99,8 +99,7 @@ class DialogCookingFragment(
             bMainBrew = item.bMainBrew,
             bDateOfCompletion = item.bDateOfCompletion,
             bEndOfFermentation = endOfFermentation,
-            cardColor = item.cardColor,
-            brewFinished = item.brewFinished
+            cardColor = item.cardColor
         )
     }
 }

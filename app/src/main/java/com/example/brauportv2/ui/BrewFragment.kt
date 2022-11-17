@@ -49,7 +49,9 @@ class BrewFragment : Fragment() {
         _binding = FragmentBrewBinding.inflate(inflater, container, false)
 
         lifecycleScope.launch {
-            viewModel.allStockItems.collect { it -> stockList = it.map { it.toStockItem() } }
+            viewModel.allStockItems.collect { stockItemDataList ->
+                stockList = stockItemDataList.map { it.toStockItem() }
+            }
         }
 
         spinnerItemsList.forEach {
@@ -63,13 +65,15 @@ class BrewFragment : Fragment() {
         binding.brewSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, pos: Int, id: Long) {
                 chosenRecipe = spinnerItemsList[pos]
-                if (viewModel.proveForNonNegAmount(chosenRecipe, stockList))
-                    navigateToBrewDetailsFragment()
-                else {
-                    val dialog = DialogQuestionFragment(this@BrewFragment::onDialogQuestionDismiss)
+                if (viewModel.negativeAmount(chosenRecipe, stockList)) {
+                    val dialog = DialogQuestionFragment(
+                        this@BrewFragment::onDialogQuestionConfirm,
+                        this@BrewFragment::onDialogQuestionAbort
+                    )
                     dialog.isCancelable = false
                     dialog.show(childFragmentManager, "questionDialog")
                 }
+                navigateToBrewDetailsFragment()
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {}
@@ -84,7 +88,7 @@ class BrewFragment : Fragment() {
         binding.brewFinishButton.setOnClickListener {
             if (stepList.isNotEmpty()) {
                 val dialog = DialogCookingFragment(
-                    false, chosenRecipe.toBrewHistoryItem(), this::onDialogCookingDismiss
+                    false, chosenRecipe.toBrewHistoryItem(), this::onDialogCookingConfirm
                 )
                 dialog.isCancelable = false
                 dialog.show(childFragmentManager, "cookingDialog")
@@ -129,27 +133,22 @@ class BrewFragment : Fragment() {
         )
     }
 
-    private fun onDialogCookingDismiss(abort: Boolean) {
-        if (abort)
-            Toast.makeText(context, R.string.aborted_recipe, Toast.LENGTH_SHORT).show()
-        else {
-            if (withSubtract)
+    private fun onDialogCookingConfirm() {
+        if (withSubtract)
                 updateDatabase(chosenRecipe)
-            findNavController()
-                .navigate(BrewFragmentDirections.actionBrewFragmentToBrewHistoryFragment())
-        }
+        findNavController()
+            .navigate(BrewFragmentDirections.actionBrewFragmentToBrewHistoryFragment())
     }
 
-    fun onDialogQuestionDismiss(abort: Boolean, subtract: Boolean) {
-        if (abort)
-            findNavController().navigate(BrewFragmentDirections.actionBrewFragmentToHomeFragment())
-        else {
-            withSubtract = subtract
-            navigateToBrewDetailsFragment()
-        }
+    fun onDialogQuestionConfirm(subtract: Boolean) {
+        withSubtract = subtract
     }
 
-    fun navigateToBrewDetailsFragment() {
+    fun onDialogQuestionAbort() {
+        findNavController().navigate(BrewFragmentDirections.actionBrewFragmentToHomeFragment())
+    }
+
+    private fun navigateToBrewDetailsFragment() {
         childFragmentManager.beginTransaction()
             .replace(R.id.brew_fragment_container, BrewDetailsFragment(chosenRecipe))
             .disallowAddToBackStack()

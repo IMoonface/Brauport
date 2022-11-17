@@ -52,8 +52,10 @@ class MaltStockFragment : Fragment() {
         binding.maltRecyclerView.adapter = adapter
 
         lifecycleScope.launch {
-            viewModel.allStockItems.collect { it ->
-                startList = it.map { it.toStockItem() }.filter { it.itemType == MALT.ordinal }
+            viewModel.allStockItems.collect { stockItemDataList ->
+                startList = stockItemDataList.map { it.toStockItem() }.filter {
+                    it.itemType == MALT.ordinal
+                }
                 adapter.submitList(startList)
             }
         }

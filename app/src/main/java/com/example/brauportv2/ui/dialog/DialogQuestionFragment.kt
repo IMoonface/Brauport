@@ -7,7 +7,8 @@ import android.view.ViewGroup
 import com.example.brauportv2.databinding.FragmentDialogQuestionBinding
 
 class DialogQuestionFragment(
-    private val onDialogQuestionDismiss: (Boolean, Boolean) -> Unit
+    private val onDialogQuestionConfirm: (Boolean) -> Unit,
+    private val onDialogQuestionAbort: () -> Unit
 ) : BaseDialogFragment() {
 
     private var _binding: FragmentDialogQuestionBinding? = null
@@ -21,17 +22,17 @@ class DialogQuestionFragment(
         _binding = FragmentDialogQuestionBinding.inflate(inflater, container, false)
 
         binding.questionWithButton.setOnClickListener {
-            onDialogQuestionDismiss(false, true)
+            onDialogQuestionConfirm(true)
             dismiss()
         }
 
         binding.questionWithoutButton.setOnClickListener {
-            onDialogQuestionDismiss(false, false)
+            onDialogQuestionConfirm(false)
             dismiss()
         }
 
         binding.questionBackButton.setOnClickListener {
-            onDialogQuestionDismiss(true, true)
+            onDialogQuestionAbort()
             dismiss()
         }
 

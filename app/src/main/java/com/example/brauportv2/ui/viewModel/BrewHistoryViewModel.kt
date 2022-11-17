@@ -28,12 +28,6 @@ class BrewHistoryViewModel(private val brewHistoryDao: BrewHistoryDao) : ViewMod
         }
     }
 
-    fun updateBrewFinished(id: Int, brewFinished: Boolean) {
-        viewModelScope.launch {
-            brewHistoryDao.updateBrewFinished(id, brewFinished)
-        }
-    }
-
     fun updateBrewHistoryItem(
         bId: Int,
         bName: String,
@@ -45,7 +39,6 @@ class BrewHistoryViewModel(private val brewHistoryDao: BrewHistoryDao) : ViewMod
         bDateOfCompletion: String,
         bEndOfFermentation: String,
         cardColor: Int,
-        brewFinished: Boolean
     ) {
         val brewHistoryItem = BrewHistoryItem(
             bId = bId,
@@ -58,7 +51,6 @@ class BrewHistoryViewModel(private val brewHistoryDao: BrewHistoryDao) : ViewMod
             bDateOfCompletion = bDateOfCompletion,
             bEndOfFermentation = bEndOfFermentation,
             cardColor = cardColor,
-            brewFinished = brewFinished
         )
         viewModelScope.launch(Dispatchers.IO) {
             brewHistoryDao.update(brewHistoryItem.toBrewHistoryItemData())

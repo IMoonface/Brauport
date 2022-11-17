@@ -58,8 +58,8 @@ class RecipeFragment : Fragment() {
         adapter = RecipeAdapter(this::onInspectClick, this::onItemClick, this::onDeleteClick)
         binding.recipeRecyclerView.adapter = adapter
         lifecycleScope.launch {
-            viewModel.allRecipeItems.collect { it ->
-                startList = it.map { it.toRecipeItem() }
+            viewModel.allRecipeItems.collect { recipeItemDataList ->
+                startList = recipeItemDataList.map { it.toRecipeItem() }
                 adapter.submitList(startList)
             }
         }

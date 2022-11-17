@@ -52,8 +52,10 @@ class HopStockFragment : Fragment() {
         binding.hopRecyclerView.adapter = adapter
 
         lifecycleScope.launch {
-            viewModel.allStockItems.collect { it ->
-                startList = it.map { it.toStockItem() }.filter { it.itemType == HOP.ordinal }
+            viewModel.allStockItems.collect { stockItemDataList ->
+                startList = stockItemDataList.map { it.toStockItem() }.filter {
+                    it.itemType == HOP.ordinal
+                }
                 adapter.submitList(startList)
             }
         }
