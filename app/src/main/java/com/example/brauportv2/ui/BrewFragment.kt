@@ -1,6 +1,8 @@
 package com.example.brauportv2.ui
 
+import android.annotation.SuppressLint
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,14 +15,14 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.brauportv2.BaseApplication
 import com.example.brauportv2.R
+import com.example.brauportv2.adapter.BrewAdapter
 import com.example.brauportv2.databinding.FragmentBrewBinding
 import com.example.brauportv2.mapper.toBrewHistoryItem
 import com.example.brauportv2.mapper.toStockItem
+import com.example.brauportv2.model.brew.StepItem
 import com.example.brauportv2.model.recipe.RecipeItem
 import com.example.brauportv2.model.stock.StockItem
 import com.example.brauportv2.ui.HomeFragment.Companion.spinnerItemsList
-import com.example.brauportv2.ui.details.BrewDetailsFragment
-import com.example.brauportv2.ui.details.BrewDetailsFragment.Companion.stepList
 import com.example.brauportv2.ui.dialog.DialogCookingFragment
 import com.example.brauportv2.ui.dialog.DialogInstructionBrewFragment
 import com.example.brauportv2.ui.dialog.DialogQuestionFragment
@@ -32,21 +34,31 @@ class BrewFragment : Fragment() {
 
     private var _binding: FragmentBrewBinding? = null
     private val binding get() = _binding!!
+    private lateinit var adapter: BrewAdapter
+    private var countDownTimer: CountDownTimer? = null
+    private var milliFromItem: Long = 0
+    private var milliLeft: Long = 0
+    private var startTimer = false
     private var spinnerOptions: MutableList<String> = mutableListOf()
     private lateinit var chosenRecipe: RecipeItem
     private var stockList = emptyList<StockItem>()
+    private var stepList = emptyList<StepItem>()
     private var withSubtract = true
 
     private val viewModel: StockViewModel by activityViewModels {
         StockViewModelFactory((activity?.application as BaseApplication).stockDatabase.stockDao())
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentBrewBinding.inflate(inflater, container, false)
+
+        adapter = BrewAdapter(this::onItemClick)
+        binding.brewRecyclerView.adapter = adapter
 
         lifecycleScope.launch {
             viewModel.allStockItems.collect { stockItemDataList ->
@@ -65,6 +77,7 @@ class BrewFragment : Fragment() {
         binding.brewSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, pos: Int, id: Long) {
                 chosenRecipe = spinnerItemsList[pos]
+                stepList = createStringList(chosenRecipe)
                 if (viewModel.negativeAmount(chosenRecipe, stockList)) {
                     val dialog = DialogQuestionFragment(
                         this@BrewFragment::onDialogQuestionConfirm,
@@ -73,7 +86,7 @@ class BrewFragment : Fragment() {
                     dialog.isCancelable = false
                     dialog.show(childFragmentManager, "questionDialog")
                 }
-                navigateToBrewDetailsFragment()
+                adapter.submitList(stepList)
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {}
@@ -83,6 +96,37 @@ class BrewFragment : Fragment() {
             val dialog = DialogInstructionBrewFragment()
             dialog.isCancelable = false
             dialog.show(childFragmentManager, "brewInfoDialog")
+        }
+
+        binding.brewTimerStartButton.setOnClickListener {
+            if (binding.brewTimerStartButton.text.equals("Start") && startTimer)
+                Toast.makeText(context, R.string.timer_already_running, Toast.LENGTH_SHORT).show()
+            else if (binding.brewTimerStartButton.text.equals("Start") && !startTimer) {
+                startTimer = true
+                timerStart(milliFromItem)
+            } else if (binding.brewTimerStartButton.text.equals(getString(R.string.along))) {
+                timerStart(milliLeft)
+                binding.brewTimerStartButton.text = "Start"
+                binding.brewTimerStopButton.text = "Stop"
+                startTimer = true
+            }
+        }
+
+        binding.brewTimerStopButton.setOnClickListener {
+            countDownTimer?.let {
+                if (binding.brewTimerStopButton.text.equals("Stop") && startTimer) {
+                    it.cancel()
+                    binding.brewTimerStartButton.text = getString(R.string.along)
+                    binding.brewTimerStopButton.text = "Cancel"
+                } else if (binding.brewTimerStopButton.text.equals("Cancel")) {
+                    it.cancel()
+                    binding.brewTimerText.text = getString(R.string.time_dummy)
+                    binding.brewTimerStartButton.text = "Start"
+                    binding.brewTimerStopButton.text = "Stop"
+                    milliFromItem = 0
+                    startTimer = false
+                }
+            }
         }
 
         binding.brewFinishButton.setOnClickListener {
@@ -102,6 +146,73 @@ class BrewFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun onDialogCookingConfirm() {
+        if (withSubtract)
+            updateDatabase(chosenRecipe)
+        findNavController()
+            .navigate(BrewFragmentDirections.actionBrewFragmentToBrewHistoryFragment())
+    }
+
+    fun onDialogQuestionConfirm(subtract: Boolean) {
+        withSubtract = subtract
+    }
+
+    fun onDialogQuestionAbort() {
+        findNavController().navigate(BrewFragmentDirections.actionBrewFragmentToHomeFragment())
+    }
+
+
+    @SuppressLint("SetTextI18n")
+    private fun onItemClick(brewItem: StepItem) {
+        if (startTimer)
+            Toast.makeText(context, R.string.timer_already_running, Toast.LENGTH_SHORT).show()
+        else {
+            binding.brewTimerStartButton.text = "Start"
+            if (brewItem.brewTime != "") {
+                milliFromItem = brewItem.brewTime.toLong() * 60000
+                timerStart(milliFromItem)
+            }
+        }
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun timerStart(timeInMilli: Long) {
+        binding.brewTimerText.text = minutes(timeInMilli) + "00"
+        if (startTimer) {
+            countDownTimer = object : CountDownTimer((timeInMilli), 1000) {
+                override fun onTick(untilFinish: Long) {
+                    milliLeft = untilFinish
+                    binding.brewTimerText.text = minutes(untilFinish) + seconds(untilFinish)
+                }
+
+                override fun onFinish() {
+                    binding.brewTimerText.text = getString(R.string.time_dummy)
+                    binding.brewTimerStartButton.text = "Start"
+                    milliFromItem = 0
+                    startTimer = false
+                }
+            }.start()
+        }
+    }
+
+    fun minutes(millis: Long): String {
+        if (millis / 60000 < 1) return "00:"
+        if (millis / 60000 in 1..9) return "0" + (millis / 60000) + ":"
+        return "" + (millis / 60000) + ":"
+    }
+
+    fun seconds(millis: Long): String {
+        var millisSeconds: Long = millis
+        while (millisSeconds >= 60000)
+            millisSeconds -= 60000
+
+        return when (millisSeconds / 1000) {
+            in 0..0 -> "00"
+            in 1..9 -> "0" + +(millisSeconds / 1000)
+            else -> "" + millisSeconds / 1000
+        }
     }
 
     private fun updateDatabase(item: RecipeItem) {
@@ -133,25 +244,122 @@ class BrewFragment : Fragment() {
         )
     }
 
-    private fun onDialogCookingConfirm() {
-        if (withSubtract)
-                updateDatabase(chosenRecipe)
-        findNavController()
-            .navigate(BrewFragmentDirections.actionBrewFragmentToBrewHistoryFragment())
-    }
+    private fun createStringList(item: RecipeItem): List<StepItem> {
+        val newBrewList = mutableListOf<StepItem>()
+        var counter = 1
 
-    fun onDialogQuestionConfirm(subtract: Boolean) {
-        withSubtract = subtract
-    }
+        item.maltList.forEach {
+            newBrewList.add(
+                StepItem(
+                    counter = counter,
+                    itemString = it.stockName + " " + it.stockAmount,
+                    brewTime = ""
+                )
+            )
+            counter++
+        }
 
-    fun onDialogQuestionAbort() {
-        findNavController().navigate(BrewFragmentDirections.actionBrewFragmentToHomeFragment())
-    }
+        newBrewList.add(
+            StepItem(
+                counter = counter,
+                itemString = getString(R.string.grinding_malt),
+                brewTime = ""
+            )
+        )
+        counter++
 
-    private fun navigateToBrewDetailsFragment() {
-        childFragmentManager.beginTransaction()
-            .replace(R.id.brew_fragment_container, BrewDetailsFragment(chosenRecipe))
-            .disallowAddToBackStack()
-            .commit()
+        newBrewList.add(
+            StepItem(
+                counter = counter,
+                itemString = getString(R.string.first_brew) + ": " + item.mainBrew.firstBrew,
+                brewTime = ""
+            )
+        )
+        counter++
+
+        item.restList.forEach {
+            newBrewList.add(
+                StepItem(
+                    counter = counter,
+                    itemString = it.restTemp + getString(R.string.unit_of_measurement_temp),
+                    brewTime = it.restTime
+                )
+            )
+            counter++
+        }
+
+        newBrewList.add(
+            StepItem(
+                counter = counter,
+                itemString = getString(R.string.second_brew) + ": " + item.mainBrew.secondBrew,
+                brewTime = ""
+            )
+        )
+        counter++
+
+        newBrewList.add(
+            StepItem(
+                counter = counter,
+                itemString = getString(R.string.remove_malt),
+                brewTime = ""
+            )
+        )
+        counter++
+
+        newBrewList.add(
+            StepItem(
+                counter = counter,
+                itemString = getString(R.string.heat_to_about_temperature),
+                brewTime = ""
+            )
+        )
+        counter++
+
+        var hoppingListString = ""
+
+        item.hoppingList.forEach { hopping ->
+            hopping.hopList.forEach { hop ->
+                hoppingListString += hop.stockName + " " + hop.stockAmount + " "
+            }
+
+            newBrewList.add(
+                StepItem(
+                    counter = counter,
+                    itemString = hoppingListString,
+                    brewTime = hopping.hoppingTime
+                )
+            )
+            hoppingListString = ""
+            counter++
+        }
+
+        newBrewList.add(
+            StepItem(
+                counter = counter,
+                itemString = getString(R.string.pipeing),
+                brewTime = ""
+            )
+        )
+        counter++
+
+        newBrewList.add(
+            StepItem(
+                counter = counter,
+                itemString = getString(R.string.let_it_cool_down),
+                brewTime = ""
+            )
+        )
+        counter++
+
+        newBrewList.add(
+            StepItem(
+                counter = counter,
+                itemString = item.yeast.stockName + " " + item.yeast.stockAmount,
+                brewTime = ""
+            )
+        )
+        counter++
+
+        return newBrewList
     }
 }

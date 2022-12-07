@@ -74,6 +74,6 @@ class HomeFragment : Fragment() {
     }
 
     companion object {
-        lateinit var spinnerItemsList: List<RecipeItem>
+        var spinnerItemsList: List<RecipeItem> = emptyList()
     }
 }
