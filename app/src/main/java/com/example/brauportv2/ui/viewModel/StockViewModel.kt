@@ -64,11 +64,40 @@ class StockViewModel(private val stockDao: StockDao) : ViewModel() {
         return databaseAmount - recipeAmount >= 0
     }
 
-    fun calcAmount(item: StockItem, list: List<StockItem>): String {
+    private fun calcAmount(item: StockItem, list: List<StockItem>): String {
         val index = list.map { it.toSNoAmount() }.indexOf(item.toSNoAmount())
         val recipeAmount = item.stockAmount.toInt()
         val databaseAmount = list[index].stockAmount.toInt()
         return (databaseAmount - recipeAmount).toString()
+    }
+
+    fun updateDatabase(item: RecipeItem, list: List<StockItem>) {
+        item.maltList.forEach { malt ->
+            updateStock(
+                id = malt.id,
+                itemType = malt.itemType,
+                stockName = malt.stockName,
+                stockAmount = calcAmount(malt, list)
+            )
+        }
+
+        item.hoppingList.forEach { hopping ->
+            hopping.hopList.forEach { hop ->
+                updateStock(
+                    id = hop.id,
+                    itemType = hop.itemType,
+                    stockName = hop.stockName,
+                    stockAmount = calcAmount(hop, list)
+                )
+            }
+        }
+
+        updateStock(
+            id = item.yeast.id,
+            itemType = item.yeast.itemType,
+            stockName = item.yeast.stockName,
+            stockAmount = calcAmount(item.yeast, list)
+        )
     }
 }
 

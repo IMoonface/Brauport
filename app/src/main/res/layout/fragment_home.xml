@@ -12,10 +12,10 @@
         android:layout_width="220dp"
         android:layout_height="60dp"
         android:text="@string/main_recipes_button"
-        app:layout_constraintBottom_toTopOf="@+id/main_stock_button"
+        app:layout_constraintBottom_toTopOf="@+id/main_brew_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/main_stock_button" />
 
     <Button
         android:id="@+id/main_stock_button"
@@ -23,10 +23,10 @@
         android:layout_width="220dp"
         android:layout_height="60dp"
         android:text="@string/stock_text"
-        app:layout_constraintBottom_toTopOf="@+id/main_brew_button"
+        app:layout_constraintBottom_toTopOf="@+id/main_recipe_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/main_recipe_button" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/main_brew_button"
@@ -37,7 +37,7 @@
         app:layout_constraintBottom_toTopOf="@+id/main_brew_history_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/main_stock_button" />
+        app:layout_constraintTop_toBottomOf="@+id/main_recipe_button" />
 
     <Button
         android:id="@+id/main_brew_history_button"

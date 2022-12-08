@@ -150,7 +150,7 @@ class BrewFragment : Fragment() {
 
     private fun onDialogCookingConfirm() {
         if (withSubtract)
-            updateDatabase(chosenRecipe)
+            viewModel.updateDatabase(chosenRecipe, stockList)
         findNavController()
             .navigate(BrewFragmentDirections.actionBrewFragmentToBrewHistoryFragment())
     }
@@ -213,35 +213,6 @@ class BrewFragment : Fragment() {
             in 1..9 -> "0" + +(millisSeconds / 1000)
             else -> "" + millisSeconds / 1000
         }
-    }
-
-    private fun updateDatabase(item: RecipeItem) {
-        item.maltList.forEach { malt ->
-            viewModel.updateStock(
-                id = malt.id,
-                itemType = malt.itemType,
-                stockName = malt.stockName,
-                stockAmount = viewModel.calcAmount(malt, stockList)
-            )
-        }
-
-        item.hoppingList.forEach { hopping ->
-            hopping.hopList.forEach { hop ->
-                viewModel.updateStock(
-                    id = hop.id,
-                    itemType = hop.itemType,
-                    stockName = hop.stockName,
-                    stockAmount = viewModel.calcAmount(hop, stockList)
-                )
-            }
-        }
-
-        viewModel.updateStock(
-            id = item.yeast.id,
-            itemType = item.yeast.itemType,
-            stockName = item.yeast.stockName,
-            stockAmount = viewModel.calcAmount(item.yeast, stockList)
-        )
     }
 
     private fun createStringList(item: RecipeItem): List<StepItem> {
