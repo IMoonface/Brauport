@@ -13,7 +13,7 @@ data class RecipeItemData(
     val recipeName: String,
     @ColumnInfo(name = "maltList")
     val maltList: List<StockItem>,
-    @ColumnInfo(name = "rest")
+    @ColumnInfo(name = "restList")
     val restList: List<Rest>,
     @ColumnInfo(name = "hoppingList")
     val hoppingList: List<Hopping>,

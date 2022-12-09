@@ -22,7 +22,7 @@ import com.example.brauportv2.mapper.toStockItem
 import com.example.brauportv2.model.brew.StepItem
 import com.example.brauportv2.model.recipe.RecipeItem
 import com.example.brauportv2.model.stock.StockItem
-import com.example.brauportv2.ui.HomeFragment.Companion.spinnerItemsList
+import com.example.brauportv2.ui.HomeFragment.Companion.spinnerItemList
 import com.example.brauportv2.ui.dialog.DialogCookingFragment
 import com.example.brauportv2.ui.dialog.DialogInstructionBrewFragment
 import com.example.brauportv2.ui.dialog.DialogQuestionFragment
@@ -66,7 +66,7 @@ class BrewFragment : Fragment() {
             }
         }
 
-        spinnerItemsList.forEach {
+        spinnerItemList.forEach {
             spinnerOptions.add(it.recipeName)
         }
 
@@ -76,7 +76,7 @@ class BrewFragment : Fragment() {
 
         binding.brewSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, pos: Int, id: Long) {
-                chosenRecipe = spinnerItemsList[pos]
+                chosenRecipe = spinnerItemList[pos]
                 stepList = createStringList(chosenRecipe)
                 if (viewModel.negativeAmount(chosenRecipe, stockList)) {
                     val dialog = DialogQuestionFragment(

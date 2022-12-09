@@ -26,6 +26,7 @@
     <string name="brew_without_subtracting_stock">Brew wort, brew and don\'t subtract off stock</string>
     <string name="channel_name">Brew history notification channel</string>
     <string name="channel_description">Informs whenever a fermentation has finished</string>
+    <string name="choose_all_recipe_ingredients">Please choose all recipe ingredients!</string>
     <string name="choose_another_recipe">Please choose another recipe!</string>
     <string name="choose_hop">Please choose hop first!</string>
     <string name="confirm">Confirm</string>
@@ -98,7 +99,6 @@
     <string name="search_string">Search</string>
     <string name="second_brew">Second Pour</string>
     <string name="second_brew_with">and second pour with</string>
-    <string name="set_all_attributes">Please set all attributes!</string>
     <string name="start_brew_timer">Start</string>
     <string name="stock_text">Stock</string>
     <string name="stop_brew_timer">Stop</string>

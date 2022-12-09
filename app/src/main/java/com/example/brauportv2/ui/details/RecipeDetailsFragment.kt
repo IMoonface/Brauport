@@ -88,23 +88,21 @@ class RecipeDetailsFragment : Fragment() {
             else if (update) {
                 onItemUpdate(recipeItem)
                 Toast.makeText(context, R.string.updated_recipe, Toast.LENGTH_SHORT).show()
-                findNavController()
-                    .navigate(
-                        RecipeDetailsFragmentDirections
-                            .actionRecipeDetailsFragmentToRecipeFragment()
-                    )
+
+                findNavController().navigate(
+                    RecipeDetailsFragmentDirections.actionRecipeDetailsFragmentToRecipeFragment()
+                )
             } else {
-                if (recipeValid())
-                    Toast.makeText(context, R.string.set_all_attributes, Toast.LENGTH_SHORT).show()
+                if (recipeNotValid())
+                    Toast.makeText(context, R.string.choose_all_recipe_ingredients, Toast.LENGTH_SHORT).show()
                 else {
                     recipeItem.rId = UUID.randomUUID().hashCode()
                     viewModel.addRecipe(recipeItem)
                     Toast.makeText(context, R.string.created_recipe, Toast.LENGTH_SHORT).show()
-                    findNavController()
-                        .navigate(
-                            RecipeDetailsFragmentDirections
-                                .actionRecipeDetailsFragmentToRecipeFragment()
-                        )
+
+                    findNavController().navigate(
+                        RecipeDetailsFragmentDirections.actionRecipeDetailsFragmentToRecipeFragment()
+                    )
                 }
             }
         }
@@ -129,15 +127,15 @@ class RecipeDetailsFragment : Fragment() {
         )
     }
 
-    private fun recipeValid(): Boolean {
-        val startYeast = StockItem(
+    private fun recipeNotValid(): Boolean {
+        val defaultYeast = StockItem(
             id = 0, itemType = StockItemType.YEAST.ordinal, stockName = "", stockAmount = ""
         )
 
-        val startMainBrew = MainBrew(firstBrew = "", secondBrew = "")
+        val defaultMainBrew = MainBrew(firstBrew = "", secondBrew = "")
 
         return (recipeItem.recipeName == "" || recipeItem.maltList.isEmpty() ||
-                recipeItem.restList.isEmpty() || recipeItem.mainBrew == startMainBrew ||
-                recipeItem.hoppingList.isEmpty() || recipeItem.yeast == startYeast)
+                recipeItem.restList.isEmpty() || recipeItem.mainBrew == defaultMainBrew ||
+                recipeItem.hoppingList.isEmpty() || recipeItem.yeast == defaultYeast)
     }
 }

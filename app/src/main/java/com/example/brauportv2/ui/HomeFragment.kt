@@ -37,7 +37,7 @@ class HomeFragment : Fragment() {
 
         lifecycleScope.launch {
             viewModel.allRecipeItems.collect { recipeItemDataList ->
-                spinnerItemsList = recipeItemDataList.map { it.toRecipeItem() }
+                spinnerItemList = recipeItemDataList.map { it.toRecipeItem() }
             }
         }
 
@@ -74,6 +74,6 @@ class HomeFragment : Fragment() {
     }
 
     companion object {
-        var spinnerItemsList: List<RecipeItem> = emptyList()
+        var spinnerItemList: List<RecipeItem> = emptyList()
     }
 }

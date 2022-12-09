@@ -64,7 +64,7 @@ class DialogStockFragment(
     }
 
     private fun updateRecipes(item: StockItem) {
-        HomeFragment.spinnerItemsList.forEach { recipeItem ->
+        HomeFragment.spinnerItemList.forEach { recipeItem ->
             if (item.itemType == StockItemType.MALT.ordinal)
                 recipeItem.maltList.forEach { stockItem ->
                     if (differentFromRecipeStock(stockItem, item)) {

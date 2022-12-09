@@ -16,7 +16,7 @@ data class BrewHistoryItemData(
     val bName: String,
     @ColumnInfo(name = "maltList")
     val bMaltList: List<StockItem>,
-    @ColumnInfo(name = "rest")
+    @ColumnInfo(name = "restList")
     val bRestList: List<Rest>,
     @ColumnInfo(name = "hoppingList")
     val bHoppingList: List<Hopping>,

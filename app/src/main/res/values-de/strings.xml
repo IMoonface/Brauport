@@ -26,6 +26,7 @@
     <string name="brew_without_subtracting_stock">Trotzdem Brauen und Bestand nicht abziehen</string>
     <string name="channel_name">Brauhistorien Benachrichtigungskanal</string>
     <string name="channel_description">Informiert, wenn eine Gärung beendet ist</string>
+    <string name="choose_all_recipe_ingredients">Bitte alle Rezeptbestandteile auswählen!</string>
     <string name="choose_another_recipe">Bitte wählen Sie ein anderes Rezept!</string>
     <string name="choose_hop">"Bitte zuerst Hopfen auswählen!"</string>
     <string name="confirm">Bestätigen</string>
@@ -98,7 +99,6 @@
     <string name="search_string">Durchsuchen</string>
     <string name="second_brew">Nachguss</string>
     <string name="second_brew_with">und Nachguss mit</string>
-    <string name="set_all_attributes">Bitte alle Attribute setzen!</string>
     <string name="start_brew_timer">Start</string>
     <string name="stock_text">Bestand</string>
     <string name="stop_brew_timer">Stop</string>
