@@ -23,7 +23,7 @@ import com.example.brauportv2.model.stock.StockItemType
 import com.example.brauportv2.ui.dialog.DialogDeleteFragment
 import com.example.brauportv2.ui.dialog.DialogInstructionRecipeFragment
 import com.example.brauportv2.ui.dialog.DialogRecipeInspectFragment
-import com.example.brauportv2.ui.objects.TextWatcherLogic.filterListForRecipe
+import com.example.brauportv2.ui.`object`.TextWatcherLogic.filterListForRecipe
 import com.example.brauportv2.ui.viewModel.RecipeViewModel
 import com.example.brauportv2.ui.viewModel.RecipeViewModelFactory
 import kotlinx.coroutines.launch

@@ -1,4 +1,4 @@
-package com.example.brauportv2.ui.details
+package com.example.brauportv2.ui.detail
 
 import android.os.Bundle
 import android.view.LayoutInflater

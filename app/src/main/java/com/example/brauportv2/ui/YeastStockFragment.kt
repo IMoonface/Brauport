@@ -18,7 +18,7 @@ import com.example.brauportv2.model.stock.StockItem
 import com.example.brauportv2.model.stock.StockItemType.YEAST
 import com.example.brauportv2.ui.dialog.DialogInstructionStockFragment
 import com.example.brauportv2.ui.dialog.DialogStockFragment
-import com.example.brauportv2.ui.objects.TextWatcherLogic.filterListForStock
+import com.example.brauportv2.ui.`object`.TextWatcherLogic.filterListForStock
 import com.example.brauportv2.ui.viewModel.StockViewModel
 import com.example.brauportv2.ui.viewModel.StockViewModelFactory
 import kotlinx.coroutines.launch

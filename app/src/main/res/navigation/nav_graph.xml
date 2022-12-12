@@ -78,7 +78,7 @@
     </fragment>
     <fragment
         android:id="@+id/recipe_details_fragment"
-        android:name="com.example.brauportv2.ui.details.RecipeDetailsFragment"
+        android:name="com.example.brauportv2.ui.detail.RecipeDetailsFragment"
         android:label="@string/brauport_recipe_details"
         tools:layout="@layout/fragment_recipe_details">
         <action

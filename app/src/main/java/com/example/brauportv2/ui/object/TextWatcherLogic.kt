@@ -1,4 +1,4 @@
-package com.example.brauportv2.ui.objects
+package com.example.brauportv2.ui.`object`
 
 import com.example.brauportv2.adapter.RecipeAdapter
 import com.example.brauportv2.adapter.StockAdapter
