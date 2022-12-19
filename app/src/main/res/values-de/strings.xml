@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="add">Hinzufügen</string>
     <string name="abort">Abbrechen</string>
     <string name="aborted_recipe">Rezept wurde nicht abgeschlossen!</string>
     <string name="added_hop">Hopfen wurde hinzugefügt!</string>
