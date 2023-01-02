@@ -35,7 +35,7 @@ class HopStockFragment : Fragment() {
         override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
         override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
         override fun afterTextChanged(p0: Editable?) {
-            filterListForStock(binding.hopTextInput.text.toString(), adapter, startList)
+            filterListForStock(binding.textInput.text.toString(), adapter, startList)
         }
     }
 
@@ -49,7 +49,7 @@ class HopStockFragment : Fragment() {
         _binding = FragmentHopStockBinding.inflate(inflater, container, false)
 
         adapter = StockAdapter(this::onItemClick, this::onDeleteClick)
-        binding.hopRecyclerView.adapter = adapter
+        binding.recyclerView.adapter = adapter
 
         lifecycleScope.launch {
             viewModel.allStockItems.collect { stockItemDataList ->
@@ -60,23 +60,23 @@ class HopStockFragment : Fragment() {
             }
         }
 
-        binding.hopNextButton.setOnClickListener {
+        binding.nextButton.setOnClickListener {
             findNavController().navigate(
                 HopStockFragmentDirections.actionHopsStockFragmentToYeastStockFragment()
             )
 
-            binding.hopTextInput.text?.clear()
+            binding.textInput.text?.clear()
         }
 
-        binding.hopBeforeButton.setOnClickListener {
+        binding.beforeButton.setOnClickListener {
             findNavController().navigate(
                 HopStockFragmentDirections.actionHopsStockFragmentToMaltStockFragment()
             )
 
-            binding.hopTextInput.text?.clear()
+            binding.textInput.text?.clear()
         }
 
-        binding.hopAddButton.setOnClickListener {
+        binding.addButton.setOnClickListener {
             val item = StockItem(
                 id = UUID.randomUUID().hashCode(),
                 itemType = HOP.ordinal,
@@ -92,9 +92,9 @@ class HopStockFragment : Fragment() {
             dialog.show(childFragmentManager, "hopAddDialog")
         }
 
-        binding.hopTextInput.addTextChangedListener(textWatcher)
+        binding.textInput.addTextChangedListener(textWatcher)
 
-        binding.hopInfoButton.setOnClickListener {
+        binding.infoButton.setOnClickListener {
             val dialog = DialogInstructionStockFragment()
             dialog.isCancelable = false
             dialog.show(childFragmentManager, "hopInfoDialog")

@@ -23,8 +23,7 @@ class HomeFragment : Fragment() {
 
     private val viewModel: RecipeViewModel by activityViewModels {
         RecipeViewModelFactory(
-            (activity?.application as BaseApplication)
-                .recipeDatabase.recipeDao()
+            (activity?.application as BaseApplication).recipeDatabase.recipeDao()
         )
     }
 

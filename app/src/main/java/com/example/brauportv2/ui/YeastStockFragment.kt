@@ -35,7 +35,7 @@ class YeastStockFragment : Fragment() {
         override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
         override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
         override fun afterTextChanged(p0: Editable?) {
-            filterListForStock(binding.yeastTextInput.text.toString(), adapter, startList)
+            filterListForStock(binding.textInput.text.toString(), adapter, startList)
         }
     }
 
@@ -51,7 +51,7 @@ class YeastStockFragment : Fragment() {
         _binding = FragmentYeastStockBinding.inflate(inflater, container, false)
 
         adapter = StockAdapter(this::onItemClick, this::onDeleteClick)
-        binding.yeastRecyclerView.adapter = adapter
+        binding.recyclerView.adapter = adapter
 
         lifecycleScope.launch {
             viewModel.allStockItems.collect { stockItemDataList ->
@@ -62,23 +62,23 @@ class YeastStockFragment : Fragment() {
             }
         }
 
-        binding.yeastNextButton.setOnClickListener {
+        binding.nextButton.setOnClickListener {
             findNavController().navigate(
                 YeastStockFragmentDirections.actionYeastStockFragmentToMaltStockFragment()
             )
 
-            binding.yeastTextInput.text?.clear()
+            binding.textInput.text?.clear()
         }
 
-        binding.yeastBeforeButton.setOnClickListener {
+        binding.beforeButton.setOnClickListener {
             findNavController().navigate(
                 YeastStockFragmentDirections.actionYeastStockFragmentToHopsStockFragment()
             )
 
-            binding.yeastTextInput.text?.clear()
+            binding.textInput.text?.clear()
         }
 
-        binding.yeastAddButton.setOnClickListener {
+        binding.addButton.setOnClickListener {
             val item = StockItem(
                 id = UUID.randomUUID().hashCode(),
                 itemType = YEAST.ordinal,
@@ -94,9 +94,9 @@ class YeastStockFragment : Fragment() {
             dialog.show(childFragmentManager, "yeastAddDialog")
         }
 
-        binding.yeastTextInput.addTextChangedListener(textWatcher)
+        binding.textInput.addTextChangedListener(textWatcher)
 
-        binding.yeastInfoButton.setOnClickListener {
+        binding.infoButton.setOnClickListener {
             val dialog = DialogInstructionStockFragment()
             dialog.isCancelable = false
             dialog.show(childFragmentManager, "yeastInfoDialog")

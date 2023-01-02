@@ -35,7 +35,7 @@ class MaltStockFragment : Fragment() {
         override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
         override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
         override fun afterTextChanged(p0: Editable?) {
-            filterListForStock(binding.maltTextInput.text.toString(), adapter, startList)
+            filterListForStock(binding.textInput.text.toString(), adapter, startList)
         }
     }
 
@@ -49,7 +49,7 @@ class MaltStockFragment : Fragment() {
         _binding = FragmentMaltStockBinding.inflate(inflater, container, false)
 
         adapter = StockAdapter(this::onItemClick, this::onDeleteClick)
-        binding.maltRecyclerView.adapter = adapter
+        binding.recyclerView.adapter = adapter
 
         lifecycleScope.launch {
             viewModel.allStockItems.collect { stockItemDataList ->
@@ -60,23 +60,23 @@ class MaltStockFragment : Fragment() {
             }
         }
 
-        binding.maltNextButton.setOnClickListener {
+        binding.nextButton.setOnClickListener {
             findNavController().navigate(
                 MaltStockFragmentDirections.actionMaltStockFragmentToHopsStockFragment()
             )
 
-            binding.maltTextInput.text?.clear()
+            binding.textInput.text?.clear()
         }
 
-        binding.maltBeforeButton.setOnClickListener {
+        binding.beforeButton.setOnClickListener {
             findNavController().navigate(
                 MaltStockFragmentDirections.actionMaltStockFragmentToYeastStockFragment()
             )
 
-            binding.maltTextInput.text?.clear()
+            binding.textInput.text?.clear()
         }
 
-        binding.maltAddButton.setOnClickListener {
+        binding.addButton.setOnClickListener {
             val item = StockItem(
                 id = UUID.randomUUID().hashCode(),
                 itemType = MALT.ordinal,
@@ -92,9 +92,9 @@ class MaltStockFragment : Fragment() {
             dialog.show(childFragmentManager, "maltAddDialog")
         }
 
-        binding.maltTextInput.addTextChangedListener(textWatcher)
+        binding.textInput.addTextChangedListener(textWatcher)
 
-        binding.maltInfoButton.setOnClickListener {
+        binding.infoButton.setOnClickListener {
             val dialog = DialogInstructionStockFragment()
             dialog.isCancelable = false
             dialog.show(childFragmentManager, "maltInfoDialog")
