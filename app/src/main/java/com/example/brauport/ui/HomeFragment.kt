@@ -9,11 +9,11 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.brauport.BaseApplication
+import com.example.brauport.databinding.FragmentHomeBinding
 import com.example.brauport.mapper.toRecipeItem
 import com.example.brauport.model.recipe.RecipeItem
 import com.example.brauport.ui.viewModel.RecipeViewModel
 import com.example.brauport.ui.viewModel.RecipeViewModelFactory
-import com.example.brauportv2.databinding.FragmentHomeBinding
 import kotlinx.coroutines.launch
 
 class HomeFragment : Fragment() {

@@ -5,8 +5,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.brauport.databinding.CardBrewBinding
 import com.example.brauport.model.brew.StepItem
-import com.example.brauportv2.databinding.CardBrewBinding
 
 class BrewAdapter(
     private val onItemClick: (StepItem) -> Unit,

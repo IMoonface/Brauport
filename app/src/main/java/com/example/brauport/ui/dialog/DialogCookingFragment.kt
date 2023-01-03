@@ -8,11 +8,11 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import com.example.brauport.BaseApplication
+import com.example.brauport.R
+import com.example.brauport.databinding.FragmentDialogCookingBinding
 import com.example.brauport.model.brewHistory.BrewHistoryItem
 import com.example.brauport.ui.viewModel.BrewHistoryViewModel
 import com.example.brauport.ui.viewModel.BrewHistoryViewModelFactory
-import com.example.brauportv2.R
-import com.example.brauportv2.databinding.FragmentDialogCookingBinding
 import java.text.SimpleDateFormat
 import java.util.*
 

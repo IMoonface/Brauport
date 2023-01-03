@@ -7,13 +7,13 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import com.example.brauport.BaseApplication
+import com.example.brauport.R
+import com.example.brauport.databinding.FragmentDialogStockBinding
 import com.example.brauport.model.stock.StockItem
 import com.example.brauport.model.stock.StockItemType
 import com.example.brauport.ui.HomeFragment
 import com.example.brauport.ui.viewModel.RecipeViewModel
 import com.example.brauport.ui.viewModel.RecipeViewModelFactory
-import com.example.brauportv2.R
-import com.example.brauportv2.databinding.FragmentDialogStockBinding
 
 class DialogStockFragment(
     private val item: StockItem,

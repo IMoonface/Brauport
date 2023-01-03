@@ -6,8 +6,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.brauport.databinding.CardStockBinding
 import com.example.brauport.model.stock.StockItem
-import com.example.brauportv2.databinding.CardStockBinding
 
 class StockAdapter(
     private val onItemClick: (StockItem) -> Unit,

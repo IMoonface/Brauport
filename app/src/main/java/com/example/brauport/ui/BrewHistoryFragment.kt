@@ -9,6 +9,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.brauport.BaseApplication
 import com.example.brauport.adapter.BrewHistoryAdapter
+import com.example.brauport.databinding.FragmentBrewHistoryBinding
 import com.example.brauport.mapper.toBrewHistoryItem
 import com.example.brauport.model.brewHistory.BrewHistoryItem
 import com.example.brauport.ui.dialog.DialogCookingFragment
@@ -16,7 +17,6 @@ import com.example.brauport.ui.dialog.DialogDeleteFragment
 import com.example.brauport.ui.dialog.DialogRecipeInspectFragment
 import com.example.brauport.ui.viewModel.BrewHistoryViewModel
 import com.example.brauport.ui.viewModel.BrewHistoryViewModelFactory
-import com.example.brauportv2.databinding.FragmentBrewHistoryBinding
 import kotlinx.coroutines.launch
 
 class BrewHistoryFragment : Fragment() {

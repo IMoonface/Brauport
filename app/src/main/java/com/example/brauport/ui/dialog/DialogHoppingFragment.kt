@@ -8,7 +8,9 @@ import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.brauport.BaseApplication
+import com.example.brauport.R
 import com.example.brauport.adapter.HoppingAdapter
+import com.example.brauport.databinding.FragmentDialogHoppingBinding
 import com.example.brauport.mapper.toStockItem
 import com.example.brauport.model.recipe.Hopping
 import com.example.brauport.model.stock.StockItem
@@ -16,8 +18,6 @@ import com.example.brauport.model.stock.StockItemType.HOP
 import com.example.brauport.ui.RecipeFragment.Companion.recipeItem
 import com.example.brauport.ui.viewModel.StockViewModel
 import com.example.brauport.ui.viewModel.StockViewModelFactory
-import com.example.brauportv2.R
-import com.example.brauportv2.databinding.FragmentDialogHoppingBinding
 import kotlinx.coroutines.launch
 
 class DialogHoppingFragment : BaseDialogFragment() {

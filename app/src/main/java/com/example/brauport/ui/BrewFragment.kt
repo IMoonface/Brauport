@@ -14,7 +14,9 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.brauport.BaseApplication
+import com.example.brauport.R
 import com.example.brauport.adapter.BrewAdapter
+import com.example.brauport.databinding.FragmentBrewBinding
 import com.example.brauport.mapper.toBrewHistoryItem
 import com.example.brauport.mapper.toStockItem
 import com.example.brauport.model.brew.StepItem
@@ -26,8 +28,6 @@ import com.example.brauport.ui.dialog.DialogInstructionBrewFragment
 import com.example.brauport.ui.dialog.DialogQuestionFragment
 import com.example.brauport.ui.viewModel.StockViewModel
 import com.example.brauport.ui.viewModel.StockViewModelFactory
-import com.example.brauportv2.R
-import com.example.brauportv2.databinding.FragmentBrewBinding
 import kotlinx.coroutines.launch
 
 class BrewFragment : Fragment() {

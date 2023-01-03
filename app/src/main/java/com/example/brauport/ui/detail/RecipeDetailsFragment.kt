@@ -9,6 +9,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.brauport.BaseApplication
+import com.example.brauport.R
+import com.example.brauport.databinding.FragmentRecipeDetailsBinding
 import com.example.brauport.mapper.toBrewHistoryItem
 import com.example.brauport.model.recipe.MainBrew
 import com.example.brauport.model.recipe.RecipeItem
@@ -18,8 +20,6 @@ import com.example.brauport.ui.dialog.*
 import com.example.brauport.ui.RecipeFragment.Companion.recipeItem
 import com.example.brauport.ui.viewModel.RecipeViewModel
 import com.example.brauport.ui.viewModel.RecipeViewModelFactory
-import com.example.brauportv2.R
-import com.example.brauportv2.databinding.FragmentRecipeDetailsBinding
 import java.util.*
 
 class RecipeDetailsFragment : Fragment() {

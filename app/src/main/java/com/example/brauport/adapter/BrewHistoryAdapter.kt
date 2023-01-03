@@ -9,9 +9,9 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.brauport.R
+import com.example.brauport.databinding.CardBrewHistoryBinding
 import com.example.brauport.model.brewHistory.BrewHistoryItem
-import com.example.brauportv2.R
-import com.example.brauportv2.databinding.CardBrewHistoryBinding
 
 class BrewHistoryAdapter(
     private val onInspectClick: (BrewHistoryItem) -> Unit,

@@ -5,9 +5,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.brauport.R
+import com.example.brauport.databinding.FragmentDialogRecipeInspectBinding
 import com.example.brauport.model.brewHistory.BrewHistoryItem
-import com.example.brauportv2.R
-import com.example.brauportv2.databinding.FragmentDialogRecipeInspectBinding
 
 class DialogRecipeInspectFragment(
     private val item: BrewHistoryItem,

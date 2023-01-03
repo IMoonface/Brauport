@@ -12,6 +12,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.brauport.BaseApplication
 import com.example.brauport.adapter.RecipeAdapter
+import com.example.brauport.databinding.FragmentRecipeBinding
 import com.example.brauport.mapper.toBrewHistoryItem
 import com.example.brauport.mapper.toRecipeItem
 import com.example.brauport.model.brewHistory.BrewHistoryItem
@@ -19,13 +20,12 @@ import com.example.brauport.model.recipe.MainBrew
 import com.example.brauport.model.recipe.RecipeItem
 import com.example.brauport.model.stock.StockItem
 import com.example.brauport.model.stock.StockItemType
+import com.example.brauport.ui.`object`.TextWatcherLogic.filterListForRecipe
 import com.example.brauport.ui.dialog.DialogDeleteFragment
 import com.example.brauport.ui.dialog.DialogInstructionRecipeFragment
 import com.example.brauport.ui.dialog.DialogRecipeInspectFragment
-import com.example.brauport.ui.`object`.TextWatcherLogic.filterListForRecipe
 import com.example.brauport.ui.viewModel.RecipeViewModel
 import com.example.brauport.ui.viewModel.RecipeViewModelFactory
-import com.example.brauportv2.databinding.FragmentRecipeBinding
 import kotlinx.coroutines.launch
 
 class RecipeFragment : Fragment() {
@@ -121,6 +121,6 @@ class RecipeFragment : Fragment() {
     }
 
     companion object {
-        lateinit var recipeItem : RecipeItem
+        lateinit var recipeItem: RecipeItem
     }
 }

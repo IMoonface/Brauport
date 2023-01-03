@@ -48,7 +48,7 @@ android {
         jvmTarget = '1.8'
     }
     dynamicFeatures = []
-    namespace 'com.example.brauportv2'
+    namespace 'com.example.brauport'
 }
 
 dependencies {

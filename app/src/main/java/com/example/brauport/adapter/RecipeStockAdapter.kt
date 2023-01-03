@@ -8,11 +8,11 @@ import android.widget.Toast
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.brauport.R
+import com.example.brauport.databinding.CardRecipeStockBinding
 import com.example.brauport.mapper.toSNoAmount
 import com.example.brauport.model.stock.SNoAmount
 import com.example.brauport.model.stock.StockItem
-import com.example.brauportv2.R
-import com.example.brauportv2.databinding.CardRecipeStockBinding
 
 class RecipeStockAdapter(
     private val onItemAdd: (StockItem, String) -> Unit,

@@ -12,15 +12,15 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.brauport.BaseApplication
 import com.example.brauport.adapter.StockAdapter
+import com.example.brauport.databinding.FragmentHopStockBinding
 import com.example.brauport.mapper.toStockItem
 import com.example.brauport.model.stock.StockItem
 import com.example.brauport.model.stock.StockItemType.HOP
+import com.example.brauport.ui.`object`.TextWatcherLogic.filterListForStock
 import com.example.brauport.ui.dialog.DialogInstructionStockFragment
 import com.example.brauport.ui.dialog.DialogStockFragment
-import com.example.brauport.ui.`object`.TextWatcherLogic.filterListForStock
 import com.example.brauport.ui.viewModel.StockViewModel
 import com.example.brauport.ui.viewModel.StockViewModelFactory
-import com.example.brauportv2.databinding.FragmentHopStockBinding
 import kotlinx.coroutines.launch
 import java.util.*
 

@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.brauportv2.databinding.FragmentDialogQuestionBinding
+import com.example.brauport.databinding.FragmentDialogQuestionBinding
 
 class DialogQuestionFragment(
     private val onDialogQuestionConfirm: (Boolean) -> Unit,

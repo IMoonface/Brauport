@@ -4,8 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.brauport.databinding.FragmentDialogDeleteBinding
 import com.example.brauport.model.brewHistory.BrewHistoryItem
-import com.example.brauportv2.databinding.FragmentDialogDeleteBinding
 
 class DialogDeleteFragment(
     private val item: BrewHistoryItem,

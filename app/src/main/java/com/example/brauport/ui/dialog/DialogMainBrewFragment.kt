@@ -6,10 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import com.example.brauport.R
+import com.example.brauport.databinding.FragmentDialogMainBrewBinding
 import com.example.brauport.model.recipe.MainBrew
 import com.example.brauport.ui.RecipeFragment.Companion.recipeItem
-import com.example.brauportv2.R
-import com.example.brauportv2.databinding.FragmentDialogMainBrewBinding
 
 class DialogMainBrewFragment : BaseDialogFragment() {
 

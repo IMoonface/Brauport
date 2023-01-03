@@ -5,8 +5,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.brauport.databinding.CardRecipeBinding
 import com.example.brauport.model.recipe.RecipeItem
-import com.example.brauportv2.databinding.CardRecipeBinding
 
 class RecipeAdapter(
     private val onInspectClick: (RecipeItem) -> Unit,

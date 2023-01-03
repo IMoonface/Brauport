@@ -8,7 +8,9 @@ import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.brauport.BaseApplication
+import com.example.brauport.R
 import com.example.brauport.adapter.RecipeStockAdapter
+import com.example.brauport.databinding.FragmentDialogMaltsBinding
 import com.example.brauport.mapper.toSNoAmount
 import com.example.brauport.mapper.toStockItem
 import com.example.brauport.model.stock.SNoAmount
@@ -17,8 +19,6 @@ import com.example.brauport.model.stock.StockItemType.MALT
 import com.example.brauport.ui.RecipeFragment.Companion.recipeItem
 import com.example.brauport.ui.viewModel.StockViewModel
 import com.example.brauport.ui.viewModel.StockViewModelFactory
-import com.example.brauportv2.R
-import com.example.brauportv2.databinding.FragmentDialogMaltsBinding
 import kotlinx.coroutines.launch
 
 class DialogMaltsFragment : BaseDialogFragment() {

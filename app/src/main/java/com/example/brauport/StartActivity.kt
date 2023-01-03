@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
-import com.example.brauportv2.databinding.ActivityStartBinding
+import com.example.brauport.databinding.ActivityStartBinding
 
 class StartActivity : AppCompatActivity() {
 

@@ -13,8 +13,7 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import com.example.brauportv2.R
-import com.example.brauportv2.databinding.ActivityMainBinding
+import com.example.brauport.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
