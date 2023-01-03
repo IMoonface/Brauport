@@ -54,13 +54,6 @@
         <item name="cornerRadius">20dp</item>
     </style>
 
-    <style name="EditTextTheme" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-        <item name="android:background">@color/white</item>
-        <item name="android:textColor">@color/appBars_color</item>
-        <item name="android:textColorHint">#78909C</item>
-        <item name="android:textSize">25sp</item>
-    </style>
-
     <style name="IconButtonTheme" parent="ThemeOverlay.Material3.Button">
         <item name="android:textColor">@color/appBars_color</item>
         <item name="backgroundTint">@color/button_color</item>
@@ -70,13 +63,20 @@
         <item name="iconTint">@color/appBars_color</item>
     </style>
 
-    <style name="InstructionTheme">
-        <item name="android:background">@color/card_color</item>
-        <item name="android:padding">10dp</item>
+    <style name="EditTextTheme" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="android:background">@color/white</item>
+        <item name="android:textColor">@color/appBars_color</item>
+        <item name="android:textColorHint">#78909C</item>
+        <item name="android:textSize">25sp</item>
     </style>
 
     <style name="TextInputTheme" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <item name="boxBackgroundColor">@color/white</item>
+    </style>
+
+    <style name="InstructionTheme">
+        <item name="android:background">@color/card_color</item>
+        <item name="android:padding">10dp</item>
     </style>
 
     <style name="TextViewTheme" parent="Widget.AppCompat.TextView">
@@ -92,7 +92,8 @@
         <item name="android:paddingEnd">8dp</item>
         <item name="android:textSize">20sp</item>
         <item name="android:singleLine">true</item>
-        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Widget.DropDownItem</item>
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Widget.DropDownItem
+        </item>
         <item name="android:textColor">@color/appBars_color</item>
     </style>
 

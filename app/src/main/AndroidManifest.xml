@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <application
-        android:name="com.example.brauport.BaseApplication"
+        android:name=".BaseApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -10,20 +10,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Brauport">
         <activity
-            android:name="com.example.brauport.StartActivity"
+            android:name=".StartActivity"
             android:exported="true"
-            android:theme="@style/Theme.Brauport.NoActionBar"
-            android:screenOrientation="nosensor">
+            android:screenOrientation="nosensor"
+            android:theme="@style/Theme.Brauport.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name="com.example.brauport.MainActivity"
+            android:name=".MainActivity"
             android:exported="false"
-            android:screenOrientation="nosensor">
-        </activity>
+            android:screenOrientation="nosensor" />
     </application>
 
 </manifest>
