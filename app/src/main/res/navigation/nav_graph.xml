@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/home_fragment"
-        android:name="com.example.brauportv2.ui.HomeFragment"
+        android:name="com.example.brauport.ui.HomeFragment"
         android:label="@string/brauport_main_menu"
         tools:layout="@layout/fragment_home">
         <action
@@ -33,7 +33,7 @@
     </fragment>
     <fragment
         android:id="@+id/malt_stock_fragment"
-        android:name="com.example.brauportv2.ui.MaltStockFragment"
+        android:name="com.example.brauport.ui.MaltStockFragment"
         android:label="@string/brauport_malt"
         tools:layout="@layout/fragment_malt_stock">
         <action
@@ -52,7 +52,7 @@
     </fragment>
     <fragment
         android:id="@+id/brew_fragment"
-        android:name="com.example.brauportv2.ui.BrewFragment"
+        android:name="com.example.brauport.ui.BrewFragment"
         android:label="@string/brauport_brew"
         tools:layout="@layout/fragment_brew" >
         <action
@@ -64,7 +64,7 @@
     </fragment>
     <fragment
         android:id="@+id/recipe_fragment"
-        android:name="com.example.brauportv2.ui.RecipeFragment"
+        android:name="com.example.brauport.ui.RecipeFragment"
         android:label="@string/brauport_recipes"
         tools:layout="@layout/fragment_recipe">
         <action
@@ -78,7 +78,7 @@
     </fragment>
     <fragment
         android:id="@+id/recipe_details_fragment"
-        android:name="com.example.brauportv2.ui.detail.RecipeDetailsFragment"
+        android:name="com.example.brauport.ui.detail.RecipeDetailsFragment"
         android:label="@string/brauport_recipe_details"
         tools:layout="@layout/fragment_recipe_details">
         <action
@@ -102,7 +102,7 @@
     </fragment>
     <fragment
         android:id="@+id/hop_stock_fragment"
-        android:name="com.example.brauportv2.ui.HopStockFragment"
+        android:name="com.example.brauport.ui.HopStockFragment"
         android:label="@string/brauport_hop"
         tools:layout="@layout/fragment_hop_stock">
         <action
@@ -121,7 +121,7 @@
     </fragment>
     <fragment
         android:id="@+id/yeast_stock_fragment"
-        android:name="com.example.brauportv2.ui.YeastStockFragment"
+        android:name="com.example.brauport.ui.YeastStockFragment"
         android:label="@string/brauport_yeast"
         tools:layout="@layout/fragment_yeast_stock">
         <action
@@ -140,19 +140,19 @@
     </fragment>
     <dialog
         android:id="@+id/dialog_malts_fragment"
-        android:name="com.example.brauportv2.ui.dialog.DialogMaltsFragment"
+        android:name="com.example.brauport.ui.dialog.DialogMaltsFragment"
         tools:layout="@layout/fragment_dialog_malts" />
     <dialog
         android:id="@+id/dialog_hops_fragment"
-        android:name="com.example.brauportv2.ui.dialog.DialogHoppingFragment"
+        android:name="com.example.brauport.ui.dialog.DialogHoppingFragment"
         tools:layout="@layout/fragment_dialog_hopping" />
     <dialog
         android:id="@+id/dialog_yeast_fragment"
-        android:name="com.example.brauportv2.ui.dialog.DialogYeastFragment"
+        android:name="com.example.brauport.ui.dialog.DialogYeastFragment"
         tools:layout="@layout/fragment_dialog_yeast" />
     <fragment
         android:id="@+id/brew_history_fragment"
-        android:name="com.example.brauportv2.ui.BrewHistoryFragment"
+        android:name="com.example.brauport.ui.BrewHistoryFragment"
         android:label="@string/brauport_brew_history"
         tools:layout="@layout/fragment_brew_history" />
 </navigation>

@@ -14,7 +14,7 @@ android {
         ]
     }
     defaultConfig {
-        applicationId "com.example.brauportv2"
+        applicationId 'com.example.brauport'
         minSdk 19
         targetSdk 33
         versionCode 1
