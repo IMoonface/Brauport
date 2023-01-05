@@ -16,8 +16,8 @@ import com.example.brauport.model.recipe.MainBrew
 import com.example.brauport.model.recipe.RecipeItem
 import com.example.brauport.model.stock.StockItem
 import com.example.brauport.model.stock.StockItemType
-import com.example.brauport.ui.dialog.*
 import com.example.brauport.ui.RecipeFragment.Companion.recipeItem
+import com.example.brauport.ui.dialog.*
 import com.example.brauport.ui.viewModel.RecipeViewModel
 import com.example.brauport.ui.viewModel.RecipeViewModelFactory
 import java.util.*
@@ -42,7 +42,7 @@ class RecipeDetailsFragment : Fragment() {
 
         val update = arguments?.getBoolean("recipeUpdate") ?: false
 
-        binding.recipeDetailsInspectButton.setOnClickListener {
+        binding.inspectButton.setOnClickListener {
             val dialog = DialogRecipeInspectFragment(
                 recipeItem.toBrewHistoryItem(), false
             )
@@ -50,49 +50,52 @@ class RecipeDetailsFragment : Fragment() {
             dialog.show(childFragmentManager, "recipeInspectDialog")
         }
 
-        binding.recipeDetailsMalts.setOnClickListener {
+        binding.malts.setOnClickListener {
             val dialog = DialogMaltsFragment()
             dialog.isCancelable = false
             dialog.show(childFragmentManager, "maltsDialog")
         }
 
-        binding.recipeDetailsHop.setOnClickListener {
+        binding.hopping.setOnClickListener {
             val dialog = DialogHoppingFragment()
             dialog.isCancelable = false
             dialog.show(childFragmentManager, "hopDialog")
         }
 
-        binding.recipeDetailsYeast.setOnClickListener {
+        binding.yeast.setOnClickListener {
             val dialog = DialogYeastFragment()
             dialog.isCancelable = false
             dialog.show(childFragmentManager, "yeastDialog")
         }
 
-        binding.recipeDetailsRest.setOnClickListener {
+        binding.rests.setOnClickListener {
             val dialog = DialogRestFragment()
             dialog.isCancelable = false
             dialog.show(childFragmentManager, "restDialog")
         }
 
-        binding.recipeDetailsMainBrew.setOnClickListener {
+        binding.mainBrew.setOnClickListener {
             val dialog = DialogMainBrewFragment()
             dialog.isCancelable = false
             dialog.show(childFragmentManager, "mainBrewDialog")
         }
 
-        binding.recipeDetailsSave.setOnClickListener {
+        binding.saveButton.setOnClickListener {
+            if (recipeNotValid())
+                Toast.makeText(
+                    context,
+                    R.string.choose_all_recipe_ingredients,
+                    Toast.LENGTH_SHORT
+                ).show()
+            else {
+                if (update) {
+                    onItemUpdate(recipeItem)
+                    Toast.makeText(context, R.string.updated_recipe, Toast.LENGTH_SHORT).show()
 
-            if (update) {
-                onItemUpdate(recipeItem)
-                Toast.makeText(context, R.string.updated_recipe, Toast.LENGTH_SHORT).show()
-
-                findNavController().navigate(
-                    RecipeDetailsFragmentDirections.actionRecipeDetailsFragmentToRecipeFragment()
-                )
-            } else {
-                if (recipeNotValid())
-                    Toast.makeText(context, R.string.choose_all_recipe_ingredients, Toast.LENGTH_SHORT).show()
-                else {
+                    findNavController().navigate(
+                        RecipeDetailsFragmentDirections.actionRecipeDetailsFragmentToRecipeFragment()
+                    )
+                } else {
                     recipeItem.rId = UUID.randomUUID().hashCode()
                     viewModel.addRecipe(recipeItem)
                     Toast.makeText(context, R.string.created_recipe, Toast.LENGTH_SHORT).show()

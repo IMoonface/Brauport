@@ -24,8 +24,8 @@ import com.example.brauport.model.stock.StockItemType
 import com.example.brauport.ui.`object`.TextWatcherLogic.filterListForRecipe
 import com.example.brauport.ui.dialog.DialogDeleteFragment
 import com.example.brauport.ui.dialog.DialogInstructionRecipeFragment
-import com.example.brauport.ui.dialog.DialogRecipeNameFragment
 import com.example.brauport.ui.dialog.DialogRecipeInspectFragment
+import com.example.brauport.ui.dialog.DialogRecipeNameFragment
 import com.example.brauport.ui.viewModel.RecipeViewModel
 import com.example.brauport.ui.viewModel.RecipeViewModelFactory
 import kotlinx.coroutines.launch
@@ -41,7 +41,7 @@ class RecipeFragment : Fragment() {
         override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
         override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
         override fun afterTextChanged(p0: Editable?) {
-            filterListForRecipe(binding.recipeTextInput.text.toString(), adapter, startList)
+            filterListForRecipe(binding.textInput.text.toString(), adapter, startList)
         }
     }
 
@@ -57,8 +57,13 @@ class RecipeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentRecipeBinding.inflate(inflater, container, false)
-        adapter = RecipeAdapter(this::onInspectClick, this::onItemClick, this::onDeleteClick, this::onNameClick)
-        binding.recipeRecyclerView.adapter = adapter
+        adapter = RecipeAdapter(
+            this::onInspectClick,
+            this::onItemClick,
+            this::onDeleteClick,
+            this::onNameClick
+        )
+        binding.recyclerView.adapter = adapter
         lifecycleScope.launch {
             viewModel.allRecipeItems.collect { recipeItemDataList ->
                 startList = recipeItemDataList.map { it.toRecipeItem() }
@@ -66,7 +71,7 @@ class RecipeFragment : Fragment() {
             }
         }
 
-        binding.recipeAddButton.setOnClickListener {
+        binding.addButton.setOnClickListener {
             recipeItem = RecipeItem(
                 rId = 0,
                 recipeName = getString(R.string.rename_recipe),
@@ -82,13 +87,13 @@ class RecipeFragment : Fragment() {
             )
         }
 
-        binding.recipeInfoButton.setOnClickListener {
+        binding.infoButton.setOnClickListener {
             val dialog = DialogInstructionRecipeFragment()
             dialog.isCancelable = false
             dialog.show(childFragmentManager, "recipeInfoDialog")
         }
 
-        binding.recipeTextInput.addTextChangedListener(textWatcher)
+        binding.textInput.addTextChangedListener(textWatcher)
 
         return binding.root
     }

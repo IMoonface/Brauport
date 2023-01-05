@@ -7,62 +7,62 @@
     tools:context=".ui.detail.RecipeDetailsFragment">
 
     <Button
-        android:id="@+id/recipe_details_malts"
+        android:id="@+id/malts"
         style="@style/ButtonTheme"
         android:layout_width="220dp"
         android:layout_height="60dp"
         android:text="@string/malts"
-        app:layout_constraintBottom_toTopOf="@+id/recipe_details_rest"
+        app:layout_constraintBottom_toTopOf="@+id/rests"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recipe_details_inspect_button" />
+        app:layout_constraintTop_toBottomOf="@+id/inspect_button" />
 
     <Button
-        android:id="@+id/recipe_details_rest"
+        android:id="@+id/rests"
         style="@style/ButtonTheme"
         android:layout_width="220dp"
         android:layout_height="60dp"
         android:text="@string/rest"
-        app:layout_constraintBottom_toTopOf="@+id/recipe_details_hop"
+        app:layout_constraintBottom_toTopOf="@+id/hopping"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recipe_details_malts" />
+        app:layout_constraintTop_toBottomOf="@+id/malts" />
 
     <Button
-        android:id="@+id/recipe_details_hop"
+        android:id="@+id/hopping"
         style="@style/ButtonTheme"
         android:layout_width="220dp"
         android:layout_height="60dp"
         android:text="@string/hopping"
-        app:layout_constraintBottom_toTopOf="@+id/recipe_details_yeast"
+        app:layout_constraintBottom_toTopOf="@+id/yeast"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recipe_details_rest" />
+        app:layout_constraintTop_toBottomOf="@+id/rests" />
 
     <Button
-        android:id="@+id/recipe_details_yeast"
+        android:id="@+id/yeast"
         style="@style/ButtonTheme"
         android:layout_width="220dp"
         android:layout_height="60dp"
         android:text="@string/yeast"
-        app:layout_constraintBottom_toTopOf="@+id/recipe_details_main_brew"
+        app:layout_constraintBottom_toTopOf="@+id/main_brew"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recipe_details_hop" />
+        app:layout_constraintTop_toBottomOf="@+id/hopping" />
 
     <Button
-        android:id="@+id/recipe_details_main_brew"
+        android:id="@+id/main_brew"
         style="@style/ButtonTheme"
         android:layout_width="220dp"
         android:layout_height="60dp"
         android:text="@string/main_brew"
-        app:layout_constraintBottom_toTopOf="@+id/recipe_details_save"
+        app:layout_constraintBottom_toTopOf="@+id/save_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recipe_details_yeast" />
+        app:layout_constraintTop_toBottomOf="@+id/yeast" />
 
     <Button
-        android:id="@+id/recipe_details_save"
+        android:id="@+id/save_button"
         style="@style/ButtonTheme"
         android:layout_width="220dp"
         android:layout_height="60dp"
@@ -70,10 +70,10 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recipe_details_main_brew" />
+        app:layout_constraintTop_toBottomOf="@+id/main_brew" />
 
     <Button
-        android:id="@+id/recipe_details_inspect_button"
+        android:id="@+id/inspect_button"
         style="@style/IconButtonTheme"
         android:layout_width="50dp"
         android:layout_height="60dp"
