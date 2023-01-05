@@ -64,9 +64,9 @@
     <string name="inspect_end_of_fermentation">End of fermentation:</string>
     <string name="instruction_b_text">Please select a recipe to generate brewing instructions. After completing a step, the state should change from \"Open\" to \"Done\". Only when all steps have been completed can you complete the brewing process and indicate the end of fermentation. Please note that a timer can be set by clicking on a corresponding item, e.g. a rest. Use this feature to accurately measure any times.</string>
     <string name="instruction_brew">Instruction - Pour</string>
-    <string name="instruction_r_text">Please create your recipes here by clicking on the \"+ New Recipe\"-button and enter the name and other attributes of your recipe. You can click on the corresponding recipe to view its data and change it later. Use the search function to find your recipe and to change. By clicking on the \"x\"-button the recipe will be deleted. Please note that if you change your stock, the recipe may also need to be updated! You can use the \"Refresh\"-button to remove all stock items from the list and filter the respective list. Please also note that the names of the recipes are not unique! Therefore, use the search function to find out whether your recipe is already available before you create a new recipe!</string>
+    <string name="instruction_r_text">Please create your recipes here by clicking on the \"+ New Recipe\"-button and choose the ingredients of your recipe. You can click on the corresponding recipe to view its data and change it later. Use the search function to find your recipe and to change. By clicking on the \"trash bin\"-button the recipe will be deleted. Please note that the names of the recipes are not unique! Therefore, use the search function to find out whether your recipe is already available before you create a new recipe or change the name!</string>
     <string name="instruction_recipe">Instruction - Recipe:</string>
-    <string name="instruction_s_text">Please enter your entire stock here by pressing the \"+ New *\"-button and enter the name and quantity of your item. You can subsequently view the data of the relevant stock item by clicking on it. Use the search function to find and change your stock item. By clicking on the \"x\"-button the stock item is deleted. Please note that the names of the stock items are not unique! So search whether your stock item already exists before you create a new item!</string>
+    <string name="instruction_s_text">Please enter your entire stock here by pressing the \"+ New *\"-button and enter the name and quantity of your item. You can subsequently view the data of the relevant stock item by clicking on it. Use the search function to find and change your stock item. This can happen in 2 ways: 1. By searching for the name of the stock. 2. By searching for the amount of stock. By clicking on the \"x\"-button the stock item is deleted. Please note that the names of the stock items are not unique! So search whether your stock item already exists before you create a new item!</string>
     <string name="instruction_stock">Instruction - Stock:</string>
     <string name="invalid_date">Date is invalid!</string>
     <string name="item_close">End</string>
@@ -94,6 +94,7 @@
     <string name="recipe_add">New Recipe</string>
     <string name="recipe_inspect_name">Recipe Name</string>
     <string name="remove_malt">Remove Malt</string>
+    <string name="rename_recipe">Please click here to rename!</string>
     <string name="rest">Rests</string>
     <string name="rest_not_found">Rest not found!</string>
     <string name="save_string">Save</string>

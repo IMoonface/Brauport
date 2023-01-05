@@ -11,6 +11,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.brauport.BaseApplication
+import com.example.brauport.R
 import com.example.brauport.adapter.RecipeAdapter
 import com.example.brauport.databinding.FragmentRecipeBinding
 import com.example.brauport.mapper.toBrewHistoryItem
@@ -23,6 +24,7 @@ import com.example.brauport.model.stock.StockItemType
 import com.example.brauport.ui.`object`.TextWatcherLogic.filterListForRecipe
 import com.example.brauport.ui.dialog.DialogDeleteFragment
 import com.example.brauport.ui.dialog.DialogInstructionRecipeFragment
+import com.example.brauport.ui.dialog.DialogRecipeNameFragment
 import com.example.brauport.ui.dialog.DialogRecipeInspectFragment
 import com.example.brauport.ui.viewModel.RecipeViewModel
 import com.example.brauport.ui.viewModel.RecipeViewModelFactory
@@ -55,7 +57,7 @@ class RecipeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentRecipeBinding.inflate(inflater, container, false)
-        adapter = RecipeAdapter(this::onInspectClick, this::onItemClick, this::onDeleteClick)
+        adapter = RecipeAdapter(this::onInspectClick, this::onItemClick, this::onDeleteClick, this::onNameClick)
         binding.recipeRecyclerView.adapter = adapter
         lifecycleScope.launch {
             viewModel.allRecipeItems.collect { recipeItemDataList ->
@@ -67,7 +69,7 @@ class RecipeFragment : Fragment() {
         binding.recipeAddButton.setOnClickListener {
             recipeItem = RecipeItem(
                 rId = 0,
-                recipeName = "",
+                recipeName = getString(R.string.rename_recipe),
                 maltList = mutableListOf(),
                 restList = mutableListOf(),
                 hoppingList = mutableListOf(),
@@ -96,14 +98,20 @@ class RecipeFragment : Fragment() {
         _binding = null
     }
 
-    private fun onInspectClick(recipe: RecipeItem) {
-        val dialog = DialogRecipeInspectFragment(recipe.toBrewHistoryItem(), false)
+    private fun onNameClick(item: RecipeItem) {
+        val dialog = DialogRecipeNameFragment(item)
+        dialog.isCancelable = false
+        dialog.show(childFragmentManager, "nameDialog")
+    }
+
+    private fun onInspectClick(item: RecipeItem) {
+        val dialog = DialogRecipeInspectFragment(item.toBrewHistoryItem(), false)
         dialog.isCancelable = false
         dialog.show(childFragmentManager, "recipeInspectDialog")
     }
 
-    private fun onItemClick(recipe: RecipeItem) {
-        recipeItem = recipe
+    private fun onItemClick(item: RecipeItem) {
+        recipeItem = item
 
         findNavController().navigate(
             RecipeFragmentDirections.actionRecipeFragmentToRecipeDetailsFragment(true)

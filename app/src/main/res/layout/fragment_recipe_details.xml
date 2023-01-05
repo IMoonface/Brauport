@@ -15,7 +15,7 @@
         app:layout_constraintBottom_toTopOf="@+id/recipe_details_rest"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recipe_details_textInputLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/recipe_details_inspect_button" />
 
     <Button
         android:id="@+id/recipe_details_rest"
@@ -56,7 +56,7 @@
         android:layout_width="220dp"
         android:layout_height="60dp"
         android:text="@string/main_brew"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/recipe_details_save"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/recipe_details_yeast" />
@@ -66,11 +66,11 @@
         style="@style/ButtonTheme"
         android:layout_width="220dp"
         android:layout_height="60dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
         android:text="@string/save_string"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/recipe_details_main_brew" />
 
     <Button
         android:id="@+id/recipe_details_inspect_button"
@@ -83,29 +83,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="SpeakableTextPresentCheck" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/recipe_details_textInputLayout"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recipe_details_inspect_button">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/recipe_details_textInput"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/enter_recipe_name"
-            android:inputType="text"
-            android:maxLength="20"
-            android:textColorHint="#546E7A"
-            tools:ignore="TextContrastCheck" />
-
-    </com.google.android.material.textfield.TextInputLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -40,25 +40,25 @@ class HomeFragment : Fragment() {
             }
         }
 
-        binding.mainRecipeButton.setOnClickListener {
+        binding.recipesButton.setOnClickListener {
             findNavController().navigate(
                 HomeFragmentDirections.actionHomeFragmentToRecipeFragment()
             )
         }
 
-        binding.mainStockButton.setOnClickListener {
+        binding.stockButton.setOnClickListener {
             findNavController().navigate(
                 HomeFragmentDirections.actionHomeFragmentToStockFragment()
             )
         }
 
-        binding.mainBrewButton.setOnClickListener {
+        binding.brewButton.setOnClickListener {
             findNavController().navigate(
                 HomeFragmentDirections.actionHomeFragmentToBrewFragment()
             )
         }
 
-        binding.mainBrewHistoryButton.setOnClickListener {
+        binding.brewHistoryButton.setOnClickListener {
             findNavController().navigate(
                 HomeFragmentDirections.actionHomeFragmentToBrewHistoryFragment()
             )

@@ -81,11 +81,8 @@ class RecipeDetailsFragment : Fragment() {
         }
 
         binding.recipeDetailsSave.setOnClickListener {
-            recipeItem.recipeName = binding.recipeDetailsTextInput.text.toString()
 
-            if (recipeItem.recipeName == "")
-                Toast.makeText(context, R.string.enter_name, Toast.LENGTH_SHORT).show()
-            else if (update) {
+            if (update) {
                 onItemUpdate(recipeItem)
                 Toast.makeText(context, R.string.updated_recipe, Toast.LENGTH_SHORT).show()
 
@@ -134,8 +131,8 @@ class RecipeDetailsFragment : Fragment() {
 
         val defaultMainBrew = MainBrew(firstBrew = "", secondBrew = "")
 
-        return (recipeItem.recipeName == "" || recipeItem.maltList.isEmpty() ||
-                recipeItem.restList.isEmpty() || recipeItem.mainBrew == defaultMainBrew ||
-                recipeItem.hoppingList.isEmpty() || recipeItem.yeast == defaultYeast)
+        return (recipeItem.maltList.isEmpty() || recipeItem.restList.isEmpty() ||
+                recipeItem.mainBrew == defaultMainBrew || recipeItem.hoppingList.isEmpty() ||
+                recipeItem.yeast == defaultYeast)
     }
 }

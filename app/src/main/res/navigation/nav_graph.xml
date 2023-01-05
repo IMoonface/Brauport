@@ -81,15 +81,6 @@
         android:name="com.example.brauport.ui.detail.RecipeDetailsFragment"
         android:label="@string/brauport_recipe_details"
         tools:layout="@layout/fragment_recipe_details">
-        <action
-            android:id="@+id/action_recipe_details_fragment_to_dialog_malts_fragment"
-            app:destination="@id/dialog_malts_fragment" />
-        <action
-            android:id="@+id/action_recipe_details_fragment_to_dialog_hops_fragment"
-            app:destination="@id/dialog_hops_fragment" />
-        <action
-            android:id="@+id/action_recipe_details_fragment_to_dialog_yeast_Fragment"
-            app:destination="@id/dialog_yeast_fragment" />
         <argument
             android:name="recipeUpdate"
             app:argType="boolean"
@@ -98,7 +89,9 @@
             android:id="@+id/action_recipe_details_fragment_to_recipe_fragment"
             app:destination="@id/recipe_fragment"
             app:enterAnim="@anim/from_left"
-            app:exitAnim="@anim/to_right" />
+            app:exitAnim="@anim/to_right"
+            app:popEnterAnim="@anim/from_right"
+            app:popExitAnim="@anim/to_left" />
     </fragment>
     <fragment
         android:id="@+id/hop_stock_fragment"
@@ -138,18 +131,6 @@
             android:id="@+id/action_yeast_stock_fragment_self"
             app:destination="@id/yeast_stock_fragment" />
     </fragment>
-    <dialog
-        android:id="@+id/dialog_malts_fragment"
-        android:name="com.example.brauport.ui.dialog.DialogMaltsFragment"
-        tools:layout="@layout/fragment_dialog_malts" />
-    <dialog
-        android:id="@+id/dialog_hops_fragment"
-        android:name="com.example.brauport.ui.dialog.DialogHoppingFragment"
-        tools:layout="@layout/fragment_dialog_hopping" />
-    <dialog
-        android:id="@+id/dialog_yeast_fragment"
-        android:name="com.example.brauport.ui.dialog.DialogYeastFragment"
-        tools:layout="@layout/fragment_dialog_yeast" />
     <fragment
         android:id="@+id/brew_history_fragment"
         android:name="com.example.brauport.ui.BrewHistoryFragment"

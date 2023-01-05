@@ -36,9 +36,9 @@ class MainActivity : AppCompatActivity() {
                 R.id.brew_history_fragment
             )
         )
-        setSupportActionBar(binding.mainToolBar)
+        setSupportActionBar(binding.toolBar)
         setupActionBarWithNavController(navController, appBarConfiguration)
-        binding.mainBottomNav.setupWithNavController(navController)
+        binding.bottomNav.setupWithNavController(navController)
     }
 
     override fun onSupportNavigateUp(): Boolean {
