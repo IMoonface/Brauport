@@ -10,7 +10,7 @@
         android:padding="10dp">
 
         <TextView
-            android:id="@+id/r_stock_item_title"
+            android:id="@+id/item_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
@@ -19,12 +19,12 @@
             android:textColor="@color/appBars_color"
             android:textSize="20sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toStartOf="@+id/r_stock_item_add"
+            app:layout_constraintEnd_toStartOf="@+id/add_button"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/r_stock_item_amount"
+            android:id="@+id/item_amount"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
@@ -33,12 +33,12 @@
             android:text="@string/dummy_text"
             android:textColor="@color/appBars_color"
             android:textSize="20sp"
-            app:layout_constraintEnd_toStartOf="@+id/r_stock_item_add"
+            app:layout_constraintEnd_toStartOf="@+id/add_button"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/r_stock_item_title" />
+            app:layout_constraintTop_toBottomOf="@+id/item_title" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/r_stock_item_amount_input_layout"
+            android:id="@+id/item_amount_input_layout"
             style="@style/TextInputTheme"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -47,9 +47,9 @@
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="5dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/r_stock_item_delete"
+            app:layout_constraintEnd_toStartOf="@+id/delete_button"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/r_stock_item_amount">
+            app:layout_constraintTop_toBottomOf="@+id/item_amount">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/r_stock_item_amount_input"
@@ -63,7 +63,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
-            android:id="@+id/r_stock_item_add"
+            android:id="@+id/add_button"
             style="@style/IconButtonTheme"
             android:layout_width="50dp"
             android:layout_height="60dp"
@@ -74,7 +74,7 @@
             tools:ignore="SpeakableTextPresentCheck" />
 
         <Button
-            android:id="@+id/r_stock_item_delete"
+            android:id="@+id/delete_button"
             style="@style/IconButtonTheme"
             android:layout_width="50dp"
             android:layout_height="60dp"
@@ -82,7 +82,7 @@
             android:layout_marginEnd="5dp"
             app:icon="@drawable/ic_delete"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/r_stock_item_add"
+            app:layout_constraintTop_toBottomOf="@+id/add_button"
             tools:ignore="SpeakableTextPresentCheck" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

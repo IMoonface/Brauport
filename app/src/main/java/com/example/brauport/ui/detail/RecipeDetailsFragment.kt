@@ -97,6 +97,7 @@ class RecipeDetailsFragment : Fragment() {
                     )
                 } else {
                     recipeItem.rId = UUID.randomUUID().hashCode()
+                    recipeItem.recipeName = getString(R.string.rename_recipe)
                     viewModel.addRecipe(recipeItem)
                     Toast.makeText(context, R.string.created_recipe, Toast.LENGTH_SHORT).show()
 

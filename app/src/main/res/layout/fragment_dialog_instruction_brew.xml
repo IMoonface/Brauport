@@ -8,19 +8,19 @@
     tools:context=".ui.dialog.DialogInstructionBrewFragment">
 
     <TextView
-        android:id="@+id/instruction_b_title"
+        android:id="@+id/instruction_title"
         style="@style/TextViewTheme"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/instruction_brew"
         android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/instruction_b_scroll_view"
+        app:layout_constraintBottom_toTopOf="@+id/instruction_scroll_view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ScrollView
-        android:id="@+id/instruction_b_scroll_view"
+        android:id="@+id/instruction_scroll_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="60dp"
@@ -31,18 +31,17 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/instruction_b_description"
+            android:id="@+id/instruction_description"
             style="@style/TextViewTheme"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/instruction_b_text"
-            android:textAlignment="center"
             android:textSize="20sp" />
 
     </ScrollView>
 
     <Button
-        android:id="@+id/instruction_b_back_button"
+        android:id="@+id/instruction_back_button"
         style="@style/ButtonTheme"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -50,6 +49,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/instruction_b_scroll_view" />
+        app:layout_constraintTop_toBottomOf="@+id/instruction_scroll_view" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

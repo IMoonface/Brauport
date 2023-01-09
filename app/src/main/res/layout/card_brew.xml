@@ -9,7 +9,7 @@
         android:padding="10dp">
 
         <TextView
-            android:id="@+id/brew_item_title"
+            android:id="@+id/item_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
@@ -19,11 +19,11 @@
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/brew_step_counter"
+            app:layout_constraintStart_toEndOf="@+id/step_counter"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/brew_step_counter"
+            android:id="@+id/step_counter"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:gravity="center"

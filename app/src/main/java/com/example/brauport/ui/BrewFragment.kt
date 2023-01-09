@@ -248,14 +248,17 @@ class BrewFragment : Fragment() {
         )
         counter++
 
+        var restCounter = 1
+
         item.restList.forEach {
             newBrewList.add(
                 StepItem(
                     counter = counter,
-                    itemString = it.restTemp + getString(R.string.unit_of_measurement_temp),
+                    itemString = restCounter.toString() + ". Rast" + it.restTemp + getString(R.string.unit_of_measurement_temp),
                     brewTime = it.restTime
                 )
             )
+            restCounter++
             counter++
         }
 

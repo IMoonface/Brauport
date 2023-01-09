@@ -29,13 +29,13 @@ class RecipeAdapter(
 
     override fun onBindViewHolder(holder: RecipeViewHolder, position: Int) = with(holder.binding) {
         val item = getItem(position)
-        recipeItemTitle.text = item.recipeName
+        itemTitle.text = item.recipeName
 
-        recipeItemTitle.setOnClickListener {
+        itemTitle.setOnClickListener {
             onNameClick(item)
         }
 
-        recipeInspectButton.setOnClickListener {
+        inspectButton.setOnClickListener {
             onInspectClick(item)
         }
 
@@ -43,7 +43,7 @@ class RecipeAdapter(
             onItemClick(item)
         }
 
-        recipeDeleteButton.setOnClickListener {
+        deleteButton.setOnClickListener {
             onDeleteClick(item)
         }
     }

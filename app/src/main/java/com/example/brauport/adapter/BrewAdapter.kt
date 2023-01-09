@@ -22,8 +22,8 @@ class BrewAdapter(
 
     override fun onBindViewHolder(holder: BrewViewHolder, position: Int) = with(holder.binding) {
         val item = getItem(position)
-        brewItemTitle.text = item.itemString
-        brewStepCounter.text = item.counter.toString()
+        itemTitle.text = item.itemString
+        stepCounter.text = item.counter.toString()
 
         root.setOnClickListener {
             onItemClick(item)

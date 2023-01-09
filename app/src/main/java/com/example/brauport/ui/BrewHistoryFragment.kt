@@ -39,7 +39,7 @@ class BrewHistoryFragment : Fragment() {
         _binding = FragmentBrewHistoryBinding.inflate(inflater, container, false)
 
         adapter = BrewHistoryAdapter(this::onInspectItem, this::onItemClick, this::onDeleteClick)
-        binding.brewHistoryRecyclerView.adapter = adapter
+        binding.recyclerView.adapter = adapter
 
         lifecycleScope.launch {
             viewModel.allBrewHistoryItems.collect { brewHistoryItemDataList ->

@@ -74,7 +74,7 @@ class RecipeFragment : Fragment() {
         binding.addButton.setOnClickListener {
             recipeItem = RecipeItem(
                 rId = 0,
-                recipeName = getString(R.string.rename_recipe),
+                recipeName = "",
                 maltList = mutableListOf(),
                 restList = mutableListOf(),
                 hoppingList = mutableListOf(),

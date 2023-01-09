@@ -25,10 +25,10 @@ class StockAdapter(
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: StockViewHolder, position: Int) = with(holder.binding) {
         val item = getItem(position)
-        stockItemTitle.text = item.stockName
-        stockItemAmount.text = item.stockAmount + "g"
+        itemTitle.text = item.stockName
+        itemAmount.text = item.stockAmount + "g"
 
-        stockItemDelete.setOnClickListener {
+        deleteButton.setOnClickListener {
             onDeleteClick(item)
         }
 

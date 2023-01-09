@@ -40,10 +40,10 @@ class RecipeStockAdapter(
         with(holder.binding) {
             val item = getItem(position)
 
-            rStockItemTitle.text = item.stockName
-            rStockItemAmount.text = item.stockAmount + "g"
+            itemTitle.text = item.stockName
+            itemAmount.text = item.stockAmount + "g"
 
-            rStockItemAdd.setOnClickListener {
+            addButton.setOnClickListener {
                 val newAmount = rStockItemAmountInput.text.toString()
 
                 if (newAmount == "")
@@ -52,7 +52,7 @@ class RecipeStockAdapter(
                     onItemAdd(item, rStockItemAmountInput.text.toString())
             }
 
-            rStockItemDelete.setOnClickListener { onDeleteClick(item.toSNoAmount()) }
+            deleteButton.setOnClickListener { onDeleteClick(item.toSNoAmount()) }
         }
 
     override fun getItemViewType(position: Int): Int {

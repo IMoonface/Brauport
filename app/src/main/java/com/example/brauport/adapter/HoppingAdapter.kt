@@ -36,10 +36,10 @@ class HoppingAdapter : ListAdapter<StockItem, HoppingAdapter.HoppingViewHolder>(
     override fun onBindViewHolder(holder: HoppingViewHolder, position: Int) = with(holder.binding) {
         val item = getItem(position)
 
-        rStockItemTitle.text = item.stockName
-        rStockItemAmount.text = item.stockAmount + "g"
+        itemTitle.text = item.stockName
+        itemAmount.text = item.stockAmount + "g"
 
-        rStockItemAdd.setOnClickListener {
+        addButton.setOnClickListener {
             val itemAmount = rStockItemAmountInput.text.toString()
 
             if (itemAmount == "")
@@ -53,7 +53,7 @@ class HoppingAdapter : ListAdapter<StockItem, HoppingAdapter.HoppingViewHolder>(
             }
         }
 
-        rStockItemDelete.setOnClickListener {
+        deleteButton.setOnClickListener {
             if (hopList.map { it.toSNoAmount() }.indexOf(item.toSNoAmount()) == -1) {
                 Toast.makeText(context, R.string.hop_not_found, Toast.LENGTH_SHORT).show()
             } else {
