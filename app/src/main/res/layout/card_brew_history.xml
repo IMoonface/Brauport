@@ -2,7 +2,7 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/brew_history_card_view"
+    android:id="@+id/card_view"
     style="@style/CardViewTheme">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -11,7 +11,7 @@
         android:padding="10dp">
 
         <TextView
-            android:id="@+id/brew_history_title"
+            android:id="@+id/item_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
@@ -20,13 +20,13 @@
             android:textColor="@color/appBars_color"
             android:textSize="20sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toStartOf="@+id/brew_history_delete_button"
+            app:layout_constraintEnd_toStartOf="@+id/delete_button"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
 
         <TextView
-            android:id="@+id/brew_history_end_date"
+            android:id="@+id/item_end_date"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
@@ -35,12 +35,12 @@
             android:text="@string/dummy_text"
             android:textColor="@color/appBars_color"
             android:textSize="20sp"
-            app:layout_constraintEnd_toStartOf="@+id/brew_history_delete_button"
+            app:layout_constraintEnd_toStartOf="@+id/delete_button"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/brew_history_title" />
+            app:layout_constraintTop_toBottomOf="@+id/item_title" />
 
         <Button
-            android:id="@+id/brew_history_inspect_button"
+            android:id="@+id/inspect_button"
             style="@style/IconButtonTheme"
             android:layout_width="50dp"
             android:layout_height="60dp"
@@ -52,14 +52,14 @@
             tools:ignore="SpeakableTextPresentCheck" />
 
         <Button
-            android:id="@+id/brew_history_delete_button"
+            android:id="@+id/delete_button"
             style="@style/IconButtonTheme"
             android:layout_width="50dp"
             android:layout_height="60dp"
             android:layout_marginEnd="10dp"
             app:icon="@drawable/ic_delete"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/brew_history_inspect_button"
+            app:layout_constraintEnd_toStartOf="@+id/inspect_button"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="SpeakableTextPresentCheck" />
 

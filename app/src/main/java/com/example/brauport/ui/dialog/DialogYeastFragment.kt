@@ -38,7 +38,7 @@ class DialogYeastFragment : BaseDialogFragment() {
         _binding = FragmentDialogYeastBinding.inflate(inflater, container, false)
 
         adapter = RecipeStockAdapter(this::onItemAdd, this::onItemDelete)
-        binding.rYeastRecyclerView.adapter = adapter
+        binding.recyclerView.adapter = adapter
 
         lifecycleScope.launch {
             viewModel.allStockItems.collect { it ->
@@ -48,7 +48,7 @@ class DialogYeastFragment : BaseDialogFragment() {
             }
         }
 
-        binding.rYeastBackButton.setOnClickListener {
+        binding.backButton.setOnClickListener {
             dismiss()
         }
 

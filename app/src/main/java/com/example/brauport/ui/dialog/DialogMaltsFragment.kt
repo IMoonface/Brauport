@@ -40,7 +40,7 @@ class DialogMaltsFragment : BaseDialogFragment() {
         _binding = FragmentDialogMaltsBinding.inflate(inflater, container, false)
 
         adapter = RecipeStockAdapter(this::onItemAdd, this::onItemDelete)
-        binding.rMaltsRecyclerView.adapter = adapter
+        binding.recyclerView.adapter = adapter
 
         lifecycleScope.launch {
             viewModel.allStockItems.collect { it ->
@@ -49,7 +49,7 @@ class DialogMaltsFragment : BaseDialogFragment() {
             }
         }
 
-        binding.rMaltsBackButton.setOnClickListener {
+        binding.backButton.setOnClickListener {
             dismiss()
         }
 

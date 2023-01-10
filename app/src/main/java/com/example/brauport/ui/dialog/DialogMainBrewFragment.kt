@@ -33,9 +33,9 @@ class DialogMainBrewFragment : BaseDialogFragment() {
     ): View {
         _binding = FragmentDialogMainBrewBinding.inflate(inflater, container, false)
 
-        binding.mainBrewConfirmButton.setOnClickListener {
-            val firstBrew = binding.mainBrewFirst.text.toString()
-            val secondBrew = binding.mainBrewSecond.text.toString()
+        binding.confirmButton.setOnClickListener {
+            val firstBrew = binding.firstPour.text.toString()
+            val secondBrew = binding.secondPour.text.toString()
 
             if (firstBrew == "" || secondBrew == "")
                 Toast.makeText(context, R.string.fill_all_fields, Toast.LENGTH_SHORT).show()
@@ -46,7 +46,7 @@ class DialogMainBrewFragment : BaseDialogFragment() {
             }
         }
 
-        binding.mainBrewAbortButton.setOnClickListener {
+        binding.abortButton.setOnClickListener {
             dismiss()
         }
 

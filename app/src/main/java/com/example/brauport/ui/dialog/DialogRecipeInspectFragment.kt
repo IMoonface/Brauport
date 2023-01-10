@@ -49,29 +49,29 @@ class DialogRecipeInspectFragment(
             hopsNameList = mutableListOf()
         }
 
-        binding.inspectRecipeName.text = item.name
+        binding.recipeName.text = item.name
 
-        binding.inspectMaltList.text = getString(R.string.malts) + ": " + maltNameList
+        binding.malts.text = getString(R.string.malts) + ": " + maltNameList
 
-        binding.inspectRestList.text = getString(R.string.rest) + ": " + restNameList
+        binding.rests.text = getString(R.string.rest) + ": " + restNameList
 
-        binding.inspectHoppingList.text = getString(R.string.hopping) + ": " + hoppingNameList
+        binding.hopping.text = getString(R.string.hopping) + ": " + hoppingNameList
 
-        binding.inspectYeast.text = getString(R.string.yeast) + ": " + item.yeast.stockName +
+        binding.yeast.text = getString(R.string.yeast) + ": " + item.yeast.stockName +
                 " " + item.yeast.stockAmount
 
-        binding.inspectMainBrew.text =
+        binding.mainBrew.text =
             getString(R.string.first_brew_with) + " " + item.mainBrew.firstBrew + " " +
                     getString(R.string.second_brew_with) + " " + item.mainBrew.secondBrew
 
         if (item.isBrewHistoryItem) {
-            binding.inspectDateOfComp.text =
+            binding.dateOfCompletion.text =
                 getString(R.string.date_of_completion) + " " + item.dateOfCompletion
-            binding.inspectEndOfFerm.text =
+            binding.endOfFermentation.text =
                 getString(R.string.inspect_end_of_fermentation) + " " + item.endOfFermentation
         }
 
-        binding.inspectBackButton.setOnClickListener {
+        binding.backButton.setOnClickListener {
             dismiss()
         }
 

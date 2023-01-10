@@ -9,7 +9,7 @@
     tools:context=".ui.dialog.DialogRecipeNameFragment">
 
     <EditText
-        android:id="@+id/recipe_name"
+        android:id="@+id/name"
         style="@style/EditTextTheme"
         android:layout_width="0dp"
         android:layout_height="48dp"
@@ -31,7 +31,7 @@
         android:layout_marginTop="10dp"
         android:text="@string/confirm"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recipe_name" />
+        app:layout_constraintTop_toBottomOf="@+id/name" />
 
     <Button
         android:id="@+id/abort_button"
@@ -41,6 +41,6 @@
         android:layout_marginTop="10dp"
         android:text="@string/abort"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recipe_name" />
+        app:layout_constraintTop_toBottomOf="@+id/name" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

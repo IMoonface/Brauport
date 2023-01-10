@@ -9,7 +9,7 @@
     tools:context=".ui.dialog.DialogStockFragment">
 
     <EditText
-        android:id="@+id/stock_item_name"
+        android:id="@+id/item_name"
         style="@style/EditTextTheme"
         android:layout_width="0dp"
         android:layout_height="48dp"
@@ -17,14 +17,14 @@
         android:importantForAutofill="no"
         android:inputType="text"
         android:maxLength="20"
-        app:layout_constraintEnd_toEndOf="@+id/stock_item_amount"
+        app:layout_constraintEnd_toEndOf="@+id/item_amount"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
     </EditText>
 
     <EditText
-        android:id="@+id/stock_item_amount"
+        android:id="@+id/item_amount"
         style="@style/EditTextTheme"
         android:layout_width="0dp"
         android:layout_height="48dp"
@@ -34,25 +34,25 @@
         android:importantForAutofill="no"
         android:inputType="number"
         android:maxLength="20"
-        app:layout_constraintEnd_toStartOf="@+id/unit_gram"
+        app:layout_constraintEnd_toStartOf="@+id/gram"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/stock_item_name">
+        app:layout_constraintTop_toBottomOf="@+id/item_name">
 
     </EditText>
 
     <TextView
-        android:id="@+id/unit_gram"
+        android:id="@+id/gram"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/unit_of_measurement_grams"
         android:textColor="@color/white"
         android:textSize="36sp"
-        app:layout_constraintBottom_toBottomOf="@+id/stock_item_amount"
+        app:layout_constraintBottom_toBottomOf="@+id/item_amount"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/stock_item_amount" />
+        app:layout_constraintTop_toTopOf="@+id/item_amount" />
 
     <Button
-        android:id="@+id/stock_confirm_button"
+        android:id="@+id/confirm_button"
         style="@style/ButtonTheme"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
@@ -60,10 +60,10 @@
         android:text="@string/confirm"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/stock_item_amount" />
+        app:layout_constraintTop_toBottomOf="@+id/item_amount" />
 
     <Button
-        android:id="@+id/stock_abort_button"
+        android:id="@+id/abort_button"
         style="@style/ButtonTheme"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
@@ -71,6 +71,6 @@
         android:text="@string/abort"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/stock_item_amount" />
+        app:layout_constraintTop_toBottomOf="@+id/item_amount" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

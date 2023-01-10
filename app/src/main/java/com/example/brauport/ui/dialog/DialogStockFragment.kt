@@ -38,9 +38,9 @@ class DialogStockFragment(
     ): View {
         _binding = FragmentDialogStockBinding.inflate(inflater, container, false)
 
-        binding.stockConfirmButton.setOnClickListener {
-            val stockName = binding.stockItemName.text.toString()
-            val stockAmount = binding.stockItemAmount.text.toString()
+        binding.confirmButton.setOnClickListener {
+            val stockName = binding.itemName.text.toString()
+            val stockAmount = binding.itemAmount.text.toString()
 
             if (stockName == "" || stockAmount == "") {
                 Toast.makeText(context, R.string.fill_all_fields, Toast.LENGTH_SHORT).show()
@@ -56,7 +56,7 @@ class DialogStockFragment(
             }
         }
 
-        binding.stockAbortButton.setOnClickListener {
+        binding.abortButton.setOnClickListener {
             dismiss()
         }
 

@@ -9,7 +9,7 @@
     tools:context=".ui.dialog.DialogMainBrewFragment">
 
     <EditText
-        android:id="@+id/main_brew_first"
+        android:id="@+id/first_pour"
         style="@style/EditTextTheme"
         android:layout_width="0dp"
         android:layout_height="48dp"
@@ -18,14 +18,14 @@
         android:importantForAutofill="no"
         android:inputType="number"
         android:maxLength="20"
-        app:layout_constraintEnd_toStartOf="@+id/unit_milliliters_second"
+        app:layout_constraintEnd_toStartOf="@+id/milliliters_second"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
     </EditText>
 
     <EditText
-        android:id="@+id/main_brew_second"
+        android:id="@+id/second_pour"
         style="@style/EditTextTheme"
         android:layout_width="0dp"
         android:layout_height="48dp"
@@ -35,36 +35,36 @@
         android:importantForAutofill="no"
         android:inputType="number"
         android:maxLength="20"
-        app:layout_constraintEnd_toStartOf="@+id/unit_milliliters_first"
+        app:layout_constraintEnd_toStartOf="@+id/milliliters_first"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/main_brew_first">
+        app:layout_constraintTop_toBottomOf="@+id/first_pour">
 
     </EditText>
 
     <TextView
-        android:id="@+id/unit_milliliters_first"
+        android:id="@+id/milliliters_first"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/unit_of_measurement_milliliters"
         android:textColor="@color/white"
         android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="@+id/main_brew_second"
+        app:layout_constraintBottom_toBottomOf="@+id/second_pour"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/main_brew_second" />
+        app:layout_constraintTop_toTopOf="@+id/second_pour" />
 
     <TextView
-        android:id="@+id/unit_milliliters_second"
+        android:id="@+id/milliliters_second"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/unit_of_measurement_milliliters"
         android:textColor="@color/white"
         android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="@+id/main_brew_first"
+        app:layout_constraintBottom_toBottomOf="@+id/first_pour"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/main_brew_confirm_button"
+        android:id="@+id/confirm_button"
         style="@style/ButtonTheme"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
@@ -72,10 +72,10 @@
         android:text="@string/confirm"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/main_brew_second" />
+        app:layout_constraintTop_toBottomOf="@+id/second_pour" />
 
     <Button
-        android:id="@+id/main_brew_abort_button"
+        android:id="@+id/abort_button"
         style="@style/ButtonTheme"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
@@ -83,6 +83,6 @@
         android:text="@string/abort"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/main_brew_second" />
+        app:layout_constraintTop_toBottomOf="@+id/second_pour" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

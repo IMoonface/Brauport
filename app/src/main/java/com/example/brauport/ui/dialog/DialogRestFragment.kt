@@ -23,8 +23,8 @@ class DialogRestFragment : BaseDialogFragment() {
         _binding = FragmentDialogRestBinding.inflate(inflater, container, false)
 
         binding.restConfirmButton.setOnClickListener {
-            val restTemp = binding.restTemp.text.toString()
-            val restTime = binding.restTime.text.toString()
+            val restTemp = binding.temperature.text.toString()
+            val restTime = binding.timeInput.text.toString()
 
             if (restTemp == "" || restTime == "")
                 Toast.makeText(context, R.string.fill_all_fields, Toast.LENGTH_SHORT).show()
@@ -34,7 +34,7 @@ class DialogRestFragment : BaseDialogFragment() {
             }
         }
 
-        binding.restDeleteButton.setOnClickListener {
+        binding.deleteButton.setOnClickListener {
             if (recipeItem.restList.isEmpty()) {
                 Toast.makeText(context, R.string.rest_not_found, Toast.LENGTH_SHORT).show()
             } else {
@@ -43,7 +43,7 @@ class DialogRestFragment : BaseDialogFragment() {
             }
         }
 
-        binding.restBackButton.setOnClickListener {
+        binding.backButton.setOnClickListener {
             dismiss()
         }
 

@@ -25,12 +25,12 @@ class DialogDeleteFragment(
     ): View {
         _binding = FragmentDialogDeleteBinding.inflate(inflater, container, false)
 
-        binding.deleteYesButton.setOnClickListener {
+        binding.yesButton.setOnClickListener {
             onDeleteConfirm(item, brewHistoryItemDelete)
             dismiss()
         }
 
-        binding.deleteNoButton.setOnClickListener {
+        binding.noButton.setOnClickListener {
             dismiss()
         }
 

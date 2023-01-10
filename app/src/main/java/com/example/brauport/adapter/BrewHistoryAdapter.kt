@@ -40,30 +40,30 @@ class BrewHistoryAdapter(
         with(holder.binding) {
             val item = getItem(position)
 
-            brewHistoryTitle.text = item.name
-            brewHistoryEndDate.text = context
+            itemTitle.text = item.name
+            itemEndDate.text = context
                 .getString(R.string.inspect_end_of_fermentation) + " " + item.endOfFermentation
 
             if (item.cardColor == Color.GRAY) {
 
-                brewHistoryCardView.setCardBackgroundColor(
+                cardView.setCardBackgroundColor(
                     ContextCompat.getColor(context, R.color.finished_brew_history_item)
                 )
 
-                brewHistoryDeleteButton.setBackgroundColor(
+                deleteButton.setBackgroundColor(
                     ContextCompat.getColor(context, R.color.finished_brew_history_item_button)
                 )
 
-                brewHistoryInspectButton.setBackgroundColor(
+                inspectButton.setBackgroundColor(
                     ContextCompat.getColor(context, R.color.finished_brew_history_item_button)
                 )
             }
 
-            brewHistoryInspectButton.setOnClickListener {
+            inspectButton.setOnClickListener {
                 onInspectClick(item)
             }
 
-            brewHistoryDeleteButton.setOnClickListener {
+            deleteButton.setOnClickListener {
                 onDeleteClick(item)
             }
 

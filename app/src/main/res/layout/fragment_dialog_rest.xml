@@ -9,7 +9,7 @@
     tools:context=".ui.dialog.DialogRestFragment">
 
     <EditText
-        android:id="@+id/rest_temp"
+        android:id="@+id/temperature"
         style="@style/EditTextTheme"
         android:layout_width="0dp"
         android:layout_height="48dp"
@@ -17,14 +17,14 @@
         android:importantForAutofill="no"
         android:inputType="number"
         android:maxLength="20"
-        app:layout_constraintEnd_toEndOf="@+id/rest_time"
+        app:layout_constraintEnd_toEndOf="@+id/time_input"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
     </EditText>
 
     <EditText
-        android:id="@+id/rest_time"
+        android:id="@+id/time_input"
         style="@style/EditTextTheme"
         android:layout_width="0dp"
         android:layout_height="48dp"
@@ -34,33 +34,33 @@
         android:importantForAutofill="no"
         android:inputType="number"
         android:maxLength="4"
-        app:layout_constraintEnd_toStartOf="@+id/unit_time"
+        app:layout_constraintEnd_toStartOf="@+id/time"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rest_temp">
+        app:layout_constraintTop_toBottomOf="@+id/temperature">
 
     </EditText>
 
     <TextView
-        android:id="@+id/unit_time"
+        android:id="@+id/time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/unit_of_measurement_time"
         android:textColor="@color/white"
         android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="@+id/rest_time"
+        app:layout_constraintBottom_toBottomOf="@+id/time_input"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/rest_time" />
+        app:layout_constraintTop_toTopOf="@+id/time_input" />
 
     <TextView
-        android:id="@+id/unit_temp"
+        android:id="@+id/celsius"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/unit_of_measurement_temp"
         android:textColor="@color/white"
         android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="@+id/rest_temp"
-        app:layout_constraintStart_toStartOf="@+id/unit_time"
-        app:layout_constraintTop_toTopOf="@+id/rest_temp" />
+        app:layout_constraintBottom_toBottomOf="@+id/temperature"
+        app:layout_constraintStart_toStartOf="@+id/time"
+        app:layout_constraintTop_toTopOf="@+id/temperature" />
 
     <Button
         android:id="@+id/rest_confirm_button"
@@ -70,20 +70,20 @@
         android:layout_marginTop="10dp"
         android:text="@string/confirm"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rest_time" />
+        app:layout_constraintTop_toBottomOf="@+id/time" />
 
     <Button
-        android:id="@+id/rest_delete_button"
+        android:id="@+id/delete_button"
         style="@style/ButtonTheme"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
         android:layout_marginTop="10dp"
         android:text="@string/delete_item"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rest_time" />
+        app:layout_constraintTop_toBottomOf="@+id/time" />
 
     <Button
-        android:id="@+id/rest_back_button"
+        android:id="@+id/back_button"
         style="@style/ButtonTheme"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
@@ -91,6 +91,6 @@
         android:text="@string/back_text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rest_delete_button" />
+        app:layout_constraintTop_toBottomOf="@+id/delete_button" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

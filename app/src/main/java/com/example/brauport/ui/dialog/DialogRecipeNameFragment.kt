@@ -31,7 +31,7 @@ class DialogRecipeNameFragment(private val item: RecipeItem) : BaseDialogFragmen
         binding.confirmButton.setOnClickListener {
             viewModel.updateRecipe(
                 id = item.id,
-                name = binding.recipeName.text.toString(),
+                name = binding.name.text.toString(),
                 maltList = item.maltList,
                 restList = item.restList,
                 hoppingList = item.hoppingList,

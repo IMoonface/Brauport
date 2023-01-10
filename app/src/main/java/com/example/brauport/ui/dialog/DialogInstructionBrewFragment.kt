@@ -24,10 +24,10 @@ class DialogInstructionBrewFragment : BaseDialogFragment() {
             .inflate(inflater, container, false)
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            binding.instructionDescription.justificationMode = JUSTIFICATION_MODE_INTER_WORD
+            binding.description.justificationMode = JUSTIFICATION_MODE_INTER_WORD
         }
 
-        binding.instructionBackButton.setOnClickListener {
+        binding.backButton.setOnClickListener {
             dismiss()
         }
 

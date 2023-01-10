@@ -8,7 +8,7 @@
     tools:context=".ui.dialog.DialogRecipeInspectFragment">
 
     <TextView
-        android:id="@+id/inspect_recipe_name"
+        android:id="@+id/recipe_name"
         style="@style/TextViewTheme"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -16,16 +16,16 @@
         android:gravity="center_horizontal"
         android:text="@string/recipe_inspect_name"
         android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/inspect_scroll_view"
+        app:layout_constraintBottom_toTopOf="@+id/scroll_view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ScrollView
-        android:id="@+id/inspect_scroll_view"
+        android:id="@+id/scroll_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/inspect_recipe_name"
+        android:layout_below="@id/recipe_name"
         android:layout_marginTop="50dp"
         android:layout_marginBottom="65dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -39,7 +39,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/inspect_malt_list"
+                android:id="@+id/malts"
                 style="@style/TextViewTheme"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -47,7 +47,7 @@
                 android:textSize="20sp" />
 
             <TextView
-                android:id="@+id/inspect_rest_list"
+                android:id="@+id/rests"
                 style="@style/TextViewTheme"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -56,7 +56,7 @@
                 android:textSize="20sp" />
 
             <TextView
-                android:id="@+id/inspect_hopping_list"
+                android:id="@+id/hopping"
                 style="@style/TextViewTheme"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -65,7 +65,7 @@
                 android:textSize="20sp" />
 
             <TextView
-                android:id="@+id/inspect_yeast"
+                android:id="@+id/yeast"
                 style="@style/TextViewTheme"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -74,7 +74,7 @@
                 android:textSize="20sp" />
 
             <TextView
-                android:id="@+id/inspect_main_brew"
+                android:id="@+id/main_brew"
                 style="@style/TextViewTheme"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -83,7 +83,7 @@
                 android:textSize="20sp" />
 
             <TextView
-                android:id="@+id/inspect_date_of_comp"
+                android:id="@+id/date_of_completion"
                 style="@style/TextViewTheme"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -92,7 +92,7 @@
                 android:textSize="20sp" />
 
             <TextView
-                android:id="@+id/inspect_end_of_ferm"
+                android:id="@+id/end_of_fermentation"
                 style="@style/TextViewTheme"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -105,15 +105,15 @@
     </ScrollView>
 
     <Button
-        android:id="@+id/inspect_back_button"
+        android:id="@+id/back_button"
         style="@style/ButtonTheme"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/inspect_scroll_view"
+        android:layout_below="@id/scroll_view"
         android:text="@string/back_text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inspect_scroll_view" />
+        app:layout_constraintTop_toBottomOf="@+id/scroll_view" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

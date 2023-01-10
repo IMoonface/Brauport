@@ -9,7 +9,7 @@
     tools:context=".ui.dialog.DialogQuestionFragment">
 
     <TextView
-        android:id="@+id/question_text"
+        android:id="@+id/item_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/warning_text"
@@ -23,7 +23,7 @@
     </TextView>
 
     <Button
-        android:id="@+id/question_with_button"
+        android:id="@+id/with_button"
         style="@style/ButtonTheme"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -31,10 +31,10 @@
         android:text="@string/brew_with_subtracting_stock"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/question_text" />
+        app:layout_constraintTop_toBottomOf="@+id/item_text" />
 
     <Button
-        android:id="@+id/question_without_button"
+        android:id="@+id/without_button"
         style="@style/ButtonTheme"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -42,10 +42,10 @@
         android:text="@string/brew_without_subtracting_stock"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/question_with_button" />
+        app:layout_constraintTop_toBottomOf="@+id/with_button" />
 
     <Button
-        android:id="@+id/question_back_button"
+        android:id="@+id/back_button"
         style="@style/ButtonTheme"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
@@ -54,6 +54,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/question_without_button" />
+        app:layout_constraintTop_toBottomOf="@+id/without_button" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

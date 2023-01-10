@@ -39,7 +39,7 @@ class DialogHoppingFragment : BaseDialogFragment() {
         _binding = FragmentDialogHoppingBinding.inflate(inflater, container, false)
 
         adapter = HoppingAdapter()
-        binding.rHoppingRecyclerView.adapter = adapter
+        binding.recyclerView.adapter = adapter
 
         lifecycleScope.launch {
             viewModel.allStockItems.collect { it ->
@@ -48,8 +48,8 @@ class DialogHoppingFragment : BaseDialogFragment() {
             }
         }
 
-        binding.rHoppingConfirmButton.setOnClickListener {
-            val newTime = binding.rHoppingTimeInput.text.toString()
+        binding.confirmButton.setOnClickListener {
+            val newTime = binding.textInput.text.toString()
 
             if (newTime == "")
                 Toast.makeText(context, R.string.enter_time, Toast.LENGTH_SHORT).show()
@@ -62,11 +62,11 @@ class DialogHoppingFragment : BaseDialogFragment() {
             }
         }
 
-        binding.rHoppingBackButton.setOnClickListener {
+        binding.backButton.setOnClickListener {
             dismiss()
         }
 
-        binding.rHoppingDeleteButton.setOnClickListener {
+        binding.deleteButton.setOnClickListener {
             val index = recipeItem.hoppingList.count() - 1
             if (index != -1) {
                 recipeItem.hoppingList.removeAt(index)

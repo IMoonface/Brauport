@@ -21,17 +21,17 @@ class DialogQuestionFragment(
     ): View {
         _binding = FragmentDialogQuestionBinding.inflate(inflater, container, false)
 
-        binding.questionWithButton.setOnClickListener {
+        binding.withButton.setOnClickListener {
             onDialogQuestionConfirm(true)
             dismiss()
         }
 
-        binding.questionWithoutButton.setOnClickListener {
+        binding.withoutButton.setOnClickListener {
             onDialogQuestionConfirm(false)
             dismiss()
         }
 
-        binding.questionBackButton.setOnClickListener {
+        binding.backButton.setOnClickListener {
             onDialogQuestionAbort()
             dismiss()
         }

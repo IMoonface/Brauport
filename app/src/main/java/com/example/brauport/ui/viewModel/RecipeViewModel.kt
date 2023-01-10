@@ -10,6 +10,8 @@ import com.example.brauport.model.stock.StockItem
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
+import java.text.ParseException
+import java.text.SimpleDateFormat
 
 class RecipeViewModel(private val recipeDao: RecipeDao) : ViewModel() {
 
@@ -58,6 +60,15 @@ class RecipeViewModel(private val recipeDao: RecipeDao) : ViewModel() {
         viewModelScope.launch(Dispatchers.IO) {
             recipeDao.delete(item.toRecipeItemData())
         }
+    }
+
+    fun dateIsValid(endOfFermentation: String, formatter: SimpleDateFormat): Boolean {
+        try {
+            formatter.parse(endOfFermentation)
+        } catch (e: ParseException) {
+            return false
+        }
+        return true
     }
 }
 

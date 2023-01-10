@@ -13,7 +13,6 @@ import com.example.brauport.databinding.FragmentDialogCookingBinding
 import com.example.brauport.model.recipe.RecipeItem
 import com.example.brauport.ui.viewModel.RecipeViewModel
 import com.example.brauport.ui.viewModel.RecipeViewModelFactory
-import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -42,17 +41,17 @@ class DialogCookingFragment(
         val formatter = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
         val actualDate = formatter.format(Calendar.getInstance().time)
 
-        binding.cookingConfirmButton.setOnClickListener {
+        binding.confirmButton.setOnClickListener {
             val dateOfCompletion = formatter.format(Calendar.getInstance().time)
-            val endOfFermentation = binding.cookingText.text.toString()
+            val endOfFermentation = binding.textInput.text.toString()
 
-            if (dateIsValid(endOfFermentation, formatter)) {
+            if (viewModel.dateIsValid(endOfFermentation, formatter)) {
                 val date = formatter.parse(endOfFermentation)
                 date?.let {
                     if (date.before(formatter.parse(actualDate)))
                         item.cardColor = Color.GRAY
                     else
-                        item.cardColor = 1
+                        item.cardColor = 0
                 }
 
                 if (!update) {
@@ -70,7 +69,7 @@ class DialogCookingFragment(
                 Toast.makeText(context, R.string.invalid_date, Toast.LENGTH_SHORT).show()
         }
 
-        binding.cookingAbortButton.setOnClickListener {
+        binding.abortButton.setOnClickListener {
             Toast.makeText(context, R.string.aborted_recipe, Toast.LENGTH_SHORT).show()
             dismiss()
         }
@@ -103,14 +102,5 @@ class DialogCookingFragment(
             isBrewHistoryItem = item.isBrewHistoryItem,
             isRecipeItem = item.isRecipeItem
         )
-    }
-
-    private fun dateIsValid(endOfFermentation: String, formatter: SimpleDateFormat): Boolean {
-        try {
-            formatter.parse(endOfFermentation)
-        } catch (e: ParseException) {
-            return false
-        }
-        return true
     }
 }
