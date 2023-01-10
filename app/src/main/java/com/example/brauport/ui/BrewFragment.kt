@@ -17,7 +17,6 @@ import com.example.brauport.BaseApplication
 import com.example.brauport.R
 import com.example.brauport.adapter.BrewAdapter
 import com.example.brauport.databinding.FragmentBrewBinding
-import com.example.brauport.mapper.toBrewHistoryItem
 import com.example.brauport.mapper.toStockItem
 import com.example.brauport.model.brew.StepItem
 import com.example.brauport.model.recipe.RecipeItem
@@ -67,7 +66,7 @@ class BrewFragment : Fragment() {
         }
 
         spinnerItemList.forEach {
-            spinnerOptions.add(it.recipeName)
+            spinnerOptions.add(it.name)
         }
 
         val arrayAdapter = ArrayAdapter(requireContext(), R.layout.spinner_item, spinnerOptions)
@@ -104,7 +103,7 @@ class BrewFragment : Fragment() {
             else if (binding.timerStartButton.text.equals("Start") && !startTimer) {
                 startTimer = true
                 timerStart(milliFromItem)
-            } else if (binding.timerStartButton.text.equals(getString(R.string.along))) {
+            } else if (binding.timerStartButton.text.equals(getString(R.string.resume))) {
                 timerStart(milliLeft)
                 binding.timerStartButton.text = "Start"
                 binding.timerStopButton.text = "Stop"
@@ -116,7 +115,7 @@ class BrewFragment : Fragment() {
             countDownTimer?.let {
                 if (binding.timerStopButton.text.equals("Stop") && startTimer) {
                     it.cancel()
-                    binding.timerStartButton.text = getString(R.string.along)
+                    binding.timerStartButton.text = getString(R.string.resume)
                     binding.timerStopButton.text = "Cancel"
                 } else if (binding.timerStopButton.text.equals("Cancel")) {
                     it.cancel()
@@ -132,7 +131,7 @@ class BrewFragment : Fragment() {
         binding.finishButton.setOnClickListener {
             if (stepList.isNotEmpty()) {
                 val dialog = DialogCookingFragment(
-                    false, chosenRecipe.toBrewHistoryItem(), this::onDialogCookingConfirm
+                    false, chosenRecipe, this::onDialogCookingConfirm
                 )
                 dialog.isCancelable = false
                 dialog.show(childFragmentManager, "cookingDialog")

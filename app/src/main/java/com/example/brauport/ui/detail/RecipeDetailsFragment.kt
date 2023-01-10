@@ -11,7 +11,6 @@ import androidx.navigation.fragment.findNavController
 import com.example.brauport.BaseApplication
 import com.example.brauport.R
 import com.example.brauport.databinding.FragmentRecipeDetailsBinding
-import com.example.brauport.mapper.toBrewHistoryItem
 import com.example.brauport.model.recipe.MainBrew
 import com.example.brauport.model.recipe.RecipeItem
 import com.example.brauport.model.stock.StockItem
@@ -43,9 +42,7 @@ class RecipeDetailsFragment : Fragment() {
         val update = arguments?.getBoolean("recipeUpdate") ?: false
 
         binding.inspectButton.setOnClickListener {
-            val dialog = DialogRecipeInspectFragment(
-                recipeItem.toBrewHistoryItem(), false
-            )
+            val dialog = DialogRecipeInspectFragment(recipeItem)
             dialog.isCancelable = false
             dialog.show(childFragmentManager, "recipeInspectDialog")
         }
@@ -96,8 +93,8 @@ class RecipeDetailsFragment : Fragment() {
                         RecipeDetailsFragmentDirections.actionRecipeDetailsFragmentToRecipeFragment()
                     )
                 } else {
-                    recipeItem.rId = UUID.randomUUID().hashCode()
-                    recipeItem.recipeName = getString(R.string.rename_recipe)
+                    recipeItem.id = UUID.randomUUID().hashCode()
+                    recipeItem.name = getString(R.string.rename_recipe)
                     viewModel.addRecipe(recipeItem)
                     Toast.makeText(context, R.string.created_recipe, Toast.LENGTH_SHORT).show()
 
@@ -118,13 +115,18 @@ class RecipeDetailsFragment : Fragment() {
 
     private fun onItemUpdate(item: RecipeItem) {
         viewModel.updateRecipe(
-            rId = item.rId,
-            recipeName = item.recipeName,
+            id = item.id,
+            name = item.name,
             maltList = item.maltList,
             restList = item.restList,
             hoppingList = item.hoppingList,
             yeast = item.yeast,
-            mainBrew = item.mainBrew
+            mainBrew = item.mainBrew,
+            dateOfCompletion = item.dateOfCompletion,
+            endOfFermentation = item.endOfFermentation,
+            cardColor = item.cardColor,
+            isBrewHistoryItem = item.isBrewHistoryItem,
+            isRecipeItem = item.isRecipeItem
         )
     }
 

@@ -11,12 +11,9 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.brauport.BaseApplication
-import com.example.brauport.R
 import com.example.brauport.adapter.RecipeAdapter
 import com.example.brauport.databinding.FragmentRecipeBinding
-import com.example.brauport.mapper.toBrewHistoryItem
 import com.example.brauport.mapper.toRecipeItem
-import com.example.brauport.model.brewHistory.BrewHistoryItem
 import com.example.brauport.model.recipe.MainBrew
 import com.example.brauport.model.recipe.RecipeItem
 import com.example.brauport.model.stock.StockItem
@@ -66,20 +63,25 @@ class RecipeFragment : Fragment() {
         binding.recyclerView.adapter = adapter
         lifecycleScope.launch {
             viewModel.allRecipeItems.collect { recipeItemDataList ->
-                startList = recipeItemDataList.map { it.toRecipeItem() }
+                startList = recipeItemDataList.map { it.toRecipeItem() }.filter { it.isRecipeItem }
                 adapter.submitList(startList)
             }
         }
 
         binding.addButton.setOnClickListener {
             recipeItem = RecipeItem(
-                rId = 0,
-                recipeName = "",
+                id = 0,
+                name = "",
                 maltList = mutableListOf(),
                 restList = mutableListOf(),
                 hoppingList = mutableListOf(),
                 yeast = StockItem(0, StockItemType.YEAST.ordinal, "", ""),
-                mainBrew = MainBrew("", "")
+                mainBrew = MainBrew("", ""),
+                dateOfCompletion = "",
+                endOfFermentation = "",
+                cardColor = 0,
+                isBrewHistoryItem = false,
+                isRecipeItem = true
             )
 
             findNavController().navigate(
@@ -110,7 +112,7 @@ class RecipeFragment : Fragment() {
     }
 
     private fun onInspectClick(item: RecipeItem) {
-        val dialog = DialogRecipeInspectFragment(item.toBrewHistoryItem(), false)
+        val dialog = DialogRecipeInspectFragment(item)
         dialog.isCancelable = false
         dialog.show(childFragmentManager, "recipeInspectDialog")
     }
@@ -124,13 +126,30 @@ class RecipeFragment : Fragment() {
     }
 
     private fun onDeleteClick(item: RecipeItem) {
-        val dialog = DialogDeleteFragment(item.toBrewHistoryItem(), this::onDeleteConfirm)
+        val dialog = DialogDeleteFragment(item, false, this::onDeleteConfirm)
         dialog.isCancelable = false
         dialog.show(childFragmentManager, "recipeDeleteDialog")
     }
 
-    private fun onDeleteConfirm(item: BrewHistoryItem) {
-        viewModel.deleteRecipe(item.toRecipeItem())
+    private fun onDeleteConfirm(item: RecipeItem, isChecked: Boolean) {
+        if (isChecked)
+            viewModel.updateRecipe(
+                id = item.id,
+                name = item.name,
+                maltList = item.maltList,
+                restList = item.restList,
+                hoppingList = item.hoppingList,
+                yeast = item.yeast,
+                mainBrew = item.mainBrew,
+                dateOfCompletion = item.dateOfCompletion,
+                endOfFermentation = item.endOfFermentation,
+                cardColor = item.cardColor,
+                isBrewHistoryItem = item.isBrewHistoryItem,
+                isRecipeItem = false
+            )
+        else {
+            viewModel.deleteRecipe(item)
+        }
     }
 
     companion object {

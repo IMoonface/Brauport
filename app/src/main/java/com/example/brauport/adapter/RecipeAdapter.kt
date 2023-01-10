@@ -29,7 +29,7 @@ class RecipeAdapter(
 
     override fun onBindViewHolder(holder: RecipeViewHolder, position: Int) = with(holder.binding) {
         val item = getItem(position)
-        itemTitle.text = item.recipeName
+        itemTitle.text = item.name
 
         itemTitle.setOnClickListener {
             onNameClick(item)
@@ -62,7 +62,7 @@ class RecipeAdapter(
 
     object DiffCallback : DiffUtil.ItemCallback<RecipeItem>() {
         override fun areItemsTheSame(oldItem: RecipeItem, newItem: RecipeItem)
-                : Boolean = oldItem.rId == newItem.rId
+                : Boolean = oldItem.id == newItem.id
 
         override fun areContentsTheSame(oldItem: RecipeItem, newItem: RecipeItem)
                 : Boolean = oldItem == newItem

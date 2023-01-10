@@ -9,7 +9,7 @@
     <string name="added_malt">Malz wurde hinzugefügt!</string>
     <string name="added_rest">Rast wurde hinzugefügt!</string>
     <string name="added_yeast">Hefe hinzugefügt!</string>
-    <string name="along">Weiter</string>
+    <string name="resume">Weiter</string>
     <string name="amount">Menge</string>
     <string name="app_name">Brauport</string>
     <string name="back_text">Zurück</string>
@@ -71,6 +71,8 @@
     <string name="invalid_date">Datum nicht gültig!</string>
     <string name="item_close">Beenden</string>
     <string name="item_main_screen">Hauptmenü</string>
+    <string name="keep_brew_history_record">Brauhistorieintrag beibehalten</string>
+    <string name="keep_recipe_data">Rezeptdaten beibehalten</string>
     <string name="let_it_cool_down">Abkühlen lassen</string>
     <string name="main_brew">Guss</string>
     <string name="main_brew_history">Brauhistorie</string>

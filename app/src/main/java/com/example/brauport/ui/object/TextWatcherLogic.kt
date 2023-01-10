@@ -18,7 +18,7 @@ object TextWatcherLogic {
 
     fun filterListForRecipe(text: String, adapter: RecipeAdapter, list: List<RecipeItem>) {
         if (text != "")
-            adapter.submitList(list.filter { it.recipeName.lowercase().contains(text.lowercase()) })
+            adapter.submitList(list.filter { it.name.lowercase().contains(text.lowercase()) })
         else
             adapter.submitList(list)
     }

@@ -10,24 +10,25 @@ import androidx.fragment.app.activityViewModels
 import com.example.brauport.BaseApplication
 import com.example.brauport.R
 import com.example.brauport.databinding.FragmentDialogCookingBinding
-import com.example.brauport.model.brewHistory.BrewHistoryItem
-import com.example.brauport.ui.viewModel.BrewHistoryViewModel
-import com.example.brauport.ui.viewModel.BrewHistoryViewModelFactory
+import com.example.brauport.model.recipe.RecipeItem
+import com.example.brauport.ui.viewModel.RecipeViewModel
+import com.example.brauport.ui.viewModel.RecipeViewModelFactory
+import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
 
 class DialogCookingFragment(
     private val update: Boolean,
-    private val item: BrewHistoryItem,
+    private val item: RecipeItem,
     private val onDialogCookingConfirm: () -> Unit
 ) : BaseDialogFragment() {
 
     private var _binding: FragmentDialogCookingBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel: BrewHistoryViewModel by activityViewModels {
-        BrewHistoryViewModelFactory(
-            (activity?.application as BaseApplication).brewHistoryDatabase.brewHistoryDao()
+    private val viewModel: RecipeViewModel by activityViewModels {
+        RecipeViewModelFactory(
+            (activity?.application as BaseApplication).recipeDatabase.recipeDao()
         )
     }
 
@@ -45,7 +46,7 @@ class DialogCookingFragment(
             val dateOfCompletion = formatter.format(Calendar.getInstance().time)
             val endOfFermentation = binding.cookingText.text.toString()
 
-            if (viewModel.dateIsValid(endOfFermentation, formatter)) {
+            if (dateIsValid(endOfFermentation, formatter)) {
                 val date = formatter.parse(endOfFermentation)
                 date?.let {
                     if (date.before(formatter.parse(actualDate)))
@@ -55,12 +56,13 @@ class DialogCookingFragment(
                 }
 
                 if (!update) {
-                    onItemAdd(dateOfCompletion, endOfFermentation)
+                    item.isBrewHistoryItem = true
+                    onItemUpdate(dateOfCompletion, endOfFermentation)
                     Toast.makeText(context, R.string.finished_recipe, Toast.LENGTH_SHORT).show()
                     onDialogCookingConfirm()
                     dismiss()
                 } else {
-                    onItemUpdate(endOfFermentation)
+                    onItemUpdate(dateOfCompletion, endOfFermentation)
                     Toast.makeText(context, R.string.updated_date, Toast.LENGTH_SHORT).show()
                     dismiss()
                 }
@@ -81,25 +83,34 @@ class DialogCookingFragment(
         _binding = null
     }
 
-    private fun onItemAdd(dateOfCompletion: String, endOfFermentation: String) {
-        item.bId = UUID.randomUUID().hashCode()
-        item.bDateOfCompletion = dateOfCompletion
-        item.bEndOfFermentation = endOfFermentation
-        viewModel.addBrewHistoryItem(item)
+    private fun onItemUpdate(dateOfCompletion: String, endOfFermentation: String) {
+        val newDateOfCompletion = if (update)
+            item.dateOfCompletion
+        else
+            dateOfCompletion
+
+        viewModel.updateRecipe(
+            id = item.id,
+            name = item.name,
+            maltList = item.maltList,
+            restList = item.restList,
+            hoppingList = item.hoppingList,
+            yeast = item.yeast,
+            mainBrew = item.mainBrew,
+            dateOfCompletion = newDateOfCompletion,
+            endOfFermentation = endOfFermentation,
+            cardColor = item.cardColor,
+            isBrewHistoryItem = item.isBrewHistoryItem,
+            isRecipeItem = item.isRecipeItem
+        )
     }
 
-    private fun onItemUpdate(endOfFermentation: String) {
-        viewModel.updateBrewHistoryItem(
-            bId = item.bId,
-            bName = item.bName,
-            bMaltList = item.bMaltList,
-            bRestList = item.bRestList,
-            bHoppingList = item.bHoppingList,
-            bYeast = item.bYeast,
-            bMainBrew = item.bMainBrew,
-            bDateOfCompletion = item.bDateOfCompletion,
-            bEndOfFermentation = endOfFermentation,
-            cardColor = item.cardColor
-        )
+    private fun dateIsValid(endOfFermentation: String, formatter: SimpleDateFormat): Boolean {
+        try {
+            formatter.parse(endOfFermentation)
+        } catch (e: ParseException) {
+            return false
+        }
+        return true
     }
 }

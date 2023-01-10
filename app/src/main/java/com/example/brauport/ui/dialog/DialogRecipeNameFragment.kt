@@ -30,13 +30,18 @@ class DialogRecipeNameFragment(private val item: RecipeItem) : BaseDialogFragmen
 
         binding.confirmButton.setOnClickListener {
             viewModel.updateRecipe(
-                item.rId,
-                binding.recipeName.text.toString(),
-                item.maltList,
-                item.restList,
-                item.hoppingList,
-                item.yeast,
-                item.mainBrew
+                id = item.id,
+                name = binding.recipeName.text.toString(),
+                maltList = item.maltList,
+                restList = item.restList,
+                hoppingList = item.hoppingList,
+                yeast = item.yeast,
+                mainBrew = item.mainBrew,
+                dateOfCompletion = item.dateOfCompletion,
+                endOfFermentation = item.endOfFermentation,
+                cardColor = item.cardColor,
+                isBrewHistoryItem = item.isBrewHistoryItem,
+                isRecipeItem = item.isRecipeItem
             )
 
             dismiss()

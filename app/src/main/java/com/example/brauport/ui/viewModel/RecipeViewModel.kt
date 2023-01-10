@@ -22,22 +22,32 @@ class RecipeViewModel(private val recipeDao: RecipeDao) : ViewModel() {
     }
 
     fun updateRecipe(
-        rId: Int,
-        recipeName: String,
+        id: Int,
+        name: String,
         maltList: MutableList<StockItem>,
         restList: MutableList<Rest>,
         hoppingList: MutableList<Hopping>,
         yeast: StockItem,
-        mainBrew: MainBrew
+        mainBrew: MainBrew,
+        dateOfCompletion: String,
+        endOfFermentation: String,
+        cardColor: Int,
+        isBrewHistoryItem: Boolean,
+        isRecipeItem: Boolean
     ) {
         val item = RecipeItem(
-            rId = rId,
-            recipeName = recipeName,
+            id = id,
+            name = name,
             maltList = maltList,
             restList = restList,
             hoppingList = hoppingList,
             yeast = yeast,
-            mainBrew = mainBrew
+            mainBrew = mainBrew,
+            dateOfCompletion = dateOfCompletion,
+            endOfFermentation = endOfFermentation,
+            cardColor = cardColor,
+            isBrewHistoryItem = isBrewHistoryItem,
+            isRecipeItem = isRecipeItem
         )
         viewModelScope.launch(Dispatchers.IO) {
             recipeDao.update(item.toRecipeItemData())

@@ -7,11 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.brauport.R
 import com.example.brauport.databinding.FragmentDialogRecipeInspectBinding
-import com.example.brauport.model.brewHistory.BrewHistoryItem
+import com.example.brauport.model.recipe.RecipeItem
 
 class DialogRecipeInspectFragment(
-    private val item: BrewHistoryItem,
-    private val fromBrewHistory: Boolean
+    private val item: RecipeItem,
 ) : BaseDialogFragment() {
 
     private var _binding: FragmentDialogRecipeInspectBinding? = null
@@ -31,18 +30,18 @@ class DialogRecipeInspectFragment(
         var hopsNameList = mutableListOf<String>()
         val hoppingNameList = mutableListOf<String>()
 
-        item.bMaltList.forEach {
+        item.maltList.forEach {
             maltNameList.add(it.stockName + " " + it.stockAmount + "g")
         }
 
-        item.bRestList.forEach {
+        item.restList.forEach {
             restNameList.add(
                 it.restTemp + getString(R.string.unit_of_measurement_temp) + " " +
                         getString(R.string.for_text) + " " + it.restTime + "min"
             )
         }
 
-        item.bHoppingList.forEach { hopping ->
+        item.hoppingList.forEach { hopping ->
             hopping.hopList.forEach {
                 hopsNameList.add(it.stockName + " " + it.stockAmount + "g")
             }
@@ -50,7 +49,7 @@ class DialogRecipeInspectFragment(
             hopsNameList = mutableListOf()
         }
 
-        binding.inspectRecipeName.text = item.bName
+        binding.inspectRecipeName.text = item.name
 
         binding.inspectMaltList.text = getString(R.string.malts) + ": " + maltNameList
 
@@ -58,18 +57,18 @@ class DialogRecipeInspectFragment(
 
         binding.inspectHoppingList.text = getString(R.string.hopping) + ": " + hoppingNameList
 
-        binding.inspectYeast.text = getString(R.string.yeast) + ": " + item.bYeast.stockName +
-                    " " + item.bYeast.stockAmount
+        binding.inspectYeast.text = getString(R.string.yeast) + ": " + item.yeast.stockName +
+                " " + item.yeast.stockAmount
 
         binding.inspectMainBrew.text =
-            getString(R.string.first_brew_with) + " " + item.bMainBrew.firstBrew + " " +
-                    getString(R.string.second_brew_with) + " " + item.bMainBrew.secondBrew
+            getString(R.string.first_brew_with) + " " + item.mainBrew.firstBrew + " " +
+                    getString(R.string.second_brew_with) + " " + item.mainBrew.secondBrew
 
-        if (fromBrewHistory) {
+        if (item.isBrewHistoryItem) {
             binding.inspectDateOfComp.text =
-                getString(R.string.date_of_completion) + " " + item.bDateOfCompletion
+                getString(R.string.date_of_completion) + " " + item.dateOfCompletion
             binding.inspectEndOfFerm.text =
-                getString(R.string.inspect_end_of_fermentation) + " " + item.bEndOfFermentation
+                getString(R.string.inspect_end_of_fermentation) + " " + item.endOfFermentation
         }
 
         binding.inspectBackButton.setOnClickListener {

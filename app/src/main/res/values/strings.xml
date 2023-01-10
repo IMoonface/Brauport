@@ -9,7 +9,7 @@
     <string name="added_malt">Malt got added!</string>
     <string name="added_rest">Rest got added!</string>
     <string name="added_yeast">Yeast got added!</string>
-    <string name="along">Resume</string>
+    <string name="resume">Resume</string>
     <string name="amount">Amount</string>
     <string name="app_name">Brauport</string>
     <string name="back_text">Back</string>
@@ -71,6 +71,8 @@
     <string name="invalid_date">Date is invalid!</string>
     <string name="item_close">End</string>
     <string name="item_main_screen">Main Menu</string>
+    <string name="keep_brew_history_record">Keep brewing history record</string>
+    <string name="keep_recipe_data">Keep recipe data</string>
     <string name="let_it_cool_down">Let it cool down</string>
     <string name="main_brew">Main Pour</string>
     <string name="main_brew_history">Brewing History</string>

@@ -90,18 +90,23 @@ class DialogStockFragment(
                 }
 
             viewModel.updateRecipe(
-                rId = recipeItem.rId,
-                recipeName = recipeItem.recipeName,
+                id = recipeItem.id,
+                name = recipeItem.name,
                 maltList = recipeItem.maltList,
                 restList = recipeItem.restList,
                 hoppingList = recipeItem.hoppingList,
                 yeast = recipeItem.yeast,
-                mainBrew = recipeItem.mainBrew
+                mainBrew = recipeItem.mainBrew,
+                dateOfCompletion = recipeItem.dateOfCompletion,
+                endOfFermentation = recipeItem.endOfFermentation,
+                cardColor = recipeItem.cardColor,
+                isBrewHistoryItem = recipeItem.isBrewHistoryItem,
+                isRecipeItem = recipeItem.isRecipeItem
             )
         }
     }
 
-    private fun differentFromRecipeStock(recipeStock: StockItem, item: StockItem) : Boolean {
+    private fun differentFromRecipeStock(recipeStock: StockItem, item: StockItem): Boolean {
         return recipeStock.id == item.id &&
                 (recipeStock.stockName != item.stockName ||
                         recipeStock.stockAmount != item.stockAmount)
