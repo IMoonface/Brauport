@@ -6,82 +6,122 @@
     android:layout_height="match_parent"
     tools:context=".ui.detail.RecipeDetailsFragment">
 
-    <Button
-        android:id="@+id/malts"
-        style="@style/ButtonTheme"
-        android:layout_width="220dp"
-        android:layout_height="60dp"
-        android:text="@string/malts"
-        app:layout_constraintBottom_toTopOf="@+id/rests"
-        app:layout_constraintEnd_toEndOf="parent"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/text_input_layout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintEnd_toStartOf="@+id/inspect_button"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <Button
-        android:id="@+id/rests"
-        style="@style/ButtonTheme"
-        android:layout_width="220dp"
-        android:layout_height="60dp"
-        android:text="@string/rest"
-        app:layout_constraintBottom_toTopOf="@+id/hopping"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/malts" />
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/text_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/enter_recipe_name"
+            android:inputType="text"
+            android:textColorHint="#546E7A"
+            tools:ignore="TextContrastCheck" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-    <Button
-        android:id="@+id/hopping"
-        style="@style/ButtonTheme"
-        android:layout_width="220dp"
-        android:layout_height="60dp"
-        android:text="@string/hopping"
-        app:layout_constraintBottom_toTopOf="@+id/yeast"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rests" />
 
-    <Button
-        android:id="@+id/yeast"
-        style="@style/ButtonTheme"
-        android:layout_width="220dp"
-        android:layout_height="60dp"
-        android:text="@string/yeast"
-        app:layout_constraintBottom_toTopOf="@+id/main_brew"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/hopping" />
-
-    <Button
-        android:id="@+id/main_brew"
-        style="@style/ButtonTheme"
-        android:layout_width="220dp"
-        android:layout_height="60dp"
-        android:text="@string/main_brew"
-        app:layout_constraintBottom_toTopOf="@+id/save_button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/yeast" />
-
-    <Button
-        android:id="@+id/save_button"
-        style="@style/ButtonTheme"
-        android:layout_width="220dp"
-        android:layout_height="60dp"
-        android:text="@string/save_string"
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/main_brew" />
+        app:layout_constraintTop_toBottomOf="@+id/text_input_layout">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/rests"
+                style="@style/ButtonTheme"
+                android:layout_width="220dp"
+                android:layout_height="60dp"
+                android:text="@string/rest"
+                app:layout_constraintBottom_toTopOf="@+id/hopping"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/malts" />
+
+            <Button
+                android:id="@+id/malts"
+                style="@style/ButtonTheme"
+                android:layout_width="220dp"
+                android:layout_height="60dp"
+                android:text="@string/malts"
+                app:layout_constraintBottom_toTopOf="@+id/rests"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/hopping"
+                style="@style/ButtonTheme"
+                android:layout_width="220dp"
+                android:layout_height="60dp"
+                android:text="@string/hopping"
+                app:layout_constraintBottom_toTopOf="@+id/yeast"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rests" />
+
+            <Button
+                android:id="@+id/yeast"
+                style="@style/ButtonTheme"
+                android:layout_width="220dp"
+                android:layout_height="60dp"
+                android:text="@string/yeast"
+                app:layout_constraintBottom_toTopOf="@+id/main_brew"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/hopping" />
+
+            <Button
+                android:id="@+id/main_brew"
+                style="@style/ButtonTheme"
+                android:layout_width="220dp"
+                android:layout_height="60dp"
+                android:text="@string/main_brew"
+                app:layout_constraintBottom_toTopOf="@+id/save_button"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/yeast" />
+
+            <Button
+                android:id="@+id/save_button"
+                style="@style/ButtonTheme"
+                android:layout_width="220dp"
+                android:layout_height="60dp"
+                android:text="@string/save_string"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/main_brew" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>
 
     <Button
         android:id="@+id/inspect_button"
         style="@style/IconButtonTheme"
         android:layout_width="50dp"
         android:layout_height="60dp"
-        android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         app:icon="@drawable/ic_search"
+        app:layout_constraintBottom_toBottomOf="@+id/text_input_layout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/text_input_layout"
         tools:ignore="SpeakableTextPresentCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

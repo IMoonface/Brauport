@@ -96,7 +96,6 @@
     <string name="recipe_add">New Recipe</string>
     <string name="recipe_inspect_name">Recipe Name</string>
     <string name="remove_malt">Remove Malt</string>
-    <string name="rename_recipe">Please click here to rename!</string>
     <string name="rest">Rests</string>
     <string name="rest_not_found">Rest not found!</string>
     <string name="save_string">Save</string>

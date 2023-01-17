@@ -11,8 +11,7 @@ import com.example.brauport.model.recipe.RecipeItem
 class RecipeAdapter(
     private val onInspectClick: (RecipeItem) -> Unit,
     private val onItemClick: (RecipeItem) -> Unit,
-    private val onDeleteClick: (RecipeItem) -> Unit,
-    private val onNameClick: (RecipeItem) -> Unit
+    private val onDeleteClick: (RecipeItem) -> Unit
 ) : ListAdapter<RecipeItem, RecipeAdapter.RecipeViewHolder>(DiffCallback) {
 
     class RecipeViewHolder(val binding: CardRecipeBinding) : RecyclerView.ViewHolder(binding.root)
@@ -30,10 +29,6 @@ class RecipeAdapter(
     override fun onBindViewHolder(holder: RecipeViewHolder, position: Int) = with(holder.binding) {
         val item = getItem(position)
         itemTitle.text = item.name
-
-        itemTitle.setOnClickListener {
-            onNameClick(item)
-        }
 
         inspectButton.setOnClickListener {
             onInspectClick(item)

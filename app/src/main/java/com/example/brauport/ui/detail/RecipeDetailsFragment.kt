@@ -78,6 +78,7 @@ class RecipeDetailsFragment : Fragment() {
         }
 
         binding.saveButton.setOnClickListener {
+            recipeItem.name = binding.textInput.text.toString()
             if (recipeNotValid())
                 Toast.makeText(
                     context,
@@ -94,7 +95,6 @@ class RecipeDetailsFragment : Fragment() {
                     )
                 } else {
                     recipeItem.id = UUID.randomUUID().hashCode()
-                    recipeItem.name = getString(R.string.rename_recipe)
                     viewModel.addRecipe(recipeItem)
                     Toast.makeText(context, R.string.created_recipe, Toast.LENGTH_SHORT).show()
 
@@ -137,8 +137,8 @@ class RecipeDetailsFragment : Fragment() {
 
         val defaultMainBrew = MainBrew(firstBrew = "", secondBrew = "")
 
-        return (recipeItem.maltList.isEmpty() || recipeItem.restList.isEmpty() ||
-                recipeItem.mainBrew == defaultMainBrew || recipeItem.hoppingList.isEmpty() ||
-                recipeItem.yeast == defaultYeast)
+        return (recipeItem.name == "" || recipeItem.maltList.isEmpty() ||
+                recipeItem.restList.isEmpty() || recipeItem.mainBrew == defaultMainBrew ||
+                recipeItem.hoppingList.isEmpty() || recipeItem.yeast == defaultYeast)
     }
 }

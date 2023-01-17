@@ -22,7 +22,6 @@ import com.example.brauport.ui.`object`.TextWatcherLogic.filterListForRecipe
 import com.example.brauport.ui.dialog.DialogDeleteFragment
 import com.example.brauport.ui.dialog.DialogInstructionRecipeFragment
 import com.example.brauport.ui.dialog.DialogRecipeInspectFragment
-import com.example.brauport.ui.dialog.DialogRecipeNameFragment
 import com.example.brauport.ui.viewModel.RecipeViewModel
 import com.example.brauport.ui.viewModel.RecipeViewModelFactory
 import kotlinx.coroutines.launch
@@ -57,8 +56,7 @@ class RecipeFragment : Fragment() {
         adapter = RecipeAdapter(
             this::onInspectClick,
             this::onItemClick,
-            this::onDeleteClick,
-            this::onNameClick
+            this::onDeleteClick
         )
         binding.recyclerView.adapter = adapter
         lifecycleScope.launch {
@@ -103,12 +101,6 @@ class RecipeFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-    }
-
-    private fun onNameClick(item: RecipeItem) {
-        val dialog = DialogRecipeNameFragment(item)
-        dialog.isCancelable = false
-        dialog.show(childFragmentManager, "nameDialog")
     }
 
     private fun onInspectClick(item: RecipeItem) {

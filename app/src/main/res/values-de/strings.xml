@@ -96,7 +96,6 @@
     <string name="recipe_add">Neues Rezept</string>
     <string name="recipe_inspect_name">Rezeptname</string>
     <string name="remove_malt">Malz entnehmen</string>
-    <string name="rename_recipe">Bitte hier klicken zum Umbenennen!</string>
     <string name="rest">Rasten</string>
     <string name="rest_not_found">Keine Rast vorhanden!</string>
     <string name="save_string">Speichern</string>

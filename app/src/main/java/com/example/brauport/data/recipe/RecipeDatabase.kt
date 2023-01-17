@@ -8,7 +8,7 @@ import androidx.room.TypeConverters
 import com.example.brauport.data.RoomConverters
 import com.example.brauport.model.recipe.RecipeItemData
 
-@Database(entities = [RecipeItemData::class], version = 1, exportSchema = false)
+@Database(entities = [RecipeItemData::class], version = 2, exportSchema = false)
 @TypeConverters(RoomConverters::class)
 abstract class RecipeDatabase : RoomDatabase() {
     abstract fun recipeDao(): RecipeDao
