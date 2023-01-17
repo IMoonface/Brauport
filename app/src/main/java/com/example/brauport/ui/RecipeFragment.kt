@@ -31,14 +31,14 @@ class RecipeFragment : Fragment() {
 
     private var _binding: FragmentRecipeBinding? = null
     private val binding get() = _binding!!
-    private lateinit var startList: List<RecipeItem>
+    private lateinit var recipeList: List<RecipeItem>
     private lateinit var adapter: RecipeAdapter
 
     private val textWatcher = object : TextWatcher {
         override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
         override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
         override fun afterTextChanged(p0: Editable?) {
-            filterListForRecipe(binding.textInput.text.toString(), adapter, startList)
+            filterListForRecipe(binding.textInput.text.toString(), adapter, recipeList)
         }
     }
 
@@ -63,8 +63,8 @@ class RecipeFragment : Fragment() {
         binding.recyclerView.adapter = adapter
         lifecycleScope.launch {
             viewModel.allRecipeItems.collect { recipeItemDataList ->
-                startList = recipeItemDataList.map { it.toRecipeItem() }.filter { it.isRecipeItem }
-                adapter.submitList(startList)
+                recipeList = recipeItemDataList.map { it.toRecipeItem() }.filter { it.isRecipeItem }
+                adapter.submitList(recipeList)
             }
         }
 

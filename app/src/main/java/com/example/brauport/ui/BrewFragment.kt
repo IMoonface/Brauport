@@ -38,7 +38,7 @@ class BrewFragment : Fragment() {
     private var milliFromItem: Long = 0
     private var milliLeft: Long = 0
     private var startTimer = false
-    private var spinnerOptions: MutableList<String> = mutableListOf()
+    private val spinnerOptions: MutableList<String> = mutableListOf()
     private lateinit var chosenRecipe: RecipeItem
     private var stockList = emptyList<StockItem>()
     private var stepList = emptyList<StepItem>()

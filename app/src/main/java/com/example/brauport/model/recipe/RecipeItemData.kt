@@ -26,9 +26,9 @@ data class RecipeItemData(
     @ColumnInfo(name = "endOfFermentation")
     val endOfFermentation: String,
     @ColumnInfo(name = "cardColor")
-    var cardColor: Int,
+    val cardColor: Int,
     @ColumnInfo(name = "isBrewHistoryItem")
-    var isBrewHistoryItem: Boolean,
+    val isBrewHistoryItem: Boolean,
     @ColumnInfo(name = "isRecipeItem")
-    var isRecipeItem: Boolean
+    val isRecipeItem: Boolean
 )
