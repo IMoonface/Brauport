@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface RecipeDao {
-    @Query("SELECT * from recipe_database ORDER BY recipeName ASC")
+    @Query("SELECT * from recipe_database ORDER BY name ASC")
     fun getAllRecipeItems(): Flow<List<RecipeItemData>>
 
     @Insert
