@@ -10,8 +10,6 @@ import com.example.brauport.model.stock.StockItem
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
-import java.text.ParseException
-import java.text.SimpleDateFormat
 
 class RecipeViewModel(private val recipeDao: RecipeDao) : ViewModel() {
 
@@ -30,12 +28,7 @@ class RecipeViewModel(private val recipeDao: RecipeDao) : ViewModel() {
         restList: MutableList<Rest>,
         hoppingList: MutableList<Hopping>,
         yeast: StockItem,
-        mainBrew: MainBrew,
-        dateOfCompletion: String,
-        endOfFermentation: String,
-        cardColor: Int,
-        isBrewHistoryItem: Boolean,
-        isRecipeItem: Boolean
+        mainBrew: MainBrew
     ) {
         val item = RecipeItem(
             id = id,
@@ -44,12 +37,7 @@ class RecipeViewModel(private val recipeDao: RecipeDao) : ViewModel() {
             restList = restList,
             hoppingList = hoppingList,
             yeast = yeast,
-            mainBrew = mainBrew,
-            dateOfCompletion = dateOfCompletion,
-            endOfFermentation = endOfFermentation,
-            cardColor = cardColor,
-            isBrewHistoryItem = isBrewHistoryItem,
-            isRecipeItem = isRecipeItem
+            mainBrew = mainBrew
         )
         viewModelScope.launch(Dispatchers.IO) {
             recipeDao.update(item.toRecipeItemData())
@@ -60,15 +48,6 @@ class RecipeViewModel(private val recipeDao: RecipeDao) : ViewModel() {
         viewModelScope.launch(Dispatchers.IO) {
             recipeDao.delete(item.toRecipeItemData())
         }
-    }
-
-    fun dateIsValid(endOfFermentation: String, formatter: SimpleDateFormat): Boolean {
-        try {
-            formatter.parse(endOfFermentation)
-        } catch (e: ParseException) {
-            return false
-        }
-        return true
     }
 }
 

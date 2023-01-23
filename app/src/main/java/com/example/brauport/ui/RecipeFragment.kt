@@ -13,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.brauport.BaseApplication
 import com.example.brauport.adapter.RecipeAdapter
 import com.example.brauport.databinding.FragmentRecipeBinding
+import com.example.brauport.mapper.toBrewHistoryItem
 import com.example.brauport.mapper.toRecipeItem
 import com.example.brauport.model.recipe.MainBrew
 import com.example.brauport.model.recipe.RecipeItem
@@ -61,7 +62,7 @@ class RecipeFragment : Fragment() {
         binding.recyclerView.adapter = adapter
         lifecycleScope.launch {
             viewModel.allRecipeItems.collect { recipeItemDataList ->
-                recipeList = recipeItemDataList.map { it.toRecipeItem() }.filter { it.isRecipeItem }
+                recipeList = recipeItemDataList.map { it.toRecipeItem() }
                 adapter.submitList(recipeList)
             }
         }
@@ -74,12 +75,7 @@ class RecipeFragment : Fragment() {
                 restList = mutableListOf(),
                 hoppingList = mutableListOf(),
                 yeast = StockItem(0, StockItemType.YEAST.ordinal, "", ""),
-                mainBrew = MainBrew("", ""),
-                dateOfCompletion = "",
-                endOfFermentation = "",
-                cardColor = 0,
-                isBrewHistoryItem = false,
-                isRecipeItem = true
+                mainBrew = MainBrew("", "")
             )
 
             findNavController().navigate(
@@ -104,7 +100,7 @@ class RecipeFragment : Fragment() {
     }
 
     private fun onInspectClick(item: RecipeItem) {
-        val dialog = DialogRecipeInspectFragment(item)
+        val dialog = DialogRecipeInspectFragment(item.toBrewHistoryItem(), false)
         dialog.isCancelable = false
         dialog.show(childFragmentManager, "recipeInspectDialog")
     }
@@ -118,30 +114,13 @@ class RecipeFragment : Fragment() {
     }
 
     private fun onDeleteClick(item: RecipeItem) {
-        val dialog = DialogDeleteFragment(item, false, this::onDeleteConfirm)
+        val dialog = DialogDeleteFragment(item, this::onDeleteConfirm)
         dialog.isCancelable = false
         dialog.show(childFragmentManager, "recipeDeleteDialog")
     }
 
-    private fun onDeleteConfirm(item: RecipeItem, isChecked: Boolean) {
-        if (isChecked)
-            viewModel.updateRecipe(
-                id = item.id,
-                name = item.name,
-                maltList = item.maltList,
-                restList = item.restList,
-                hoppingList = item.hoppingList,
-                yeast = item.yeast,
-                mainBrew = item.mainBrew,
-                dateOfCompletion = item.dateOfCompletion,
-                endOfFermentation = item.endOfFermentation,
-                cardColor = item.cardColor,
-                isBrewHistoryItem = item.isBrewHistoryItem,
-                isRecipeItem = false
-            )
-        else {
-            viewModel.deleteRecipe(item)
-        }
+    private fun onDeleteConfirm(item: RecipeItem) {
+        viewModel.deleteRecipe(item)
     }
 
     companion object {

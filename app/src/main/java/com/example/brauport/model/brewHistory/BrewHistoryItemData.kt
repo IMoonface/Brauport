@@ -1,12 +1,15 @@
-package com.example.brauport.model.recipe
+package com.example.brauport.model.brewHistory
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.example.brauport.model.recipe.Hopping
+import com.example.brauport.model.recipe.MainBrew
+import com.example.brauport.model.recipe.Rest
 import com.example.brauport.model.stock.StockItem
 
-@Entity(tableName = "recipe_database")
-data class RecipeItemData(
+@Entity(tableName = "brew_history_database")
+data class BrewHistoryItemData(
     @PrimaryKey
     val id: Int,
     @ColumnInfo(name = "name")
@@ -20,5 +23,11 @@ data class RecipeItemData(
     @ColumnInfo(name = "yeast")
     val yeast: StockItem,
     @ColumnInfo(name = "mainBrew")
-    val mainBrew: MainBrew
+    val mainBrew: MainBrew,
+    @ColumnInfo(name = "dateOfCompletion")
+    val dateOfCompletion: String,
+    @ColumnInfo(name = "endOfFermentation")
+    val endOfFermentation: String,
+    @ColumnInfo(name = "cardColor")
+    val cardColor: Int
 )

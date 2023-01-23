@@ -9,10 +9,5 @@ data class RecipeItem(
     val restList: MutableList<Rest>,
     val hoppingList: MutableList<Hopping>,
     var yeast: StockItem,
-    var mainBrew: MainBrew,
-    val dateOfCompletion: String,
-    val endOfFermentation: String,
-    var cardColor: Int,
-    var isBrewHistoryItem: Boolean,
-    val isRecipeItem: Boolean
+    var mainBrew: MainBrew
 )

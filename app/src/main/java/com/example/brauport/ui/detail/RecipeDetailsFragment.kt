@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.brauport.BaseApplication
 import com.example.brauport.R
 import com.example.brauport.databinding.FragmentRecipeDetailsBinding
+import com.example.brauport.mapper.toBrewHistoryItem
 import com.example.brauport.model.recipe.MainBrew
 import com.example.brauport.model.recipe.RecipeItem
 import com.example.brauport.model.stock.StockItem
@@ -42,7 +43,7 @@ class RecipeDetailsFragment : Fragment() {
         val update = arguments?.getBoolean("recipeUpdate") ?: false
 
         binding.inspectButton.setOnClickListener {
-            val dialog = DialogRecipeInspectFragment(recipeItem)
+            val dialog = DialogRecipeInspectFragment(recipeItem.toBrewHistoryItem(), false)
             dialog.isCancelable = false
             dialog.show(childFragmentManager, "recipeInspectDialog")
         }
@@ -121,12 +122,7 @@ class RecipeDetailsFragment : Fragment() {
             restList = item.restList,
             hoppingList = item.hoppingList,
             yeast = item.yeast,
-            mainBrew = item.mainBrew,
-            dateOfCompletion = item.dateOfCompletion,
-            endOfFermentation = item.endOfFermentation,
-            cardColor = item.cardColor,
-            isBrewHistoryItem = item.isBrewHistoryItem,
-            isRecipeItem = item.isRecipeItem
+            mainBrew = item.mainBrew
         )
     }
 

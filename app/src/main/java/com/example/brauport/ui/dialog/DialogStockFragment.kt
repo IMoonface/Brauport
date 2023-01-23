@@ -96,12 +96,7 @@ class DialogStockFragment(
                 restList = recipeItem.restList,
                 hoppingList = recipeItem.hoppingList,
                 yeast = recipeItem.yeast,
-                mainBrew = recipeItem.mainBrew,
-                dateOfCompletion = recipeItem.dateOfCompletion,
-                endOfFermentation = recipeItem.endOfFermentation,
-                cardColor = recipeItem.cardColor,
-                isBrewHistoryItem = recipeItem.isBrewHistoryItem,
-                isRecipeItem = recipeItem.isRecipeItem
+                mainBrew = recipeItem.mainBrew
             )
         }
     }

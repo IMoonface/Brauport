@@ -1,5 +1,7 @@
 package com.example.brauport.mapper
 
+import com.example.brauport.model.brewHistory.BrewHistoryItem
+import com.example.brauport.model.brewHistory.BrewHistoryItemData
 import com.example.brauport.model.recipe.RecipeItem
 import com.example.brauport.model.recipe.RecipeItemData
 import com.example.brauport.model.stock.SNoAmount
@@ -40,12 +42,7 @@ fun RecipeItemData.toRecipeItem(): RecipeItem {
         restList = restList.toMutableList(),
         hoppingList = hoppingList.toMutableList(),
         yeast = yeast,
-        mainBrew = mainBrew,
-        dateOfCompletion = dateOfCompletion,
-        endOfFermentation = endOfFermentation,
-        cardColor = cardColor,
-        isBrewHistoryItem = isBrewHistoryItem,
-        isRecipeItem = isRecipeItem
+        mainBrew = mainBrew
     )
 }
 
@@ -57,11 +54,51 @@ fun RecipeItem.toRecipeItemData(): RecipeItemData {
         restList = restList,
         hoppingList = hoppingList,
         yeast = yeast,
+        mainBrew = mainBrew
+    )
+}
+
+fun BrewHistoryItemData.toBrewHistoryItem(): BrewHistoryItem {
+    return BrewHistoryItem(
+        id = id,
+        name = name,
+        maltList = maltList.toMutableList(),
+        restList = restList.toMutableList(),
+        hoppingList = hoppingList.toMutableList(),
+        yeast = yeast,
         mainBrew = mainBrew,
-        dateOfCompletion = dateOfCompletion,
         endOfFermentation = endOfFermentation,
-        cardColor = cardColor,
-        isBrewHistoryItem = isBrewHistoryItem,
-        isRecipeItem = isRecipeItem
+        dateOfCompletion = dateOfCompletion,
+        cardColor = cardColor
+    )
+}
+
+fun BrewHistoryItem.toBrewHistoryItemData(): BrewHistoryItemData {
+    return BrewHistoryItemData(
+        id = id,
+        name = name,
+        maltList = maltList,
+        restList = restList,
+        hoppingList = hoppingList,
+        yeast = yeast,
+        mainBrew = mainBrew,
+        endOfFermentation = endOfFermentation,
+        dateOfCompletion = dateOfCompletion,
+        cardColor = cardColor
+    )
+}
+
+fun RecipeItem.toBrewHistoryItem(): BrewHistoryItem {
+    return BrewHistoryItem(
+        id = id,
+        name = name,
+        maltList = maltList,
+        restList = restList,
+        hoppingList = hoppingList,
+        yeast = yeast,
+        mainBrew = mainBrew,
+        endOfFermentation = "",
+        dateOfCompletion = "",
+        cardColor = 0
     )
 }

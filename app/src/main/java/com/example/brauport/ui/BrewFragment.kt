@@ -17,6 +17,7 @@ import com.example.brauport.BaseApplication
 import com.example.brauport.R
 import com.example.brauport.adapter.BrewAdapter
 import com.example.brauport.databinding.FragmentBrewBinding
+import com.example.brauport.mapper.toBrewHistoryItem
 import com.example.brauport.mapper.toStockItem
 import com.example.brauport.model.brew.StepItem
 import com.example.brauport.model.recipe.RecipeItem
@@ -131,7 +132,7 @@ class BrewFragment : Fragment() {
         binding.finishButton.setOnClickListener {
             if (stepList.isNotEmpty()) {
                 val dialog = DialogCookingFragment(
-                    false, chosenRecipe, this::onDialogCookingConfirm
+                    false, chosenRecipe.toBrewHistoryItem(), this::onDialogCookingConfirm
                 )
                 dialog.isCancelable = false
                 dialog.show(childFragmentManager, "cookingDialog")

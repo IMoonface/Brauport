@@ -7,10 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.brauport.R
 import com.example.brauport.databinding.FragmentDialogRecipeInspectBinding
-import com.example.brauport.model.recipe.RecipeItem
+import com.example.brauport.model.brewHistory.BrewHistoryItem
 
 class DialogRecipeInspectFragment(
-    private val item: RecipeItem,
+    private val item: BrewHistoryItem,
+    private val fromBrewHistory: Boolean
 ) : BaseDialogFragment() {
 
     private var _binding: FragmentDialogRecipeInspectBinding? = null
@@ -63,7 +64,7 @@ class DialogRecipeInspectFragment(
             getString(R.string.first_brew_with) + " " + item.mainBrew.firstBrew + " " +
                     getString(R.string.second_brew_with) + " " + item.mainBrew.secondBrew
 
-        if (item.isBrewHistoryItem) {
+        if (fromBrewHistory) {
             binding.dateOfCompletion.text =
                 getString(R.string.date_of_completion) + " " + item.dateOfCompletion
             binding.endOfFermentation.text =

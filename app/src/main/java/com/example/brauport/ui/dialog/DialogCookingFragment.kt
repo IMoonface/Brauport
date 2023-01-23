@@ -10,24 +10,24 @@ import androidx.fragment.app.activityViewModels
 import com.example.brauport.BaseApplication
 import com.example.brauport.R
 import com.example.brauport.databinding.FragmentDialogCookingBinding
-import com.example.brauport.model.recipe.RecipeItem
-import com.example.brauport.ui.viewModel.RecipeViewModel
-import com.example.brauport.ui.viewModel.RecipeViewModelFactory
+import com.example.brauport.model.brewHistory.BrewHistoryItem
+import com.example.brauport.ui.viewModel.BrewHistoryViewModel
+import com.example.brauport.ui.viewModel.BrewHistoryViewModelFactory
 import java.text.SimpleDateFormat
 import java.util.*
 
 class DialogCookingFragment(
     private val update: Boolean,
-    private val item: RecipeItem,
+    private val item: BrewHistoryItem,
     private val onDialogCookingConfirm: () -> Unit
 ) : BaseDialogFragment() {
 
     private var _binding: FragmentDialogCookingBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel: RecipeViewModel by activityViewModels {
-        RecipeViewModelFactory(
-            (activity?.application as BaseApplication).recipeDatabase.recipeDao()
+    private val viewModel: BrewHistoryViewModel by activityViewModels {
+        BrewHistoryViewModelFactory(
+            (activity?.application as BaseApplication).brewHistoryDatabase.brewHistoryDao()
         )
     }
 
@@ -55,13 +55,12 @@ class DialogCookingFragment(
                 }
 
                 if (!update) {
-                    item.isBrewHistoryItem = true
-                    onItemUpdate(dateOfCompletion, endOfFermentation)
+                    onItemAdd(dateOfCompletion, endOfFermentation)
                     Toast.makeText(context, R.string.finished_recipe, Toast.LENGTH_SHORT).show()
                     onDialogCookingConfirm()
                     dismiss()
                 } else {
-                    onItemUpdate(dateOfCompletion, endOfFermentation)
+                    onItemUpdate(endOfFermentation)
                     Toast.makeText(context, R.string.updated_date, Toast.LENGTH_SHORT).show()
                     dismiss()
                 }
@@ -82,13 +81,16 @@ class DialogCookingFragment(
         _binding = null
     }
 
-    private fun onItemUpdate(dateOfCompletion: String, endOfFermentation: String) {
-        val newDateOfCompletion = if (update)
-            item.dateOfCompletion
-        else
-            dateOfCompletion
+    private fun onItemAdd(dateOfCompletion: String, endOfFermentation: String) {
+        item.id = UUID.randomUUID().hashCode()
+        item.dateOfCompletion = dateOfCompletion
+        item.endOfFermentation = endOfFermentation
 
-        viewModel.updateRecipe(
+        viewModel.addBrewHistoryItem(item)
+    }
+
+    private fun onItemUpdate(endOfFermentation: String) {
+        viewModel.updateBrewHistoryItem(
             id = item.id,
             name = item.name,
             maltList = item.maltList,
@@ -96,11 +98,9 @@ class DialogCookingFragment(
             hoppingList = item.hoppingList,
             yeast = item.yeast,
             mainBrew = item.mainBrew,
-            dateOfCompletion = newDateOfCompletion,
+            dateOfCompletion = item.dateOfCompletion,
             endOfFermentation = endOfFermentation,
-            cardColor = item.cardColor,
-            isBrewHistoryItem = item.isBrewHistoryItem,
-            isRecipeItem = item.isRecipeItem
+            cardColor = item.cardColor
         )
     }
 }

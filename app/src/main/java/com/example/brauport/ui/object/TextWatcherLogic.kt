@@ -23,9 +23,9 @@ object TextWatcherLogic {
             adapter.submitList(list)
     }
 
-    private fun isNumeric(s: String): Boolean {
+    private fun isNumeric(text: String): Boolean {
         return try {
-            s.toInt()
+            text.toInt()
             true
         } catch (e: NumberFormatException) {
             false

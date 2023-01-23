@@ -11,13 +11,14 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.brauport.R
 import com.example.brauport.databinding.CardBrewHistoryBinding
+import com.example.brauport.model.brewHistory.BrewHistoryItem
 import com.example.brauport.model.recipe.RecipeItem
 
 class BrewHistoryAdapter(
-    private val onInspectClick: (RecipeItem) -> Unit,
-    private val onItemClick: (RecipeItem) -> Unit,
-    private val onDeleteClick: (RecipeItem) -> Unit
-) : ListAdapter<RecipeItem, BrewHistoryAdapter.BrewHistoryViewHolder>(DiffCallback) {
+    private val onInspectClick: (BrewHistoryItem) -> Unit,
+    private val onItemClick: (BrewHistoryItem) -> Unit,
+    private val onDeleteClick: (BrewHistoryItem) -> Unit
+) : ListAdapter<BrewHistoryItem, BrewHistoryAdapter.BrewHistoryViewHolder>(DiffCallback) {
 
     lateinit var context: Context
 
@@ -84,11 +85,11 @@ class BrewHistoryAdapter(
         return currentList.size
     }
 
-    object DiffCallback : DiffUtil.ItemCallback<RecipeItem>() {
-        override fun areItemsTheSame(oldItem: RecipeItem, newItem: RecipeItem)
+    object DiffCallback : DiffUtil.ItemCallback<BrewHistoryItem>() {
+        override fun areItemsTheSame(oldItem: BrewHistoryItem, newItem: BrewHistoryItem)
                 : Boolean = oldItem.id == newItem.id
 
-        override fun areContentsTheSame(oldItem: RecipeItem, newItem: RecipeItem)
+        override fun areContentsTheSame(oldItem: BrewHistoryItem, newItem: BrewHistoryItem)
                 : Boolean = oldItem == newItem
     }
 }
