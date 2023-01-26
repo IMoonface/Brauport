@@ -43,8 +43,8 @@ class RoomConverters {
         return JSONObject().apply {
             put("id", item.id)
             put("itemType", item.itemType)
-            put("stockName", item.stockName)
-            put("stockAmount", item.stockAmount)
+            put("stockName", item.name)
+            put("stockAmount", item.amount)
         }.toString()
     }
 

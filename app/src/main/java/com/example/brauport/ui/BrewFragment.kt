@@ -78,15 +78,18 @@ class BrewFragment : Fragment() {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, pos: Int, id: Long) {
                 chosenRecipe = spinnerItemList[pos]
                 stepList = createStringList(chosenRecipe)
-                if (viewModel.negativeAmount(chosenRecipe, stockList)) {
-                    val dialog = DialogQuestionFragment(
-                        this@BrewFragment::onDialogQuestionConfirm,
-                        this@BrewFragment::onDialogQuestionAbort
-                    )
-                    dialog.isCancelable = false
-                    dialog.show(childFragmentManager, "questionDialog")
-                }
-                adapter.submitList(stepList)
+                if (stockList.isNotEmpty()) {
+                    if (viewModel.negativeAmount(chosenRecipe, stockList)) {
+                        val dialog = DialogQuestionFragment(
+                            this@BrewFragment::onDialogQuestionConfirm,
+                            this@BrewFragment::onDialogQuestionAbort
+                        )
+                        dialog.isCancelable = false
+                        dialog.show(childFragmentManager, "questionDialog")
+                    }
+                    adapter.submitList(stepList)
+                } else
+                    Toast.makeText(context, R.string.stock_not_found, Toast.LENGTH_LONG).show()
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {}
@@ -130,14 +133,16 @@ class BrewFragment : Fragment() {
         }
 
         binding.finishButton.setOnClickListener {
-            if (stepList.isNotEmpty()) {
+            if (stepList.isNotEmpty() && stockList.isNotEmpty()) {
                 val dialog = DialogCookingFragment(
                     false, chosenRecipe.toBrewHistoryItem(), this::onDialogCookingConfirm
                 )
                 dialog.isCancelable = false
                 dialog.show(childFragmentManager, "cookingDialog")
-            } else
+            } else if (stepList.isEmpty())
                 Toast.makeText(context, R.string.make_recipe, Toast.LENGTH_LONG).show()
+            else
+                Toast.makeText(context, R.string.stock_not_found, Toast.LENGTH_LONG).show()
         }
 
         return binding.root
@@ -179,12 +184,13 @@ class BrewFragment : Fragment() {
 
     @SuppressLint("SetTextI18n")
     private fun timerStart(timeInMilli: Long) {
-        binding.timerText.text = minutes(timeInMilli) + "00"
+        binding.timerText.text = viewModel.minutes(timeInMilli) + "00"
         if (startTimer) {
             countDownTimer = object : CountDownTimer((timeInMilli), 1000) {
                 override fun onTick(untilFinish: Long) {
                     milliLeft = untilFinish
-                    binding.timerText.text = minutes(untilFinish) + seconds(untilFinish)
+                    binding.timerText.text =
+                        viewModel.minutes(untilFinish) + viewModel.seconds(untilFinish)
                 }
 
                 override fun onFinish() {
@@ -197,24 +203,6 @@ class BrewFragment : Fragment() {
         }
     }
 
-    fun minutes(millis: Long): String {
-        if (millis / 60000 < 1) return "00:"
-        if (millis / 60000 in 1..9) return "0" + (millis / 60000) + ":"
-        return "" + (millis / 60000) + ":"
-    }
-
-    fun seconds(millis: Long): String {
-        var millisSeconds: Long = millis
-        while (millisSeconds >= 60000)
-            millisSeconds -= 60000
-
-        return when (millisSeconds / 1000) {
-            in 0..0 -> "00"
-            in 1..9 -> "0" + +(millisSeconds / 1000)
-            else -> "" + millisSeconds / 1000
-        }
-    }
-
     private fun createStringList(item: RecipeItem): List<StepItem> {
         val newBrewList = mutableListOf<StepItem>()
         var counter = 1
@@ -223,7 +211,7 @@ class BrewFragment : Fragment() {
             newBrewList.add(
                 StepItem(
                     counter = counter,
-                    itemString = it.stockName + " " + it.stockAmount,
+                    itemString = it.name + " " + it.amount,
                     brewTime = ""
                 )
             )
@@ -293,7 +281,7 @@ class BrewFragment : Fragment() {
 
         item.hoppingList.forEach { hopping ->
             hopping.hopList.forEach { hop ->
-                hoppingListString += hop.stockName + " " + hop.stockAmount + " "
+                hoppingListString += hop.name + " " + hop.amount + " "
             }
 
             newBrewList.add(
@@ -328,7 +316,7 @@ class BrewFragment : Fragment() {
         newBrewList.add(
             StepItem(
                 counter = counter,
-                itemString = item.yeast.stockName + " " + item.yeast.stockAmount,
+                itemString = item.yeast.name + " " + item.yeast.amount,
                 brewTime = ""
             )
         )

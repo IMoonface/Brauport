@@ -17,24 +17,24 @@ class StockViewModel(private val stockDao: StockDao) : ViewModel() {
 
     val allStockItems: Flow<List<StockItemData>> = stockDao.getAllStockItems()
 
-    fun addStock(stockItem: StockItem) {
+    fun addStock(item: StockItem) {
         viewModelScope.launch {
-            stockDao.insert(stockItem.toStockItemData())
+            stockDao.insert(item.toStockItemData())
         }
     }
 
-    fun updateStock(id: Int, itemType: Int, stockName: String, stockAmount: String) {
-        val stockItem = StockItem(
-            id = id, itemType = itemType, stockName = stockName, stockAmount = stockAmount
+    fun updateStock(id: Int, itemType: Int, name: String, amount: String) {
+        val item = StockItem(
+            id = id, itemType = itemType, name = name, amount = amount
         )
         viewModelScope.launch(Dispatchers.IO) {
-            stockDao.update(stockItem.toStockItemData())
+            stockDao.update(item.toStockItemData())
         }
     }
 
-    fun deleteStock(stockItem: StockItem) {
+    fun deleteStock(item: StockItem) {
         viewModelScope.launch(Dispatchers.IO) {
-            stockDao.delete(stockItem.toStockItemData())
+            stockDao.delete(item.toStockItemData())
         }
     }
 
@@ -59,15 +59,15 @@ class StockViewModel(private val stockDao: StockDao) : ViewModel() {
 
     private fun itemShortage(item: StockItem, list: List<StockItem>): Boolean {
         val index = list.map { it.toSNoAmount() }.indexOf(item.toSNoAmount())
-        val recipeAmount = item.stockAmount.toInt()
-        val databaseAmount = list[index].stockAmount.toInt()
+        val recipeAmount = item.amount.toInt()
+        val databaseAmount = list[index].amount.toInt()
         return databaseAmount - recipeAmount >= 0
     }
 
     private fun calcAmount(item: StockItem, list: List<StockItem>): String {
         val index = list.map { it.toSNoAmount() }.indexOf(item.toSNoAmount())
-        val recipeAmount = item.stockAmount.toInt()
-        val databaseAmount = list[index].stockAmount.toInt()
+        val recipeAmount = item.amount.toInt()
+        val databaseAmount = list[index].amount.toInt()
         return (databaseAmount - recipeAmount).toString()
     }
 
@@ -76,8 +76,8 @@ class StockViewModel(private val stockDao: StockDao) : ViewModel() {
             updateStock(
                 id = malt.id,
                 itemType = malt.itemType,
-                stockName = malt.stockName,
-                stockAmount = calcAmount(malt, list)
+                name = malt.name,
+                amount = calcAmount(malt, list)
             )
         }
 
@@ -86,8 +86,8 @@ class StockViewModel(private val stockDao: StockDao) : ViewModel() {
                 updateStock(
                     id = hop.id,
                     itemType = hop.itemType,
-                    stockName = hop.stockName,
-                    stockAmount = calcAmount(hop, list)
+                    name = hop.name,
+                    amount = calcAmount(hop, list)
                 )
             }
         }
@@ -95,9 +95,27 @@ class StockViewModel(private val stockDao: StockDao) : ViewModel() {
         updateStock(
             id = item.yeast.id,
             itemType = item.yeast.itemType,
-            stockName = item.yeast.stockName,
-            stockAmount = calcAmount(item.yeast, list)
+            name = item.yeast.name,
+            amount = calcAmount(item.yeast, list)
         )
+    }
+
+    fun minutes(millis: Long): String {
+        if (millis / 60000 < 1) return "00:"
+        if (millis / 60000 in 1..9) return "0" + (millis / 60000) + ":"
+        return "" + (millis / 60000) + ":"
+    }
+
+    fun seconds(millis: Long): String {
+        var millisSeconds: Long = millis
+        while (millisSeconds >= 60000)
+            millisSeconds -= 60000
+
+        return when (millisSeconds / 1000) {
+            in 0..0 -> "00"
+            in 1..9 -> "0" + +(millisSeconds / 1000)
+            else -> "" + millisSeconds / 1000
+        }
     }
 }
 

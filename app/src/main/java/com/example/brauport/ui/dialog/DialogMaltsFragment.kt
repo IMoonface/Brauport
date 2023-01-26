@@ -65,7 +65,7 @@ class DialogMaltsFragment : BaseDialogFragment() {
         if (recipeItem.maltList.map { it.toSNoAmount() }.contains(item.toSNoAmount()))
             Toast.makeText(context, R.string.malt_exists, Toast.LENGTH_SHORT).show()
         else {
-            item.stockAmount = amount
+            item.amount = amount
             recipeItem.maltList.add(item)
             Toast.makeText(context, R.string.added_malt, Toast.LENGTH_SHORT).show()
         }

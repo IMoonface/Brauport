@@ -80,8 +80,8 @@ class HopStockFragment : Fragment() {
             val item = StockItem(
                 id = UUID.randomUUID().hashCode(),
                 itemType = HOP.ordinal,
-                stockName = "",
-                stockAmount = ""
+                name = "",
+                amount = ""
             )
 
             val dialog = DialogStockFragment(
@@ -122,8 +122,8 @@ class HopStockFragment : Fragment() {
         viewModel.updateStock(
             id = item.id,
             itemType = item.itemType,
-            stockName = item.stockName,
-            stockAmount = item.stockAmount
+            name = item.name,
+            amount = item.amount
         )
 
         findNavController().navigate(HopStockFragmentDirections.actionHopStockFragmentSelf())

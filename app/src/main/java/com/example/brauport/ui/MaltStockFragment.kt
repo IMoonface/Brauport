@@ -80,8 +80,8 @@ class MaltStockFragment : Fragment() {
             val item = StockItem(
                 id = UUID.randomUUID().hashCode(),
                 itemType = MALT.ordinal,
-                stockName = "",
-                stockAmount = ""
+                name = "",
+                amount = ""
             )
 
             val dialog = DialogStockFragment(
@@ -122,8 +122,8 @@ class MaltStockFragment : Fragment() {
         viewModel.updateStock(
             id = item.id,
             itemType = item.itemType,
-            stockName = item.stockName,
-            stockAmount = item.stockAmount
+            name = item.name,
+            amount = item.amount
         )
 
         findNavController().navigate(MaltStockFragmentDirections.actionMaltStockFragmentSelf())

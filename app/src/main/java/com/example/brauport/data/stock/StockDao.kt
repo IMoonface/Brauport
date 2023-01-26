@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface StockDao {
-    @Query("SELECT * from stock_database ORDER BY stockName ASC")
+    @Query("SELECT * from stock_database ORDER BY name ASC")
     fun getAllStockItems(): Flow<List<StockItemData>>
 
     @Insert

@@ -10,8 +10,8 @@ data class StockItemData(
     val id: Int,
     @ColumnInfo(name = "itemType")
     val itemType: Int,
-    @ColumnInfo(name = "stockName")
-    val stockName: String,
-    @ColumnInfo(name = "stockAmount")
-    val stockAmount: String
+    @ColumnInfo(name = "name")
+    val name: String,
+    @ColumnInfo(name = "amount")
+    val amount: String
 )

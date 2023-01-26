@@ -9,9 +9,9 @@ object TextWatcherLogic {
 
     fun filterListForStock(text: String, adapter: StockAdapter, list: List<StockItem>) {
         if (text != "" && isNumeric(text)) {
-            adapter.submitList(list.filter { it.stockAmount.toInt() <= text.toInt() })
+            adapter.submitList(list.filter { it.amount.toInt() <= text.toInt() })
         } else if (text != "")
-            adapter.submitList(list.filter { it.stockName.lowercase().contains(text.lowercase()) })
+            adapter.submitList(list.filter { it.name.lowercase().contains(text.lowercase()) })
         else
             adapter.submitList(list)
     }

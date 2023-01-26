@@ -128,7 +128,7 @@ class RecipeDetailsFragment : Fragment() {
 
     private fun recipeNotValid(): Boolean {
         val defaultYeast = StockItem(
-            id = 0, itemType = StockItemType.YEAST.ordinal, stockName = "", stockAmount = ""
+            id = 0, itemType = StockItemType.YEAST.ordinal, name = "", amount = ""
         )
 
         val defaultMainBrew = MainBrew(firstBrew = "", secondBrew = "")

@@ -61,11 +61,11 @@ class DialogYeastFragment : BaseDialogFragment() {
     }
 
     private fun onItemAdd(item: StockItem, amount: String) {
-        if (recipeItem.yeast.stockName != "" && recipeItem.yeast.stockAmount != "")
+        if (recipeItem.yeast.name != "" && recipeItem.yeast.amount != "")
             Toast.makeText(context, R.string.only_one_yeast_per_recipe, Toast.LENGTH_SHORT)
                 .show()
         else {
-            item.stockAmount = amount
+            item.amount = amount
             recipeItem.yeast = item
             Toast.makeText(context, R.string.added_yeast, Toast.LENGTH_SHORT).show()
         }
@@ -73,7 +73,7 @@ class DialogYeastFragment : BaseDialogFragment() {
 
     private fun onItemDelete(item: SNoAmount) {
         val startYeast = StockItem(
-            id = 0, itemType = YEAST.ordinal, stockName = "", stockAmount = ""
+            id = 0, itemType = YEAST.ordinal, name = "", amount = ""
         )
 
         if (recipeItem.yeast == startYeast)

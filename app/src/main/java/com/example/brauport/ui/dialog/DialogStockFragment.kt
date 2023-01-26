@@ -45,8 +45,8 @@ class DialogStockFragment(
             if (stockName == "" || stockAmount == "") {
                 Toast.makeText(context, R.string.fill_all_fields, Toast.LENGTH_SHORT).show()
             } else {
-                item.stockName = stockName
-                item.stockAmount = stockAmount
+                item.name = stockName
+                item.amount = stockAmount
                 if (update) {
                     updateRecipes(item)
                     onItemUpdate(item)
@@ -68,8 +68,8 @@ class DialogStockFragment(
             if (item.itemType == StockItemType.MALT.ordinal)
                 recipeItem.maltList.forEach { stockItem ->
                     if (differentFromRecipeStock(stockItem, item)) {
-                        stockItem.stockName = item.stockName
-                        stockItem.stockAmount = item.stockAmount
+                        stockItem.name = item.name
+                        stockItem.amount = item.amount
                     }
                 }
 
@@ -77,16 +77,16 @@ class DialogStockFragment(
                 recipeItem.hoppingList.forEach { hopping ->
                     hopping.hopList.forEach { stockItem ->
                         if (differentFromRecipeStock(stockItem, item)) {
-                            stockItem.stockName = item.stockName
-                            stockItem.stockAmount = item.stockAmount
+                            stockItem.name = item.name
+                            stockItem.amount = item.amount
                         }
                     }
                 }
 
             if (item.itemType == StockItemType.YEAST.ordinal)
                 if (differentFromRecipeStock(recipeItem.yeast, item)) {
-                    recipeItem.yeast.stockName = item.stockName
-                    recipeItem.yeast.stockAmount = item.stockAmount
+                    recipeItem.yeast.name = item.name
+                    recipeItem.yeast.amount = item.amount
                 }
 
             viewModel.updateRecipe(
@@ -103,8 +103,8 @@ class DialogStockFragment(
 
     private fun differentFromRecipeStock(recipeStock: StockItem, item: StockItem): Boolean {
         return recipeStock.id == item.id &&
-                (recipeStock.stockName != item.stockName ||
-                        recipeStock.stockAmount != item.stockAmount)
+                (recipeStock.name != item.name ||
+                        recipeStock.amount != item.amount)
     }
 
     override fun onDestroyView() {

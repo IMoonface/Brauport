@@ -12,8 +12,8 @@ fun StockItemData.toStockItem(): StockItem {
     return StockItem(
         id = id,
         itemType = itemType,
-        stockName = stockName,
-        stockAmount = stockAmount
+        name = name,
+        amount = amount
     )
 }
 
@@ -21,8 +21,8 @@ fun StockItem.toStockItemData(): StockItemData {
     return StockItemData(
         id = id,
         itemType = itemType,
-        stockName = stockName,
-        stockAmount = stockAmount
+        name = name,
+        amount = amount
     )
 }
 
@@ -30,7 +30,7 @@ fun StockItem.toSNoAmount(): SNoAmount {
     return SNoAmount(
         id = id,
         itemType = itemType,
-        stockName = stockName
+        stockName = name
     )
 }
 

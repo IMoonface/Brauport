@@ -25,8 +25,8 @@ class StockAdapter(
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: StockViewHolder, position: Int) = with(holder.binding) {
         val item = getItem(position)
-        itemTitle.text = item.stockName
-        itemAmount.text = item.stockAmount + "g"
+        itemTitle.text = item.name
+        itemAmount.text = item.amount + "g"
 
         deleteButton.setOnClickListener {
             onDeleteClick(item)

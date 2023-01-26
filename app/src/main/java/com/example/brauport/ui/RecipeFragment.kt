@@ -54,11 +54,9 @@ class RecipeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentRecipeBinding.inflate(inflater, container, false)
-        adapter = RecipeAdapter(
-            this::onInspectClick,
-            this::onItemClick,
-            this::onDeleteClick
-        )
+
+        adapter = RecipeAdapter(this::onInspectClick, this::onItemClick, this::onDeleteClick)
+
         binding.recyclerView.adapter = adapter
         lifecycleScope.launch {
             viewModel.allRecipeItems.collect { recipeItemDataList ->

@@ -31,7 +31,7 @@ class DialogRecipeInspectFragment(
         val hoppingNameList = mutableListOf<String>()
 
         item.maltList.forEach {
-            maltNameList.add(it.stockName + " " + it.stockAmount + "g")
+            maltNameList.add(it.name + " " + it.amount + "g")
         }
 
         item.restList.forEach {
@@ -44,7 +44,7 @@ class DialogRecipeInspectFragment(
         item.hoppingList.forEach { hopping ->
             val hopsNameList = mutableListOf<String>()
             hopping.hopList.forEach {
-                hopsNameList.add(it.stockName + " " + it.stockAmount + "g")
+                hopsNameList.add(it.name + " " + it.amount + "g")
             }
             hoppingNameList.add(hopsNameList.toString() + " " + hopping.hoppingTime + "min")
         }
@@ -57,8 +57,8 @@ class DialogRecipeInspectFragment(
 
         binding.hopping.text = getString(R.string.hopping) + ": " + hoppingNameList
 
-        binding.yeast.text = getString(R.string.yeast) + ": " + item.yeast.stockName +
-                " " + item.yeast.stockAmount
+        binding.yeast.text = getString(R.string.yeast) + ": " + item.yeast.name +
+                " " + item.yeast.amount
 
         binding.mainBrew.text =
             getString(R.string.first_brew_with) + " " + item.mainBrew.firstBrew + " " +

@@ -40,8 +40,8 @@ class RecipeStockAdapter(
         with(holder.binding) {
             val item = getItem(position)
 
-            itemTitle.text = item.stockName
-            itemAmount.text = item.stockAmount + "g"
+            itemTitle.text = item.name
+            itemAmount.text = item.amount + "g"
 
             addButton.setOnClickListener {
                 val newAmount = rStockItemAmountInput.text.toString()

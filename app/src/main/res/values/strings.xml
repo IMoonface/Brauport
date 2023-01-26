@@ -103,6 +103,7 @@
     <string name="second_brew">Second Pour</string>
     <string name="second_brew_with">and second pour with</string>
     <string name="start_brew_timer">Start</string>
+    <string name="stock_not_found">Stock was not found!</string>
     <string name="stock_text">Stock</string>
     <string name="stop_brew_timer">Stop</string>
     <string name="temp">Temperature</string>
