@@ -25,10 +25,7 @@
     <string name="brew_text">Pour</string>
     <string name="brew_with_subtracting_stock">Brew wort, subtract off stock</string>
     <string name="brew_without_subtracting_stock">Brew wort, brew and don\'t subtract off stock</string>
-    <string name="channel_name">Brew history notification channel</string>
-    <string name="channel_description">Informs whenever a fermentation has finished</string>
     <string name="choose_all_recipe_ingredients">Please choose all recipe ingredients!</string>
-    <string name="choose_another_recipe">Please choose another recipe!</string>
     <string name="choose_hop">Please choose hop first!</string>
     <string name="confirm">Confirm</string>
     <string name="counter_dummy_text">1</string>
@@ -42,11 +39,9 @@
     <string name="deleted_malt">Malt got deleted!</string>
     <string name="deleted_rest">Rest got deleted!</string>
     <string name="deleted_yeast">Yeast got deleted!</string>
-    <string name="done_text">Done</string>
     <string name="dummy_text">Test</string>
     <string name="end_brewing">Finish Brewing</string>
     <string name="enter_end_of_fermentation">Please enter the end of fermentation!</string>
-    <string name="enter_name">Please enter a name!</string>
     <string name="enter_recipe_name">Please enter a recipe name!</string>
     <string name="enter_time">Please enter a time!</string>
     <string name="fill_all_fields">Please fill in all fields!</string>
@@ -69,10 +64,8 @@
     <string name="instruction_s_text">Please enter your entire stock here by pressing the \"+ New *\"-button and enter the name and quantity of your item. You can subsequently view the data of the relevant stock item by clicking on it. Use the search function to find and change your stock item. This can happen in 2 ways: 1. By searching for the name of the stock. 2. By searching for the amount of stock. By clicking on the \"x\"-button the stock item is deleted. Please note that the names of the stock items are not unique! So search whether your stock item already exists before you create a new item!</string>
     <string name="instruction_stock">Instruction - Stock:</string>
     <string name="invalid_date">Date is invalid!</string>
-    <string name="item_close">End</string>
     <string name="item_main_screen">Main Menu</string>
     <string name="keep_brew_history_record">Keep brewing history record</string>
-    <string name="keep_recipe_data">Keep recipe data</string>
     <string name="let_it_cool_down">Let it cool down</string>
     <string name="main_brew">Main Pour</string>
     <string name="main_brew_history">Brewing History</string>
@@ -85,13 +78,8 @@
     <string name="new_hop">New Hops</string>
     <string name="new_malt">New Malt</string>
     <string name="new_yeast">New Yeast</string>
-    <string name="no_ingredients_added">No ingredients have been added yet!</string>
     <string name="no_text">No</string>
-    <string name="no_time_chosen">No time was chosen!</string>
-    <string name="notification_text">The fermentation of %1$s is finished</string>
-    <string name="notification_title">Fermentation completed</string>
     <string name="only_one_yeast_per_recipe">Only one yeast per recipe possible!</string>
-    <string name="open_text">Open</string>
     <string name="pipeing">Piping</string>
     <string name="recipe_add">New Recipe</string>
     <string name="recipe_inspect_name">Recipe Name</string>
@@ -116,8 +104,6 @@
     <string name="unit_of_measurement_time">min</string>
     <string name="updated_date">Date got updated!</string>
     <string name="updated_recipe">Recipe has been updated!</string>
-    <string name="warning">!!! Warning !!!</string>
-    <string name="warning_dialog_text">Please note that elements may not be displayed correctly on devices with a lower resolution than 480x800px! You can still use this app, but a minimum resolution of 480x800 is recommended for all elements to display correctly.</string>
     <string name="warning_text">!!! Warning !!!\nThere is not enough ingredients in stock. If you do carry out this recipe now, then stocks will become negative!</string>
     <string name="yeast">Yeast</string>
     <string name="yeast_not_found">Yeast not found!</string>

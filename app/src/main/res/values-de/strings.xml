@@ -25,10 +25,7 @@
     <string name="brew_text">Brauen</string>
     <string name="brew_with_subtracting_stock">Trotzdem Brauen und Bestand abziehen</string>
     <string name="brew_without_subtracting_stock">Trotzdem Brauen und Bestand nicht abziehen</string>
-    <string name="channel_name">Brauhistorien Benachrichtigungskanal</string>
-    <string name="channel_description">Informiert, wenn eine Gärung beendet ist</string>
     <string name="choose_all_recipe_ingredients">Bitte alle Rezeptbestandteile auswählen!</string>
-    <string name="choose_another_recipe">Bitte wählen Sie ein anderes Rezept!</string>
     <string name="choose_hop">"Bitte zuerst Hopfen auswählen!"</string>
     <string name="confirm">Bestätigen</string>
     <string name="counter_dummy_text">1</string>
@@ -42,11 +39,9 @@
     <string name="deleted_malt">Malz gelöscht!</string>
     <string name="deleted_rest">Rast wurde gelöscht!</string>
     <string name="deleted_yeast">Hefe gelöscht!</string>
-    <string name="done_text">Fertig</string>
     <string name="dummy_text">Test</string>
     <string name="end_brewing">Brauvorgang Beenden</string>
     <string name="enter_end_of_fermentation">Bitte Ende der Gärung eingeben!</string>
-    <string name="enter_name">Bitte Namen eingeben!</string>
     <string name="enter_recipe_name">Bitte Rezeptnamen eingeben!</string>
     <string name="enter_time">Bitte Zeit angeben!</string>
     <string name="fill_all_fields">Bitte alle Felder ausfüllen!</string>
@@ -69,10 +64,8 @@
     <string name="instruction_s_text">Bitte tragen Sie hier Ihren gesamten Bestand ein, indem Sie auf den \"+ Neu\"-Button drücken und den Namen, sowie die Menge Ihres Bestanditems angeben. Sie können durch einen Klick auf das entsprechende Bestandsitem dessen Daten nachträglich abändern. Nutzen Sie dafür die Suchfunktion, um Ihr Bestandsitem zu finden und zu ändern. Dies kann auf 2 Wegen passieren: 1. Durch die Suche nach dem Namen des Bestandes. 2. Durch die Suche nach der Menge des Bestandes. Durch Klick auf das \"x\" wird das Bestandsitem aus ihren Bestand gelöscht. Bitte beachten Sie, dass die Namen der Bestanditems nicht einzigartig sind! Suchen Sie deshalb vorher mit der Suchfunktion, ob ihr Bestandsitem bereits existiert bevor Sie ein neues Item anlegen!</string>
     <string name="instruction_stock">Anleitung - Bestand:</string>
     <string name="invalid_date">Datum nicht gültig!</string>
-    <string name="item_close">Beenden</string>
     <string name="item_main_screen">Hauptmenü</string>
     <string name="keep_brew_history_record">Brauhistorieintrag beibehalten</string>
-    <string name="keep_recipe_data">Rezeptdaten beibehalten</string>
     <string name="let_it_cool_down">Abkühlen lassen</string>
     <string name="main_brew">Guss</string>
     <string name="main_brew_history">Brauhistorie</string>
@@ -85,13 +78,8 @@
     <string name="new_hop">Neuer Hopfen</string>
     <string name="new_malt">Neues Malz</string>
     <string name="new_yeast">Neue Hefe</string>
-    <string name="no_ingredients_added">Es wurden noch keine Zutaten hinzugefügt!</string>
     <string name="no_text">Nein</string>
-    <string name="no_time_chosen">Es wurde noch keine Zeit ausgewählt!</string>
-    <string name="notification_text">Die Gärung von %1$s wurde vollendet</string>
-    <string name="notification_title">Gärung abgeschlossen</string>
     <string name="only_one_yeast_per_recipe">Nur eine Hefe pro Rezept möglich!</string>
-    <string name="open_text">Offen</string>
     <string name="pipeing">Schlauchen</string>
     <string name="recipe_add">Neues Rezept</string>
     <string name="recipe_inspect_name">Rezeptname</string>
@@ -116,8 +104,6 @@
     <string name="unit_of_measurement_time">min</string>
     <string name="updated_date">Datum aktualisiert!</string>
     <string name="updated_recipe">Rezept wurde geupdatet!</string>
-    <string name="warning">!!! Warnung !!!</string>
-    <string name="warning_dialog_text">Bitte nehmen Sie zur Kenntnis, dass auf Devices mit einer Auflösung niedriger als 480x800px, eventuell Elemente nicht richtig dargestellt werden! Sie können diese App weiterhin nutzen, aber es wird eine Auflösung von mindestens 480x800 empfohlen, damit alle Elemente korrekt dargestellt werden.</string>
     <string name="warning_text">!! Warnung !!\n Es ist zu wenig vorrätig im Lager. Wenn Sie dieses Rezept jetzt durchführen, dann werden Bestände negativ!</string>
     <string name="yeast">Hefe</string>
     <string name="yeast_not_found">Hefe nicht vorhanden!</string>
