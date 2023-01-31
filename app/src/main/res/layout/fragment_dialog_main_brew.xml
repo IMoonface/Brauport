@@ -17,7 +17,6 @@
         android:hint="@string/main_brew"
         android:importantForAutofill="no"
         android:inputType="number"
-        android:maxLength="20"
         app:layout_constraintEnd_toStartOf="@+id/milliliters_second"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -34,7 +33,6 @@
         android:hint="@string/second_brew"
         android:importantForAutofill="no"
         android:inputType="number"
-        android:maxLength="20"
         app:layout_constraintEnd_toStartOf="@+id/milliliters_first"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/first_pour">

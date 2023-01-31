@@ -211,7 +211,7 @@ class BrewFragment : Fragment() {
             newBrewList.add(
                 StepItem(
                     counter = counter,
-                    itemString = it.name + " " + it.amount,
+                    itemString = it.name + " " + it.amount + "g ",
                     brewTime = ""
                 )
             )
@@ -242,7 +242,7 @@ class BrewFragment : Fragment() {
             newBrewList.add(
                 StepItem(
                     counter = counter,
-                    itemString = restCounter.toString() + ". Rast" + it.restTemp + getString(R.string.unit_of_measurement_temp),
+                    itemString = restCounter.toString() + ". Rast " + it.restTemp + getString(R.string.unit_of_measurement_temp),
                     brewTime = it.restTime
                 )
             )
@@ -281,7 +281,7 @@ class BrewFragment : Fragment() {
 
         item.hoppingList.forEach { hopping ->
             hopping.hopList.forEach { hop ->
-                hoppingListString += hop.name + " " + hop.amount + " "
+                hoppingListString += hop.name + " " + hop.amount + "g "
             }
 
             newBrewList.add(
@@ -316,7 +316,7 @@ class BrewFragment : Fragment() {
         newBrewList.add(
             StepItem(
                 counter = counter,
-                itemString = item.yeast.name + " " + item.yeast.amount,
+                itemString = item.yeast.name + " " + item.yeast.amount + "g",
                 brewTime = ""
             )
         )
