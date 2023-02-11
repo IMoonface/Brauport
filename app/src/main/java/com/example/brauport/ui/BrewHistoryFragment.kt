@@ -37,7 +37,7 @@ class BrewHistoryFragment : Fragment() {
     ): View {
         _binding = FragmentBrewHistoryBinding.inflate(inflater, container, false)
 
-        adapter = BrewHistoryAdapter(this::onInspectItem, this::onItemClick, this::onDeleteClick)
+        adapter = BrewHistoryAdapter(this::onInspectClick, this::onItemClick, this::onDeleteClick)
         binding.recyclerView.adapter = adapter
 
         lifecycleScope.launch {
@@ -54,7 +54,7 @@ class BrewHistoryFragment : Fragment() {
         _binding = null
     }
 
-    private fun onInspectItem(item: BrewHistoryItem) {
+    private fun onInspectClick(item: BrewHistoryItem) {
         val dialog = DialogRecipeInspectFragment(item, true)
         dialog.isCancelable = false
         dialog.show(childFragmentManager, "inspectDialog")

@@ -43,7 +43,9 @@ class RecipeDetailsFragment : Fragment() {
         val update = arguments?.getBoolean("recipeUpdate") ?: false
 
         binding.inspectButton.setOnClickListener {
-            val dialog = DialogRecipeInspectFragment(recipeItem.toBrewHistoryItem(), false)
+            val dialog = DialogRecipeInspectFragment(
+                recipeItem.toBrewHistoryItem(), false
+            )
             dialog.isCancelable = false
             dialog.show(childFragmentManager, "recipeInspectDialog")
         }

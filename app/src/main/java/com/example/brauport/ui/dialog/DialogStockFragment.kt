@@ -17,7 +17,7 @@ import com.example.brauport.ui.viewModel.RecipeViewModelFactory
 
 class DialogStockFragment(
     private val item: StockItem,
-    private val onItemAdd: (StockItem) -> Unit,
+    private val onAddClick: (StockItem) -> Unit,
     private val onItemUpdate: (StockItem) -> Unit,
     private val update: Boolean
 ) : BaseDialogFragment() {
@@ -51,7 +51,7 @@ class DialogStockFragment(
                     updateRecipes(item)
                     onItemUpdate(item)
                 } else
-                    onItemAdd(item)
+                    onAddClick(item)
                 dismiss()
             }
         }

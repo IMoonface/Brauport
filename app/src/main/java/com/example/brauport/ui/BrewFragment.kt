@@ -170,13 +170,13 @@ class BrewFragment : Fragment() {
 
 
     @SuppressLint("SetTextI18n")
-    private fun onItemClick(brewItem: StepItem) {
+    private fun onItemClick(item: StepItem) {
         if (startTimer)
             Toast.makeText(context, R.string.timer_already_running, Toast.LENGTH_SHORT).show()
         else {
             binding.timerStartButton.text = "Start"
-            if (brewItem.brewTime != "") {
-                milliFromItem = brewItem.brewTime.toLong() * 60000
+            if (item.brewTime != "") {
+                milliFromItem = item.brewTime.toLong() * 60000
                 timerStart(milliFromItem)
             }
         }

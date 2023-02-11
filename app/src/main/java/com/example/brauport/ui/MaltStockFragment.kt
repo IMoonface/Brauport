@@ -85,7 +85,7 @@ class MaltStockFragment : Fragment() {
             )
 
             val dialog = DialogStockFragment(
-                item, this::onItemAdd, this::onItemUpdate, false
+                item, this::onAddClick, this::onItemUpdate, false
             )
 
             dialog.isCancelable = false
@@ -109,12 +109,12 @@ class MaltStockFragment : Fragment() {
     }
 
     private fun onItemClick(item: StockItem) {
-        val dialog = DialogStockFragment(item, this::onItemAdd, this::onItemUpdate, true)
+        val dialog = DialogStockFragment(item, this::onAddClick, this::onItemUpdate, true)
         dialog.isCancelable = false
         dialog.show(childFragmentManager, "maltUpdateDialog")
     }
 
-    private fun onItemAdd(item: StockItem) {
+    private fun onAddClick(item: StockItem) {
         viewModel.addStock(item)
     }
 
