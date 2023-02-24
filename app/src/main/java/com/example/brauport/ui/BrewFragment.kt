@@ -77,7 +77,7 @@ class BrewFragment : Fragment() {
         binding.spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, pos: Int, id: Long) {
                 chosenRecipe = spinnerItemList[pos]
-                stepList = createStringList(chosenRecipe)
+                stepList = createStepItemList(chosenRecipe)
                 if (stockList.isNotEmpty()) {
                     if (viewModel.negativeAmount(chosenRecipe, stockList)) {
                         val dialog = DialogQuestionFragment(
@@ -203,7 +203,7 @@ class BrewFragment : Fragment() {
         }
     }
 
-    private fun createStringList(item: RecipeItem): List<StepItem> {
+    private fun createStepItemList(item: RecipeItem): List<StepItem> {
         val newBrewList = mutableListOf<StepItem>()
         var counter = 1
 
